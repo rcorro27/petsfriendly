@@ -1,10 +1,10 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
 
-// import FormContainer from 'container/form-container' A CHANGER
-import MusicContainer from './container/music-container'
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
+
+import FormContainer from 'container/form-container'
 
 ReactDOM.render(
-    <MusicContainer />,
+    <FormContainer />,
     document.getElementById('app')
 )
