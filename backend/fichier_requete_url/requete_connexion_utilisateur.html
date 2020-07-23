@@ -25,6 +25,10 @@
 		color: black;
 		font-size: 0.8em;
 	}
+	.bloc_json
+	{
+		margin-left: 40px;
+	}
 	
 </style>
 
@@ -39,14 +43,18 @@
 	
 	<h2>Parametre : </h2>
 	<h3>Json: {<br/>
+		<div class="bloc_json">
 		"e-mail": "exemple@gmail.com",<br/>
 		"mot_de_passe": "abc123..." <br/>
+		</div>
 			  }
 	</h3>
 	
 	<h2>Reponse : </h2>
 	<h3>Json: {<br/>
+			<div class="bloc_json">
 			"utilisateur" : { <br/>
+				<div class="bloc_json">
 					"id": ,<br/>
 					"id_role": ,<br/>
 					"nom": ,<br/>
@@ -65,9 +73,11 @@
 					"id_activation": ,<br/>
 					"date_creation": ,<br/>
 					"remuneration_pettsitter": ,<br/>
+					</div>
 							}<br/>
 						
 			"animaux" : {<br/>
+			<div class="bloc_json">
 					"1": {<br/>
 						"id": ,<br/>
 						"race": ,<br/>
@@ -88,8 +98,10 @@
 						"age_animal": ,<br/>
 						"tarif_supplementaire": ,<br/>
 					       }<br/>
+						</div>
 						}<br/>
 			"adresse" : {<br/>
+			<div class="bloc_json">
 					"id": ,<br/>
 					"numero_rue": ,<br/>
 					"nom_rue": ,<br/>
@@ -97,13 +109,17 @@
 					"ville": ,<br/>
 					"pays": ,<br/>
 					"numero_apt": ,<br/>
+					</div>
 				  }<br/>
 			"role" : {<br/>
+			<div class="bloc_json">
 					"id": ,<br/>
 					"role": ,<br/>
 					"definition": ,<br/>
+					</div>
 				  }<br/>
 			"favoris" : {<br/>
+			<div class="bloc_json">
 					"1": {<br/>
 						"id": ,<br/>
 						"id_petsitter": ,<br/>
@@ -113,8 +129,10 @@
 						"id": ,<br/>
 						"id_pet_sitter": ,<br/>
 						 }<br/>
+					</div>	 
 				  }<br/>
 			"planning" : {<br/>
+			<div class="bloc_json">
 					"1": {<br/>
 					"id": ,<br/>
 					"id_contrat": ,<br/>
@@ -131,8 +149,10 @@
 					"date_debut": ,<br/>
 					"date_fin": ,<br/>
 						}<br/>
+					</div>	
 				  }<br/>
 			"contrat" : {<br/>
+			<div class="bloc_json">
 					"1": {<br/>
 					"id": ,<br/>
 					"id_facture": ,<br/>
@@ -157,8 +177,10 @@
 					"encore_disponible": ,<br/>
 					"date_creation": ,<br/>
 						}<br/>
+					</div>
 				  }<br/>
 			"facture" : {<br/>
+			<div class="bloc_json">
 					"1": {<br/>
 					"id": ,<br/>
 					"id_promotion": ,<br/>
@@ -169,8 +191,10 @@
 					"id_promotion": ,<br/>
 					"prix": ,<br/>
 						 }<br/>
+					</div>
 				  }<br/>
 			"service" : {<br/>
+			<div class="bloc_json">
 					"1": {<br/>
 					"id": ,<br/>
 					"description": ,<br/>
@@ -181,8 +205,12 @@
 					"description": ,<br/>
 					"prix_service": ,<br/>
 						 }<br/>
+					</div>
 				  }<br/>
+				  
+				  </div>
 			  }<br/>
+			  
 	</h3>
 	<h2>OU</h2>
 	<h3>NULL</h3>

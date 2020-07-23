@@ -25,6 +25,10 @@
 		color: black;
 		font-size: 0.8em;
 	}
+	.bloc_json
+	{
+		margin-left: 40px;
+	}
 	
 </style>
 
@@ -39,6 +43,7 @@
 	
 	<h2>Parametre : </h2>
 	<h3>Json: {<br/>
+		<div class="bloc_json">
 		"role": ,<br/>
 		"nom": ,<br/>
 		"prenom": ,<br/>
@@ -54,12 +59,15 @@
 		"numero_apt": ,<br/>
 		"telephone": ,<br/>
 		"secteur_action": ,<br/>
+		</div>
 				}
 	</h3>
 	
 	<h2>Reponse : </h2>
 	<h3>Json: {<br/>
+			<div class="bloc_json">
 			"utilisateur" : {<br/>
+			<div class="bloc_json">
 				"id": ,<br/>
 				"id_role": ,<br/>
 				"nom": ,<br/>
@@ -78,8 +86,10 @@
 				"id_activation": ,<br/>
 				"date_creation": ,<br/>
 				"remuneration_pettsitter": ,<br/>
+				</div>
 							}<br/>
 			"adresse" : {<br/>
+			<div class="bloc_json">
 				"id": ,<br/>
 				"numero_rue": ,<br/>
 				"nom_rue": ,<br/>
@@ -87,7 +97,9 @@
 				"ville": ,<br/>
 				"pays": ,<br/>
 				"numero_apt": ,<br/>
+				</div>
 						}<br/>
+			</div>			
 				}<br/>
 	</h3>
 	<h2>OU</h2>
