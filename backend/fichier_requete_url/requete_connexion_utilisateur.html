@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Requette - Connexion</title>
+
+<style>
+	h1 
+	{
+		color: Red;
+		width: 40%;
+		margin: auto;
+		text-align: center;
+	}
+	h2
+	{
+		color: Green;
+	
+	}
+	h2,h3
+	{
+		margin-left: 10%;
+	}
+	span
+	{
+		color: black;
+		font-size: 0.8em;
+	}
+	.bloc_json
+	{
+		margin-left: 40px;
+	}
+	
+</style>
+
+</head>
+
+<body>
+			<h1>Requette - Connexion</h1>
+
+	<h2>Methode : <span>POST</span></h2>
+	
+	<h2>Url : <span>localhost:80/utilisateur/connexion</span></h2> 
+	
+	<h2>Parametre : </h2>
+	<h3>Json: {<br/>
+		<div class="bloc_json">
+		"e-mail": "exemple@gmail.com",<br/>
+		"mot_de_passe": "abc123..." <br/>
+		</div>
+			  }
+	</h3>
+	
+	<h2>Reponse : </h2>
+	<h3>Json: {<br/>
+			<div class="bloc_json">
+			"utilisateur" : { <br/>
+				<div class="bloc_json">
+					"id": ,<br/>
+					"id_role": ,<br/>
+					"nom": ,<br/>
+					"prenom": ,<br/>
+					"age": ,<br/>
+					"e-mail": ,<br/>
+					"mot_de_passe": ,<br/>
+					"sexe": ,<br/>
+					"id_adresse": ,<br/>
+					"telephone": ,<br/>
+					"secteur_action": ,<br/>
+					"url_photo": ,<br/>
+					"est_disponible": ,<br/>
+					"est_valide": ,<br/>
+					"est_active": ,<br/>
+					"id_activation": ,<br/>
+					"date_creation": ,<br/>
+					"remuneration_pettsitter": ,<br/>
+					</div>
+							}<br/>
+						
+			"animaux" : {<br/>
+			<div class="bloc_json">
+					"1": {<br/>
+						"id": ,<br/>
+						"race": ,<br/>
+						"type_animal": ,<br/>
+						"poids_animal": ,<br/>
+						"sexe_animal": ,<br/>
+						"nom_animal": ,<br/>
+						"age_animal": ,<br/>
+						"tarif_supplementaire": ,<br/>
+						  }<br/>
+					"2": {<br/>
+						"id": ,<br/>
+						"race": ,<br/>
+						"type_animal": ,<br/>
+						"poids_animal": ,<br/>
+						"sexe_animal": ,<br/>
+						"nom_animal": ,<br/>
+						"age_animal": ,<br/>
+						"tarif_supplementaire": ,<br/>
+					       }<br/>
+						</div>
+						}<br/>
+			"adresse" : {<br/>
+			<div class="bloc_json">
+					"id": ,<br/>
+					"numero_rue": ,<br/>
+					"nom_rue": ,<br/>
+					"code_postal": ,<br/>
+					"ville": ,<br/>
+					"pays": ,<br/>
+					"numero_apt": ,<br/>
+					</div>
+				  }<br/>
+			"role" : {<br/>
+			<div class="bloc_json">
+					"id": ,<br/>
+					"role": ,<br/>
+					"definition": ,<br/>
+					</div>
+				  }<br/>
+			"favoris" : {<br/>
+			<div class="bloc_json">
+					"1": {<br/>
+						"id": ,<br/>
+						"id_petsitter": ,<br/>
+						"id_proprietaire": ,<br/>
+						 }<br/>
+				    "2": {<br/>
+						"id": ,<br/>
+						"id_pet_sitter": ,<br/>
+						 }<br/>
+					</div>	 
+				  }<br/>
+			"planning" : {<br/>
+			<div class="bloc_json">
+					"1": {<br/>
+					"id": ,<br/>
+					"id_contrat": ,<br/>
+					"id_proprietaire": ,<br/>
+					"id_petsitter": ,<br/>
+					"date_debut": ,<br/>
+					"date_fin": ,<br/>
+						}<br/>
+					"2": {<br/>
+					"id": ,<br/>
+					"id_contrat": ,<br/>
+					"id_proprietaire": ,<br/>
+					"id_petsitter": ,<br/>
+					"date_debut": ,<br/>
+					"date_fin": ,<br/>
+						}<br/>
+					</div>	
+				  }<br/>
+			"contrat" : {<br/>
+			<div class="bloc_json">
+					"1": {<br/>
+					"id": ,<br/>
+					"id_facture": ,<br/>
+					"date_debut": ,<br/>
+					"date_fin": ,<br/>
+					"est_accepte": ,<br/>
+					"est_termine": ,<br/>
+					"est_lu_proprietaire": ,<br/>
+					"est_lu_disponible": ,<br/>
+					"encore_disponible": ,<br/>
+					"date_creation": ,<br/>
+						 }<br/>
+					"2": {<br/>
+					"id": ,<br/>
+					"id_facture": ,<br/>
+					"date_debut": ,<br/>
+					"date_fin": ,<br/>
+					"est_accepte": ,<br/>
+					"est_termine": ,<br/>
+					"est_lu_proprietaire": ,<br/>
+					"est_lu_disponible": ,<br/>
+					"encore_disponible": ,<br/>
+					"date_creation": ,<br/>
+						}<br/>
+					</div>
+				  }<br/>
+			"facture" : {<br/>
+			<div class="bloc_json">
+					"1": {<br/>
+					"id": ,<br/>
+					"id_promotion": ,<br/>
+					"prix": ,<br/>
+						 }<br/>
+					"2": {<br/>
+					"id": ,<br/>
+					"id_promotion": ,<br/>
+					"prix": ,<br/>
+						 }<br/>
+					</div>
+				  }<br/>
+			"service" : {<br/>
+			<div class="bloc_json">
+					"1": {<br/>
+					"id": ,<br/>
+					"description": ,<br/>
+					"prix_service": ,<br/>
+						 }<br/>
+					"2": {<br/>
+					"id": ,<br/>
+					"description": ,<br/>
+					"prix_service": ,<br/>
+						 }<br/>
+					</div>
+				  }<br/>
+				  
+				  </div>
+			  }<br/>
+			  
+	</h3>
+	<h2>OU</h2>
+	<h3>NULL</h3>
+</body>
+	
+</html>
