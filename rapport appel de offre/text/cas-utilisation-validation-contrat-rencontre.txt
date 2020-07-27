@@ -1,0 +1,15 @@
+Use Case - Validation contrat & Organisation de la rencontre et validation finale du contrat
+
+Cas d’utilisation : Validation du contrat et organisation de la rencontre
+
+Scénario principal :
+- Suite à la demande reçu, le sitter décide s'il accepte ou refuse le contrat.
+- Lorsque la demande est acceptée une notification est envoyée au propriétaire qui a fait la demande.
+- Le propriétaire fait une demande pour recontrer le sitter par l'application (présentation des lieux, de l'animal etc. avant de finaliser le contrat)
+- Suite à la rencontre le sitter et le propriétaire accepte le contrat.
+
+Scénarios alternatifs :
+- Si tous les sitters refusent une demande le propriétaire est averti et peu refaire une nouvelle demande (ou la modifier)
+- Si le client clique sur le bouton Supprimer au lieu du bouton Modifier, le système supprime cet article du panier d’achat.
+- Si le sitter/propriétaire refuse après la rencontre il faut faire une nouvelle demande.
+
