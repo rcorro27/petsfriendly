@@ -5,11 +5,15 @@ import profilPettSitter from 'component/profilPettSitter'
 class FormInscription extends Component {
     render () {
         return (
+
             <div>
                 <h1>Contacter le PetSitter</h1>
+
+
                 <h2>Laisser lui un messager</h2>
                 </div>
-            < form id = 'petSitterpopups' >
+
+            <form id = 'petSitterpopups' >
                     <p>Message</p>
                     <div class='texteArea'>
                         <PetSitterInput
@@ -26,4 +30,4 @@ class FormInscription extends Component {
         )
                         }
                         }
-                        export default profilPettSitter
+   export default profilPettSitter
