@@ -8,20 +8,22 @@ class FormInscription extends Component {
             <div>
                 <h1>Contacter le PetSitter</h1>
                 <h2>Laisser lui un messager</h2>
-                <form id='profilPettSitter'>
+                </div>
+            < form id = 'petSitterpopups' >
                     <p>Message</p>
                     <div class='texteArea'>
                         <PetSitterInput
                             text='pettesitter'
-                            type='checkbox'
-                            id='petsitter'
-                            name='pettesitter'
-                            value='pet'
+                            type='TEXTAREA'
+                            id='message'
+                            name='message'
+                            value='message'
+                            rows="6"
+                            cols= "6"
                         />
-                         </form>
                         </div>
-
-                        )
+                         </form>
+        )
                         }
                         }
-                        export default FormInscription
+                        export default profilPettSitter
