@@ -39,7 +39,11 @@
 
 	<h2>Methode : <span>POST</span></h2>
 	
+<<<<<<< HEAD
+	<h2>Url : <span>localhost:80/services/ajout</span></h2> 
+=======
 	<h2>Url : <span>localhost:80/</span></h2> 
+>>>>>>> front_end
 	
 	<h2>Parametre : </h2>
 	<h3>Json {<br/>
