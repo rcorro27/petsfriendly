@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Requette - Recuperer_Feedback</title>
+<title>Requette - </title>
 
 <style>
 	h1 
@@ -35,18 +35,24 @@
 </head>
 
 <body>
-			<h1>Requette - Recuperer_Feedback</h1>
+			<h1>Requette - Favoris</h1>
 
-	<h2>Methode : <span>GET</span></h2>
+	<h2>Methode : <span> POST </span></h2>
 	
-	<h2>Url : <span>localhost:80/feedbacks/recuperation</span></h2> 
+	<h2>Url : <span>localhost:80/favoris/ajout</span></h2> 
 	
 	<h2>Parametre : </h2>
-	<h3>/:idPetsitter</h3>
+	<h3>Json {<br/>
+		"favoris" : {<br/>
+			<div class="bloc_json">
+						"id_petsitter": ,<br/>
+						"id_proprietaire": ,<br/>
+						</div>
+				  }<br/>	
+	}</h3>
 	
 	<h2>Reponse : </h2>
 	<h3>Json {<br/>
-		<div class="bloc_json">
 		"favoris" : {<br/>
 			<div class="bloc_json">
 					"1": {<br/>
@@ -57,9 +63,10 @@
 				    "2": {<br/>
 						"id": ,<br/>
 						"id_pet_sitter": ,<br/>
+						"id_proprietaire": ,<br/>
 						 }<br/>
 					</div>	 
-				  }<br/>
+				  }<br/>	
 	}</h3>
 </body>
 	
