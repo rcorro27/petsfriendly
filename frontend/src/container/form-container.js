@@ -14,6 +14,18 @@ class FormContainer extends Component {
                         id='userName_id'
                         name='userName'
                     />
+                    <InputComponent
+                        text='Nom :'
+                        type='text'
+                        id='nom'
+                        name='nom'
+                    />
+                    <InputComponent
+                        text='Nom :'
+                        type='text'
+                        id='nom'
+                        name='nom'
+                    />
                 </form>
             </div>
         )
