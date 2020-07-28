@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
-import profilPettSitter from 'component/profilPettSitter'
+import PetSitterInput from 'component/PetSitterInput'
 
-class FormInscription extends Component {
+class profilPettSitter extends Component {
     render () {
         return (
             // AHMED CHAQUE ELEMENT JSX DOIT AVOIR UNE ELEMENT PARENT ( ce ca le div qui envelope tout le restes)

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import InputInscription from 'component/input-inscription'
+import InputComponent from '../component/input-component'
 
 class FormInscription extends Component {
     render () {
@@ -188,20 +189,8 @@ class FormInscription extends Component {
 
                     </select>
                     <p> Soins Extrat </p>
-                    <InputInscription
-                        text='toilettage de Chats '
-                        type='checkbox'
-                        id='petsitter'
-                        name='pettesitter'
-                        value='pet'
-                    />
-                    <InputInscription
-                        text='toilettage de Chiens'
-                        type='checkbox'
-                        id='petsitter'
-                        name='pettesitter'
-                        value='pet'
-                    />
+                    <InputComponent text='toilettage de Chats ' type='checkbox ' id='petsitter' name='pettesitter' value='pet' />
+                    <InputComponent text='toilettage de Chien' type='checkbox' id='petsitter' name='pettesitter' value='pet' />
                     <InputInscription
                         text='Soins pour chiens  '
                         type='checkbox'
