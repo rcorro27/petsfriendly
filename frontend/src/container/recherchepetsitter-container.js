@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import InputComponent from 'component/input-component'
 import BoutonComponent from 'component/bouton-component'
 import SelectComponent from 'component/select-component'
+import ListItemComponent from 'component/list-item-component'
 const TYPEANIMAL = [{
     label: 'Chien',
     value: '1'
@@ -59,6 +60,25 @@ class RecherchePetsitter extends Component {
                     <SelectComponent text='Race :' id='typeAnimal_id' name='Type animal' options={RACEANIMAL} />
                     <InputComponent type='submit' id='rechercher' name='Rechercher ' value='rechercher' />
                 </form>
+                <h1>Des Services Sur mesure pour un Animal d'exeption </h1>
+                <div>
+                    <ListItemComponent text='Faite garder votre animal a votre domicile ou celui du Pett Sitter' />
+                    <ListItemComponent text='Partez au travail ou a votre rendez vous sans vous soucier de la promenade de votre chien' />
+                    <ListItemComponent text='Besoin de flexibilite? Choisisez les horraires et periodes qui vous conviennent' />
+                </div>
+                {/* DEMANDER A YAHIA SON CODE POUR UTILISER UNE PARTUE DE NAV BAR POUR LA VIGNETTE */}
+                <div>
+                    {/* METTRE UN ICONE DANS LAVANT DE LES LI POUR LA PUBLICITER */}
+                    <ListItemComponent text='Tout les nouveaux gardiens passent une verification des antecedents de base' />
+                    <ListItemComponent text='Tout les gardiens fournissent un profil detaille et des informations personnel ' />
+                    <ListItemComponent text='tout les Pet Sitter sont agrees par notre equipe de specialistes chez Pets Friendly' />
+                </div>
+                <div>
+                    <h1>Laisse nous vous prevenir des nouveautes</h1>
+                    <h6>Reste informe</h6>
+                    <InputComponent text='Entrez votre email' type='text' id='infolettre' name='infolettre' />
+                </div>
+
             </div>
         )
     }
