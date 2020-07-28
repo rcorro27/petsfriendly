@@ -1,12 +1,7 @@
 import React, { Component } from 'react'
 
-<<<<<<< HEAD
-import InputInscription from 'component/input-inscription'
-import InputComponent from '../component/input-component'
-=======
 import InputComponent from 'component/input-component'
 import Boutton from 'component /button-inscription'
->>>>>>> front_end
 
 class FormInscription extends Component {
     render () {
@@ -87,35 +82,7 @@ class FormInscription extends Component {
 
                     </select>
                     <p> Soins Extrat </p>
-<<<<<<< HEAD
-                    <InputComponent text='toilettage de Chats ' type='checkbox ' id='petsitter' name='pettesitter' value='pet' />
-                    <InputComponent text='toilettage de Chien' type='checkbox' id='petsitter' name='pettesitter' value='pet' />
-                    <InputInscription
-                        text='Soins pour chiens  '
-                        type='checkbox'
-                        id='petsitter'
-                        name='pettesitter'
-                        value='pet'
-                    />
-                    <InputInscription
-                        text='Bignades'
-                        type='checkbox'
-                        id='petsitter'
-                        name='pettesitter'
-                        value='pet'
-                    />
-                    <InputInscription
-                        text='Dressage'
-                        type='checkbox'
-                        id='petsitter'
-                        name='pettesitter'
-                        value='pet'
-                    />
-                    <p> Soins Extrat </p>
-                    <InputInscription
-=======
                     <InputComponent text='toilettage de Chats ' type='checkbox' id='petsitter' name='pettesitter' value='pet' />
->>>>>>> front_end
 
                     <InputComponent text='toilettage de Chiens' type='checkbox' id='petsitter' name='pettesitter' value='pet' />
 
