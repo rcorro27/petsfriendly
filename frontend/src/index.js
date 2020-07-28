@@ -1,9 +1,9 @@
-
+import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-
-import FormInscription from 'container/form-inscription'
+import FormContainer from 'container/form-inscription'
 
 ReactDOM.render(
-    <FormInscription />,
+
+    <FormContainer />,
     document.getElementById('app')
 )

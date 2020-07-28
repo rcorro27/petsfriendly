@@ -1,0 +1,5 @@
+LE utilisateur mets ses besoin de garde
+il resoit la tarification de base et si il y a lieu la tarifiction des extras 
+tout le ensemble fait un prix total avec des frais de service derriere
+on redirige un contrat et si le utilisateur accepte on pursuit a la recherche des sitters
+si non on annule 

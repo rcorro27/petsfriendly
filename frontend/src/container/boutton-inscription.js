@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Boutton from 'component/button-inscription-component'
+import Boutton from 'component/bouton-component'
 
 class FormInscription extends Component {
     render () {
