@@ -7,6 +7,7 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
+<<<<<<< HEAD
     <VideoView
         android:id="@+id/videoView1"
         android:layout_width="match_parent"
@@ -27,5 +28,60 @@
         android:text="S'inscrire'"/>
 
 </LinearLayout>
+=======
+
+        <FrameLayout
+            android:id="@+id/video_frame"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:background="#000"
+            >
+
+                <VideoView
+                    android:id="@+id/videoView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+        <TextView
+            android:id="@+id/top_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pets Friendly"
+            android:gravity=""
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/rounded_corner"
+            android:textColor="@color/white"/>
+
+
+                <Button
+                    android:id="@+id/connexion_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Connexion"
+                    android:layout_gravity="center"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="17dp"
+                    android:paddingLeft="40dp"
+                    android:paddingRight="40dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:background="@drawable/rounded_corner_transparency"
+                    android:textColor="@color/white"
+                    android:alpha="0.50"/>
+
+        </RelativeLayout>
+
+        </FrameLayout>
+>>>>>>> mobile_android
 
 </LinearLayout>
