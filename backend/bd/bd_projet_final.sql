@@ -8,7 +8,11 @@ create table if not exists favoris(id int auto_increment, id_petsitter int, id_p
 create table if not exists role_utilisateur(id int auto_increment, type_role char(50), definition varchar(200));
 create table if not exists planning (id int auto_increment, id_contrat int, id_proprietaire int, id_petsitter int, date_debut date, date_fin date);
 create table if not exists service (id int auto_increment, description_service char(200), prix_service varchar(6));
-create table if not exists contrat_utilisateur(
-create table if not exists contrat(id int auto_increment, 
+create table if not exists contrat_utilisateur(id int auto_increment, id_contrat int, id_proprietaire int, id_petsitter int, date_application date);
+create table if not exists contrat(id int auto_increment, id_facture int, date_debut date, date_fin date, est_accepte bool, est_termine bool, est_lu_proprietaire bool, est_lu_petsitter bool, encore_disponible bool, date_creation date);
+create table if not exists feedback(id int auto_increment, id_contrat int, commentaire text, etoile int);
+create table if not exists facture(id int auto_increment, id_promotion int, prix varchar(8));
+create table if not exists promotion(id int auto_increment, code_promotion varchar(15), pourcentage varchar(4), date_fin date);
+create table if not exists promotion_utilisateur(id int auto_increment, id_promotion int, id_proprietaire int, date_application date);
 
 
