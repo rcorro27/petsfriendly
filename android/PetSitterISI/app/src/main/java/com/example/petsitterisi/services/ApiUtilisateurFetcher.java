@@ -3,6 +3,7 @@ package com.example.petsitterisi.services;
 import androidx.annotation.Nullable;
 
 import android.os.AsyncTask;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -11,26 +12,35 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class ApiFetcher extends AsyncTask<String, Nullable, String> {
+public class ApiUtilisateurFetcher extends AsyncTask<String, Nullable, String> {
 
-    public ApiFetcher (){
+    String jsonStringDuServeur;
 
-}
+    public ApiUtilisateurFetcher(String jsonStringDuServeur) {
+        this.jsonStringDuServeur = jsonStringDuServeur;
+    }
 
     @Override
     protected String doInBackground(String... urls) {
         String result = null;
 
-        try{
+        try {
 
             URL url = new URL(urls[0]);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setDoOutput(false);
             urlConnection.setDoInput(true);
             urlConnection.connect();
+
+            urlConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+            urlConnection.setRequestMethod("POST");
+
+            OutputStream os = urlConnection.getOutputStream();
+            os.write(urls[1].getBytes("UTF-8"));
 
             int codeRetour = urlConnection.getResponseCode();
             if (codeRetour == HttpURLConnection.HTTP_OK) {
@@ -40,7 +50,7 @@ public class ApiFetcher extends AsyncTask<String, Nullable, String> {
                     result += line;
             }
 
-        }catch(Exception ex){
+        } catch (Exception ex) {
 
         }
 
@@ -55,6 +65,8 @@ public class ApiFetcher extends AsyncTask<String, Nullable, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
+
+
     }
 
     private String inputStreamToString(InputStream is) {
