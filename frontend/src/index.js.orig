@@ -1,7 +1,8 @@
 
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import 'bootstrap/dist/css/bootstrap.css'
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 import FormContainer from 'container/form-inscription'
 =======
@@ -9,6 +10,14 @@ import InputInscription from 'container/form-inscription'
 >>>>>>> master
 
 ReactDOM.render(
+    <InputInscription />,
+=======
+import 'bootstrap/dist/css/bootstrap.css'
+import FormContainer from 'container/form-container'
 
+ReactDOM.render(
+
+    <FormContainer />,
+>>>>>>> test
     document.getElementById('app')
 )

@@ -1,8 +1,10 @@
-/*css a ajouter
-*/
-
 .navbar {
     background: rgba(203, 50, 50, 0.71);
+    height: 100px;
+}
+
+body {
+    font-family: Cardo;
 }
 
 .name {
