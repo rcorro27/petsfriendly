@@ -1,0 +1,23 @@
+[
+    {
+        "imgSrc": "src/img/icon_reseaux/faceBook_Icon.png"
+    },
+    {
+        "imgSrc": "src/img/icon_reseaux/whatsApp_Icon.png"
+    },
+    {
+        "imgSrc": "src/img/icon_reseaux/instagram_Icon.png"
+    },
+    {
+        "imgSrc": "src/img/icon_reseaux/linkedln_Icon.png"
+    },
+    {
+        "imgSrc": "src/img/icon_reseaux/snapChat_Icon.png"
+    },
+    {
+        "imgSrc": "src/img/icon_reseaux/twitter_Icon.png"
+    },
+    {
+        "imgSrc": "src/img/icon_reseaux/Pinterest_Icon.png"
+    }
+]
