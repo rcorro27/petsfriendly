@@ -14,6 +14,29 @@ class FormContainer extends Component {
         return (
 
             <div>
+<<<<<<< HEAD
+                <h1>Formulaire usager</h1>
+                <form id='form-test'>
+                    <InputComponent
+                        text="Nom d'usager:"
+                        type='text'
+                        id='userName_id'
+                        name='userName'
+                    />
+                    <InputComponent
+                        text='Nom :'
+                        type='text'
+                        id='nom'
+                        name='nom'
+                    />
+                    <InputComponent
+                        text='Nom :'
+                        type='text'
+                        id='nom'
+                        name='nom'
+                    />
+                </form>
+=======
                 <Navbar />
                 <div>
 
@@ -25,18 +48,6 @@ class FormContainer extends Component {
                             id='userName_id'
                             name='userName'
                         />
-                    <InputComponent
-                        text='Nom :'
-                        type='text'
-                        id='nom'
-                        name='nom'
-                    />
-                    <InputComponent
-                        text='Nom :'
-                        type='text'
-                        id='nom'
-                        name='nom'
-                    />
                     </form>
                 </div>
                 <main id='divContainer'>
@@ -45,6 +56,7 @@ class FormContainer extends Component {
                     <DivSpans divClass='test' />
                 </main>
                 <Footer />
+>>>>>>> test
             </div>
 
         )
