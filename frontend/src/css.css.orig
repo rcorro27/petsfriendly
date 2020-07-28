@@ -1,6 +1,16 @@
 /*css a ajouter
 */
 
+<<<<<<< HEAD
+.radio1 {
+    position: absolute;
+    width: 56.58px;
+    height: 0px;
+    left: 550.78px;
+    top: 1050.02px;
+    border: 1px solid #000000;
+    transform: matrix(0.78, -0.63, 0.63, 0.78, 0, 0)
+=======
 .navbar {
     background: rgba(203, 50, 50, 0.71);
 }
@@ -43,4 +53,5 @@
     /* or 83% */
     text-align: center;
     color: #FFFFFF;
+>>>>>>> test
 }
