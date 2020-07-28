@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Boutton from 'component/button-inscription'
+import Boutton from 'component/button-inscription-component'
 
 class FormInscription extends Component {
     render () {
@@ -8,7 +8,7 @@ class FormInscription extends Component {
 
                 <form id='boutton-inscription '>
                     <div class='boutton'>
-                        <Boutton text='envoyer' type='submit' id='envoi' name='envoi' value='envoyer' />
+                        <Boutton type='submit' id='envoi' name='envoi' value='envoyer' />
                     </div>
 
                 </form>

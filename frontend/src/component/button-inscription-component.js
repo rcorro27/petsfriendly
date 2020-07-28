@@ -1,7 +1,7 @@
 
-const Boutton = ({ submit, type, id, name, value }) => (
+const Boutton = ({ type, id, name, value }) => (
     <div>
-        <label htmlFor={id}>{submit}</label>
+        <label htmlFor={id}>{type}</label>
         <Boutton
             type={type}
             id={id}
