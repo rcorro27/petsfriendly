@@ -5,6 +5,8 @@ import profilPettSitter from 'component/profilPettSitter'
 class FormInscription extends Component {
     render () {
         return (
+            // AHMED CHAQUE ELEMENT JSX DOIT AVOIR UNE ELEMENT PARENT ( ce ca le div qui envelope tout le restes)
+            <div>
 
             <div>
                 <h1>Contacter le PetSitter</h1>
@@ -14,7 +16,7 @@ class FormInscription extends Component {
                 </div>
 
             <form id = 'petSitterpopups' >
-                    <p>Message</p>
+                <p>Message</p>
                     <div class='texteArea'>
                         <PetSitterInput
                             text='pettesitter'
@@ -25,8 +27,9 @@ class FormInscription extends Component {
                             rows="6"
                             cols= "6"
                         />
-                        </div>
-                         </form>
+                    </div>
+            </form>
+                         </div>
         )
                         }
                         }
