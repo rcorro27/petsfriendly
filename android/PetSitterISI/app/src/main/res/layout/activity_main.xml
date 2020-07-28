@@ -7,28 +7,6 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
-<<<<<<< HEAD
-    <VideoView
-        android:id="@+id/videoView1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <Button
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Se connecter"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="S'inscrire'"/>
-
-</LinearLayout>
-=======
 
         <FrameLayout
             android:id="@+id/video_frame"
@@ -82,6 +60,5 @@
         </RelativeLayout>
 
         </FrameLayout>
->>>>>>> mobile_android
 
 </LinearLayout>
