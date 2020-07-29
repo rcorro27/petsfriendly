@@ -6,7 +6,7 @@ import Footer from '../component/Footer/Footer'
 import Title from '../component/titre-composant'
 import SpanComponent from '../component/span-composant'
 import CarouselContainer from '../container/carousel-container'
-
+import InputComponent from '../component/input-component'
 // import Navbar from '../component/Navbar'
 
 class FormContainer extends Component {
