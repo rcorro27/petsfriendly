@@ -44,3 +44,9 @@
     text-align: center;
     color: #FFFFFF;
 }
+
+#divContainer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}

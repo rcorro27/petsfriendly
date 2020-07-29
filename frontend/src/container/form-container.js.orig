@@ -15,19 +15,34 @@ class FormContainer extends Component {
 
             <div>
                 <Navbar />
+<<<<<<< HEAD
+                <div>
+
+                    <h1>Formulaire usager</h1>
+                    <form id='form-test'>
+                        <InputComponent
+                            text="Nom d'usager:"
+                            type='text'
+                            id='userName_id'
+                            name='userName'
+                        />
+                    <InputComponent
+                        text='Nom :'
+                        type='text'
+                        id='nom'
+                        name='nom'
+                    />
+                    <InputComponent
+                        text='Nom :'
+                        type='text'
+                        id='nom'
+                        name='nom'
+                    />
+                    </form>
+                </div>
+=======
                 <div />
-                    <InputComponent
-                        text='Nom :'
-                        type='text'
-                        id='nom'
-                        name='nom'
-                    />
-                    <InputComponent
-                        text='Nom :'
-                        type='text'
-                        id='nom'
-                        name='nom'
-                    />
+>>>>>>> test
                 <main id='divContainer'>
                     <CarouselContainer />
                     <Title

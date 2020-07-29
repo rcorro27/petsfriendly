@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import SliderItems from './SliderItems'
-class Slider extends Component {
+import ImgComposant from '../component/img-composant'
+import { Carousel } from 'react-bootstrap'
+
+class CarouselContainer extends Component {
     constructor (props) {
         super(props)
 
@@ -19,14 +21,14 @@ class Slider extends Component {
 
     render () {
         return (
-            <section>
-                <article>
-                    {this.state.images.map((image, index) => <SliderItems imgSrc={image.imgSrc} key={index} />)}
-                </article>
-            </section>
+            <Carousel>
+
+                {this.state.images.map((image, index) => <Carousel.Item key={index}> <ImgComposant srcIMG={image.imgSrc} classBo='d-block w-100' /></Carousel.Item>)}
+
+            </Carousel>
 
         )
     }
 }
 
-export default Slider
+export default CarouselContainer
