@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import FormContainer from 'container/form-container'
+import ApplicationContainer from 'container/application-container'
 ReactDOM.render(
-    <FormContainer />,
+    <ApplicationContainer />,
     document.getElementById('app')
 )
