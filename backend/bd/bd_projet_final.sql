@@ -14,5 +14,3 @@ create table if not exists feedback(id int auto_increment, id_contrat int, comme
 create table if not exists facture(id int auto_increment, id_promotion int, prix varchar(8), PRIMARY KEY (id));
 create table if not exists promotion(id int auto_increment, code_promotion varchar(15), pourcentage varchar(4), date_fin date, PRIMARY KEY (id));
 create table if not exists promotion_utilisateur(id int auto_increment, id_promotion int, id_proprietaire int, date_application date, PRIMARY KEY (id));
-
-
