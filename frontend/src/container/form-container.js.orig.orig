@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 
 <<<<<<< HEAD
+import Navbar from './navbar-container'
+=======
+import FormInscription from './form-inscription'
+import Navbar from '../component/navbar/Navbar'
+>>>>>>> front_end
 import Footer from '../component/Footer/Footer'
 // import SliderItems from '../component/sliders/SliderItems'
 import Title from '../component/titre-composant'
@@ -8,9 +13,6 @@ import SpanComponent from '../component/span-composant'
 import CarouselContainer from '../container/carousel-container'
 
 // import Navbar from '../component/Navbar'
-=======
-import FormInscription from './form-inscription'
->>>>>>> inscription-petStter-and-sitter
 
 class FormContainer extends Component {
     render () {
@@ -19,7 +21,20 @@ class FormContainer extends Component {
             <div>
                 <Navbar />
 <<<<<<< HEAD
-                <Navbar />
+                <div />
+                <InputComponent
+                    text='Nom :'
+                    type='text'
+                    id='nom'
+                    name='nom'
+                />
+                <InputComponent
+                    text='Nom :'
+                    type='text'
+                    id='nom'
+                    name='nom'
+                />
+=======
                 <div>
 
                     <h1>Formulaire usager</h1>
@@ -30,23 +45,9 @@ class FormContainer extends Component {
                             id='userName_id'
                             name='userName'
                         />
-                    <InputComponent
-                        text='Nom :'
-                        type='text'
-                        id='nom'
-                        name='nom'
-                    />
-                    <InputComponent
-                        text='Nom :'
-                        type='text'
-                        id='nom'
-                        name='nom'
-                    />
                     </form>
                 </div>
-=======
-                <div />
->>>>>>> test
+>>>>>>> front_end
                 <main id='divContainer'>
                     <CarouselContainer />
                     <Title
@@ -56,8 +57,6 @@ class FormContainer extends Component {
                     <SpanComponent divClass='test' text='Yahia' />
                 </main>
                 <Footer />
-                <FormInscription />
->>>>>>> inscription-petStter-and-sitter
             </div>
 
         )

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Boutton from 'component/bouton-component'
+import ahref from 'component/ahref-component'
 
 class FormInscription extends Component {
     render () {
@@ -7,8 +7,8 @@ class FormInscription extends Component {
             <div>
 
                 <form id='boutton-inscription '>
-                    <div class='boutton'>
-                        <Boutton type='submit' id='envoi' name='envoi' value='envoyer' />
+                    <div class='ahref'>
+                        <a href type='a' text='envoi' />
                     </div>
 
                 </form>

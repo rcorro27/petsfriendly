@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 
 import InputComponent from 'component/input-component'
+<<<<<<< HEAD
+import Boutton from 'component /button-inscription'
+=======
 import Boutton from 'component/bouton-component'
+import ahref from 'component/ahref-component'
+>>>>>>> front_end
 
 class FormInscription extends Component {
     render () {
@@ -82,6 +87,7 @@ class FormInscription extends Component {
 
                     </select>
                     <p> Soins Extrat </p>
+                    <InputComponent text='toilettage de Chats ' type='checkbox' id='petsitter' name='pettesitter' value='pet' />
 
                     <InputComponent text='toilettage de Chiens' type='checkbox' id='petsitter' name='pettesitter' value='pet' />
 
