@@ -28,7 +28,6 @@ class FormContainer extends Component {
                         name='nom'
                     />
 
-                    <button onClick={this.props.onHandleSaveOnClick}>retour a la page</button>
                     <main id='divContainer'>
                         <CarouselContainer />
                         <Title titre1='titre 1 ' titre2='titre 2 ' />
@@ -36,7 +35,7 @@ class FormContainer extends Component {
                     </main>
                     <Footer />
                 </div>
-
+                <button onClick={this.props.onHandleSaveOnClickYahia}>retour a page</button>
             </div>
 
         )

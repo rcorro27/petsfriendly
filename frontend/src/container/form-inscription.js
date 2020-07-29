@@ -98,6 +98,7 @@ class FormInscription extends Component {
                     <ahrefComponent type='a' text='se connecter' />
 
                 </form>
+                <button onClick={this.props.onHandleSaveOnClickAhmed}>retour a la page</button>
             </div>
         )
     }
