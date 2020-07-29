@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import InputComponent from 'component/input-component'
-import BoutonComponent from 'component/bouton-component'
+// import BoutonComponent from 'component/bouton-component'
 import SelectComponent from 'component/select-component'
 import ListItemComponent from 'component/list-item-component'
 const TYPEANIMAL = [{
