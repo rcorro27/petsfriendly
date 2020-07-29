@@ -1,7 +1,7 @@
 import React from 'react'
-import './navbar.css'
-import NavbarLinks from './NavbarLinks'
-import NavbarText from './NavbarText'
+import '../navbar.css'
+import NavbarLinks from '../component/navbar-links'
+import NavbarText from '../component/navbar-text'
 
 function Navbar () {
     return (
