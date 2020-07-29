@@ -2,7 +2,7 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import 'bootstrap/dist/css/bootstrap.css'
-import FormContainer from 'container/form-container'
+import FormContainer from 'container/acceuil-container'
 
 ReactDOM.render(
 

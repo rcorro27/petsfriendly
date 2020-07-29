@@ -1,6 +1,6 @@
 import '../../footer.css'
 import React from 'react'
-import ListNetworks from './ListNetworks'
+import ListNetworks from '../../container/list-network-container'
 import ImgComposant from '../img-composant'
 
 function Footer () {

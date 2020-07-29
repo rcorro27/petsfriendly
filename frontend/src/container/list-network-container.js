@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ImgComposant from '../img-composant'
+import ImgComposant from '../component/img-composant'
 
 class ListNetworks extends Component {
     constructor (props) {
