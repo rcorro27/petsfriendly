@@ -1,33 +1,44 @@
 import React, { Component } from 'react'
 
-import InputComponent from 'component/input-component'
+import Navbar from './navbar-container'
+import Footer from '../component/Footer/Footer'
+// import SliderItems from '../component/sliders/SliderItems'
+import Title from '../component/titre-composant'
+import SpanComponent from '../component/span-composant'
+import CarouselContainer from '../container/carousel-container'
+import InputComponent from '../component/input-component'
+// import Navbar from '../component/Navbar'
 
 class FormContainer extends Component {
     render () {
         return (
+
             <div>
-                <h1>Formulaire usager</h1>
-                <form id='form-test'>
-                    <InputComponent
-                        text="Nom d'usager:"
-                        type='text'
-                        id='userName_id'
-                        name='userName'
+                <Navbar />
+                <div />
+                <InputComponent
+                    text='Nom :'
+                    type='text'
+                    id='nom'
+                    name='nom'
+                />
+                <InputComponent
+                    text='Nom :'
+                    type='text'
+                    id='nom'
+                    name='nom'
+                />
+                <main id='divContainer'>
+                    <CarouselContainer />
+                    <Title
+                        titre1='titre 1Nous considerons votre Animal'
+                        titre2='Comme un membre De notre Famille'
                     />
-                    <InputComponent
-                        text='Nom :'
-                        type='text'
-                        id='nom'
-                        name='nom'
-                    />
-                    <InputComponent
-                        text='Nom :'
-                        type='text'
-                        id='nom'
-                        name='nom'
-                    />
-                </form>
+                    <SpanComponent divClass='test' text='Yahia' />
+                </main>
+                <Footer />
             </div>
+
         )
     }
 }

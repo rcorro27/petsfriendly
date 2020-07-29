@@ -1,12 +1,7 @@
-
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-
-// import FormContainer from 'container/form-inscription'
-// import InputInscription from 'container/form-inscription'
-import RecherchePetsitter from 'container/recherchepetsitter-container'
-
+import FormContainer from 'container/form-container'
 ReactDOM.render(
-    <RecherchePetsitter />,
+    <FormContainer />,
     document.getElementById('app')
 )

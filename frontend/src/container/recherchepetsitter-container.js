@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import InputComponent from 'component/input-component'
-import BoutonComponent from 'component/bouton-component'
+// import BoutonComponent from 'component/bouton-component'
 import SelectComponent from 'component/select-component'
 import ListItemComponent from 'component/list-item-component'
 const TYPEANIMAL = [{
@@ -39,10 +39,10 @@ class RecherchePetsitter extends Component {
             <div>
                 <h1>Recherche Petsitter</h1>
                 <form id='form-test'>
-                    <BoutonComponent type='button' id='toto' name='Garder Chez le PettSitter' value='1' />
-                    <BoutonComponent type='button' id='toto' name='Garder chez vous' value='2' />
-                    <BoutonComponent type='button' id='toto' name='Promenade' value='3' />
-                    <BoutonComponent type='button' id='toto' name='visite chez le veteninaire' value='4' />
+                    <InputComponent type='checkbox' text='Garder Chez le PettSitter' id='toto' name='Garder Chez le PettSitter' value='1' />
+                    <InputComponent type='checkbox' text='Garder chez vous' id='toto' name='Garder chez vous' value='2' />
+                    <InputComponent type='checkbox' text='Promenade' id='toto' name='Promenade' value='3' />
+                    <InputComponent type='checkbox' text='visite chez le veteninaire' id='toto' name='visite chez le veteninaire' value='4' />
                     {/* Separation de boutons , debut des inputs texts */}
                     <InputComponent text='Date de debut' type='date' id='dateDebut' name='date de debut' value='toto' />
                     <InputComponent text='Date de fin' type='date' id='dateFin' name='date de fin' value='toto' />
@@ -53,9 +53,9 @@ class RecherchePetsitter extends Component {
                     {/* Checkbox selection animal ??? demander si ca ne devrait pas etre un select ??? */}
                     <SelectComponent text='Type de animal:' id='typeAnimal_id' name='Type animal' options={TYPEANIMAL} />
                     <h2>Taille de l'animal</h2>
-                    <BoutonComponent type='button' id='toto' name='Petit (0-15 kg)' value='1' />
-                    <BoutonComponent type='button' id='toto' name='Moyen (16-40 kg)' value='2' />
-                    <BoutonComponent type='button' id='toto' name='Grand (41-100 kg)' value='3' />
+                    <InputComponent type='checkbox' text='Petit (0-15 kg)' id='toto' name='Petit (0-15 kg)' value='1' />
+                    <InputComponent type='checkbox' text='Moyen (16-40 kg)' id='toto' name='Moyen (16-40 kg)' value='2' />
+                    <InputComponent type='checkbox' text='Grand (41-100 kg)' id='toto' name='Grand (41-100 kg)' value='3' />
                     {/* DEMANDER A NASSIM PAR RAPPORT A LA RACE */}
                     <SelectComponent text='Race :' id='typeAnimal_id' name='Type animal' options={RACEANIMAL} />
                     <InputComponent type='submit' id='rechercher' name='Rechercher ' value='rechercher' />

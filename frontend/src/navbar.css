@@ -1,8 +1,10 @@
-/*css a ajouter
-*/
-
 .navbar {
     background: rgba(203, 50, 50, 0.71);
+    height: 100px;
+}
+
+body {
+    font-family: Cardo;
 }
 
 .name {
@@ -43,10 +45,4 @@
     /* or 83% */
     text-align: center;
     color: #FFFFFF;
-}
-
-#divContainer {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
 }

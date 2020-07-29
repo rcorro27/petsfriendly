@@ -3,6 +3,7 @@ package com.example.petsitterisi.services;
 import androidx.annotation.Nullable;
 
 import android.os.AsyncTask;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -11,24 +12,45 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class apiFetcher extends AsyncTask<String, Nullable, String> {
+public class ApiUtilisateurFetcher extends AsyncTask<String, Nullable, String> {
+
+    String jsonStringDuServeur;
+
+    public ApiUtilisateurFetcher(String jsonStringDuServeur) {
+        this.jsonStringDuServeur = jsonStringDuServeur;
+    }
 
     @Override
-    protected String doInBackground(String... strings) {
+    protected String doInBackground(String... urls) {
         String result = null;
 
-        try{
+        try {
 
-            URL url = new URL("https://android-lab.herokuapp.com/categorie");
+            URL url = new URL(urls[0]);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setDoOutput(false);
+            urlConnection.setDoInput(true);
+            urlConnection.connect();
 
-            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-            result = inputStreamToString(in);
+            urlConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+            urlConnection.setRequestMethod("POST");
 
-        }catch(Exception ex){
+            OutputStream os = urlConnection.getOutputStream();
+            os.write(urls[1].getBytes("UTF-8"));
+
+            int codeRetour = urlConnection.getResponseCode();
+            if (codeRetour == HttpURLConnection.HTTP_OK) {
+                String line;
+                BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                while ((line = in.readLine()) != null)
+                    result += line;
+            }
+
+        } catch (Exception ex) {
 
         }
 
@@ -44,16 +66,6 @@ public class apiFetcher extends AsyncTask<String, Nullable, String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
 
-        try {
-            JSONObject jsonObject = new JSONObject(s);
-
-
-
-
-
-        }catch(JSONException e){
-            e.printStackTrace();
-        }
 
     }
 

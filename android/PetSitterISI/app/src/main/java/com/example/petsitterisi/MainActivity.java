@@ -10,7 +10,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
+import android.widget.Button;
 import android.widget.MediaController;
+import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.example.petsitterisi.services.ConnexionBd;
@@ -20,13 +22,20 @@ import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
 
+    TextView top_textView;
+    Button connexion_button;
+    Context ctx;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ctx = this;
         setContentView(R.layout.activity_main);
         ConnexionBd.copyBdFromAssets(this);
-        setContentView(R.layout.activity_main);
-
+        top_textView = findViewById(R.id.top_textView);
+        connexion_button = findViewById(R.id.connexion_button);
+        connexion_button.setBackgroundColor(getResources().getColor(R.color.black));
+        connexion_button.setTextColor(getResources().getColor(R.color.white));
         VideoView videoView =(VideoView)findViewById(R.id.videoView1);
         MediaController mediaController = new MediaController(this);
         mediaController.setAnchorView(videoView);
@@ -45,6 +54,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         videoView.start();
+
+
+
+
+        //ouvrir l'activite connexion
+
+        connexion_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ctx, Connexion.class);
+                startActivity(intent);
+            }
+        });
+
 
 
 
