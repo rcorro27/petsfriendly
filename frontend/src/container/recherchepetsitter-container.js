@@ -78,6 +78,7 @@ class RecherchePetsitter extends Component {
                     <h6>Reste informe</h6>
                     <InputComponent text='Entrez votre email' type='text' id='infolettre' name='infolettre' />
                 </div>
+                <button onClick={this.props.onHandleSaveOnClick}>Sauvegarder</button>
 
             </div>
         )

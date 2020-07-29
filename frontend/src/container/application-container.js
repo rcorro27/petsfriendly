@@ -1,22 +1,36 @@
 import React, { Component } from 'react'
 
-import ToolbarComponent from 'component/toolbar-component'
+// import ToolbarComponent from 'component/toolbar-component'
 import FormContainer from 'container/form-container'
-import RecherchePetsitter from 'container/recherchepetsitter-container'
+// import RecherchePetsitter from 'container/recherchepetsitter-container'
+import DeveloppementContainer from './developpement-container'
 class ApplicationContainer extends Component {
     constructor (props) {
         super(props)
 
         this.state = {
-            isFormOpen: false
+            pageYahia: false,
+            pageAhmed: false,
+            pageRichard: false
+
         }
 
-        this.handleAddOnClick = this.handleAddOnClick.bind(this)
+        this.handleAddOnClickYahia = this.handleAddOnClickYahia.bind(this)
+        this.handleAddOnClickAhmed = this.handleAddOnClickAhmed.bind(this)
+        this.handleAddOnClickRichard = this.handleAddOnClickRichard.bind(this)
         this.handleSaveOnClick = this.handleSaveOnClick.bind(this)
     }
 
-    handleAddOnClick () {
-        this.setState({ isFormOpen: true })
+    handleAddOnClickYahia () {
+        this.setState({ pageYahia: true })
+    }
+
+    handleAddOnClickAhmed () {
+        this.setState({ pageRichard: true })
+    }
+
+    handleAddOnClickRichard () {
+        this.setState({ pageAhmed: true })
     }
 
     handleSaveOnClick () {
@@ -24,17 +38,13 @@ class ApplicationContainer extends Component {
     }
 
     render () {
-        const BUTTONS = [{
-            label: 'recherche pet sitter',
-            handleOnClick: this.handleAddOnClick
-        }]
-
         return (
             <div>
-                <h1>Application</h1>
-                <ToolbarComponent buttons={BUTTONS} />
+                {/* <h1>Page</h1> */}
+                {/* <ToolbarComponent buttons={BUTTONS} /> */}
+                {/* test */}
                 <div>
-                    {this.state.isFormOpen ? <FormContainer onHandleSaveOnClick={this.handleSaveOnClick} /> : <RecherchePetsitter />}
+                    {this.state.pageYahia ? <FormContainer onHandleSaveOnClick={this.handleSaveOnClick} /> : <DeveloppementContainer />}
                 </div>
             </div>
         )

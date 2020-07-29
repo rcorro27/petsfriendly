@@ -1,0 +1,13 @@
+Fichier requetes url backend
+
+
+GET >> Reccuperer
+POST >> Creer
+PUT >> Modifier
+DELETE >> Supprimer
+
+
+Recherche : POST
+				/recherches/:searchId
+			
+			
