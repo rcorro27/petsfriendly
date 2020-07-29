@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Requette - Recuperer_Animaux</title>
+
+<style>
+	h1 
+	{
+		color: Red;
+		width: 40%;
+		margin: auto;
+		text-align: center;
+	}
+	h2
+	{
+		color: Green;
+	
+	}
+	h2,h3
+	{
+		margin-left: 10%;
+	}
+	span
+	{
+		color: black;
+		font-size: 0.8em;
+	}
+	.bloc_json
+	{
+		margin-left: 40px;
+	}
+	
+</style>
+
+</head>
+
+<body>
+			<h1>Requette - Recuperer_Animaux</h1>
+
+	<h2>Methode : <span>GET</span></h2>
+	
+	<h2>Url : <span>localhost:80/plannings/recuperation</span></h2> 
+	
+	<h2>Parametre : </h2>
+<<<<<<< HEAD
+	<h3>/:id  ->Utilisateur</h3>
+=======
+	<h3>/:id</h3>
+>>>>>>> front_end
+	
+	<h2>Reponse : </h2>
+	<h3>Json {<br/>
+		<div class="bloc_json">
+		"planning" : {<br/>
+<<<<<<< HEAD
+			<div class="bloc_json">
+					"1": {<br/>
+					"id": ,<br/>
+					"id_contrat": ,<br/>
+					"id_proprietaire": ,<br/>
+					"id_petsitter": ,<br/>
+					"date_debut": ,<br/>
+					"date_fin": ,<br/>
+						}<br/>
+					"2": {<br/>
+					"id": ,<br/>
+					"id_contrat": ,<br/>
+					"id_proprietaire": ,<br/>
+					"id_petsitter": ,<br/>
+					"date_debut": ,<br/>
+					"date_fin": ,<br/>
+						}<br/>
+					</div>	
+				  }<br/>
+=======
+		<div class="bloc_json">
+			"id": ,<br/>
+			"id_contrat": ,<br/>
+			"id_proprietaire": ,<br/>
+			"id_petssiter": ,<br/>
+			"date_debut": ,<br/>
+			"date_fin": ,<br/>
+			</div>
+			}<br/>
+>>>>>>> front_end
+		</div>
+	}</h3>
+</body>
+	
+</html>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import InputComponent from 'component/input-component'
+import FormInscription from './form-inscription'
 import Navbar from '../component/navbar/Navbar'
 import Footer from '../component/Footer/Footer'
 import Slider from '../component/sliders/Slider'
@@ -25,18 +25,6 @@ class FormContainer extends Component {
                             id='userName_id'
                             name='userName'
                         />
-                    <InputComponent
-                        text='Nom :'
-                        type='text'
-                        id='nom'
-                        name='nom'
-                    />
-                    <InputComponent
-                        text='Nom :'
-                        type='text'
-                        id='nom'
-                        name='nom'
-                    />
                     </form>
                 </div>
                 <main id='divContainer'>

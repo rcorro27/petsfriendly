@@ -2,6 +2,8 @@ package com.example.petsitterisi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.media.MediaPlayer;
 import android.net.Uri;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+<<<<<<< HEAD
 import InputComponent from 'component/input-component'
 import Navbar from '../component/navbar/Navbar'
 import Footer from '../component/Footer/Footer'
@@ -8,6 +9,9 @@ import Title from '../component/Titles/Title'
 import DivSpans from '../component/Buttons/DivSpans'
 
 // import Navbar from '../component/Navbar'
+=======
+import FormInscription from './form-inscription'
+>>>>>>> inscription-petStter-and-sitter
 
 class FormContainer extends Component {
     render () {
@@ -15,28 +19,6 @@ class FormContainer extends Component {
 
             <div>
 <<<<<<< HEAD
-                <h1>Formulaire usager</h1>
-                <form id='form-test'>
-                    <InputComponent
-                        text="Nom d'usager:"
-                        type='text'
-                        id='userName_id'
-                        name='userName'
-                    />
-                    <InputComponent
-                        text='Nom :'
-                        type='text'
-                        id='nom'
-                        name='nom'
-                    />
-                    <InputComponent
-                        text='Nom :'
-                        type='text'
-                        id='nom'
-                        name='nom'
-                    />
-                </form>
-=======
                 <Navbar />
                 <div>
 
@@ -48,6 +30,18 @@ class FormContainer extends Component {
                             id='userName_id'
                             name='userName'
                         />
+                    <InputComponent
+                        text='Nom :'
+                        type='text'
+                        id='nom'
+                        name='nom'
+                    />
+                    <InputComponent
+                        text='Nom :'
+                        type='text'
+                        id='nom'
+                        name='nom'
+                    />
                     </form>
                 </div>
                 <main id='divContainer'>
@@ -56,7 +50,9 @@ class FormContainer extends Component {
                     <DivSpans divClass='test' />
                 </main>
                 <Footer />
->>>>>>> test
+=======
+                <FormInscription />
+>>>>>>> inscription-petStter-and-sitter
             </div>
 
         )
