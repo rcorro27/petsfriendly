@@ -1,8 +1,16 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
+<<<<<<< HEAD
 import ApplicationContainer from 'container/application-container'
-import PageAcceuil from 'container/page-acceuil-container'
 ReactDOM.render(
     <ApplicationContainer />,
+=======
+import FormContainer from 'container/form-inscription'
+import PageAcceuil from 'container/page-acceuil-container'
+
+ReactDOM.render(
+
+    <PageAcceuil />,
+>>>>>>> front_end
     document.getElementById('app')
 )

@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 
-import Navbar from './navbar-container'
 import Footer from '../component/Footer/Footer'
-// import SliderItems from '../component/sliders/SliderItems'
-import Title from '../component/titre-composant'
-import SpanComponent from '../component/span-composant'
-import CarouselContainer from '../container/carousel-container'
+import Slider from '../component/sliders/Slider'
+import Title from '../component/Titles/Title'
+import DivSpans from '../component/Buttons/DivSpans'
 import InputComponent from '../component/input-component'
 // import Navbar from '../component/Navbar'
 
@@ -15,7 +13,7 @@ class FormContainer extends Component {
 
             <div>
                 <Navbar />
-                <div />
+                <div>
                 <InputComponent
                     text='Nom :'
                     type='text'
@@ -28,14 +26,13 @@ class FormContainer extends Component {
                     id='nom'
                     name='nom'
                 />
-                <main id='divContainer'>
-                    <CarouselContainer />
-                    <Title
-                        titre1='titre 1Nous considerons votre Animal'
-                        titre2='Comme un membre De notre Famille'
-                    />
-                    <SpanComponent divClass='test' text='Yahia' />
+                        />
+                    </form>
                     <button onClick={this.props.onHandleSaveOnClick}>retour a la page</button>
+                <main id='divContainer'>
+                    <Slider />
+                    <Title titre1='titre 1 ' titre2='titre 2 ' />
+                    <DivSpans divClass='test' />
                 </main>
                 <Footer />
             </div>
