@@ -1,0 +1,4 @@
+le utilisateur creer un profil avec ses infomartions de base 
+la administration fait une verification de casier judiciare si la reponse est positive
+le profil et refuser 
+si non le profil est acepter et on poursuit dans la completition du profil 

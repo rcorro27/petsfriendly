@@ -1,6 +1,7 @@
-import './footer.css'
+import '../../footer.css'
 import React from 'react'
 import ListNetworks from './ListNetworks'
+import ImgComposant from '../img-composant'
 
 function Footer () {
     return (
@@ -32,7 +33,7 @@ function Footer () {
 
                         <div className='link-3'>
 
-                            <img src='src/img/icon_reseaux/Paiement_Logo.png' alt='stripe-payment-method' />
+                            <ImgComposant srcIMG='src/img/icon_reseaux/Paiement_Logo.png' classBo='' />
 
                         </div>
 

@@ -4,13 +4,14 @@
         android:width="1dp"
         android:color="@color/welcomeTextView" />
 
-    <solid android:color="#ffffff" />
+    <solid android:color="@color/welcomeTextView"/>
 
     <padding
         android:left="1dp"
         android:right="1dp"
         android:bottom="1dp"
         android:top="1dp" />
+
 
     <corners android:radius="30dp" />
 </shape>
