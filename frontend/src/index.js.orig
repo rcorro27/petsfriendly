@@ -1,17 +1,14 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 <<<<<<< HEAD
-import 'bootstrap/dist/css/bootstrap.css'
-<<<<<<< HEAD
-=======
->>>>>>> inscription-petStter-and-sitter
 import FormContainer from 'container/form-inscription'
+=======
+import 'bootstrap/dist/css/bootstrap.css'
+import PageAcceuil from 'container/page-acceuil-container'
+>>>>>>> test
 
 ReactDOM.render(
 
-<<<<<<< HEAD
-=======
-    <FormContainer />,
->>>>>>> inscription-petStter-and-sitter
+    <PageAcceuil />,
     document.getElementById('app')
 )

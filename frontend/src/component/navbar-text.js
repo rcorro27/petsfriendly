@@ -1,5 +1,4 @@
 import React from 'react'
-import './navbar.css'
 
 function NavbarText ({ title1, title2 }) {
     return (

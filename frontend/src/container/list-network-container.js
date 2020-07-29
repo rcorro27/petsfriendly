@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Network from './Network'
+import ImgComposant from '../component/img-composant'
 
 class ListNetworks extends Component {
     constructor (props) {
@@ -11,10 +11,10 @@ class ListNetworks extends Component {
     }
 
     componentDidMount () {
-        fetch('icons.json', { method: 'GET' })
+        fetch('icones.json', { method: 'GET' })
             .then(response => response.json())
             .then(response => {
-                this.setState({ images: response })
+                this.setState({ icones: response })
             })
     }
 
@@ -23,7 +23,7 @@ class ListNetworks extends Component {
             <div className='networks'>
 
                 <div className='networks-child'>
-                    {this.state.icones.map((icon, index) => <Network imgSrc={icon.imgSrc} key={index} />)}
+                    {this.state.icones.map((icon, index) => <ImgComposant srcIMG={icon.imgSrc} key={index} />)}
                 </div>
             </div>
 
