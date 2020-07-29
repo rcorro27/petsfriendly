@@ -35,6 +35,7 @@ class FormContainer extends Component {
                         titre2='Comme un membre De notre Famille'
                     />
                     <SpanComponent divClass='test' text='Yahia' />
+                    <button onClick={this.props.onHandleSaveOnClick}>retour a la page</button>
                 </main>
                 <Footer />
             </div>

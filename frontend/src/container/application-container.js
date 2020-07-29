@@ -8,7 +8,8 @@ class ApplicationContainer extends Component {
         super(props)
 
         this.state = {
-            isFormOpen: false
+            isFormOpen: false,
+            pageAcoder: false
         }
 
         this.handleAddOnClick = this.handleAddOnClick.bind(this)
@@ -25,13 +26,14 @@ class ApplicationContainer extends Component {
 
     render () {
         const BUTTONS = [{
-            label: 'recherche pet sitter',
+            label: 'page yahia',
             handleOnClick: this.handleAddOnClick
+
         }]
 
         return (
             <div>
-                <h1>Application</h1>
+                <h1>Page</h1>
                 <ToolbarComponent buttons={BUTTONS} />
                 <div>
                     {this.state.isFormOpen ? <FormContainer onHandleSaveOnClick={this.handleSaveOnClick} /> : <RecherchePetsitter />}
