@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 
-import InputComponent from 'component/input-component'
-import Navbar from '../component/navbar/Navbar'
+import Navbar from './navbar-container'
 import Footer from '../component/Footer/Footer'
-import Slider from '../component/sliders/Slider'
-import Title from '../component/Titles/Title'
-import DivSpans from '../component/Buttons/DivSpans'
+// import SliderItems from '../component/sliders/SliderItems'
+import Title from '../component/titre-composant'
+import SpanComponent from '../component/span-composant'
+import CarouselContainer from '../container/carousel-container'
 
 // import Navbar from '../component/Navbar'
 
@@ -15,22 +15,14 @@ class FormContainer extends Component {
 
             <div>
                 <Navbar />
-                <div>
-
-                    <h1>Formulaire usager</h1>
-                    <form id='form-test'>
-                        <InputComponent
-                            text="Nom d'usager:"
-                            type='text'
-                            id='userName_id'
-                            name='userName'
-                        />
-                    </form>
-                </div>
+                <div />
                 <main id='divContainer'>
-                    <Slider />
-                    <Title titre1='titre 1 ' titre2='titre 2 ' />
-                    <DivSpans divClass='test' />
+                    <CarouselContainer />
+                    <Title
+                        titre1='titre 1Nous considerons votre Animal'
+                        titre2='Comme un membre De notre Famille'
+                    />
+                    <SpanComponent divClass='test' text='Yahia' />
                 </main>
                 <Footer />
             </div>
