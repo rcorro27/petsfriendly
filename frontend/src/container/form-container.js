@@ -1,38 +1,42 @@
 import React, { Component } from 'react'
 
-import FormInscription from './form-inscription'
-import Navbar from '../component/navbar/Navbar'
 import Footer from '../component/Footer/Footer'
-import Slider from '../component/sliders/Slider'
-import Title from '../component/Titles/Title'
-import DivSpans from '../component/Buttons/DivSpans'
-
-// import Navbar from '../component/Navbar'
+import CarouselContainer from '../container/carousel-container'
+import Title from '../component/titre-composant'
+import SpanComponent from '../component/span-composant'
+import InputComponent from '../component/input-component'
+import Navbar from '../container/navbar-container'
 
 class FormContainer extends Component {
     render () {
         return (
 
             <div>
-                <Navbar />
-                <div>
 
-                    <h1>Formulaire usager</h1>
-                    <form id='form-test'>
-                        <InputComponent
-                            text="Nom d'usager:"
-                            type='text'
-                            id='userName_id'
-                            name='userName'
-                        />
-                    </form>
+                <div>
+                    <Navbar />
+                    <InputComponent
+                        text='Nom :'
+                        type='text'
+                        id='nom'
+                        name='nom'
+                    />
+                    <InputComponent
+                        text='Nom :'
+                        type='text'
+                        id='nom'
+                        name='nom'
+                    />
+
+                    <button onClick={this.props.onHandleSaveOnClick}>retour a la page</button>
+                    <main id='divContainer'>
+                        <CarouselContainer />
+                        <Title titre1='titre 1 ' titre2='titre 2 ' />
+                        <SpanComponent divClass='test' text='test ' />
+                    </main>
+                    <Footer />
                 </div>
-                <main id='divContainer'>
-                    <Slider />
-                    <Title titre1='titre 1 ' titre2='titre 2 ' />
-                    <DivSpans divClass='test' />
-                </main>
-                <Footer />
+
             </div>
 
         )
