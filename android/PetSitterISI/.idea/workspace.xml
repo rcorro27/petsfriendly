@@ -5,8 +5,12 @@
       <config />
     </shared>
   </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="2068bf3a-9000-4d4c-b800-f784c5a66a0f" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/Recherche_service_2.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/image_icon_2.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/image_icon_3.png" afterDir="false" />
@@ -17,6 +21,12 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_recherche_service_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_recherche_service_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/Recherche.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/BottomNavigationBar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_recherche.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_bottom_navigation_bar.xml" afterDir="false" />
+>>>>>>> 8ffd55aabadcad46dd75e2e92fdfa1c0ba851fc4
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +46,15 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="resourceFile" />
+        <option value="layoutResourceFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
@@ -48,15 +67,31 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/java" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layout" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
   <component name="RecentsManager">
+<<<<<<< HEAD
     <key name="android.template.-831176191">
       <recent name="com.example.petsitterisi" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\dev\projet final\mypetsitter\android\PetSitterISI\app\src\main\res\drawable" />
+=======
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\kelfilal\Desktop\mypetsitter\android\PetSitterISI\app\src\main\res" />
+    </key>
+    <key name="android.template.-1970901035">
+      <recent name="com.example.petsitterisi" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.petsitterisi" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\kelfilal\Desktop\mypetsitter\android\PetSitterISI\app\src\main\res\layout" />
+      <recent name="C:\Users\kelfilal\Desktop\mypetsitter\android\PetSitterISI\app\src\main\res\drawable" />
+>>>>>>> 8ffd55aabadcad46dd75e2e92fdfa1c0ba851fc4
     </key>
   </component>
   <component name="RunManager">
@@ -133,18 +168,65 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1596035475007">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="-1070" y="205" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1596085143113">
+      <screen x="-1600" y="0" width="1600" height="900" />
+    </state>
+    <state x="-1070" y="205" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1080/-1600.0.1600.900/1920.0.1366.768@-1600.0.1600.900" timestamp="1596085143113" />
+    <state x="-995" y="159" key="#com.intellij.ide.util.MemberChooser" timestamp="1596083632093">
+      <screen x="-1600" y="0" width="1600" height="900" />
+    </state>
+    <state x="-995" y="159" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080/-1600.0.1600.900/1920.0.1366.768@-1600.0.1600.900" timestamp="1596083632093" />
+    <state x="-1070" y="197" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1596072640053">
+      <screen x="-1600" y="0" width="1600" height="900" />
+    </state>
+    <state x="-1070" y="197" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1080/-1600.0.1600.900/1920.0.1366.768@-1600.0.1600.900" timestamp="1596072640053" />
+    <state x="60" y="298" key="AndroidCreateResourceDirectoryDialog" timestamp="1596040775336">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="60" y="298" key="AndroidCreateResourceDirectoryDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1596040775336" />
+    <state x="-1550" y="248" key="AndroidCreateResourceFileDialog" timestamp="1596077567935">
+      <screen x="-1600" y="0" width="1600" height="900" />
+    </state>
+    <state x="-1550" y="248" key="AndroidCreateResourceFileDialog/0.0.1920.1080/-1600.0.1600.900/1920.0.1366.768@-1600.0.1600.900" timestamp="1596077567935" />
+    <state x="60" y="298" key="AndroidCreateResourceFileDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1596041642766" />
+    <state x="740" y="285" key="FileChooserDialogImpl" timestamp="1596040248706">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1596035475007" />
+    <state x="740" y="285" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1596040248706" />
+    <state width="1877" height="294" key="GridCell.Tab.0.bottom" timestamp="1596110230047">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1557" height="235" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1600.0.1600.900/1920.0.1366.768@-1600.0.1600.900" timestamp="1596092543477" />
+    <state width="1877" height="294" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1596110230047" />
+    <state width="1877" height="294" key="GridCell.Tab.0.center" timestamp="1596110230047">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1557" height="235" key="GridCell.Tab.0.center/0.0.1920.1080/-1600.0.1600.900/1920.0.1366.768@-1600.0.1600.900" timestamp="1596092543476" />
+    <state width="1877" height="294" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1596110230047" />
+    <state width="1877" height="294" key="GridCell.Tab.0.left" timestamp="1596110230047">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1557" height="235" key="GridCell.Tab.0.left/0.0.1920.1080/-1600.0.1600.900/1920.0.1366.768@-1600.0.1600.900" timestamp="1596092543476" />
+    <state width="1877" height="294" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1596110230047" />
+    <state width="1877" height="294" key="GridCell.Tab.0.right" timestamp="1596110230047">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1557" height="235" key="GridCell.Tab.0.right/0.0.1920.1080/-1600.0.1600.900/1920.0.1366.768@-1600.0.1600.900" timestamp="1596092543476" />
+    <state width="1877" height="294" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1596110230047" />
     <state x="542" y="325" key="SettingsEditor" timestamp="1596035318451">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="542" y="325" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1596035318451" />
+    <state x="-984" y="228" key="chooseDestDirectoryDialog" timestamp="1596077865239">
+      <screen x="-1600" y="0" width="1600" height="900" />
+    </state>
+    <state x="-984" y="228" key="chooseDestDirectoryDialog/0.0.1920.1080/-1600.0.1600.900/1920.0.1366.768@-1600.0.1600.900" timestamp="1596077865239" />
     <state x="655" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1596033175581">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="655" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1596033175581" />
+<<<<<<< HEAD
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1596118099437">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -153,5 +235,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="682" y="432" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1596112592171" />
+=======
+    <state x="-1144" y="205" key="run.anything.popup" timestamp="1596083912406">
+      <screen x="-1600" y="0" width="1600" height="900" />
+    </state>
+    <state x="-1144" y="205" key="run.anything.popup/0.0.1920.1080/-1600.0.1600.900/1920.0.1366.768@-1600.0.1600.900" timestamp="1596083912406" />
+>>>>>>> 8ffd55aabadcad46dd75e2e92fdfa1c0ba851fc4
   </component>
 </project>
