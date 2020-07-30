@@ -7,10 +7,6 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="green">#54AF6E</color>
-<<<<<<< HEAD
     <color name="lightGrey">#E4E4E4</color>
-=======
     <color name="redTransparenceBar">#B5CB3232</color>
-
->>>>>>> 8ffd55aabadcad46dd75e2e92fdfa1c0ba851fc4
 </resources>
