@@ -14,7 +14,7 @@ import android.view.WindowManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class BottomNavigationBar extends FragmentActivity {
-    BottomNavigationView bottomNav;
+        BottomNavigationView bottomNav;
     //cacher temporairement la navigation bar android par defaut
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
