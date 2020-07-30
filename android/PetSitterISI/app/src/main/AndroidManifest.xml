@@ -20,10 +20,9 @@
         <activity android:name=".ProfilProprietaire" />
         <activity android:name=".ProfilPetSitter" />
         <activity android:name=".CreationProfil" />
-<!--      <activity android:name=".Recherche" />-->
+        <activity android:name=".BottomNavigationBar" />
         <activity android:name=".Connexion" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Recherche">
+        <activity android:name=".MainActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

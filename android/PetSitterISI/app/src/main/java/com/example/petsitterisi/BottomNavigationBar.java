@@ -2,11 +2,9 @@ package com.example.petsitterisi;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
-import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -15,7 +13,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-public class Recherche extends FragmentActivity {
+public class BottomNavigationBar extends FragmentActivity {
     BottomNavigationView bottomNav;
     //cacher temporairement la navigation bar android par defaut
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -31,7 +29,7 @@ public class Recherche extends FragmentActivity {
         super.onCreate(savedInstanceState);
         //cacher temporairement  la bare d'etat du haut
         requestWindowFeature(Window.FEATURE_NO_TITLE); getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_recherche);
+        setContentView(R.layout.activity_bottom_navigation_bar);
 
         bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
