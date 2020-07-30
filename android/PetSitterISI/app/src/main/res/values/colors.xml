@@ -3,8 +3,9 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
-    <color name="welcomeTextView">#CB3232</color>
+    <color name="welcomeTextView">#B5CB3232</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="green">#54AF6E</color>
+    <color name="lightGrey">#E4E4E4</color>
 </resources>
