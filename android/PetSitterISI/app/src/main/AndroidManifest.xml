@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Recherche_service_1"></activity>
+        <activity android:name=".Recherche_service_1" />
         <activity android:name=".TableauBord" />
         <activity android:name=".Planning" />
         <activity android:name=".Paiement" />
@@ -20,9 +20,10 @@
         <activity android:name=".ProfilProprietaire" />
         <activity android:name=".ProfilPetSitter" />
         <activity android:name=".CreationProfil" />
-        <activity android:name=".Recherche" />
+        <activity android:name=".BottomNavigationBar" />
         <activity android:name=".Connexion" />
         <activity android:name=".MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
