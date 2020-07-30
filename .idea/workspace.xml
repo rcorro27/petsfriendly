@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="dc3c0921-e6af-4a68-a8c6-e5145bae50d8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/android/PetSitterISI/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/PetSitterISI/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/PetSitterISI/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/PetSitterISI/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/PetSitterISI/app/src/main/java/com/example/petsitterisi/Connexion.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/PetSitterISI/app/src/main/java/com/example/petsitterisi/Connexion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/PetSitterISI/app/src/main/java/com/example/petsitterisi/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/PetSitterISI/app/src/main/java/com/example/petsitterisi/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/PetSitterISI/app/src/main/java/com/example/petsitterisi/Manager/ConnexionManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/PetSitterISI/app/src/main/java/com/example/petsitterisi/services/ApiUtilisateurFetcher.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/PetSitterISI/app/src/main/res/drawable/dogs_cats_rabbits_.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/PetSitterISI/app/src/main/res/drawable/rounded_corner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/PetSitterISI/app/src/main/res/drawable/rounded_corner_green.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/PetSitterISI/app/src/main/res/drawable/rounded_corner_transparency.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/PetSitterISI/app/src/main/res/layout/activity_connexion.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/PetSitterISI/app/src/main/res/layout/activity_connexion.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/PetSitterISI/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/PetSitterISI/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/PetSitterISI/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/PetSitterISI/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/PetSitterISI/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/android/PetSitterISI/gradlew" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/android.txt" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1fMg6RhjrcpC8wynqGoAbSdXZ40" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dc3c0921-e6af-4a68-a8c6-e5145bae50d8" name="Default Changelist" comment="" />
+      <created>1596033199410</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1596033199410</updated>
+    </task>
+    <servers />
+  </component>
+</project>
