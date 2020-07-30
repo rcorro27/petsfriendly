@@ -23,7 +23,8 @@ CREATE TABLE IF NOT EXISTS utilisateur
  date_expiration_carte_credit date,
  code_securite_carte_credit int,
  PRIMARY KEY (id),
- foreign key (id_role) references role_utilisateur(id));
+ foreign key (id_role) references role_utilisateur(id),
+ foreign key (id_adresse) references adresse(id));
  
 create table if not exists adresse
 (id int auto_increment,
