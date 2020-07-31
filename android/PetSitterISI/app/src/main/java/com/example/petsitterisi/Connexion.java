@@ -3,9 +3,12 @@ package com.example.petsitterisi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.petsitterisi.Manager.ConnexionManager;
 
@@ -16,6 +19,7 @@ public class Connexion extends AppCompatActivity {
     Context ctx;
     TextView e_mail;
     TextView mot_de_passe;
+    BottomNavigationBar bottomNavigationBar = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +35,17 @@ public class Connexion extends AppCompatActivity {
         e_mail = findViewById(R.id.e_mail);
         mot_de_passe = findViewById(R.id.mot_de_passe);
 
-        ConnexionManager.getUtilisateur(ctx, e_mail.toString(), mot_de_passe.toString());
+        connexion_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Intent intent = new Intent(ctx, BottomNavigationBar.class);
+               startActivity(intent);
+
+
+            }
+        });
+
+
 
 
 

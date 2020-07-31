@@ -1,49 +1,77 @@
 import React, { Component } from 'react'
 
-// import ToolbarComponent from 'component/toolbar-component'
+import ToolbarComponent from 'component/toolbar-component'
 import FormContainer from 'container/form-container'
-// import RecherchePetsitter from 'container/recherchepetsitter-container'
-import DeveloppementContainer from './developpement-container'
+import RecherchePetsitter from 'container/recherchepetsitter-container'
+/* import FormInscription from 'container/form-inscription' */
+import ProfilProprietaireBord from 'container/profil-proprietair-containaire'
 class ApplicationContainer extends Component {
     constructor (props) {
         super(props)
 
         this.state = {
-            pageYahia: false,
-            pageAhmed: false,
-            pageRichard: false
-
+            isFormOpenYahia: false,
+            isFormOpenRichard: false,
+            isFormOpenAhmed: false
         }
 
         this.handleAddOnClickYahia = this.handleAddOnClickYahia.bind(this)
-        this.handleAddOnClickAhmed = this.handleAddOnClickAhmed.bind(this)
         this.handleAddOnClickRichard = this.handleAddOnClickRichard.bind(this)
-        this.handleSaveOnClick = this.handleSaveOnClick.bind(this)
+        this.handleAddOnClickAhmed = this.handleAddOnClickAhmed.bind(this)
+        this.handleSaveOnClickYahia = this.handleSaveOnClickYahia.bind(this)
+        this.handleSaveOnClickAhmed = this.handleSaveOnClickAhmed.bind(this)
+        this.handleSaveOnClickRichard = this.handleSaveOnClickRichard.bind(this)
     }
 
     handleAddOnClickYahia () {
-        this.setState({ pageYahia: true })
-    }
-
-    handleAddOnClickAhmed () {
-        this.setState({ pageRichard: true })
+        this.setState({ isFormOpenYahia: true })
     }
 
     handleAddOnClickRichard () {
-        this.setState({ pageAhmed: true })
+        this.setState({ isFormOpenRichard: true })
     }
 
-    handleSaveOnClick () {
-        this.setState({ isFormOpen: false })
+    handleAddOnClickAhmed () {
+        this.setState({ isFormOpenAhmed: true })
+    }
+
+    handleSaveOnClickYahia () {
+        this.setState({ isFormOpenYahia: false })
+    }
+
+    handleSaveOnClickAhmed () {
+        this.setState({ isFormOpenAhmed: false })
+    }
+
+    handleSaveOnClickRichard () {
+        this.setState({ isFormOpenRichard: false })
     }
 
     render () {
+        const BUTTONSYAHIA = [{
+            label: 'Yahia',
+            handleOnClick: this.handleAddOnClickYahia
+        }]
+        const BUTTONSRICHARD = [{
+            label: 'Richard',
+            handleOnClick: this.handleAddOnClickRichard
+        }]
+        const BUTTONSAHMED = [{
+            label: 'Ahmed',
+            handleOnClick: this.handleAddOnClickAhmed
+        }]
+
         return (
             <div>
-                {/* <h1>Page</h1> */}
-                {/* <ToolbarComponent buttons={BUTTONS} /> */}
+                <h1>Application</h1>
+                <ToolbarComponent buttons={BUTTONSYAHIA} />
+                <ToolbarComponent buttons={BUTTONSRICHARD} />
+                <ToolbarComponent buttons={BUTTONSAHMED} />
                 <div>
-                    {this.state.pageYahia ? <FormContainer onHandleSaveOnClick={this.handleSaveOnClick} /> : <DeveloppementContainer />}
+                    {this.state.isFormOpenYahia ? <FormContainer onHandleSaveOnClickYahia={this.handleSaveOnClickYahia} /> : ''}
+                    {this.state.isFormOpenAhmed ? <ProfilProprietaireBord onHandleSaveOnClickAhmed={this.handleSaveOnClickAhmed} /> : ''}
+                    {this.state.isFormOpenRichard ? <RecherchePetsitter onHandleSaveOnClickRichard={this.handleSaveOnClickRichard} /> : ''}
+
                 </div>
             </div>
         )

@@ -8,11 +8,11 @@ class DeveloppementContainer extends Component {
         return (
             <div>
                 <h1>Page DEVELOPEMENT</h1>
-
+                {/* test push */}
                 <div>
-                    <button onClick={this.handleOnClickRichard}>Richard</button>
-                    <button onClick={this.handleOnClickAhmed}>Ahmed</button>
-                    <button onClick={this.handleOnClickYahia}>Yahia</button>
+                    <span><button onClick={this.props.handleOnClickRichard}>Richard</button></span>
+                    <span><button onClick={this.props.handleOnClickAhmed}>Ahmed</button></span>
+                    <span><button onClick={this.props.handleOnClickYahia}>Yahia</button></span>
                 </div>
             </div>
         )
