@@ -3,18 +3,27 @@ import React, { Component } from 'react'
 import InputComponent from 'component/input-component'
 import SelectComponent from 'component/select-component'
 import ListItemComponent from 'component/list-item-component'
+import ResultatRecherchePetsitter from 'container/resultat-recherche-pett-sitter-container'
 
 class RecherchePetsitter extends Component {
-    /*  constructor (props) {
+    constructor (props) {
         super(props)
 
         this.state = {
-
+            resultatRecherche: false
         }
 
         this.handleAddOnClick = this.handleAddOnClick.bind(this)
         this.handleSaveOnClick = this.handleSaveOnClick.bind(this)
-    } */
+    }
+
+    handleAddOnClick () {
+        this.setState({ resultatRecherche: true })
+    }
+
+    handleSaveOnClick () {
+        this.setState({ resultatRecherche: false })
+    }
 
     render () {
         const TYPEANIMAL = [{
@@ -70,6 +79,9 @@ class RecherchePetsitter extends Component {
                     <SelectComponent text='Race :' id='typeAnimal_id' name='Type animal' options={RACEANIMAL} />
                     <InputComponent type='submit' id='rechercher' name='Rechercher ' value='rechercher' />
                 </form>
+                <button onClick={this.handleAddOnClick}>RECHERCHE RESULTAT</button>
+                {this.state.resultatRecherche ? <ResultatRecherchePetsitter onHandleSaveOnClick={this.handleSaveOnClick} /> : ''}
+
                 <h1>Des Services Sur mesure pour un Animal d'exeption </h1>
                 <div>
                     <ListItemComponent text='Faite garder votre animal a votre domicile ou celui du Pett Sitter' />
