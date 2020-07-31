@@ -95,7 +95,7 @@ class FormInscription extends Component {
                     <Boutton type='submit' id='envoi' name='envoi' value='envoyer' />
 
                     <p> Vous avez deja un compte PetsFriendly? </p>
-                    <a href type='a' text='se connecter' />
+                    <ahrefComponent type='a' text='se connecter' />
 
                 </form>
                 <button onClick={this.props.onHandleSaveOnClickAhmed}>retour a la page</button>
