@@ -5,7 +5,7 @@ import SelectComponent from 'component/select-component'
 import ListItemComponent from 'component/list-item-component'
 
 class RecherchePetsitter extends Component {
-    constructor (props) {
+    /*  constructor (props) {
         super(props)
 
         this.state = {
@@ -14,7 +14,7 @@ class RecherchePetsitter extends Component {
 
         this.handleAddOnClick = this.handleAddOnClick.bind(this)
         this.handleSaveOnClick = this.handleSaveOnClick.bind(this)
-    }
+    } */
 
     render () {
         const TYPEANIMAL = [{
