@@ -1,38 +1,48 @@
 import React, { Component } from 'react'
 
 import InputComponent from 'component/input-component'
-// import BoutonComponent from 'component/bouton-component'
 import SelectComponent from 'component/select-component'
 import ListItemComponent from 'component/list-item-component'
-const TYPEANIMAL = [{
-    label: 'Chien',
-    value: '1'
-}, {
-    label: 'Chat',
-    value: '2'
-}, {
-    label: 'Souris',
-    value: '3'
-}, {
-    label: 'Crocodile',
-    value: '4'
-}]
-const RACEANIMAL = [{
-    label: 'Doberman',
-    value: '1'
-}, {
-    label: 'TEST',
-    value: '2'
-}, {
-    label: 'TEST',
-    value: '3'
-}, {
-    label: 'TEST',
-    value: '4'
-}]
 
 class RecherchePetsitter extends Component {
+    constructor (props) {
+        super(props)
+
+        this.state = {
+
+        }
+
+        this.handleAddOnClick = this.handleAddOnClick.bind(this)
+        this.handleSaveOnClick = this.handleSaveOnClick.bind(this)
+    }
+
     render () {
+        const TYPEANIMAL = [{
+            label: 'Chien',
+            value: '1'
+        }, {
+            label: 'Chat',
+            value: '2'
+        }, {
+            label: 'Souris',
+            value: '3'
+        }, {
+            label: 'Crocodile',
+            value: '4'
+        }]
+        const RACEANIMAL = [{
+            label: 'Doberman',
+            value: '1'
+        }, {
+            label: 'TEST',
+            value: '2'
+        }, {
+            label: 'TEST',
+            value: '3'
+        }, {
+            label: 'TEST',
+            value: '4'
+        }]
         // voir les dates dans le formulaire a chaque fois il y a des erreus dans la console qui pointe le fait de ne pas avoir la bonne valeur date.now??
         return (
 
