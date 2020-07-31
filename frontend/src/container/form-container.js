@@ -7,7 +7,7 @@ import Title from '../component/titre-composant'
 import SpanComponent from '../component/span-composant'
 import CarouselContainer from '../container/carousel-container'
 import InputComponent from '../component/input-component'
-// import Navbar from '../component/Navbar'
+import DivBoutons from '../component/div-boutons'
 
 class FormContainer extends Component {
     render () {
@@ -16,18 +16,7 @@ class FormContainer extends Component {
             <div>
                 <Navbar />
                 <div />
-                <InputComponent
-                    text='Nom :'
-                    type='text'
-                    id='nom'
-                    name='nom'
-                />
-                <InputComponent
-                    text='Nom :'
-                    type='text'
-                    id='nom'
-                    name='nom'
-                />
+
                 <main id='divContainer'>
                     <CarouselContainer />
                     <Title
@@ -36,6 +25,12 @@ class FormContainer extends Component {
                     />
                     <SpanComponent divClass='test' text='Yahia' />
                 </main>
+                <div className='block'>
+                    <DivBoutons classCss='col-xs-3' param1='Devenir Sitter' param2='En savoir plus' />
+                    <DivBoutons classCss='col-xs-3' param1='Rechercher un pet Sitter' param2='En savoir plus' />
+                    <DivBoutons classCss='col-xs-3' param1='Tout nos services' param2='En savoir plus' />
+                </div>
+
                 <Footer />
             </div>
 
