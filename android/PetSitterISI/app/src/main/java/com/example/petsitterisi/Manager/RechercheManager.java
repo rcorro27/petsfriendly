@@ -47,8 +47,8 @@ public class RechercheManager {
             obj1.put("service_promenade", promenade);
             obj1.put("service_medicale", visite_veterinaire);
             obj1.put("service_date_debut_contrat", date_debut);
-            obj1.put("service date debut contrat", date_fin);
-            obj1.put("service lieu", lieu_service);
+            obj1.put("service_date debut contrat", date_fin);
+            obj1.put("service_lieu", lieu_service);
 
 
             obj2.put("Animal_type",type_chien);
