@@ -1,5 +1,5 @@
 import React from 'react'
-// import imgComposant from 'img-composant'
+// import ImgComposant from 'img-composant'
 
 /* Json {
 "petsitter1" : {
@@ -28,30 +28,21 @@ import React from 'react'
 
 // EVENEMENT BUTTON A AJOTER LIGNE 36
 
-function ulComponent (name, text, codepostal, button) {
-    return (
-
-        <div>
-            <ol>
-                <li>{text}</li><button onClick={button.handleOnClickAimer}><i class='fa fa-heart' aria-hidden='true' /></button>
-                <p>{codepostal}</p>
-                <p>{name}</p>
-
-            </ol>
-
-        </div>
-    )
-}
-
-const VignetteComponent = ({ urlPhoto, classname, name, text, codepostal }) => (
+const VignetteComponent = ({ urlPhoto, classname, name, text, codePostal }) => (
     // est ce que on recoit une liste de pettsitter ?? question a posser
 /* key={index} */
     <div>
-        {/* <imgComposant srcIMG={urlPhoto} classBo={classname} /> */}
         <img className={classname} src={urlPhoto} alt={urlPhoto} />
+        <div>
+            <ol>
+                <li>
+                    <h2>{text}</h2>
+                    <p>{codePostal}</p>
+                    <button class='far fa-heart' />
+                </li>
 
-        <ulComponent name={name} text={text} codepostal={codepostal} />
-
+            </ol>
+        </div>
     </div>
 
 )
