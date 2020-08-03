@@ -42,24 +42,24 @@ public class RechercheManager {
         connexionJson.put("animal", obj2);
 
         try {
-            obj1.put("service garde animal", gardez_chez_sitter);
-            obj1.put("service garde animal", gardez_chez_proprietaire);
-            obj1.put("service promenade", promenade);
-            obj1.put("service medicale", visite_veterinaire);
-            obj1.put("service date debut contrat", date_debut);
+            obj1.put("service_garde_animal", gardez_chez_sitter);
+            obj1.put("service_garde_animal", gardez_chez_proprietaire);
+            obj1.put("service_promenade", promenade);
+            obj1.put("service_medicale", visite_veterinaire);
+            obj1.put("service_date_debut_contrat", date_debut);
             obj1.put("service date debut contrat", date_fin);
             obj1.put("service lieu", lieu_service);
 
 
-            obj2.put("Animal type:",type_chien);
-            obj2.put("Animal type:",type_chat);
-            obj2.put("Animal taille:",taille_petit);
-            obj2.put("Animal taille:",taille_moyen);
-            obj2.put("Animal taille:",taille_grand);
-            obj2.put("Animal race:",race_animal);
-            obj2.put("Animal nom:",nom_animal);
-            obj2.put("Animal age:",age_animal);
-            obj2.put("Animal sexe:",sexe_animal);
+            obj2.put("Animal_type",type_chien);
+            obj2.put("Animal_type",type_chat);
+            obj2.put("Animal_taille",taille_petit);
+            obj2.put("Animal_taille",taille_moyen);
+            obj2.put("Animal_taille",taille_grand);
+            obj2.put("Animal_race",race_animal);
+            obj2.put("Animal_nom",nom_animal);
+            obj2.put("Animal_age",age_animal);
+            obj2.put("Animal_sexe",sexe_animal);
 
 
             //connexion a l'Api
