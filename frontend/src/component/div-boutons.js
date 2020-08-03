@@ -1,12 +1,13 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
 
-export default function DivBoutons ({ classCss, param1, param2 }) {
+const DivBoutons = ({ classCss, titre }) => {
     return (
         <div className={classCss}>
-            <Button variant='light'>{param1}</Button>
-            <a href='#'>{param2}</a>
+
+            <Button variant='light'>{titre}</Button>
 
         </div>
     )
 }
+export default DivBoutons

@@ -6,10 +6,25 @@ import Footer from '../component/Footer/Footer'
 import Title from '../component/titre-composant'
 import SpanComponent from '../component/span-composant'
 import CarouselContainer from '../container/carousel-container'
-import InputComponent from '../component/input-component'
+// import InputComponent from '../component/input-component'
 import DivBoutons from '../component/div-boutons'
 
 class FormContainer extends Component {
+    constructor (props) {
+        super(props)
+        this.state = {
+            titres: []
+        }
+    }
+
+    componentWillMount () {
+        fetch('titres.json', { method: 'GET' })
+            .then(response => response.json())
+            .then(response => {
+                this.setState({ titres: response })
+            })
+    }
+
     render () {
         return (
 
@@ -26,9 +41,8 @@ class FormContainer extends Component {
                     <SpanComponent divClass='test' text='Yahia' />
                 </main>
                 <div className='block'>
-                    <DivBoutons classCss='col-xs-3' param1='Devenir Sitter' param2='En savoir plus' />
-                    <DivBoutons classCss='col-xs-3' param1='Rechercher un pet Sitter' param2='En savoir plus' />
-                    <DivBoutons classCss='col-xs-3' param1='Tout nos services' param2='En savoir plus' />
+
+                    {this.state.titres.map((text, index) => <DivBoutons classCss='light' titre={text.titreBtn} key={index} />)}
                 </div>
 
                 <Footer />
