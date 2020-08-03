@@ -9,19 +9,24 @@ var pgClient = new pg.Client({
     ssl: { rejectUnauthorized: false }
 }); 
 
-pgClient.connect()
+// fonction pour excuter une requete sur postgres
+function excuterRequete(requeteSQL) 
+{
+  pgClient.connect()
 
- // exemple de requete
-pgClient
-  .query('SELECT * FROM contrat')
-  .then(res => {
-    console.log(res)
+  pgClient.query(requeteSQL).then(res => {
     pgClient.end()
-        })
-  .catch(e => {
+
+    return res
+        }).catch(e => {
     console.error(e.stack)
     pgClient.end()
-         })
-  
 
-module.exports = pgClient
+         })
+}
+  
+// les modules a exporter
+module.exports = {
+  pgClient,
+  excuterRequete
+}
