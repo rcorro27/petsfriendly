@@ -1,32 +1,12 @@
 import React, { Component } from 'react'
 import InputComponent from 'component/input-component'
 import Boutton from 'component/bouton-component'
-import ImageUploader from 'react-images-upload'
-class ProfilProprietaireBord extends Component {
-    constructor (props) {
-        super(props)
-        this.state = { pictures: [] }
-        this.onDrop = this.handleOnDrop.bind(this)
-    }
 
+class ProfilProprietaireBord extends Component {
     render () {
         return (
             <div>
                 <div class='imageProfil' />
-
-                handleOnDrop(picture) {
-                    this.setState({
-                        pictures: this.state.pictures.concat()
-                    })
-                }
-
-                <ImageUploader
-                    withIcon
-                    buttonText='Choose images'
-
-                    imgExtension={['.jpg', '.gif', '.png', '.gif']}
-
-                />
 
                 <div>
                     <h1>Mes Information </h1>
