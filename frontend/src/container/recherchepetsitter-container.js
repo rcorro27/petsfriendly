@@ -10,7 +10,8 @@ class RecherchePetsitter extends Component {
         super(props)
 
         this.state = {
-            resultatRecherche: false
+            resultatRecherche: false,
+            images: []
         }
 
         this.handleAddOnClick = this.handleAddOnClick.bind(this)
@@ -61,7 +62,7 @@ class RecherchePetsitter extends Component {
                     <InputComponent type='checkbox' text='Garder Chez le PettSitter' id='toto' name='Garder Chez le PettSitter' value='1' />
                     <InputComponent type='checkbox' text='Garder chez vous' id='toto' name='Garder chez vous' value='2' />
                     <InputComponent type='checkbox' text='Promenade' id='toto' name='Promenade' value='3' />
-                    <InputComponent type='checkbox' text='visite chez le veteninaire' id='toto' name='visite chez le veteninaire' value='4' />
+                    {/* <InputComponent type='checkbox' text='visite chez le veteninaire' id='toto' name='visite chez le veteninaire' value='4' /> */}
                     {/* Separation de boutons , debut des inputs texts */}
                     <InputComponent text='Date de debut' type='date' id='dateDebut' name='date de debut' value='toto' />
                     <InputComponent text='Date de fin' type='date' id='dateFin' name='date de fin' value='toto' />
