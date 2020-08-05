@@ -1,11 +1,12 @@
 class Adresse
 {
-    constructor(id, numero_rue, nom_rue, code_postal, ville, pays, numero_appt) {
+    constructor(id, numero_rue, nom_rue, code_postal, ville, province, pays, numero_appt) {
         this._id = id
         this._numero_rue = numero_rue
         this._nom_rue = nom_rue
         this._code_postal = code_postal
         this._ville = ville
+        this._province = province
         this._pays = pays
         this._numero_appt = numero_appt
     }
@@ -26,6 +27,9 @@ class Adresse
     }
     get ville(){
         return this._ville
+    }
+    get province(){
+        return this._province
     }
     get pays(){
         return this._pays
@@ -50,6 +54,9 @@ class Adresse
     }
     set ville(ville){
         this._ville = ville
+    }
+    set province(province){
+        this._province = province
     }
     set pays(pays){
         this._pays = pays
