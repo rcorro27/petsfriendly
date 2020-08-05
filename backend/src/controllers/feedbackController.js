@@ -12,7 +12,7 @@ function feedbackRecuperationByIdUtilisateur(req, res)
 
 }
 
-//la fonction appelee par la route ajout de feedback
+//la fonction appelee par la route suppression de feedback
 function feedbackSuppression(req, res)
 {
 

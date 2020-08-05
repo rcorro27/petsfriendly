@@ -151,3 +151,5 @@ public class Utilisateur {
     }
 }
 
+
+module.exports = Utilisateur

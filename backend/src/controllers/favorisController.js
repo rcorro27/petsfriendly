@@ -18,7 +18,7 @@ function favorisRecuperationByIdUtilisateur(req, res)
 
 }
 
-//la fonction appelee par la route ajout de favoris
+//la fonction appelee par la route suppression de favoris
 function favorisSuppression(req, res)
 {
 
