@@ -1,18 +1,18 @@
 
 
-//la fonction appelee par la route connexion
+//la fonction appelee par la route connexion d'utilisateur
 function utilisateurConnexion(req, res)
 {
 
 }
 
-//la fonction appelee par la route creation
+//la fonction appelee par la route creation d'utilisateur
 function utilisateurCreation(req, res)
 {
 
 }
 
-//la fonction appelee par la route configuration
+//la fonction appelee par la route configuration d'utilisateur
 function utilisateurConfiguration(req, res)
 {
 
