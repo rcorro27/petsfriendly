@@ -4,7 +4,7 @@ import Footer from '../component/Footer/Footer'
 import CarouselContainer from '../container/carousel-container'
 import Title from '../component/titre-composant'
 import SpanComponent from '../component/span-composant'
-// import InputComponent from '../component/input-component'
+import Navbar from '../container/navbar-container'
 import DivBoutons from '../component/div-boutons'
 
 class FormContainer extends Component {
