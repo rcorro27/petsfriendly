@@ -29,7 +29,6 @@ class FormContainer extends Component {
             <div>
 
                 <div>
-                    <Navbar />
 
                     <main id='divContainer'>
                         <CarouselContainer />

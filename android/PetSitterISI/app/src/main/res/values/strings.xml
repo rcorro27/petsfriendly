@@ -4,4 +4,12 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="suivant">Suivant</string>
+    <string name="connexion">Connexion</string>
+        <string-array name="nb_animaux_array">
+            <item>1</item>
+            <item>2</item>
+            <item>3</item>
+        </string-array>
+
 </resources>

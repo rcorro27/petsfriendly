@@ -1,18 +1,23 @@
 package com.example.petsitterisi;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.MediaController;
 import android.widget.TextView;
@@ -24,17 +29,29 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.io.InputStream;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
 
     TextView top_textView;
     Button connexion_button;
     Context ctx;
-
+    //cacher temporairement la navigation bar android par defaut
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @Override
+    protected void onStart() {
+        super.onStart();
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        |View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY); // cacher temporairement avec transparence
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //cacher temporairement  la bare d'etat du haut
+        requestWindowFeature(Window.FEATURE_NO_TITLE); getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView(R.layout.activity_bottom_navigation_bar);
+
         ctx = this;
         setContentView(R.layout.activity_main);
         ConnexionBd.copyBdFromAssets(this);
