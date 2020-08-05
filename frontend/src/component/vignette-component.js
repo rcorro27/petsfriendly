@@ -28,17 +28,17 @@ import React from 'react'
 
 // EVENEMENT BUTTON A AJOTER LIGNE 36
 
-const VignetteComponent = ({ urlPhoto, classname, name, text, codePostal }) => (
-    // est ce que on recoit une liste de pettsitter ?? question a posser
-/* key={index} */
+const VignetteComponent = ({ urlPhoto, className, name, secteurAction }) => (
+
     <div>
-        <img className={classname} src={urlPhoto} alt={urlPhoto} />
+
+        <img className={className} src={urlPhoto} alt={urlPhoto} />
         <div>
             <ol>
                 <li>
-                    <h2>{text}</h2>
-                    <p>{codePostal}</p>
-                    <button class='far fa-heart' />
+                    <h2>{name}</h2>
+                    <p>{secteurAction}</p>
+                    <button className='far fa-heart' />
                 </li>
 
             </ol>
@@ -46,17 +46,6 @@ const VignetteComponent = ({ urlPhoto, classname, name, text, codePostal }) => (
     </div>
 
 )
-/*
-function Title ({ id, titre1, titre2 }) {
-    return (
-        <div id={id}>
-            <p> {titre1} </p>
-            <p> {titre2} </p>
-            <hr />
-        </div>
 
-    )
-}
-*/
 export default VignetteComponent
 // {buttons.map((button, index) => <span key={index}><button onClick={button.handleOnClick}>{button.label}</button></span>)}

@@ -2,8 +2,8 @@
     "resultatRecherche": [
         {
             "id": 425,
-            "nom": "toto",
-            "prenom": "toto",
+            "nom": "carlos",
+            "prenom": "perez",
             "age": 54,
             "sexe": "masculin",
             "id_adresse": 552,
@@ -13,25 +13,25 @@
         },
         {
             "id": "426",
-            "nom": "titi",
-            "prenom": "papa",
+            "nom": "lola",
+            "prenom": "palouze",
             "age": "26",
             "sexe": "masculin",
             "id_adresse": "552",
             "telephone": "222222222222",
             "secteur_action": "rosemont",
-            "url_photo": "../src/img/caroussel/image2.jpeg"
+            "url_photo": "../src/img/caroussel/image2.jpg"
         },
         {
             "id": "427",
-            "nom": "titi",
-            "prenom": "papa",
+            "nom": "maria",
+            "prenom": "martinez",
             "age": "27",
             "sexe": "feminin",
             "id_adresse": "554",
             "telephone": "222222222222",
             "secteur_action": "rosemont",
-            "url_photo": "../src/img/caroussel/image3.jpeg"
+            "url_photo": "../src/img/caroussel/image3.jpg"
         }
     ]
 }
