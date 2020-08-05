@@ -1,7 +1,7 @@
 import React from 'react'
 // import { Button, Modal } from 'react-bootstrap'
 
-function ConnectionPopUp ({ getText, getPass }) {
+function ConnectionPopUp ({ getText, getPass, valueName, valuePass }) {
     //  const [show, setShow] = useState(false)
 
     // const handleClose = () => setShow(false)
@@ -9,7 +9,7 @@ function ConnectionPopUp ({ getText, getPass }) {
         <div className='modal-body mx-3'>
             <div className='md-form mb-5'>
                 <i className='fas fa-envelope prefix grey-text' />
-                <input type='email' id='defaultForm-email' className='form-control validate' onChange={getText} />
+                <input type='email' id='defaultForm-email' className='form-control validate' onChange={getText} value={valueName} />
                 <label data-error='wrong' data-success='right' htmlFor='defaultForm-email'>Ton Email</label>
 
             </div>
