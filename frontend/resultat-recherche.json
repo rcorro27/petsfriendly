@@ -9,7 +9,7 @@
             "id_adresse": 552,
             "telephone": 5554555445,
             "secteur_action": "rosemont",
-            "url_photo": "src/img/caroussel/image1.jpeg"
+            "url_photo": "../src/img/caroussel/image1.jpeg"
         },
         {
             "id": "426",
@@ -20,7 +20,7 @@
             "id_adresse": "552",
             "telephone": "222222222222",
             "secteur_action": "rosemont",
-            "url_photo": "src/img/caroussel/image2.jpeg"
+            "url_photo": "../src/img/caroussel/image2.jpeg"
         },
         {
             "id": "427",
@@ -31,7 +31,7 @@
             "id_adresse": "554",
             "telephone": "222222222222",
             "secteur_action": "rosemont",
-            "url_photo": "src/img/caroussel/image3.jpeg"
+            "url_photo": "../src/img/caroussel/image3.jpeg"
         }
     ]
 }
