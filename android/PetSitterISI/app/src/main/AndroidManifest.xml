@@ -12,8 +12,6 @@
         <activity android:name=".AjouterUnAnimal"></activity>
         <activity android:name=".Filtres" />
         <activity android:name=".Recherche_service_3" />
-        <activity android:name=".Recherche_service_2" />
-        <activity android:name=".Recherche_service_1" />
         <activity android:name=".TableauBord" />
         <activity android:name=".Planning" />
         <activity android:name=".Paiement" />
