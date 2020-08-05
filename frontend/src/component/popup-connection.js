@@ -1,22 +1,22 @@
 import React from 'react'
 // import { Button, Modal } from 'react-bootstrap'
 
-function ConnectionPopUp () {
+function ConnectionPopUp ({ getText, getPass }) {
     //  const [show, setShow] = useState(false)
 
     // const handleClose = () => setShow(false)
     return (
-        <div class='modal-body mx-3'>
-            <div class='md-form mb-5'>
-                <i class='fas fa-envelope prefix grey-text' />
-                <input type='email' id='defaultForm-email' class='form-control validate' />
-                <label data-error='wrong' data-success='right' for='defaultForm-email'>Ton Email</label>
+        <div className='modal-body mx-3'>
+            <div className='md-form mb-5'>
+                <i className='fas fa-envelope prefix grey-text' />
+                <input type='email' id='defaultForm-email' className='form-control validate' onChange={getText} />
+                <label data-error='wrong' data-success='right' htmlFor='defaultForm-email'>Ton Email</label>
 
             </div>
-            <div class='md-form mb-4'>
-                <i class='fas fa-lock prefix grey-text' />
-                <input type='password' id='defaultForm-pass' class='form-control validate' />
-                <label data-error='wrong' data-success='right' for='defaultForm-pass'>Ton mot de passe</label>
+            <div className='md-form mb-4'>
+                <i className='fas fa-lock prefix grey-text' />
+                <input type='password' id='defaultForm-pass' className='form-control validate' onChange={getPass} />
+                <label data-error='wrong' data-success='right' htmlFor='defaultForm-pass'>Ton mot de passe</label>
             </div>
         </div>
     )
