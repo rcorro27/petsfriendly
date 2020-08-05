@@ -1,7 +1,7 @@
 package com.example.petsitterisi;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.example.petsitterisi.Manager.ConnexionManager;
 
-public class Connexion extends AppCompatActivity {
+public class Connexion extends Activity {
 
     TextView top_textView;
     Button connexion_button;
@@ -24,6 +24,7 @@ public class Connexion extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_connexion);
 
         ctx = this;
