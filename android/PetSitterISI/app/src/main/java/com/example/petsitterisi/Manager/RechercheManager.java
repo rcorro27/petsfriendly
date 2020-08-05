@@ -1,76 +1,46 @@
 package com.example.petsitterisi.Manager;
 import android.content.Context;
 
+import com.example.petsitterisi.Entitee.Service;
 import com.example.petsitterisi.Entitee.Utilisateur;
+import com.example.petsitterisi.services.ApiRechercheFetcher;
 import com.example.petsitterisi.services.ApiUtilisateurFetcher;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 public class RechercheManager {
-    /**
-     *
-     * @param context
-     * @param gardez_chez_sitter
-     * @param gardez_chez_proprietaire
-     * @param promenade
-     * @param visite_veterinaire
-     * @param type_chien
-     * @param type_chat
-     * @param date_debut
-     * @param date_fin
-     * @param lieu_service
-     * @param taille_petit
-     * @param taille_moyen
-     * @param taille_grand
-     * @param race_animal
-     * @param nom_animal
-     * @param age_animal
-     * @param sexe_animal
-     * @return
-     * @throws JSONException
-     */
-    public static Utilisateur getUtilisateur(Context context, boolean gardez_chez_sitter, boolean gardez_chez_proprietaire, boolean promenade, boolean visite_veterinaire, boolean type_chien, boolean type_chat, String date_debut, String date_fin, String lieu_service, boolean taille_petit,  boolean taille_moyen, boolean taille_grand, String race_animal, String nom_animal, int age_animal, boolean sexe_animal ) throws JSONException {
 
-        Utilisateur utitlisateur = null;
+
+
+    public static Service getService(Context context, boolean service_gardez_chez_sitter, boolean service_gardez_chez_proprietaire, boolean service_promenade, boolean type_chien, boolean type_chat, String date_debut_contrat, String date_fin_contrat, String adresse_proprietaire) throws JSONException {
+
+        Service serviceDeBase = null;
         String jsonStringDuServeur = "";
-        //creation du Json
-        JSONObject connexionJson = new JSONObject(); //Json principal qui contient 2 autres objets Json (obj1:Service,obj2:Animal)
-        JSONObject obj1 = new JSONObject(); // objet1 Json contenant les services
-        JSONObject obj2 = new JSONObject(); // objet2 Json contenant les infos de l'animal
 
-        connexionJson.put("service", obj1);
-        connexionJson.put("animal", obj2);
+        //creation du Json
+        JSONObject recherche = new JSONObject(); // Json principal qui contient 1 autre objet Json "service_de_base"
+        JSONObject service_de_base = new JSONObject(); // objet1 Json contenant les services de base
+        recherche.put("services", service_de_base);
 
         try {
-            obj1.put("service_garde_animal", gardez_chez_sitter);
-            obj1.put("service_garde_animal", gardez_chez_proprietaire);
-            obj1.put("service_promenade", promenade);
-            obj1.put("service_medicale", visite_veterinaire);
-            obj1.put("service_date_debut_contrat", date_debut);
-            obj1.put("service_date debut contrat", date_fin);
-            obj1.put("service_lieu", lieu_service);
-
-
-            obj2.put("Animal_type",type_chien);
-            obj2.put("Animal_type",type_chat);
-            obj2.put("Animal_taille",taille_petit);
-            obj2.put("Animal_taille",taille_moyen);
-            obj2.put("Animal_taille",taille_grand);
-            obj2.put("Animal_race",race_animal);
-            obj2.put("Animal_nom",nom_animal);
-            obj2.put("Animal_age",age_animal);
-            obj2.put("Animal_sexe",sexe_animal);
-
+            service_de_base.put("service_garde",service_gardez_chez_sitter);
+            service_de_base.put("service_garde",service_gardez_chez_proprietaire);
+            service_de_base.put("service_promenade",service_promenade);
+            service_de_base.put("service_date_debut_contrat",date_debut_contrat);
+            service_de_base.put("service_date_fin_contrat",date_fin_contrat);
+            service_de_base.put("service_adresse_proprietaire",adresse_proprietaire);
+            service_de_base.put("Animal_type",type_chien);
+            service_de_base.put("Animal_type",type_chat);
 
             //connexion a l'Api
-            ApiUtilisateurFetcher apiFetcher = new ApiUtilisateurFetcher(jsonStringDuServeur);
-            apiFetcher.execute("https://pets-friendly.herokuapp.com/utilisateur/connexion", connexionJson.toString());
+            ApiRechercheFetcher apiFetcher = new ApiRechercheFetcher(jsonStringDuServeur);
+            apiFetcher.execute("https://pets-friendly.herokuapp.com/recherche", recherche.toString());
 
         }catch (JSONException e) {
             e.printStackTrace();
         }
 
-        return utitlisateur;
+        return serviceDeBase;
     }
 
 
