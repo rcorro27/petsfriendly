@@ -1,5 +1,5 @@
 import React from 'react'
-import imgComposant from 'component-img-composant'
+// import ImgComposant from 'img-composant'
 
 /* Json {
 "petsitter1" : {
@@ -26,29 +26,37 @@ import imgComposant from 'component-img-composant'
 }
 } */
 
-const ulComponent = (name, text, codepostal, button) => {
-    return (
+// EVENEMENT BUTTON A AJOTER LIGNE 36
 
+const VignetteComponent = ({ urlPhoto, classname, name, text, codePostal }) => (
+    // est ce que on recoit une liste de pettsitter ?? question a posser
+/* key={index} */
+    <div>
+        <img className={classname} src={urlPhoto} alt={urlPhoto} />
         <div>
             <ol>
-                <li>{text}</li><button onClick={button.handleOnClickAimer}><i class='fa fa-heart' aria-hidden='true' /></button>
-                <p>{codepostal}</p>
+                <li>
+                    <h2>{text}</h2>
+                    <p>{codePostal}</p>
+                    <button class='far fa-heart' />
+                </li>
 
             </ol>
-
         </div>
+    </div>
+
+)
+/*
+function Title ({ id, titre1, titre2 }) {
+    return (
+        <div id={id}>
+            <p> {titre1} </p>
+            <p> {titre2} </p>
+            <hr />
+        </div>
+
     )
 }
-
-const VignetteComponent = ({ pettSitters, classname }) => (
-    // est ce que on recoit une liste de pettsitter ?? question a posser
-
-    <div>
-        {pettSitters.map((info, index) => <imgComposant srcIMG={info.url_photo} key={index} classBo={classname} />)}
-
-        {pettSitters.map((info, index) => ulComponent(info.nom, info.textDescriptif, index))}
-
-    </div>
-)
+*/
 export default VignetteComponent
 // {buttons.map((button, index) => <span key={index}><button onClick={button.handleOnClick}>{button.label}</button></span>)}

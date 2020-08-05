@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
-
 import InputComponent from 'component/input-component'
 import Boutton from 'component/bouton-component'
+
 class ProfilProprietaireBord extends Component {
     render () {
         return (
             <div>
-                <div class='imageProfil'>
-                    <InputComponent text='changer votre photo de profil' type='file' id='img' name='imgpetteSitter' />
-                </div>
+                <div class='imageProfil' />
+
                 <div>
                     <h1>Mes Information </h1>
 
@@ -44,6 +43,7 @@ class ProfilProprietaireBord extends Component {
                             <InputComponent text='date debut' type='date' id='date_debut' name='dateD' />
                             <InputComponent text='date fin' type='date' id='date_debut' name='datef' />
                         </div>
+
                         <div class='ajout-animal'>
                             <Boutton type='submit' id='ajout' name='envoi' value='ajouter' />
 
