@@ -7,16 +7,18 @@ let urlMongodb = "mongodb+srv://petsFriendly:abc123...@cluster0.s3u73.mongodb.ne
 // fonction pour trouver les messages entre un proprietaire et un petsitter
 function recupererMessages(aTrouver)
 {
-    MongoClient.connect(urlMongodb,{ useUnifiedTopology: true } ,function(err, db) {
-        if (err) throw err;
-    
-        let dbMongo = db.db('petsFriendly')
+    return new Promise((resolve, reject) => {
+        MongoClient.connect(urlMongodb,{ useUnifiedTopology: true } ,function(err, db) {
+            if (err) reject(err); //appeler catch du promise si la connexion et mal faite
         
-        dbMongo.collection('messages').find(aTrouver).toArray(function(err, res) {
-            if (err) throw err
-
-            db.close()
-            return res
+            let dbMongo = db.db('petsFriendly')
+            
+            dbMongo.collection('messages').find(aTrouver).toArray(function(err, res) {
+                if (err) reject(err) //appeler catch du promise si la requete n'est pas bonne
+    
+                db.close()
+                resolve(res) //pour appeler catch du promise si tout est bien passe
+            })
         })
     })
 }
@@ -24,16 +26,18 @@ function recupererMessages(aTrouver)
 //fonction pour inserer un message dans la bd
 function insererMessage(aInserer)
 {
-    MongoClient.connect(urlMongodb,{ useUnifiedTopology: true } ,function(err, db) {
-        if (err) throw err;
-    
-        let dbMongo = db.db('petsFriendly')
+    return new Promise((resolve, reject) => {
+        MongoClient.connect(urlMongodb,{ useUnifiedTopology: true } ,function(err, db) {
+            if (err) reject(err); //appeler catch du promise si la connexion et mal faite
         
-        dbMongo.collection('messages').insertOne(aInserer, function(err, res) {
-            if (err) throw err
-
-            db.close()
-            return res
+            let dbMongo = db.db('petsFriendly')
+            
+            dbMongo.collection('messages').insertOne(aInserer, function(err, res) {
+                if (err) reject(err) //appeler catch du promise si la requete n'est pas bonne
+    
+                db.close()
+                resolve(res) //pour appeler then du promise si tout est bien passe
+            })
         })
     })
 }

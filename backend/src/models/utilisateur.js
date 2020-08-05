@@ -1,4 +1,4 @@
-public class Utilisateur {
+class Utilisateur {
     constructor(id, id_role, prenom, nom, age, email,mot_de_passe, sexe, id_adresse, telephone, secteur_action, url_photo, est_valide, est_active, id_activation, date_creation,
                 remuneration_petsitter, num_carte_credit, date_expiration_carte_credit, code_securite_carte_credit)
     {
