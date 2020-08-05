@@ -50,3 +50,11 @@
     flex-wrap: wrap;
     flex-direction: column;
 }
+
+.block {
+    display: flex;
+}
+
+body {
+    background-color: black;
+}
