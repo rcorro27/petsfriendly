@@ -1,35 +1,37 @@
 {
-    "petsitter1": {
-        "id": "425",
-        "nom": "toto",
-        "prenom": "toto",
-        "age": "54",
-        "sexe": "masculin",
-        "id_adresse": "552",
-        "telephone": "5554555445",
-        "secteur_action": "rosemont",
-        "url_photo": "src/img/caroussel/image1.jpeg"
-    },
-    "petsitter2": {
-        "id": "426",
-        "nom": "titi",
-        "prenom": "papa",
-        "age": "26",
-        "sexe": "masculin",
-        "id_adresse": "552",
-        "telephone": "222222222222",
-        "secteur_action": "rosemont",
-        "url_photo": "src/img/caroussel/image2.jpeg"
-    },
-    "petsitter3": {
-        "id": "427",
-        "nom": "titi",
-        "prenom": "papa",
-        "age": "27",
-        "sexe": "feminin",
-        "id_adresse": "554",
-        "telephone": "222222222222",
-        "secteur_action": "rosemont",
-        "url_photo": "src/img/caroussel/image3.jpeg"
-    }
+    "resultatRecherche": [
+        {
+            "id": 425,
+            "nom": "toto",
+            "prenom": "toto",
+            "age": 54,
+            "sexe": "masculin",
+            "id_adresse": 552,
+            "telephone": 5554555445,
+            "secteur_action": "rosemont",
+            "url_photo": "src/img/caroussel/image1.jpeg"
+        },
+        {
+            "id": "426",
+            "nom": "titi",
+            "prenom": "papa",
+            "age": "26",
+            "sexe": "masculin",
+            "id_adresse": "552",
+            "telephone": "222222222222",
+            "secteur_action": "rosemont",
+            "url_photo": "src/img/caroussel/image2.jpeg"
+        },
+        {
+            "id": "427",
+            "nom": "titi",
+            "prenom": "papa",
+            "age": "27",
+            "sexe": "feminin",
+            "id_adresse": "554",
+            "telephone": "222222222222",
+            "secteur_action": "rosemont",
+            "url_photo": "src/img/caroussel/image3.jpeg"
+        }
+    ]
 }
