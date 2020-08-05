@@ -4,110 +4,350 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Recherche_service_1"
-    android:orientation="vertical">
+    >
 
-    <LinearLayout
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <TextView
+        <!-- Main content -->
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/welcomeTextView"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Saisir les informations du contrat"
+                            android:textColor="@color/white" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="50dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="2"
+                            android:src="@drawable/image_icon_9" />
+
+                        <EditText
+                            android:id="@+id/editText1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:layout_weight="5"
+                            android:hint="Date de Debut" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="50dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="2"
+                            />
+
+                        <EditText
+                            android:id="@+id/editText2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:layout_weight="3"
+                            android:hint="Date de Fin" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1px"
+                        android:background="#FF909090"
+                        android:layout_marginTop="36dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="2"
+                            android:src="@drawable/image_icon10"/>
+
+
+                        <EditText
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:layout_weight="5"
+                            android:hint="Votre lieu" />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+
+                <LinearLayout
+                    android:layout_width="390dp"
+                    android:layout_height="80dp"
+
+                    android:layout_marginTop="20dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:src="@drawable/image_icon_1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="5"
+                        android:text="Garder chez le Pet Sitter" />
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:checked="false"
+                        android:textColor="@color/white"
+                        app:thumbTint="@color/green"
+                        app:trackTint="@color/lightGrey" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="390dp"
+                    android:layout_height="80dp"
+
+                    android:layout_marginTop="20dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:src="@drawable/image_icon_2" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="5"
+                        android:text="Garder chez vous" />
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:checked="false"
+                        android:textColor="@color/white"
+                        app:thumbTint="@color/green"
+                        app:trackTint="@color/lightGrey" />
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="390dp"
+                    android:layout_height="80dp"
+
+                    android:layout_marginTop="20dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:src="@drawable/image_icon_3" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="8"
+                        android:text="Promenade" />
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:checked="false"
+                        android:textColor="@color/white"
+                        app:thumbTint="@color/green"
+                        app:trackTint="@color/lightGrey" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="390dp"
+                    android:layout_height="80dp"
+
+                    android:layout_marginTop="20dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:src="@drawable/image_icon_11" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="7"
+                        android:text="Type animal" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="230dp">
+
+                    <LinearLayout
+                        android:layout_width="350dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_alignParentEnd = "true">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp">
+
+                        <LinearLayout
+                            android:layout_width="100dp"
+                            android:layout_height="90dp"
+                            android:orientation="vertical"
+                            android:background="@drawable/rounded_corner"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Chien"
+                                android:textColor="@color/white"
+                                android:gravity="center_vertical"
+                                />
+
+
+                        </LinearLayout>
+
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            app:thumbTint="@color/white"
+                            android:checked="true"
+                            app:trackTint="@color/green"
+                            android:textColor="@color/white"
+                            android:layout_alignParentRight="true"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp">
+
+                        <LinearLayout
+                            android:layout_width="100dp"
+                            android:layout_height="90dp"
+                            android:orientation="vertical"
+                            android:background="@drawable/rounded_corner"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Chat"
+                                android:textColor="@color/white"
+                                android:gravity="center_vertical"
+                                />
+
+                        </LinearLayout>
+
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            app:thumbTint="@color/white"
+                            android:checked="false"
+                            app:trackTint="@color/green"
+                            android:textColor="@color/white"
+                            android:layout_alignParentRight="true"/>
+
+                    </RelativeLayout>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+
+
+
+            </LinearLayout>
+
+
+
+
+        </ScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="RECHERCHEZ ET RESERVEZ UN GARDIEN D’ANIMAUX"
-            android:textColor="@color/black"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"/>
+            android:layout_gravity="bottom|center"
+            android:layout_margin="16dp"
+            android:contentDescription="@string/suivant"
+            android:text="@string/suivant"
+            android:textColor="@color/black"/>
 
-        <LinearLayout
-            android:layout_width="390dp"
-            android:layout_height="80dp"
-            android:background="@drawable/background_with_shadow"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:src="@drawable/image_icon_1"
-                android:layout_weight="2"
-                android:layout_gravity="center"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Garder chez le Pet Sitter"
-                android:layout_weight="5"
-                android:layout_gravity="center"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-        android:layout_width="390dp"
-        android:layout_height="80dp"
-        android:background="@drawable/background_with_shadow"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:src="@drawable/image_icon_2"
-            android:layout_weight="2"
-            android:layout_gravity="center"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Garder chez vous"
-            android:layout_weight="7"
-            android:layout_gravity="center"/>
-
-    </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="390dp"
-            android:layout_height="80dp"
-            android:background="@drawable/background_with_shadow"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:src="@drawable/image_icon_3"
-                android:layout_weight="2"
-                android:layout_gravity="center"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Promenade"
-                android:layout_weight="10"
-                android:layout_gravity="center"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="390dp"
-            android:layout_height="80dp"
-            android:background="@drawable/background_with_shadow"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:src="@drawable/image_icon_4"
-                android:layout_weight="2"
-                android:layout_gravity="center"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Visite chez le veterinaire"
-                android:layout_weight="7"
-                android:layout_gravity="center"/>
-
-        </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
-    </LinearLayout>
 </LinearLayout>
