@@ -16,8 +16,8 @@ public class FiltresManager {
         String jsonStringDuServeur = "";
 
         //creation du Json
-        JSONObject filtreRecherche = new JSONObject(); // Json principal qui contient 1 autre objet Json "service_de_base"
-        JSONObject service_supplementaire = new JSONObject(); // objet1 Json contenant les services
+        JSONObject filtreRecherche = new JSONObject(); // Json principal qui contient 1 autre objet Json "service_supplementaire"
+        JSONObject service_supplementaire = new JSONObject(); // autre objet Json contenant les service_supplementaire
         filtreRecherche.put("services", service_supplementaire);
 
         try {

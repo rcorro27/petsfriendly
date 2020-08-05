@@ -18,16 +18,16 @@ public class AjouterUnAnimalManager {
         //creation du Json
         JSONObject ajouterAnimal = new JSONObject();
         JSONObject infos_animal = new JSONObject();
-        ajouterAnimal.put("Animal", infos_animal);
+        ajouterAnimal.put("animal", infos_animal);
 
         try {
 
-            infos_animal.put("Animal_type",race);
-            infos_animal.put("Animal_type",typeAnimal);
-            infos_animal.put("Animal_type",poidsAnimal);
-            infos_animal.put("Animal_type",sexeAnimal);
-            infos_animal.put("Animal_type",nom);
-            infos_animal.put("Animal_type",age);
+            infos_animal.put("animal_type",race);
+            infos_animal.put("animal_type",typeAnimal);
+            infos_animal.put("animal_type",poidsAnimal);
+            infos_animal.put("animal_type",sexeAnimal);
+            infos_animal.put("animal_type",nom);
+            infos_animal.put("animal_type",age);
 
             //connexion a l'Api
             ApiAjouterAnimal apiFetcher = new ApiAjouterAnimal(jsonStringDuServeur);

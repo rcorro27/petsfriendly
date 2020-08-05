@@ -29,8 +29,8 @@ public class RechercheManager {
             service_de_base.put("service_date_debut_contrat",date_debut_contrat);
             service_de_base.put("service_date_fin_contrat",date_fin_contrat);
             service_de_base.put("service_adresse_proprietaire",adresse_proprietaire);
-            service_de_base.put("Animal_type",type_chien);
-            service_de_base.put("Animal_type",type_chat);
+            service_de_base.put("animal_type",type_chien);
+            service_de_base.put("animal_type",type_chat);
 
             //connexion a l'Api
             ApiRechercheFetcher apiFetcher = new ApiRechercheFetcher(jsonStringDuServeur);
