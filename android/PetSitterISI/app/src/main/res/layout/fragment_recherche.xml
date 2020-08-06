@@ -281,7 +281,7 @@
                                 android:checked="false"
                                 android:textColor="@color/white"
                                 app:thumbTint="@color/green"
-                                app:trackTint="@color/lightGrey"
+                                app:trackTint="@color/green"
                                 android:layout_alignParentRight="true"/>
 
                         </RelativeLayout>
