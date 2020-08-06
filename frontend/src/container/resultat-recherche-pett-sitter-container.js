@@ -1,14 +1,39 @@
 import React, { Component } from 'react'
-import ListItemComponent from 'component/list-item-component'
+import VignetteComponent from 'component/vignette-component'
+
+// import ahrefComponent from 'component/ahref-component'
 class ResultatRecherchePetsitter extends Component {
+    constructor (props) {
+        super(props)
+
+        this.state = {
+            recherche: false,
+            resultat: []
+        }
+    }
+
+    componentDidMount () {
+        fetch('resultat-recherche.json', { method: 'GET' })
+            .then(response => response.json())
+            .then(response => {
+                // console.log(response)
+                const arrayTest = []
+                response.resultatRecherche.map((info, index) => arrayTest.push(info))
+                // console.log(arrayTest)
+                this.setState({ resultat: arrayTest })
+            })
+    }
+
     render () {
+    /*    this.state.resultat.map((petsitter) => {
+            console.log(petsitter.url_photo)
+        })
+        */
         return (
             <div>
-                <ListItemComponent text='RECHERCHE' />
+                {this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} name={resultat.nom} secteurAction={resultat.secteur_action} className='toto' key={index} />)}
                 <button onClick={this.props.onHandleSaveOnClick}>retour recherche</button>
-
             </div>
-
         )
     }
 }
