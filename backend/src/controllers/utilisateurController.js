@@ -9,12 +9,13 @@ function utilisateurConnexion(req, res)
     bd.excuterRequete(sql, [req.body.email, req.body.mot_de_passe]) //executer la req sql
     .then(resultatRequeteSqlUtilisateur => { 
 
+        console.log(resultatRequeteSqlUtilisateur[0].id_adresse)
         //requete sql pour adresse
         recupererAdresseUtilisateur(resultatRequeteSqlUtilisateur[0].id_adresse)
         .then(resultatRequeteSqlAdresse => {
 
             //remplir l'objet a envoyer dans la reponse http
-            reponseRequeteHttp = {"utilisateur" : resultatRequeteSqlUtilisateur[0], "adresse" : resultatRequeteSqlAdresse}
+            let reponseRequeteHttp = {"utilisateur" : resultatRequeteSqlUtilisateur[0], "adresse" : resultatRequeteSqlAdresse[0]}
 
             res.setHeader('Content-Type', 'application/json');
             res.end(JSON.stringify(reponseRequeteHttp))
@@ -51,7 +52,6 @@ function utilisateurConfiguration(req, res)
 //la fonction appelee par la route recuperation d'utilisateur
 function utilisateurRecuperation(req, res)
 {
-    let reponseRequeteHttp = {}
     let sql = "SELECT * FROM utilisateur WHERE id=$1" 
 
     //requete sql pour utilisateur
@@ -63,7 +63,7 @@ function utilisateurRecuperation(req, res)
         .then(resultatRequeteSqlAdresse => {
 
             //remplir l'objet a envoyer dans la reponse http
-            reponseRequeteHttp = {"utilisateur" : resultatRequeteSqlUtilisateur[0], "adresse" : resultatRequeteSqlAdresse}
+            let reponseRequeteHttp = {"utilisateur" : resultatRequeteSqlUtilisateur[0], "adresse" : resultatRequeteSqlAdresse[0]}
 
             res.setHeader('Content-Type', 'application/json');
             res.end(JSON.stringify(reponseRequeteHttp))
@@ -98,7 +98,7 @@ function recupererAdresseUtilisateur(id_adresse)
 
         bd.excuterRequete(sql, [id_adresse]) 
         .then(resultatRequeteSql => { 
-            resolve(resultatRequeteSql[0])
+            resolve(resultatRequeteSql)
         })
         .catch(erreur => {
             console.error(erreur.stack)
