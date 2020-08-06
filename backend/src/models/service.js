@@ -30,3 +30,5 @@ class Service {
         this._prix_service = prix_service
     }
 }
+
+module.exports = Service
