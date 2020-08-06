@@ -9,7 +9,13 @@ function utilisateurConnexion(req, res)
     bd.excuterRequete(sql, [req.body.email, req.body.mot_de_passe]) //executer la req sql
     .then(resultatRequeteSqlUtilisateur => { 
 
-        console.log(resultatRequeteSqlUtilisateur[0].id_adresse)
+        /* si l'utilisateur n'existe pas on envoie une reponse vide*/
+        if (resultatRequeteSqlUtilisateur[0] === undefined)
+        {
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify({}))
+        }
+
         //requete sql pour adresse
         recupererAdresseUtilisateur(resultatRequeteSqlUtilisateur[0].id_adresse)
         .then(resultatRequeteSqlAdresse => {
@@ -57,6 +63,13 @@ function utilisateurRecuperation(req, res)
     //requete sql pour utilisateur
     bd.excuterRequete(sql, [req.params.id]) 
     .then(resultatRequeteSqlUtilisateur => { 
+
+        /* si l'utilisateur n'existe pas on envoie une reponse vide*/
+        if (resultatRequeteSqlUtilisateur[0] === undefined)
+        {
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify({}))
+        }
 
         //requete sql pour adresse
         recupererAdresseUtilisateur(resultatRequeteSqlUtilisateur[0].id_adresse)
