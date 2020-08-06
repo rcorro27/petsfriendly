@@ -5,15 +5,26 @@ const { Utilisateur } = require('../models/utilisateur')
 function utilisateurConnexion(req, res) {
     let sql = "SELECT * FROM utilisateur WHERE email=$1 and mot_de_passe=$2" //la req sql  executer
 
-    /* a regler demain matin*/
-    //let valeursRequetes = bd.transformerReqParamsAUnTableau(req.body) //pour transformer le body de la requete a un tableau
-    //console.log(valeursRequetes)
-    bd.excuterRequete(sql, ['rufin@nassim.com', 'abc123...']) //executer la req sql
+    bd.excuterRequete(sql, [req.body.email, req.body.mot_de_passe]) //executer la req sql
+        .then(resultatRequeteSqlUtilisateur => {
 
-        .then(resultatRequete => {
-            //si la requete s'est bien passe on recoit le resultat et on l'envoie dans la reponse
-            res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify(resultatRequete.rows))
+            //requete sql pour adresse
+            recupererAdresseUtilisateur(resultatRequeteSqlUtilisateur[0].id_adresse)
+                .then(resultatRequeteSqlAdresse => {
+
+                    //remplir l'objet a envoyer dans la reponse http
+                    reponseRequeteHttp = { "utilisateur": resultatRequeteSqlUtilisateur[0], "adresse": resultatRequeteSqlAdresse }
+
+                    res.setHeader('Content-Type', 'application/json');
+                    res.end(JSON.stringify(reponseRequeteHttp))
+                })
+                .catch(erreur => {
+                    console.error(erreur.stack)
+
+                    res.setHeader('Content-Type', 'text/html');
+                    res.end(erreur.stack)
+                })
+
         })
         .catch(erreur => {
             console.error(erreur.stack)
@@ -36,12 +47,58 @@ function utilisateurConfiguration(req, res) {
 
 //la fonction appelee par la route recuperation d'utilisateur
 function utilisateurRecuperation(req, res) {
+    let reponseRequeteHttp = {}
+    let sql = "SELECT * FROM utilisateur WHERE id=$1"
 
+    //requete sql pour utilisateur
+    bd.excuterRequete(sql, [req.params.id])
+        .then(resultatRequeteSqlUtilisateur => {
+
+            //requete sql pour adresse
+            recupererAdresseUtilisateur(resultatRequeteSqlUtilisateur[0].id_adresse)
+                .then(resultatRequeteSqlAdresse => {
+
+                    //remplir l'objet a envoyer dans la reponse http
+                    reponseRequeteHttp = { "utilisateur": resultatRequeteSqlUtilisateur[0], "adresse": resultatRequeteSqlAdresse }
+
+                    res.setHeader('Content-Type', 'application/json');
+                    res.end(JSON.stringify(reponseRequeteHttp))
+                })
+                .catch(erreur => {
+                    console.error(erreur.stack)
+
+                    res.setHeader('Content-Type', 'text/html');
+                    res.end(erreur.stack)
+                })
+
+        })
+        .catch(erreur => {
+            console.error(erreur.stack)
+
+            res.setHeader('Content-Type', 'text/html');
+            res.end(erreur.stack)
+        })
 }
 
 //la fonction appelee par la route de suppression d'utilisateur
 function utilisateurSuppression(req, res) {
 
+}
+
+// la fonction pour la recuperation d'adresse d'utilisateur
+function recupererAdresseUtilisateur(id_adresse) {
+    return new Promise((resolve, reject) => {
+        let sql = "SELECT * FROM adresse WHERE id=$1"
+
+        bd.excuterRequete(sql, [id_adresse])
+            .then(resultatRequeteSql => {
+                resolve(resultatRequeteSql[0])
+            })
+            .catch(erreur => {
+                console.error(erreur.stack)
+                reject(erreur)
+            })
+    })
 }
 
 
