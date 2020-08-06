@@ -28,3 +28,5 @@ class Facture{
         this._prix = prix
     }
 }
+
+module.exports = Facture

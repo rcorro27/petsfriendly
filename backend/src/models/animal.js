@@ -72,3 +72,5 @@ class Animal {
         this._tarif_supplementaire = tarif_supplementaire
     }
 }
+
+module.exports = Animal
