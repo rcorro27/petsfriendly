@@ -7,6 +7,7 @@ let logger = require('morgan')
 // les routes a utiliser
 let indexRouter = require('./routes/index')
 let utilisateurRouter = require('./routes/utilisateurRoutes')
+let animalRouter = require('./routes/animalRoutes')
 
 //instancier le serveur
 let app = express()

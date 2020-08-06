@@ -49,7 +49,6 @@ function utilisateurSuppression(req, res)
     
 }
 
-
 module.exports = {
     utilisateurConnexion,
     utilisateurCreation,    
