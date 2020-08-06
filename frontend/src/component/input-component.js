@@ -1,6 +1,6 @@
 import React from 'react'
 // place holder a ajouter ???
-const InputComponent = ({ text, type, id, name, value }) => (
+const InputComponent = ({ text, type, id, name, value, min }) => (
     <div>
         <label htmlFor={id}>{text}</label>
         <input
@@ -8,6 +8,7 @@ const InputComponent = ({ text, type, id, name, value }) => (
             id={id}
             name={name}
             value={value}
+            min={min}
         />
     </div>
 )
