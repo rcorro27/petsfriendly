@@ -43,11 +43,9 @@ function animalModification(req, res) {
 //la fonction appelee par la route recuperation d'animal avec l'id de l'utilisateur
 function AnimalRecuperationByIdUtilisateur(req, res) {
 
-    let sql = "INSERT INTO animal ($1, %2, $3, ...) VALUES($4, $5, $6, ...)"
+    let sql = "select * from animal where id_proprietaire = $1"
 
-
-
-    bd.excuterRequete(sql, ['race', 'type_animal', 'poids_animal', 'labrador', 'chien', '40'])
+    bd.excuterRequete(sql, ['1'])
         .then(resultatRequete => {
             res.setHeader('Content-Type', 'application/json')
             res.end(JSON.stringify(resultatRequete.rows))
@@ -62,10 +60,9 @@ function AnimalRecuperationByIdUtilisateur(req, res) {
 //la fonction appelee par la route recuperation d'animal avec l'id de l'animal
 function AnimalRecuperationByIdAnimal(req, res) {
 
-    let sql = "INSERT INTO animal ($1, %2, $3, ...) VALUES($4, $5, $6, ...)"
+    let sql = "select * from animal where id = $1"
 
-
-    bd.excuterRequete(sql, ['race', 'type_animal', 'poids_animal', 'labrador', 'chien', '40'])//reqccuperer req
+    bd.excuterRequete(sql, [])
         .then(resultatRequete => {
             res.setHeader('Content-Type', 'application/json')
             res.end(JSON.stringify(resultatRequete.rows))
@@ -82,8 +79,7 @@ function AnimalSuppression(req, res) {
 
     let sql = "INSERT INTO animal ($1, %2, $3, ...) VALUES($4, $5, $6, ...)"
 
-
-    bd.excuterRequete(sql, ['race', 'type_animal', 'poids_animal', 'labrador', 'chien', '40'])
+    bd.excuterRequete(sql, [])
         .then(resultatRequete => {
             res.setHeader('Content-Type', 'application/json')
             res.end(JSON.stringify(resultatRequete.rows))
@@ -94,7 +90,6 @@ function AnimalSuppression(req, res) {
             res.end(erreur.stack)
         })
 }
-
 
 module.exports = {
     animalAjout,
