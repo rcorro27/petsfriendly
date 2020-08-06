@@ -26,7 +26,7 @@ function excuterRequete(requeteSQL, valeursConditions)
       pgClient.query(requeteSQL, valeursConditions)
 
       .then(res => {
-          resolve(res) //pour appeler then du promise si la requete est bonne
+          resolve(res.rows) //pour appeler then du promise si la requete est bonne
 
           // fermer la connexion vers la bd
           pgClient.end()
@@ -51,7 +51,7 @@ function excuterRequete(requeteSQL, valeursConditions)
 }
 
 
-function transformerReqParamsAUnTableau(params) {
+/*function transformerReqParamsAUnTableau(params) {
   let body = []
   let obj = JSON.parse(params)
 
@@ -60,12 +60,10 @@ function transformerReqParamsAUnTableau(params) {
   }
 
   return body
-}
-  
+}*/
 
 // les modules a exporter
 module.exports = {
   pgClient,
-  excuterRequete,
-  transformerReqParamsAUnTableau
+  excuterRequete
 }
