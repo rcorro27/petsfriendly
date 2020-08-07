@@ -5,6 +5,8 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="suivant">Suivant</string>
+    <string name="contacter">Contacter</string>
+    <string name="reservation">Reservation</string>
     <string name="connexion">Connexion</string>
     <string name="enregistrer">Enregistrer</string>
         <string-array name="nb_animaux_array">

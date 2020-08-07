@@ -25,6 +25,7 @@ public class Connexion extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         setContentView(R.layout.activity_connexion);
 
         ctx = this;
@@ -45,12 +46,6 @@ public class Connexion extends Activity {
 
             }
         });
-
-
-
-
-
-
 
 
 

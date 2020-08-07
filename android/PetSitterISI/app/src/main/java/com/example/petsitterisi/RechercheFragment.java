@@ -1,6 +1,7 @@
 package com.example.petsitterisi;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
@@ -26,13 +27,13 @@ public class RechercheFragment extends Fragment {
     EditText eText;
     EditText eText_2;
     Context ctx;
-
+    Button boutton_rechercher;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View monFragmentRecherche = inflater.inflate(R.layout.fragment_recherche, container, false);
+        final View monFragmentRecherche = inflater.inflate(R.layout.fragment_recherche, container, false);
         ctx = monFragmentRecherche.getContext();
         eText = (EditText) monFragmentRecherche.findViewById(R.id.editText1);
         eText.setInputType(InputType.TYPE_NULL);
@@ -55,6 +56,7 @@ public class RechercheFragment extends Fragment {
             }
         });
 
+
         eText_2 = (EditText) monFragmentRecherche.findViewById(R.id.editText2);
         eText_2.setInputType(InputType.TYPE_NULL);
         eText_2.setOnClickListener(new View.OnClickListener() {
@@ -73,10 +75,24 @@ public class RechercheFragment extends Fragment {
                             }
                         }, year, month, day);
                 picker.show();
+
+            }
+        });
+        boutton_rechercher = monFragmentRecherche.findViewById(R.id.btn_rechercher);
+
+
+        boutton_rechercher.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ctx, CardPetSitter.class);
+                startActivity(intent);
             }
         });
 
-return monFragmentRecherche;
+
+
+
+    return monFragmentRecherche;
     }
 
 }
