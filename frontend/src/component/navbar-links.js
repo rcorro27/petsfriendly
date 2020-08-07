@@ -21,6 +21,7 @@ export default class NavbarLinks extends Component {
         this.handleShow = this.handleShow.bind(this)
         this.handleClose = this.handleClose.bind(this)
         this.register = this.register.bind(this)
+        this.onHandleChangeAndEnter = this.onHandleChangeAndEnter.bind(this)
     }
 
     handleShow () {
@@ -47,6 +48,7 @@ export default class NavbarLinks extends Component {
     }
 
     onSubmit (e) {
+        // if (e.key === 'Enter') {
         e.preventDefault()
 
         const user = {
@@ -59,12 +61,15 @@ export default class NavbarLinks extends Component {
                 this.setState({
                     users: res
                 })
+                this.handleClose()
 
-                console.log('test', this.state.users)
+                console.log('test', this.state.users.utilisateur.nom)
+                this.setState({ userName: this.state.users.utilisateur.nom })
             }
         })
         // this.register(user)
     }
+    // }
 
     onHandleChangeName (e) {
         // this.setState({ [e.target.name]: e.target.value })
@@ -84,7 +89,31 @@ export default class NavbarLinks extends Component {
         window.location.reload(false)
     }
 
+    onHandleChangeAndEnter (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault()
+
+            const user = {
+                userName: this.state.userName,
+                password: this.state.password
+            }
+            login(user).then(res => {
+                if (res) {
+                    console.log('test', res)
+                    this.setState({
+                        users: res
+                    })
+                    this.handleClose()
+
+                    console.log('test', this.state.users.utilisateur.nom)
+                    this.setState({ userName: this.state.users.utilisateur.nom })
+                }
+            })
+        }
+    }
+
     render () {
+        // console.log(this.state.userName)
         const loginRegLink = (
             <ul className='navbar-nav ml-auto'>
                 <li className='nav-item active'>
@@ -99,6 +128,11 @@ export default class NavbarLinks extends Component {
         const userLink = (
             <ul className='navbar-nav ml-auto'>
                 <li className='nav-item active'>
+                    <a className='nav-link'>{this.state.userName}</a>
+
+                </li>
+                <li className='nav-item active'>
+
                     <a className='nav-link' onClick={this.logOut.bind(this)}>Se deconnecter</a>
                 </li>
 
@@ -113,7 +147,7 @@ export default class NavbarLinks extends Component {
                         <Modal.Title>Page Connexion</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <ConnectionPopUp getText={this.onHandleChangeName} getPass={this.onHandleChangePass} valueName={this.state.userName} valuePass={this.state.passsword} />
+                        <ConnectionPopUp getText={this.onHandleChangeName} getPass={this.onHandleChangePass} valueName={this.state.userName} enterPress={this.onHandleChangeAndEnter} />
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant='secondary' onClick={this.handleClose}>
