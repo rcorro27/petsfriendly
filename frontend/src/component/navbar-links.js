@@ -60,7 +60,7 @@ export default class NavbarLinks extends Component {
                     users: res
                 })
 
-                console.log('test', this.state.users[0].id)
+                console.log('test', this.state.users)
             }
         })
         // this.register(user)
@@ -88,10 +88,10 @@ export default class NavbarLinks extends Component {
         const loginRegLink = (
             <ul className='navbar-nav ml-auto'>
                 <li className='nav-item active'>
-                    <Button variant='light mx-2' onClick={this.handleShow}>Se connecter</Button>
+                    <a className='nav-link' onClick={this.handleShow}>Se connecter</a>
                 </li>
                 <li className='nav-item'>
-                    <Button variant='light'> S'inscrire</Button>
+                    <a className='nav-link'> S'inscrire</a>
                 </li>
 
             </ul>
@@ -99,7 +99,7 @@ export default class NavbarLinks extends Component {
         const userLink = (
             <ul className='navbar-nav ml-auto'>
                 <li className='nav-item active'>
-                    <Button variant='light mx-2' onClick={this.logOut.bind(this)}>Se deconnecter</Button>
+                    <a className='nav-link' onClick={this.logOut.bind(this)}>Se deconnecter</a>
                 </li>
 
             </ul>

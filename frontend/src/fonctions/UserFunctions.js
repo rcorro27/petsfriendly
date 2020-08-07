@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export const login = user => {
     return axios
-        .post('http://192.168.0.237:3000/utilisateurs/connexion', {
+        .post('https://pets-friendly.herokuapp.com/utilisateurs/connexion', {
             email: user.userName,
             mot_de_passe: user.password
         })
