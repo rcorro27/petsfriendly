@@ -1,4 +1,4 @@
-package com.example.petsitterisi.Entitee;
+package com.example.petsitterisi.entitees;
 
 import java.util.Date;
 

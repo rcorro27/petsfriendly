@@ -11,15 +11,9 @@
         android:theme="@style/AppTheme">
         <activity android:name=".AjouterUnAnimal"></activity>
         <activity android:name=".Filtres" />
-        <activity android:name=".Recherche_service_3" />
-        <activity android:name=".TableauBord" />
-        <activity android:name=".Planning" />
-        <activity android:name=".Paiement" />
         <activity android:name=".Urgence" />
         <activity android:name=".Feedback" />
         <activity android:name=".Contact" />
-        <activity android:name=".Chat" />
-        <activity android:name=".ProfilProprietaire" />
         <activity android:name=".ProfilPetSitter" />
         <activity android:name=".CreationProfil" />
         <activity android:name=".BottomNavigationBar" />

@@ -29,13 +29,11 @@ public class ApiUtilisateurFetcher extends AsyncTask<String, Nullable, String> {
         String result = null;
 
         try {
-
             URL url = new URL(urls[0]);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setDoOutput(false);
             urlConnection.setDoInput(true);
             urlConnection.connect();
-
             urlConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
             urlConnection.setRequestMethod("POST");
 
@@ -48,6 +46,7 @@ public class ApiUtilisateurFetcher extends AsyncTask<String, Nullable, String> {
                 BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
                 while ((line = in.readLine()) != null)
                     result += line;
+
             }
 
         } catch (Exception ex) {
