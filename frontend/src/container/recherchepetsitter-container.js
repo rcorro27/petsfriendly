@@ -6,6 +6,7 @@ import ListItemComponent from 'component/list-item-component'
 import ResultatRecherchePetsitter from 'container/resultat-recherche-pett-sitter-container'
 import Navbar from '../container/navbar-container'
 import Footer from '../component/Footer/Footer'
+import '../css/test.css'
 
 class RecherchePetsitter extends Component {
     constructor (props) {
@@ -116,22 +117,24 @@ class RecherchePetsitter extends Component {
             <div>
                 <Navbar />
                 <h1>Recherche Petsitter</h1>
-                <form id='form-test' onSubmit={this.handleSubmit}>
-                    <InputComponent type='radio' text='Garder Chez le PettSitter' id='garderChezPetsitter' name='gardeMaison' value={this.state.garderChezPetsitter} onChange={this.handleChange} />
-                    <InputComponent type='radio' text='Garder chez vous' id='garderChezVous' name='gardeMaison' value={this.state.garderChezVous} onChange={this.handleChange} />
-                    <InputComponent type='checkbox' text='Promenade' id='promenade' name='Promenade' value={this.state.promenade} onChange={this.handleChange} />
+                <div className='formRechercheContainer'>
+                    <form id='form-test' onSubmit={this.handleSubmit}>
+                        <InputComponent type='radio' text='Garder Chez le PettSitter' id='garderChezPetsitter' name='gardeMaison' value={this.state.garderChezPetsitter} onChange={this.handleChange} />
+                        <InputComponent type='radio' text='Garder chez vous' id='garderChezVous' name='gardeMaison' value={this.state.garderChezVous} onChange={this.handleChange} />
+                        <InputComponent type='checkbox' text='Promenade' id='promenade' name='Promenade' value={this.state.promenade} onChange={this.handleChange} />
 
-                    <InputComponent text='Date de debut' type='date' id='dateDebut' name='dateDebut' onChange={this.handleChange} />
-                    <InputComponent text='Date de fin' type='date' id='dateFin' name='dateFin' onChange={this.handleChange} />
+                        <InputComponent text='Date de debut' type='date' id='dateDebut' name='dateDebut' onChange={this.handleChange} />
+                        <InputComponent text='Date de fin' type='date' id='dateFin' name='dateFin' onChange={this.handleChange} />
 
-                    <InputComponent text='Numero' type='number' id='numeroRue' name='numero' min={0} onChange={this.handleChange} />
-                    <InputComponent text='Nom de la rue' type='text' id='nomRue' name='nom de la rue' onChange={this.handleChange} />
-                    <InputComponent text='Code postal' type='text' id='secteurAction' name='secteurAction' onChange={this.handleChange} />
+                        <InputComponent text='Numero' type='number' id='numeroRue' name='numero' min={0} onChange={this.handleChange} />
+                        <InputComponent text='Nom de la rue' type='text' id='nomRue' name='nom de la rue' onChange={this.handleChange} />
+                        <InputComponent text='Code postal' type='text' id='secteurAction' name='secteurAction' onChange={this.handleChange} />
 
-                    <SelectComponent text='Type de animal:' id='typeAnimal' name='TypeAnimal' options={TYPEANIMAL} onChange={this.handleChangeSelect} value={this.state.typeAnimal} />
+                        <SelectComponent text='Type de animal:' id='typeAnimal' name='TypeAnimal' options={TYPEANIMAL} onChange={this.handleChangeSelect} value={this.state.typeAnimal} />
 
-                    <InputComponent type='submit' id='rechercher' name='Rechercher ' value='rechercher' />
-                </form>
+                        <InputComponent type='submit' id='rechercher' name='Rechercher ' value='rechercher' />
+                    </form>
+                </div>
                 <button onClick={this.handleAddOnClick}>RECHERCHE RESULTAT</button>
                 {this.state.resultatRecherche ? <ResultatRecherchePetsitter onHandleSaveOnClick={this.handleSaveOnClick} /> : ''}
 
@@ -148,7 +151,7 @@ class RecherchePetsitter extends Component {
                     <ListItemComponent text='Tout les gardiens fournissent un profil detaille et des informations personnel ' />
                     <ListItemComponent text='tout les Pet Sitter sont agrees par notre equipe de specialistes chez Pets Friendly' />
                 </div>
-                <div>
+                <div className='infolettreDiv'>
                     <h1>Laisse nous vous prevenir des nouveautes</h1>
                     <h6>Reste informe</h6>
                     <form>
