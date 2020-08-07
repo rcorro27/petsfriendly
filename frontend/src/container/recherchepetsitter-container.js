@@ -21,7 +21,8 @@ class RecherchePetsitter extends Component {
             secteurAction: '',
             dateDebut: '',
             dateFin: '',
-            typeAnimal: 'pas de select',
+            typeAnimal: '',
+            infolettre: '',
             resultatRecherche: false,
             rechercher: false,
             images: []
@@ -40,11 +41,6 @@ class RecherchePetsitter extends Component {
     }
 
     handleChange (event) {
-        console.log(event.target.id)
-        /* if (event.target.id === 'garderChezPetsitter') {
-            // appeler une functioon qui passe garder chez vous a false et vice versa pour eviter la selection de les deux au  meme temps
-            this.setState({ garderChezPetsitter: true })
-        } */
         switch (event.target.id) {
         case 'garderChezPetsitter':
             this.setState({ garderChezPetsitter: true })
@@ -70,13 +66,13 @@ class RecherchePetsitter extends Component {
         case 'secteurAction':
             this.setState({ codePostal: event.target.value })
             break
-        case 'typeAnimal':
-            this.setState({ typeAnimal: event.target.value })
+        case 'infolettre':
+            this.setState({ infolettre: event.target.value })
         }
     }
 
     handleSubmit (event) {
-        alert('An essay was submitted: ' + this.state.nomRue)
+        alert('An essay was submitted: ' + JSON.stringify(this.state.promenade) + this.state.garderChezPetsitter)
         event.preventDefault()
     }
 
@@ -91,16 +87,16 @@ class RecherchePetsitter extends Component {
     render () {
         const TYPEANIMAL = [{
             label: 'Chien',
-            value: '1'
+            value: 'Chien '
         }, {
             label: 'Chat',
-            value: '2'
+            value: 'Chat'
         }, {
             label: 'Souris',
-            value: '3'
+            value: 'Souris'
         }, {
             label: 'Crocodile',
-            value: '4'
+            value: 'Crocodile'
         }]
 
         console.log(this.state.garderChezPetsitter)
@@ -112,6 +108,7 @@ class RecherchePetsitter extends Component {
         console.log(this.state.nomRue)
         console.log(this.state.codePostal)
         console.log(this.state.typeAnimal)
+        console.log(this.state.infolettre)
 
         // voir les dates dans le formulaire a chaque fois il y a des erreus dans la console qui pointe le fait de ne pas avoir la bonne valeur date.now??
         return (
@@ -126,13 +123,13 @@ class RecherchePetsitter extends Component {
 
                     <InputComponent text='Date de debut' type='date' id='dateDebut' name='dateDebut' onChange={this.handleChange} />
                     <InputComponent text='Date de fin' type='date' id='dateFin' name='dateFin' onChange={this.handleChange} />
-                    {/* MINIMUN A AJOUTER A NUMERO ERREUR DE CHIFRES NEGATIF ligne 21 */}
+
                     <InputComponent text='Numero' type='number' id='numeroRue' name='numero' min={0} onChange={this.handleChange} />
                     <InputComponent text='Nom de la rue' type='text' id='nomRue' name='nom de la rue' onChange={this.handleChange} />
                     <InputComponent text='Code postal' type='text' id='secteurAction' name='secteurAction' onChange={this.handleChange} />
-                    {/* Checkbox selection animal ??? demander si ca ne devrait pas etre un select ??? */}
+
                     <SelectComponent text='Type de animal:' id='typeAnimal' name='TypeAnimal' options={TYPEANIMAL} onChange={this.handleChangeSelect} value={this.state.typeAnimal} />
-                    {/* DEMANDER A NASSIM PAR RAPPORT A LA RACE */}
+
                     <InputComponent type='submit' id='rechercher' name='Rechercher ' value='rechercher' />
                 </form>
                 <button onClick={this.handleAddOnClick}>RECHERCHE RESULTAT</button>
@@ -144,7 +141,7 @@ class RecherchePetsitter extends Component {
                     <ListItemComponent text='Partez au travail ou a votre rendez vous sans vous soucier de la promenade de votre chien' />
                     <ListItemComponent text='Besoin de flexibilite? Choisisez les horraires et periodes qui vous conviennent' />
                 </div>
-                {/* DEMANDER A YAHIA SON CODE POUR UTILISER UNE PARTUE DE NAV BAR POUR LA VIGNETTE */}
+
                 <div>
                     {/* METTRE UN ICONE DANS LAVANT DE LES LI POUR LA PUBLICITER */}
                     <ListItemComponent text='Tout les nouveaux gardiens passent une verification des antecedents de base' />
@@ -154,7 +151,10 @@ class RecherchePetsitter extends Component {
                 <div>
                     <h1>Laisse nous vous prevenir des nouveautes</h1>
                     <h6>Reste informe</h6>
-                    <InputComponent text='Entrez votre email' type='text' id='infolettre' name='infolettre' />
+                    <form>
+                        <InputComponent text='Entrez votre email' type='email' id='infolettre' name='infolettre' onChange={this.handleChange} />
+                        <InputComponent type='submit' id='infolettreButton' name='Envoyer ' value='Envoyer' />
+                    </form>
                 </div>
                 <Footer />
                 <button onClick={this.props.onHandleSaveOnClickRichard}>retour a la page developement</button>
