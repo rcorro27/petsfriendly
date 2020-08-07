@@ -1,0 +1,37 @@
+{
+    "resultatRecherche": [
+        {
+            "id": 425,
+            "nom": "carlos",
+            "prenom": "perez",
+            "age": 54,
+            "sexe": "masculin",
+            "id_adresse": 552,
+            "telephone": 5554555445,
+            "secteur_action": "rosemont",
+            "url_photo": "../src/img/caroussel/image1.jpeg"
+        },
+        {
+            "id": "426",
+            "nom": "lola",
+            "prenom": "palouze",
+            "age": "26",
+            "sexe": "masculin",
+            "id_adresse": "552",
+            "telephone": "222222222222",
+            "secteur_action": "rosemont",
+            "url_photo": "../src/img/caroussel/image2.jpg"
+        },
+        {
+            "id": "427",
+            "nom": "maria",
+            "prenom": "martinez",
+            "age": "27",
+            "sexe": "feminin",
+            "id_adresse": "554",
+            "telephone": "222222222222",
+            "secteur_action": "rosemont",
+            "url_photo": "../src/img/caroussel/image3.jpg"
+        }
+    ]
+}

@@ -61,6 +61,12 @@ public class ApiRechercheFetcher extends AsyncTask<String, Nullable, String> {
         super.onPostExecute(s);
 
 
+
+
+
+
+
+
     }
 
     private String inputStreamToString(InputStream is) {
