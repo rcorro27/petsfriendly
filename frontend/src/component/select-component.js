@@ -1,9 +1,9 @@
 import React from 'react'
 
-const SelectComponent = ({ text, id, name, value, options }) => (
+const SelectComponent = ({ text, id, name, value, options, onChange }) => (
     <div>
         <label htmlFor={id}>{text}</label>
-        <select name={name} value={value}>
+        <select name={name} value={value} onChange={onChange}>
             {options.map((option, index) => <option value={option.value} key={index}>{option.label}</option>)}
         </select>
     </div>
