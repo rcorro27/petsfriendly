@@ -1,10 +1,8 @@
-package com.example.petsitterisi.Manager;
+package com.example.petsitterisi.managers;
 import android.content.Context;
 
-import com.example.petsitterisi.Entitee.Service;
-import com.example.petsitterisi.Entitee.Utilisateur;
+import com.example.petsitterisi.entitees.Service;
 import com.example.petsitterisi.services.ApiRechercheFetcher;
-import com.example.petsitterisi.services.ApiUtilisateurFetcher;
 
 import org.json.JSONException;
 import org.json.JSONObject;
