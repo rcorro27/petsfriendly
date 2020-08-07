@@ -1,6 +1,8 @@
 const bd = require('../servers/bd')
 const {Utilisateur} = require('../models/utilisateur')
 
+//-----------------------------------------------------------------------------------------------------------------------------
+
 //la fonction appelee par la route connexion d'utilisateur
 function utilisateurConnexion(req, res)
 {
@@ -49,11 +51,15 @@ function utilisateurCreation(req, res)
     
 }
 
+//-----------------------------------------------------------------------------------------------------------------------------
+
 //la fonction appelee par la route configuration d'utilisateur
 function utilisateurConfiguration(req, res)
 {
 
 }
+
+//-----------------------------------------------------------------------------------------------------------------------------
 
 //la fonction appelee par la route recuperation d'utilisateur
 function utilisateurRecuperation(req, res)
@@ -97,11 +103,29 @@ function utilisateurRecuperation(req, res)
     })
 }
 
+//-----------------------------------------------------------------------------------------------------------------------------
+
 //la fonction appelee par la route de suppression d'utilisateur
 function utilisateurSuppression(req, res)
 {
-    
+    let sql = "DELETE FROM utilisateur WHERE id=$1" 
+
+    //requete sql pour utilisateur
+    bd.excuterRequete(sql, [req.params.id]) 
+    .then(resultatRequeteSqlUtilisateur => { 
+
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify({}))
+    })
+    .catch(erreur => {
+        console.error(erreur.stack)
+
+        res.setHeader('Content-Type', 'text/html');
+        res.end(erreur.stack)
+    })
 }
+
+//-----------------------------------------------------------------------------------------------------------------------------
 
 // la fonction pour la recuperation d'adresse d'utilisateur
 function recupererAdresseUtilisateur(id_adresse) 
