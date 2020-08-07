@@ -20,9 +20,9 @@ function factureAjout(req, res) {
 //la fonction appelee par la route recupration de facture avec l'id d'utilisateur
 function factureRecuperationByIdUtilisateur(req, res) {
 
-    let sql = "select * from animal where id_proprietaire = $1"
+    let sql = ""
 
-    bd.excuterRequete(sql, [req.params.id_proprietaire])
+    bd.excuterRequete(sql, [])
         .then(resultatRequete => {
             res.setHeader('Content-Type', 'application/json')
             res.end(JSON.stringify(resultatRequete.rows))

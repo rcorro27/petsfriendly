@@ -21,7 +21,7 @@ function contratRecuperationByIdUtilisateur(req, res) {
 
     let sql = "select * from contrat where id = $1" //pas acces a l'id utilisateur
 
-    bd.excuterRequete(sql, [req.params.id_proprietaire])
+    bd.excuterRequete(sql, [])
         .then(resultatRequete => {
             res.setHeader('Content-Type', 'application/json')
             res.end(JSON.stringify(resultatRequete.rows))
