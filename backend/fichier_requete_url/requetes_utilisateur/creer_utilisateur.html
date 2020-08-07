@@ -44,23 +44,31 @@
 	<h2>Parametre : </h2>
 	<h3>Json: {<br/>
 		<div class="bloc_json">
-		"role": ,<br/>
-		"nom": ,<br/>
-		"prenom": ,<br/>
-		"age": ,<br/>
-		"e-mail": ,<br/>
-		"mot_de_passe": ,<br/>
-		"sexe": ,<br/>
-		"numero_rue": ,<br/>
-		"nom_rue": ,<br/>
-		"code_postal": ,<br/>
-		"ville": ,<br/>
-		"pays": ,<br/>
-		"numero_apt": ,<br/>
-		"telephone": ,<br/>
-		"secteur_action": ,<br/>
+			"utilisateur" : { <br/>
+			<div class="bloc_json">
+							"id_role": ,<br/>
+							"nom": , <br/>
+							"prenom": ,<br/>
+							"age": , <br/>
+							"email": , <br/>
+							"mot_de_passe": ,<br/>
+							"sexe": , <br/>
+							"telephone": ,<br/>
+							</div>
+							},<br/>
+			"adresse" : {<br/>
+			<div class="bloc_json">
+						"numero_rue": , <br/>
+						"nom_rue": , <br/>
+						"code_postal": , <br/>
+						"ville": , <br/>
+						"province": , <br/>
+						"pays": , <br/>
+						"numero_appt": ,<br/>
+						</div>
+						}<br/>
+			}<br/>
 		</div>
-				}
 	</h3>
 	
 	<h2>Reponse : </h2>
@@ -103,7 +111,9 @@
 				}<br/>
 	</h3>
 	<h2>OU</h2>
-	<h3>NULL</h3>
+	<h3>{"erreur" : 300} compte deja existant</h3>
+	<h3>{"erreur" : 400} mauvaises informations</h3>
+	<h3>{"erreur" : 500} erreur cote serveur</h3>
 </body>
 	
 </html>
