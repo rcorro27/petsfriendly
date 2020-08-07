@@ -23,7 +23,8 @@
         <activity android:name=".ProfilPetSitter" />
         <activity android:name=".CreationProfil" />
         <activity android:name=".BottomNavigationBar" />
-        <activity android:name=".Connexion" />
+        <activity android:name=".Connexion"/>
+        <activity android:name=".CardPetSitter"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
