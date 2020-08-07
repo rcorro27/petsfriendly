@@ -1,6 +1,7 @@
 // import React, { useState } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import ConnectionPopUp from './popup-connection'
+import InscriptionPopUp from './popup-inscription'
 // import { Link, withRouter } from 'react-router-dom'
 import { login } from '../fonctions/UserFunctions'
 
@@ -13,14 +14,17 @@ export default class NavbarLinks extends Component {
             userName: '',
             password: '',
             show: false,
+            showInscription: false,
             user: []
         }
         this.onHandleChangeName = this.onHandleChangeName.bind(this)
 
         this.onHandleChangePass = this.onHandleChangePass.bind(this)
         this.handleShow = this.handleShow.bind(this)
+        this.handleShowInsc = this.handleShowInsc.bind(this)
         this.handleClose = this.handleClose.bind(this)
-        this.register = this.register.bind(this)
+        this.handleCloseInsc = this.handleCloseInsc.bind(this)
+
         this.onHandleChangeAndEnter = this.onHandleChangeAndEnter.bind(this)
     }
 
@@ -30,20 +34,21 @@ export default class NavbarLinks extends Component {
         })
     }
 
-    register (user) {
-        // console.log(this.state.userName, this.state.passeword)
-        if (user.userName === 'yahia' && user.password === 'benhaili') {
-            console.log('Mot de passe bien enregistrer')
-            localStorage.setItem('usertoken', user)
-            console.log(localStorage.getItem('usertoken'))
-        } else {
-            console.log('Code Errome')
-        }
+    handleShowInsc () {
+        this.setState({
+            showInscription: true
+        })
     }
 
     handleClose () {
         this.setState({
             show: false
+        })
+    }
+
+    handleCloseInsc () {
+        this.setState({
+            showInscription: false
         })
     }
 
@@ -120,7 +125,7 @@ export default class NavbarLinks extends Component {
                     <a className='nav-link' onClick={this.handleShow}>Se connecter</a>
                 </li>
                 <li className='nav-item'>
-                    <a className='nav-link'> S'inscrire</a>
+                    <a className='nav-link' onClick={this.handleShowInsc}> S'inscrire</a>
                 </li>
 
             </ul>
@@ -155,6 +160,22 @@ export default class NavbarLinks extends Component {
                         </Button>
                         <Button variant='primary' onClick={this.onSubmit.bind(this)}>
                             Se connecter
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+                <Modal show={this.state.showInscription} onHide={this.handleCloseInsc}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Page Inscription</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <InscriptionPopUp getText={this.onHandleChangeName} getPass={this.onHandleChangePass} valueName={this.state.userName} />
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant='secondary' onClick={this.handleCloseInsc}>
+                            Annuler
+                        </Button>
+                        <Button variant='primary' onClick={this.onSubmit.bind(this)}>
+                            Creer votre compte
                         </Button>
                     </Modal.Footer>
                 </Modal>
