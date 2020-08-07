@@ -49,7 +49,27 @@ function utilisateurConnexion(req, res)
 //la fonction appelee par la route creation d'utilisateur
 function utilisateurCreation(req, res)
 {
-    
+    let sql = "INSERT INTO utilisateur (id_role, nom, prenom, age, email, mot_de_passe, sexe, id_adresse, secteur_action, est_active, id_activation) VALUES (1, 'rufin', 'zia', 23, 'rufin@nassim.com', 'abc123...', 'masculin', 2, 5, true, 5)" 
+
+    //requete sql pour utilisateur
+    bd.excuterRequete(sql, [req.params.id]) 
+    .then(resultatRequeteSqlUtilisateur => { 
+
+        if (resultatRequeteSqlUtilisateur.rowCount >= 1)
+        {
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify({}))
+        } else {
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify({"erreur":"erreur"}))// pour simuler l'erreur
+        }
+    })
+    .catch(erreur => {
+        console.error(erreur.stack)
+
+        res.setHeader('Content-Type', 'text/html');
+        res.end(erreur.stack)
+    })
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
