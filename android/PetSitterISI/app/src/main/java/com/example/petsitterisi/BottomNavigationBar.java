@@ -29,8 +29,8 @@ public class BottomNavigationBar extends FragmentActivity {
         super.onCreate(savedInstanceState);
         //cacher temporairement  la bare d'etat du haut
         requestWindowFeature(Window.FEATURE_NO_TITLE); getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_bottom_navigation_bar);
 
+        setContentView(R.layout.activity_bottom_navigation_bar);
         bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 

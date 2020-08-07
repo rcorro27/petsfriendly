@@ -281,7 +281,7 @@
                                 android:checked="false"
                                 android:textColor="@color/white"
                                 app:thumbTint="@color/green"
-                                app:trackTint="@color/lightGrey"
+                                app:trackTint="@color/green"
                                 android:layout_alignParentRight="true"/>
 
                         </RelativeLayout>
@@ -336,7 +336,7 @@
         </ScrollView>
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-
+            android:id="@+id/btn_rechercher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"

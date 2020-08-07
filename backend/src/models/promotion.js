@@ -37,3 +37,5 @@ class Promotion {
         this._date_fin = date_fin
     }
 }
+
+module.exports = Promotion

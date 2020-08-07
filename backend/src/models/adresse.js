@@ -65,3 +65,5 @@ class Adresse
         this._numero_appt = numero_appt
     }
 }
+
+module.exports = Adresse

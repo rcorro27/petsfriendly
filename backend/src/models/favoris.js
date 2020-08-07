@@ -29,3 +29,5 @@ class Favoris {
     }
 
 }
+
+module.exports = Favoris

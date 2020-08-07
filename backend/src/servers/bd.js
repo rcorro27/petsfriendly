@@ -51,7 +51,7 @@ function excuterRequete(requeteSQL, valeursConditions)
 }
 
 
-function transformerReqParamsAUnTableau(params) {
+/*function transformerReqParamsAUnTableau(params) {
   let body = []
   let obj = JSON.parse(params)
 
@@ -60,12 +60,10 @@ function transformerReqParamsAUnTableau(params) {
   }
 
   return body
-}
-  
+}*/
 
 // les modules a exporter
 module.exports = {
   pgClient,
-  excuterRequete,
-  transformerReqParamsAUnTableau
+  excuterRequete
 }

@@ -51,3 +51,5 @@ class Planning {
         this._date_fin = date_fin
     }
 }
+
+module.exports = Planning

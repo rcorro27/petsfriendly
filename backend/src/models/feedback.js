@@ -34,3 +34,5 @@ class Feedback{
         this._etoiles = etoiles
     }
 }
+
+module.exports = Feedback
