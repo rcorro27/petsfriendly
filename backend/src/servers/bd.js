@@ -26,7 +26,7 @@ function excuterRequete(requeteSQL, valeursConditions)
       pgClient.query(requeteSQL, valeursConditions)
 
       .then(res => {
-          resolve(res.rows) //pour appeler then du promise si la requete est bonne
+          resolve(res) //pour appeler then du promise si la requete est bonne
 
           // fermer la connexion vers la bd
           pgClient.end()

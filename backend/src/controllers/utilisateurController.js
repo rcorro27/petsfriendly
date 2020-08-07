@@ -12,18 +12,19 @@ function utilisateurConnexion(req, res)
     .then(resultatRequeteSqlUtilisateur => { 
 
         /* si l'utilisateur n'existe pas on envoie une reponse vide*/
-        if (resultatRequeteSqlUtilisateur[0] === undefined)
+        if (resultatRequeteSqlUtilisateur.rows[0] === undefined)
         {
             res.setHeader('Content-Type', 'application/json');
             res.end(JSON.stringify({}))
+            return undefined
         }
 
         //requete sql pour adresse
-        recupererAdresseUtilisateur(resultatRequeteSqlUtilisateur[0].id_adresse)
+        recupererAdresseUtilisateur(resultatRequeteSqlUtilisateur.rows[0].id_adresse)
         .then(resultatRequeteSqlAdresse => {
 
             //remplir l'objet a envoyer dans la reponse http
-            let reponseRequeteHttp = {"utilisateur" : resultatRequeteSqlUtilisateur[0], "adresse" : resultatRequeteSqlAdresse[0]}
+            let reponseRequeteHttp = {"utilisateur" : resultatRequeteSqlUtilisateur.rows[0], "adresse" : resultatRequeteSqlAdresse.rows[0]}
 
             res.setHeader('Content-Type', 'application/json');
             res.end(JSON.stringify(reponseRequeteHttp))
@@ -70,19 +71,20 @@ function utilisateurRecuperation(req, res)
     bd.excuterRequete(sql, [req.params.id]) 
     .then(resultatRequeteSqlUtilisateur => { 
 
-        /* si l'utilisateur n'existe pas on envoie une reponse vide*/
-        if (resultatRequeteSqlUtilisateur[0] === undefined)
+        /* si l'utilisateur n'existe pas on envoie une reponse vide pour l'instant*/
+        if (resultatRequeteSqlUtilisateur.rows[0] === undefined)
         {
             res.setHeader('Content-Type', 'application/json');
             res.end(JSON.stringify({}))
+            return undefined
         }
 
         //requete sql pour adresse
-        recupererAdresseUtilisateur(resultatRequeteSqlUtilisateur[0].id_adresse)
+        recupererAdresseUtilisateur(resultatRequeteSqlUtilisateur.rows[0].id_adresse)
         .then(resultatRequeteSqlAdresse => {
 
             //remplir l'objet a envoyer dans la reponse http
-            let reponseRequeteHttp = {"utilisateur" : resultatRequeteSqlUtilisateur[0], "adresse" : resultatRequeteSqlAdresse[0]}
+            let reponseRequeteHttp = {"utilisateur" : resultatRequeteSqlUtilisateur.rows[0], "adresse" : resultatRequeteSqlAdresse.rows[0]}
 
             res.setHeader('Content-Type', 'application/json');
             res.end(JSON.stringify(reponseRequeteHttp))
@@ -114,8 +116,14 @@ function utilisateurSuppression(req, res)
     bd.excuterRequete(sql, [req.params.id]) 
     .then(resultatRequeteSqlUtilisateur => { 
 
-        res.setHeader('Content-Type', 'application/json');
-        res.end(JSON.stringify({}))
+        if (resultatRequeteSqlUtilisateur.rowCount >= 1)
+        {
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify({}))
+        } else {
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify({"erreur":"erreur"}))// pour simuler l'erreur
+        }
     })
     .catch(erreur => {
         console.error(erreur.stack)
@@ -134,8 +142,8 @@ function recupererAdresseUtilisateur(id_adresse)
         let sql = "SELECT * FROM adresse WHERE id=$1" 
 
         bd.excuterRequete(sql, [id_adresse]) 
-        .then(resultatRequeteSql => { 
-            resolve(resultatRequeteSql)
+        .then(resultatRequeteSqlAdresse => { 
+            resolve(resultatRequeteSqlAdresse)
         })
         .catch(erreur => {
             console.error(erreur.stack)
