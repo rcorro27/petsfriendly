@@ -1,5 +1,6 @@
 const bd = require('../servers/bd')
 const {Utilisateur} = require('../models/utilisateur')
+const { v4: uuidv4 } = require('uuid')
 
 //-----------------------------------------------------------------------------------------------------------------------------
 
@@ -15,7 +16,7 @@ function utilisateurConnexion(req, res)
         if (resultatRequeteSqlUtilisateur.rows[0] === undefined)
         {
             res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify({}))
+            res.end(JSON.stringify({"erreur" : 400}))
             return undefined
         }
 
@@ -43,25 +44,90 @@ function utilisateurConnexion(req, res)
         //en cas d'erreur on l'envoie pour l'instant
         res.setHeader('Content-Type', 'text/html');
         res.end(erreur.stack)
+
+        return undefined
     })
 }
+
+//-----------------------------------------------------------------------------------------------------------------------------
 
 //la fonction appelee par la route creation d'utilisateur
 function utilisateurCreation(req, res)
 {
-    let sql = "INSERT INTO utilisateur (id_role, nom, prenom, age, email, mot_de_passe, sexe, id_adresse, secteur_action, est_active, id_activation) VALUES (1, 'rufin', 'zia', 23, 'rufin@nassim.com', 'abc123...', 'masculin', 2, 5, true, 5)" 
 
-    //requete sql pour utilisateur
-    bd.excuterRequete(sql, [req.params.id]) 
+    // ***************  verifier si l'utilisateur existe avec cet email ****************
+
+    let sql = "SELECT * FROM utilisateur WHERE email=$1"
+
+    bd.excuterRequete(sql, [req.body.utilisateur.email])
     .then(resultatRequeteSqlUtilisateur => { 
 
-        if (resultatRequeteSqlUtilisateur.rowCount >= 1)
+        /* si l'utilisateur existe on coupe la requete*/
+        if (resultatRequeteSqlUtilisateur.rows[0] !== undefined)
         {
             res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify({}))
+            res.end(JSON.stringify({"erreur" : 300}))
+            return undefined
+
+            // sinon on ajoute l'adresse et apres l'utilisateur
         } else {
-            res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify({"erreur":"erreur"}))// pour simuler l'erreur
+            
+        // ***************  requete de creation adresse si le compte existe ****************
+
+            let sqlAdresse = "INSERT INTO adresse (numero_rue, nom_rue, code_postal, ville, province, pays, numero_appt) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *" 
+
+            //requete sql pour adresse
+            bd.excuterRequete(sqlAdresse, [req.body.adresse.numero_rue, req.body.adresse.nom_rue, req.body.adresse.code_postal, req.body.adresse.ville, req.body.adresse.province, req.body.adresse.pays, req.body.adresse.numero_appt]) 
+            .then(resultatRequeteSqlAdresse => { 
+
+                    // l'adresse est ajoute a la bd
+                if (resultatRequeteSqlAdresse.rowCount >= 1)
+                {
+                    // ***************  requete de creation utilisateur si l'adresse est cree ****************
+                    console.log( req.body.utilisateur.telephone)
+                    let uuidActivationUtilisateur = uuidv4() //generer un id aleatoire en utilisant la biblio uuid
+
+                    let sqlUtilisateur = "INSERT INTO utilisateur (id_role, nom, prenom, age, email, mot_de_passe, sexe, id_adresse, telephone, id_activation) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)" 
+
+                    //requete sql pour utilisateur
+                    bd.excuterRequete(sqlUtilisateur, [req.body.utilisateur.id_role, req.body.utilisateur.nom, req.body.utilisateur.prenom, req.body.utilisateur.age, req.body.utilisateur.email, req.body.utilisateur.mot_de_passe, req.body.utilisateur.sexe, resultatRequeteSqlAdresse.rows[0].id, req.body.utilisateur.telephone, uuidActivationUtilisateur]) 
+                    .then(resultatRequeteSqlUtilisateur => { 
+
+                        if (resultatRequeteSqlUtilisateur.rowCount === 0)
+                        {
+                            res.setHeader('Content-Type', 'application/json');
+                            res.end(JSON.stringify({"erreur" : 400}))
+
+                            return undefined
+                        } else {
+                            res.setHeader('Content-Type', 'application/json');
+                            res.end(JSON.stringify({}))
+
+                            return undefined
+                        }
+                    })
+                    .catch(erreur => {
+                        console.error(erreur.stack)
+
+                        res.setHeader('Content-Type', 'text/html');
+                        res.end(erreur.stack)
+                        
+                        return undefined
+                    })
+                    // l'adresse n'est pas ajoute a la bd
+                } else {
+                    res.setHeader('Content-Type', 'application/json');
+                    res.end(JSON.stringify({"erreur": 400}))// pour simuler l'erreur
+                }
+            })
+            .catch(erreur => {
+                console.error(erreur.stack)
+
+                res.setHeader('Content-Type', 'text/html');
+                res.end(erreur.stack)
+
+                return undefined
+            })
         }
     })
     .catch(erreur => {
@@ -69,6 +135,8 @@ function utilisateurCreation(req, res)
 
         res.setHeader('Content-Type', 'text/html');
         res.end(erreur.stack)
+
+        return undefined
     })
 }
 
@@ -95,10 +163,9 @@ function utilisateurRecuperation(req, res)
         if (resultatRequeteSqlUtilisateur.rows[0] === undefined)
         {
             res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify({}))
+            res.end(JSON.stringify({"erreur" : 400}))
             return undefined
         }
-
         //requete sql pour adresse
         recupererAdresseUtilisateur(resultatRequeteSqlUtilisateur.rows[0].id_adresse)
         .then(resultatRequeteSqlAdresse => {
@@ -114,6 +181,8 @@ function utilisateurRecuperation(req, res)
 
             res.setHeader('Content-Type', 'text/html');
             res.end(erreur.stack)
+
+            return undefined
         })
 
     })
@@ -122,6 +191,8 @@ function utilisateurRecuperation(req, res)
 
         res.setHeader('Content-Type', 'text/html');
         res.end(erreur.stack)
+
+        return undefined
     })
 }
 
@@ -142,7 +213,7 @@ function utilisateurSuppression(req, res)
             res.end(JSON.stringify({}))
         } else {
             res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify({"erreur":"erreur"}))// pour simuler l'erreur
+            res.end(JSON.stringify({"erreur": 400}))// erreur mauvaises informations
         }
     })
     .catch(erreur => {
@@ -150,6 +221,8 @@ function utilisateurSuppression(req, res)
 
         res.setHeader('Content-Type', 'text/html');
         res.end(erreur.stack)
+
+        return undefined
     })
 }
 
