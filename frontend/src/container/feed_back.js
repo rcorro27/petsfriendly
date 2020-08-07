@@ -16,8 +16,7 @@ class FormFeedBack extends Component {
             .then(response => response.json())
             .then(response => {
                 this.setState({ resultatRecherche: response })
-                // const arrayTest = []
-                console.log('test', this.state.resultatRecherche[0])
+                console.log(this.state.resultatRecherche[0])
             })
     }
 
