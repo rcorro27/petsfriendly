@@ -2,7 +2,7 @@
 import { Button, Modal } from 'react-bootstrap'
 import ConnectionPopUp from './popup-connection'
 // import { Link, withRouter } from 'react-router-dom'
-/** import { login } from '../fonctions/UserFunctions' */
+import { login } from '../fonctions/UserFunctions'
 
 import React, { Component } from 'react'
 
@@ -12,7 +12,8 @@ export default class NavbarLinks extends Component {
         this.state = {
             userName: '',
             password: '',
-            show: false
+            show: false,
+            user: []
         }
         this.onHandleChangeName = this.onHandleChangeName.bind(this)
 
@@ -52,8 +53,17 @@ export default class NavbarLinks extends Component {
             userName: this.state.userName,
             password: this.state.password
         }
-        this.register(user)
-        console.log(user)
+        login(user).then(res => {
+            if (res) {
+                console.log('test', res)
+                this.setState({
+                    users: res
+                })
+
+                console.log('test', this.state.users)
+            }
+        })
+        // this.register(user)
     }
 
     onHandleChangeName (e) {
@@ -78,10 +88,10 @@ export default class NavbarLinks extends Component {
         const loginRegLink = (
             <ul className='navbar-nav ml-auto'>
                 <li className='nav-item active'>
-                    <Button variant='light mx-2' onClick={this.handleShow}>Se connecter</Button>
+                    <a className='nav-link' onClick={this.handleShow}>Se connecter</a>
                 </li>
                 <li className='nav-item'>
-                    <Button variant='light'> S'inscrire'</Button>
+                    <a className='nav-link'> S'inscrire</a>
                 </li>
 
             </ul>
@@ -89,7 +99,7 @@ export default class NavbarLinks extends Component {
         const userLink = (
             <ul className='navbar-nav ml-auto'>
                 <li className='nav-item active'>
-                    <Button variant='light mx-2' onClick={this.logOut.bind(this)}>Se deconnecter</Button>
+                    <a className='nav-link' onClick={this.logOut.bind(this)}>Se deconnecter</a>
                 </li>
 
             </ul>
