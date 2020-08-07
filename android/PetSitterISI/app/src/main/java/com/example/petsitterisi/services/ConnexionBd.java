@@ -3,6 +3,8 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.petsitterisi.sqliteHelper.PetHelper;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -13,6 +15,7 @@ public class ConnexionBd {
     private static String nom = "appDBsqlite.db";
     private static SQLiteDatabase bd;
     public static SQLiteDatabase getBd(Context context) {
+
         PetHelper petHelper = new PetHelper(context, nom, null, version);
         bd = petHelper.getWritableDatabase();
         return bd;

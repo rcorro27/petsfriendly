@@ -7,6 +7,8 @@
     tools:context=".CardPetSitter"
     android:orientation="vertical">
 
+<!--    <include layout="@layout/activity_bottom_navigation_bar"/>-->
+
     <LinearLayout
         android:id="@+id/header_liste"
         android:layout_width="match_parent"
@@ -309,6 +311,7 @@
 
 
             </HorizontalScrollView>
+
         </LinearLayout>
 
 
