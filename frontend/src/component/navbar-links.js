@@ -1,11 +1,12 @@
 // import React, { useState } from 'react'
 import { Button, Modal } from 'react-bootstrap'
-import ConnectionPopUp from './popup-connection'
-import InscriptionPopUp from './popup-inscription'
+import ConnectionPopUp from '../container/connection-container'
+// import InscriptionPopUp from './popup-inscription'
 // import { Link, withRouter } from 'react-router-dom'
 import { login } from '../fonctions/UserFunctions'
 
 import React, { Component } from 'react'
+import InscriptionContainer from '../container/inscription-container'
 
 export default class NavbarLinks extends Component {
     constructor (props) {
@@ -152,7 +153,7 @@ export default class NavbarLinks extends Component {
                         <Modal.Title>Page Connexion</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <ConnectionPopUp getText={this.onHandleChangeName} getPass={this.onHandleChangePass} valueName={this.state.userName} enterPress={this.onHandleChangeAndEnter} />
+                        <ConnectionPopUp />
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant='secondary' onClick={this.handleClose}>
@@ -168,7 +169,8 @@ export default class NavbarLinks extends Component {
                         <Modal.Title>Page Inscription</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <InscriptionPopUp getText={this.onHandleChangeName} getPass={this.onHandleChangePass} valueName={this.state.userName} />
+                        <InscriptionContainer />
+
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant='secondary' onClick={this.handleCloseInsc}>

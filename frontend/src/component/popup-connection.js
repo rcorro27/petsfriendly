@@ -5,6 +5,10 @@ function ConnectionPopUp ({ getText, getPass, valueName, enterPress }) {
     //  const [show, setShow] = useState(false)
 
     // const handleClose = () => setShow(false)
+    const togglePasswordVisiblity = () => {
+        const { isPasswordShown } = this.state
+        this.setState({ isPasswordShown: !isPasswordShown })
+    }
     return (
         <form>
             <div className='modal-body mx-3'>
@@ -16,7 +20,19 @@ function ConnectionPopUp ({ getText, getPass, valueName, enterPress }) {
                 </div>
                 <div className='md-form mb-4'>
                     <i className='fas fa-lock prefix grey-text' />
-                    <input type='password' id='defaultForm-pass' className='form-control validate' onChange={getPass} onKeyPress={enterPress} />
+                    <div className='form-group'>
+                        <div className='input-group'>
+                            <input type='password' id='defaultForm-pass' className='form-control validate' data-toggle='password' onChange='getPass' onKeyPress='enterPress' />
+                            <div className='input-class-append'>
+                                <div className='input-group-text'>
+                                    <i
+                                        className='fa fa-eye password-icon'
+                                        onClick={this.togglePasswordVisiblity}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <label data-error='wrong' data-success='right' htmlFor='defaultForm-pass'>Ton mot de passe</label>
                 </div>
             </div>
