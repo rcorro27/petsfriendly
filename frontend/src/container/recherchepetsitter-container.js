@@ -26,7 +26,7 @@ class RecherchePetsitter extends Component {
             infolettre: '',
             resultatRecherche: false,
             rechercher: false,
-            images: []
+            infosRecherche: []
         }
 
         this.handleAddOnClick = this.handleAddOnClick.bind(this)
@@ -136,7 +136,7 @@ class RecherchePetsitter extends Component {
                     </form>
                 </div>
                 <button onClick={this.handleAddOnClick}>RECHERCHE RESULTAT</button>
-                {this.state.resultatRecherche ? <ResultatRecherchePetsitter onHandleSaveOnClick={this.handleSaveOnClick} /> : ''}
+                {this.state.resultatRecherche ? <ResultatRecherchePetsitter onHandleSaveOnClick={this.handleSaveOnClick} testData={this.state.nomRue} /> : ''}
 
                 <h1>Des Services Sur mesure pour un Animal d'exeption </h1>
                 <div>

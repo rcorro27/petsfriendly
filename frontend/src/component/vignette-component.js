@@ -28,9 +28,9 @@ import React from 'react'
 
 // EVENEMENT BUTTON A AJOTER LIGNE 36
 
-const VignetteComponent = ({ urlPhoto, className, name, secteurAction }) => (
+const VignetteComponent = ({ urlPhoto, className, name, secteurAction, onClick }) => (
 
-    <div>
+    <div onClick={onClick}>
 
         <img className={className} src={urlPhoto} alt={urlPhoto} />
         <div>
