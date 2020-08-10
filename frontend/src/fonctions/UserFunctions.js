@@ -16,3 +16,20 @@ export const login = user => {
             console.log(err)
         })
 }
+export const register = newUser => {
+    return axios
+        .post('users/register', {
+            id_role: newUser.id_role,
+            nom: newUser.nom,
+            prenom: newUser.prenom,
+            age: newUser.age,
+            email: newUser.email,
+            mot_de_passe: newUser.mot_de_passe,
+            sexe: newUser.sexe,
+            telephone: newUser.telephone
+
+        })
+        .then(response => {
+            console.log('Registered')
+        })
+}
