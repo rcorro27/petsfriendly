@@ -25,14 +25,14 @@ class ConnectionPopUp extends Component {
 
                     <div className='md-form mb-5'>
                         <i className='fas fa-envelope prefix grey-text' />
-                        <input type='email' id='defaultForm-email' className='form-control validate' />
+                        <input type='email' id='defaultForm-email' className='form-control validate' onChange={this.props.getEmail} />
                         <label data-error='wrong' data-success='right' htmlFor='defaultForm-email'>Ton Email</label>
 
                     </div>
                     <div className='md-form mb-4'>
                         <div className='form-group'>
                             <div className='input-group'>
-                                <input type={isPasswordShown ? 'text' : 'password'} id='defaultForm-pass' className='form-control validate' data-toggle='password' onKeyPress={this.props.FonctionEntrer} />
+                                <input type={isPasswordShown ? 'text' : 'password'} id='defaultForm-pass' className='form-control validate' data-toggle='password' onChange={this.props.getPass} onKeyPress={this.props.FonctionEntrer} />
                                 <div className='input-group-append'>
                                     <div className='input-group-text'>
                                         <i
