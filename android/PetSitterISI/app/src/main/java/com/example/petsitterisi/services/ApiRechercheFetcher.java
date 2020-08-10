@@ -3,6 +3,9 @@ import android.os.AsyncTask;
 
 import androidx.annotation.Nullable;
 
+import com.example.petsitterisi.RechercheFragment;
+import com.google.gson.JsonArray;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,12 +20,16 @@ public class ApiRechercheFetcher extends AsyncTask<String, Nullable, String> {
     public ApiRechercheFetcher(String jsonStringDuServeur) {
         this.jsonStringDuServeur = jsonStringDuServeur;
     }
+    public ApiRechercheFetcher() {
 
+    }
     @Override
     protected String doInBackground(String... urls) {
         String result = null;
 
         try {
+
+
 
             URL url = new URL(urls[0]);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -44,6 +51,10 @@ public class ApiRechercheFetcher extends AsyncTask<String, Nullable, String> {
                     result += line;
             }
 
+
+
+
+
         } catch (Exception ex) {
 
         }
@@ -59,11 +70,6 @@ public class ApiRechercheFetcher extends AsyncTask<String, Nullable, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-
-
-
-
-
 
 
 

@@ -5,6 +5,8 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -12,9 +14,14 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.example.petsitterisi.managers.ConnexionManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class BottomNavigationBar extends FragmentActivity {
         BottomNavigationView bottomNav;
+
+        Intent intent;
+        Context ctx;
+
     //cacher temporairement la navigation bar android par defaut
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -26,6 +33,10 @@ public class BottomNavigationBar extends FragmentActivity {
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        intent = getIntent();
+        String email = intent.getStringExtra("email");
+        String motDePasse = intent.getStringExtra("mot_de_passe");
+        ctx = this;
         super.onCreate(savedInstanceState);
         //cacher temporairement  la bare d'etat du haut
         requestWindowFeature(Window.FEATURE_NO_TITLE); getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -39,15 +50,7 @@ public class BottomNavigationBar extends FragmentActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new RechercheFragment()).commit();
         }
-//
-//        View decorView = getWindow().getDecorView();
-//        // Hide both the navigation bar and the status bar.
-//        // SYSTEM_UI_FLAG_FULLSCREEN is only available on Android 4.1 and higher, bSut as
-//        // a general rule, you should design your app to hide the status bar whenever you
-//        // hide the navigation bar.
-//        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-//                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-//        decorView.setSystemUiVisibility(uiOptions);
+        ConnexionManager.getUtilisateur(ctx, email, motDePasse);
 
 
     }
