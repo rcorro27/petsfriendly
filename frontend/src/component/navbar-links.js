@@ -153,7 +153,7 @@ export default class NavbarLinks extends Component {
                         <Modal.Title>Page Connexion</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <ConnectionPopUp FonctionEntrer={this.onHandleChangeAndEnter} />
+                        <ConnectionPopUp FonctionEntrer={this.onHandleChangeAndEnter} getPass={this.onHandleChangePass} getEmail={this.onHandleChangeName} />
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant='secondary' onClick={this.handleClose}>
