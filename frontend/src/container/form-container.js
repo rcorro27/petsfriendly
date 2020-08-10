@@ -29,7 +29,7 @@ class FormContainer extends Component {
             <div>
 
                 <div>
-
+                    <Navbar />
                     <main id='divContainer'>
                         <CarouselContainer />
                         <Title titre1='titre 1 ' titre2='titre 2 ' />

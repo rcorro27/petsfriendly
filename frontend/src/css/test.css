@@ -55,6 +55,16 @@
     display: flex;
 }
 
-body {
-    background-color: black;
+/**********************************page Recherche*************************************************/
+
+.formRechercheContainer {
+    background-image: url('../img/caroussel/image3.jpg');
+    width: 60%;
+    display: block
+}
+
+.infolettreDiv {
+    background-image: url('../img/image_site/images/do-pet-sitters-need-pet-sitter-insurance-the-pet-sitter-blog.jpg');
+    width: 100%;
+    height: 60vh;
 }
