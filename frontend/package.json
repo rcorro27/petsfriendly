@@ -7,6 +7,7 @@
         "axios": "^0.19.2",
         "body-parser": "^1.19.0",
         "bootstrap": "^4.5.0",
+        "bootstrap-show-password": "^1.2.1",
         "express": "^4.17.1",
         "react": "^16.13.1",
         "react-axios": "^2.0.3",
