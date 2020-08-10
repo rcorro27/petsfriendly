@@ -18,7 +18,7 @@ class RecherchePetsitter extends Component {
             garderChezVous: false,
             promenade: false,
             numeroRue: '',
-            nomRue: '',
+            nomRue: 'toto',
             secteurAction: '',
             dateDebut: '',
             dateFin: '',
@@ -26,7 +26,8 @@ class RecherchePetsitter extends Component {
             infolettre: '',
             resultatRecherche: false,
             rechercher: false,
-            infosRecherche: []
+            infosRecherche: [],
+            username: ''
         }
 
         this.handleAddOnClick = this.handleAddOnClick.bind(this)
@@ -73,6 +74,12 @@ class RecherchePetsitter extends Component {
     }
 
     handleSubmit (event) {
+        if (this.state.username !== '') {
+            // envoie de requette
+        } else {
+
+            // envoie du pop up
+        }
         alert('An essay was submitted: ' + JSON.stringify(this.state.promenade) + this.state.garderChezPetsitter)
         event.preventDefault()
     }
