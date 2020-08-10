@@ -2,13 +2,11 @@ import React from 'react'
 
 // place holder a ajouter ???
 const InputComponent = ({ text, type, id, name, value, min, onChange, className, classNameLabel }) => (
-    <div className={classCss}>
+    <div>
         <label htmlFor={id} className={classNameLabel}>{text}</label>
-
         <input
-            className={classInput}
-            type={type}
 
+            type={type}
             id={id}
             name={name}
             value={value}
@@ -16,7 +14,7 @@ const InputComponent = ({ text, type, id, name, value, min, onChange, className,
             onChange={onChange}
             className={className}
         />
-        <label data-error='wrong' data-success='right' htmlFor={id}>{textLabel}</label>
+
     </div>
 
 )
