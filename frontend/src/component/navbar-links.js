@@ -111,7 +111,7 @@ export default class NavbarLinks extends Component {
                     })
                     this.handleClose()
 
-                    console.log('test', this.state.users.utilisateur.nom)
+                    // console.log('test', this.state.users.utilisateur.nom)
                     this.setState({ userName: this.state.users.utilisateur.nom })
                 }
             })
@@ -153,7 +153,7 @@ export default class NavbarLinks extends Component {
                         <Modal.Title>Page Connexion</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <ConnectionPopUp />
+                        <ConnectionPopUp FonctionEntrer={this.onHandleChangeAndEnter} />
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant='secondary' onClick={this.handleClose}>

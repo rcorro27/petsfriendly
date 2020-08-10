@@ -5,7 +5,7 @@ class ConnectionPopUp extends Component {
         super(props)
 
         this.state = {
-            inputs: [],
+            //  inputs: [],
             isPasswordShown: false
 
         }
@@ -17,14 +17,6 @@ class ConnectionPopUp extends Component {
         this.setState({ isPasswordShown: !isPasswordShown })
     };
 
-    componentDidMount () {
-        fetch('inputs.json', { method: 'GET' })
-            .then(response => response.json())
-            .then(response => {
-                this.setState({ inputs: response })
-            })
-    }
-
     render () {
         const { isPasswordShown } = this.state
         return (
@@ -33,15 +25,15 @@ class ConnectionPopUp extends Component {
 
                     <div className='md-form mb-5'>
                         <i className='fas fa-envelope prefix grey-text' />
-                        <input type='email' id='defaultForm-email' className='form-control validate' onChange='' />
+                        <input type='email' id='defaultForm-email' className='form-control validate' />
                         <label data-error='wrong' data-success='right' htmlFor='defaultForm-email'>Ton Email</label>
 
                     </div>
                     <div className='md-form mb-4'>
                         <div className='form-group'>
                             <div className='input-group'>
-                                <input type={isPasswordShown ? 'text' : 'password'} id='defaultForm-pass' className='form-control validate' data-toggle='password' />
-                                <div className='input-class-append'>
+                                <input type={isPasswordShown ? 'text' : 'password'} id='defaultForm-pass' className='form-control validate' data-toggle='password' onKeyPress={this.props.FonctionEntrer} />
+                                <div className='input-group-append'>
                                     <div className='input-group-text'>
                                         <i
                                             className='fa fa-eye password-icon'
