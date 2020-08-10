@@ -112,7 +112,8 @@ export default class NavbarLinks extends Component {
                     })
                     this.onHandleClose()
 
-                    console.log('test', this.state.users.utilisateur.nom)
+                    console.log('Object', JSON.parse(localStorage.getItem('usertoken')))
+
                     this.setState({ userName: this.state.users.utilisateur.nom })
                 }
             })
@@ -135,7 +136,7 @@ export default class NavbarLinks extends Component {
         const userLink = (
             <ul className='navbar-nav ml-auto'>
                 <li className='nav-item active'>
-                    <a className='nav-link'>{this.state.userName}</a>
+                    <a className='nav-link'>test</a>
 
                 </li>
                 <li className='nav-item active'>
