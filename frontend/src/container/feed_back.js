@@ -15,8 +15,8 @@ class FormFeedBack extends Component {
         fetch('resultat-recherche.json', { method: 'GET' })
             .then(response => response.json())
             .then(response => {
+                console.log(this.state.resultatRecherche[1])
                 this.setState({ resultatRecherche: response })
-                console.log(this.state.resultatRecherche[0])
             })
     }
 
