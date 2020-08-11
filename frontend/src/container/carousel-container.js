@@ -23,7 +23,7 @@ class CarouselContainer extends Component {
         return (
             <Carousel>
 
-                {this.state.images.map((image, index) => <Carousel.Item key={index}> <ImgComposant srcIMG={image.imgSrc} classBo='d-block w-100' /></Carousel.Item>)}
+                {this.state.images.map((image, index) => <Carousel.Item key={index}> <ImgComposant srcIMG={image.imgSrc} classBo='img-caroussel d-block w-100' /></Carousel.Item>)}
 
             </Carousel>
 

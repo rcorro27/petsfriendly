@@ -18,7 +18,7 @@ class RecherchePetsitter extends Component {
             garderChezVous: false,
             promenade: false,
             numeroRue: '',
-            nomRue: '',
+            nomRue: 'toto',
             secteurAction: '',
             dateDebut: '',
             dateFin: '',
@@ -26,7 +26,8 @@ class RecherchePetsitter extends Component {
             infolettre: '',
             resultatRecherche: false,
             rechercher: false,
-            images: []
+            infosRecherche: [],
+            username: ''
         }
 
         this.handleAddOnClick = this.handleAddOnClick.bind(this)
@@ -73,7 +74,15 @@ class RecherchePetsitter extends Component {
     }
 
     handleSubmit (event) {
-        alert('An essay was submitted: ' + JSON.stringify(this.state.promenade) + this.state.garderChezPetsitter)
+        this.setState({ resultatRecherche: true })
+
+        /*  if (this.state.username !== '') {
+            // envoie de requette
+        } else {
+
+            // envoie du pop up
+        } */
+        // alert('An essay was submitted: ' + JSON.stringify(this.state.promenade) + this.state.garderChezPetsitter)
         event.preventDefault()
     }
 
@@ -116,47 +125,49 @@ class RecherchePetsitter extends Component {
 
             <div>
                 <Navbar />
-                <h1>Recherche Petsitter</h1>
+                <h1 className='display-4 mx-auto'>Recherche Petsitter</h1>
                 <div className='formRechercheContainer'>
                     <form id='form-test' onSubmit={this.handleSubmit}>
-                        <InputComponent type='radio' text='Garder Chez le PettSitter' id='garderChezPetsitter' name='gardeMaison' value={this.state.garderChezPetsitter} onChange={this.handleChange} />
-                        <InputComponent type='radio' text='Garder chez vous' id='garderChezVous' name='gardeMaison' value={this.state.garderChezVous} onChange={this.handleChange} />
-                        <InputComponent type='checkbox' text='Promenade' id='promenade' name='Promenade' value={this.state.promenade} onChange={this.handleChange} />
+                        <InputComponent classCss='form-check' classInput='form-form-check-input' labelClass='form-check-label' type='radio' textLabel='Garder Chez le PettSitter' id='garderChezPetsitter' name='gardeMaison' value={this.state.garderChezPetsitter} onChange={this.handleChange} />
+                        <InputComponent classCss='form-check' classInput='form-form-check-input' labelClass='form-check-label' type='radio' textLabel='Garder chez vous' id='garderChezVous' name='gardeMaison' value={this.state.garderChezVous} onChange={this.handleChange} />
+                        <InputComponent classCss='form-check' classInput='form-form-check-input' labelClass='form-check-label' type='checkbox' textLabel='Promenade' id='promenade' name='Promenade' value={this.state.promenade} onChange={this.handleChange} />
 
-                        <InputComponent text='Date de debut' type='date' id='dateDebut' name='dateDebut' onChange={this.handleChange} />
-                        <InputComponent text='Date de fin' type='date' id='dateFin' name='dateFin' onChange={this.handleChange} />
+                        <InputComponent classCss='form-group' classInput='form-control' textLabel='Date de debut' type='date' id='dateDebut' name='dateDebut' onChange={this.handleChange} />
+                        <InputComponent classCss='form-group' classInput='form-control' textLabel='Date de fin' type='date' id='dateFin' name='dateFin' onChange={this.handleChange} />
 
-                        <InputComponent text='Numero' type='number' id='numeroRue' name='numero' min={0} onChange={this.handleChange} />
-                        <InputComponent text='Nom de la rue' type='text' id='nomRue' name='nom de la rue' onChange={this.handleChange} />
-                        <InputComponent text='Code postal' type='text' id='secteurAction' name='secteurAction' onChange={this.handleChange} />
+                        <InputComponent classCss='form-group' classInput='form-control' textLabel='Numero' type='number' id='numeroRue' name='numero' min={0} onChange={this.handleChange} />
+                        <InputComponent classCss='form-group' classInput='form-control' textLabel='Nom de la rue' type='text' id='nomRue' name='nom de la rue' onChange={this.handleChange} />
+                        <InputComponent classCss='form-group' classInput='form-control' textLabel='Code postal' type='text' id='secteurAction' name='secteurAction' onChange={this.handleChange} />
 
-                        <SelectComponent text='Type de animal:' id='typeAnimal' name='TypeAnimal' options={TYPEANIMAL} onChange={this.handleChangeSelect} value={this.state.typeAnimal} />
+                        <SelectComponent classCss='form-group' classInput='form-control' textLabel='Type de animal:' id='typeAnimal' name='TypeAnimal' options={TYPEANIMAL} onChange={this.handleChangeSelect} value={this.state.typeAnimal} />
 
-                        <InputComponent type='submit' id='rechercher' name='Rechercher ' value='rechercher' />
+                        <InputComponent classInput='btn btn-outline-danger' type='submit' id='rechercher' name='Rechercher ' value='rechercher' />
                     </form>
                 </div>
-                <button onClick={this.handleAddOnClick}>RECHERCHE RESULTAT</button>
-                {this.state.resultatRecherche ? <ResultatRecherchePetsitter onHandleSaveOnClick={this.handleSaveOnClick} /> : ''}
+                {/* <button onClick={this.handleAddOnClick}>RECHERCHE RESULTAT</button>
+*/}                 {this.state.resultatRecherche ? <ResultatRecherchePetsitter onHandleSaveOnClick={this.handleSaveOnClick} testData={this.state.nomRue} /> : ''}
 
                 <h1>Des Services Sur mesure pour un Animal d'exeption </h1>
                 <div>
-                    <ListItemComponent text='Faite garder votre animal a votre domicile ou celui du Pett Sitter' />
-                    <ListItemComponent text='Partez au travail ou a votre rendez vous sans vous soucier de la promenade de votre chien' />
-                    <ListItemComponent text='Besoin de flexibilite? Choisisez les horraires et periodes qui vous conviennent' />
-                </div>
+                    <div>
+                        <ListItemComponent text='Faite garder votre animal a votre domicile ou celui du Pett Sitter' />
+                        <ListItemComponent text='Partez au travail ou a votre rendez vous sans vous soucier de la promenade de votre chien' />
+                        <ListItemComponent text='Besoin de flexibilite? Choisisez les horraires et periodes qui vous conviennent' />
+                    </div>
 
-                <div>
-                    {/* METTRE UN ICONE DANS LAVANT DE LES LI POUR LA PUBLICITER */}
-                    <ListItemComponent text='Tout les nouveaux gardiens passent une verification des antecedents de base' />
-                    <ListItemComponent text='Tout les gardiens fournissent un profil detaille et des informations personnel ' />
-                    <ListItemComponent text='tout les Pet Sitter sont agrees par notre equipe de specialistes chez Pets Friendly' />
+                    <div>
+                        {/* METTRE UN ICONE DANS LAVANT DE LES LI POUR LA PUBLICITER */}
+                        <ListItemComponent text='Tout les nouveaux gardiens passent une verification des antecedents de base' />
+                        <ListItemComponent text='Tout les gardiens fournissent un profil detaille et des informations personnel ' />
+                        <ListItemComponent text='tout les Pet Sitter sont agrees par notre equipe de specialistes chez Pets Friendly' />
+                    </div>
                 </div>
                 <div className='infolettreDiv'>
                     <h1>Laisse nous vous prevenir des nouveautes</h1>
                     <h6>Reste informe</h6>
                     <form>
-                        <InputComponent text='Entrez votre email' type='email' id='infolettre' name='infolettre' onChange={this.handleChange} />
-                        <InputComponent type='submit' id='infolettreButton' name='Envoyer ' value='Envoyer' />
+                        <InputComponent classCss='form-group' classInput='form-control' textLabel='Entrez votre email' type='email' id='infolettre' name='infolettre' onChange={this.handleChange} />
+                        <InputComponent classInput='btn btn-outline-danger' type='submit' id='infolettreButton' name='Envoyer ' value='Envoyer' />
                     </form>
                 </div>
                 <Footer />

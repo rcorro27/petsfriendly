@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import VignetteComponent from 'component/vignette-component'
+import '../css/test.css'
+// import ListItemComponent from '../component/list-item-component'
 
 // import ahrefComponent from 'component/ahref-component'
 class ResultatRecherchePetsitter extends Component {
@@ -9,7 +11,9 @@ class ResultatRecherchePetsitter extends Component {
         this.state = {
             recherche: false,
             resultat: []
+
         }
+        this.handleAfficherSitterOnClick = this.handleAfficherSitterOnClick.bind(this)
     }
 
     componentDidMount () {
@@ -24,6 +28,10 @@ class ResultatRecherchePetsitter extends Component {
             })
     }
 
+    handleAfficherSitterOnClick (event) {
+        console.log('evenement declencher', event.target)
+    }
+
     render () {
     /*    this.state.resultat.map((petsitter) => {
             console.log(petsitter.url_photo)
@@ -31,7 +39,12 @@ class ResultatRecherchePetsitter extends Component {
         */
         return (
             <div>
-                {this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} name={resultat.nom} secteurAction={resultat.secteur_action} className='toto' key={index} />)}
+                <div>
+
+                    {this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} name={resultat.nom} secteurAction={resultat.secteur_action} className='resultatRechercheDiv' key={index} onClick={this.handleAfficherSitterOnClick} classInput='fas fa-heart' classInput2='fas fa-paper-plane' />)}
+
+                </div>
+
                 <button onClick={this.props.onHandleSaveOnClick}>retour recherche</button>
             </div>
         )

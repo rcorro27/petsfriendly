@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ImgComposant from '../component/img-composant'
+import SocialMediaIcon from '../component/icon-social-media'
 
 class ListNetworks extends Component {
     constructor (props) {
@@ -20,12 +20,11 @@ class ListNetworks extends Component {
 
     render () {
         return (
-            <div className='networks'>
+            <ul className='list-unstyled list-inline text-center'>
 
-                <div className='networks-child'>
-                    {this.state.icones.map((icon, index) => <ImgComposant srcIMG={icon.imgSrc} key={index} />)}
-                </div>
-            </div>
+                {this.state.icones.map((icon, index) => <SocialMediaIcon divClass='list-inline-item' classa={icon.classa} classI={icon.classI} key={index} />)}
+
+            </ul>
 
         )
     }
