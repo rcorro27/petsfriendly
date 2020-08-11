@@ -8,19 +8,21 @@ class FormFeedBack extends Component {
         super(props)
 
         this.state = {
-
+            count: 0,
             resultat: []
-            const count: 0
 
         }
+        this.handleincrementMe = this.handleincrementMe.bind()
     }
 
-    incrementMe () {
-        const newCount = this.state.count + 1
+    handleincrementMe () {
+        console.log('count', this.state.count)
+        const newCount = this.setState({ count: this.state.count + 1 })
 
         this.setState({
             count: newCount
         })
+        // console.log('count', this.state.count)
     }
 
     componentDidMount () {
@@ -39,7 +41,10 @@ class FormFeedBack extends Component {
             <div>
                 <form id='form-feedBack'>
                     <div>
-                        {this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} name={resultat.nom} secteurAction={resultat.secteur_action} className='' key={index} />)}
+                        {this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} secteurAction={resultat.secteur_action} className='feedBack' key={index} />)}
+
+                        <VignetteComponent name='ahmed' type='button' onclick={this.handleincrementMe} />
+
                     </div>
                 </form>
             </div>

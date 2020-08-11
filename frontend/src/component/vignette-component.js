@@ -28,13 +28,13 @@ import React from 'react'
 
 // EVENEMENT BUTTON A AJOTER LIGNE 36
 
-const VignetteComponent = ({ urlPhoto, className, name, secteurAction, onClick, classInput, classInput2 }) => (
+const VignetteComponent = ({ urlPhoto, className, nom, secteurAction, onclick, classInput, classInput2 }) => (
 
     <div>
 
         <div className={className}>
             <img src={urlPhoto} alt={urlPhoto} />
-            <h2 onClick={onClick}>{name}</h2>
+            <h2 onClick={onclick}>{nom}</h2>
             <p>{secteurAction}</p>
             <button type='button' className={classInput}>Aimer </button>
             <button type='button' className={classInput2}> Envoyer une demande </button>
