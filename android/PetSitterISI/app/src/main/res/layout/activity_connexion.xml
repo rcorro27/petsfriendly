@@ -104,6 +104,15 @@
                         app:endIconMode="password_toggle"
                         app:errorEnabled="true" />
 
+                    <TextView
+                        android:id="@+id/error"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Error"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center"
+                        android:textColor="@color/redTransparenceBar"/>
+
 
                 </com.google.android.material.textfield.TextInputLayout>
 

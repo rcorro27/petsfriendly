@@ -50,8 +50,6 @@ public class BottomNavigationBar extends FragmentActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new RechercheFragment()).commit();
         }
-        ConnexionManager.getUtilisateur(ctx, email, motDePasse);
-
 
     }
 

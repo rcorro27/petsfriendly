@@ -62,8 +62,7 @@ public class MainActivity extends Activity {
         VideoView videoView =(VideoView)findViewById(R.id.videoView1);
         MediaController mediaController = new MediaController(this);
         mediaController.setAnchorView(videoView);
-        Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath()+"/media/1.mp4");
-        String path = "android.resource://" + getPackageName() + "/" + R.raw.chien;
+        String path = "android.resource://" + getPackageName() + "/" + R.raw.video_accueil;
         videoView.setMediaController(mediaController);
         videoView.setVideoPath(path);
         videoView.requestFocus();
@@ -77,8 +76,6 @@ public class MainActivity extends Activity {
             }
         });
         videoView.start();
-
-
 
 
         //ouvrir l'activite connexion

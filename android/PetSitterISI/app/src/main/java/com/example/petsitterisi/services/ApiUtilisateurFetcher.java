@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -23,43 +24,49 @@ public class ApiUtilisateurFetcher extends AsyncTask<String, Nullable, String> {
 
     private Context  context;
 
-    String js = "";
+    int js = 74;
+    TextView error;
 
-    public ApiUtilisateurFetcher(Context  context) {
+    public ApiUtilisateurFetcher(Context  context, TextView error) {
         this.context = context;
+        this.error = error;
     }
 
     @Override
     protected String doInBackground(String... urls) {
-        String result = null;
+        String result = "";
 
         try {
             URL url = new URL(urls[0]);
-            Log.d("DEBUG", "test");
-            js = (urls[0]);
+
+
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setDoOutput(false);
+            urlConnection.setDoOutput(true);
             urlConnection.setDoInput(true);
-            urlConnection.connect();
-            urlConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
             urlConnection.setRequestMethod("POST");
+            urlConnection.setRequestProperty("Content-Type", "application/json; utf-8");
+            urlConnection.connect();
 
             OutputStream os = urlConnection.getOutputStream();
             os.write(urls[1].getBytes("UTF-8"));
 
             int codeRetour = urlConnection.getResponseCode();
 
-            Log.d("DEBUG", String.valueOf(codeRetour));
+            js = codeRetour;
+
             if (codeRetour == HttpURLConnection.HTTP_OK) {
-                String line;
+
+
                 BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+
+         String line = "";
                 while ((line = in.readLine()) != null)
                     result += line;
 
             }
 
         } catch (Exception ex) {
-            Log.d("DEBUG", ex.getMessage());
+            ex.printStackTrace();
         }
 
         return result;
@@ -73,8 +80,8 @@ public class ApiUtilisateurFetcher extends AsyncTask<String, Nullable, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        Toast.makeText(context, s, Toast.LENGTH_LONG).show();
 
+        error.setText(String.valueOf(s));
     }
 
     private String inputStreamToString(InputStream is) {
@@ -86,7 +93,7 @@ public class ApiUtilisateurFetcher extends AsyncTask<String, Nullable, String> {
         BufferedReader rd = new BufferedReader(isr);
 
         String in = "";
-        JSON
+
 
         try {
             while ((rLine = rd.readLine()) != null) {
