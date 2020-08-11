@@ -1,10 +1,8 @@
-package com.example.petsitterisi.Manager;
+package com.example.petsitterisi.managers;
 import android.content.Context;
 
-import com.example.petsitterisi.Entitee.Service;
-import com.example.petsitterisi.Entitee.Utilisateur;
+import com.example.petsitterisi.entitees.Service;
 import com.example.petsitterisi.services.ApiRechercheFetcher;
-import com.example.petsitterisi.services.ApiUtilisateurFetcher;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,7 +10,7 @@ public class RechercheManager {
 
 
 
-    public static Service getService(Context context, boolean service_gardez_chez_sitter, boolean service_gardez_chez_proprietaire, boolean service_promenade, boolean type_chien, boolean type_chat, String date_debut_contrat, String date_fin_contrat, String adresse_proprietaire) throws JSONException {
+    public static void getService(Context context, boolean service_gardez_chez_sitter, boolean service_gardez_chez_proprietaire, boolean service_promenade, boolean type_chien, boolean type_chat, String date_debut_contrat, String date_fin_contrat, String adresse_proprietaire) throws JSONException {
 
         Service serviceDeBase = null;
         String jsonStringDuServeur = "";
@@ -40,7 +38,8 @@ public class RechercheManager {
             e.printStackTrace();
         }
 
-        return serviceDeBase;
+
+
     }
 
 

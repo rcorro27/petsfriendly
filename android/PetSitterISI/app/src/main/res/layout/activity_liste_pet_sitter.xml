@@ -4,11 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Recherche_service_2"
-    android:background="@color/lightGrey"
-    android:orientation="vertical">
+    tools:context=".ListePetSitter">
 
 
+    <LinearLayout
+        android:id="@+id/card_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
+    </LinearLayout>
 
 </LinearLayout>
