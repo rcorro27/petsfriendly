@@ -1,6 +1,20 @@
 /*css a ajouter
 */
 
+.SpanTitre {
+    position: absolute;
+    width: 1151px;
+    height: 249px;
+    left: 145px;
+    font-family: Cardo;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 64px;
+    line-height: 100px;
+    /* or 31% */
+    text-align: center;
+}
+
 .img-caroussel {
     height: 100vh;
 }

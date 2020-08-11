@@ -33,8 +33,15 @@ class FormContainer extends Component {
                     <Navbar />
                     <main id='divContainer'>
                         <CarouselContainer />
-                        <Title titre1='titre 1 ' titre2='titre 2 ' />
-                        <SpanComponent divClass='test' text='test ' />
+
+                        <div className='block'>
+
+                            <span
+                                className='SpanTitre'
+                            >Nous considerons votre Animal Comme un membre De notre Famille
+                            </span>
+                        </div>
+
                     </main>
                     <div className='block'>
 
