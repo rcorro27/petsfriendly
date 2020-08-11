@@ -43,11 +43,23 @@ public class Connexion extends Activity {
         connexion_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+<<<<<<< HEAD
 
                 String email = e_mail.getText().toString();
                 String motDePasse = mot_de_passe.getText().toString();
 
                 ConnexionManager.getUtilisateur(ctx, email, motDePasse, error);
+=======
+               Intent intent = new Intent(ctx, BottomNavigationBar.class);
+                intent.putExtra("email", e_mail.getText().toString());
+                intent.putExtra("mot_de_passe", mot_de_passe.getText().toString());
+
+                // Set error text
+                passwordLayout.error = getString(R.string.error)
+                // Clear error text
+                passwordLayout.error = null
+               startActivity(intent);
+>>>>>>> 2f4bd3eccacfb72772330c3de96f5fc06530a86d
 
 
             }

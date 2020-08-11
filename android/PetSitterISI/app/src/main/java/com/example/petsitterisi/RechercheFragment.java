@@ -39,7 +39,6 @@ public class RechercheFragment extends Fragment {
 
         final View monFragmentRecherche = inflater.inflate(R.layout.fragment_recherche, container, false);
         ctx = monFragmentRecherche.getContext();
-        test_reponse= (EditText) monFragmentRecherche.findViewById(R.id.test_reponse_recherche);
         eText = (EditText) monFragmentRecherche.findViewById(R.id.editText1);
         eText.setInputType(InputType.TYPE_NULL);
         eText.setOnClickListener(new View.OnClickListener() {
@@ -105,8 +104,6 @@ public class RechercheFragment extends Fragment {
 //                Intent intent = new Intent(ctx, CardPetSitter.class);
 //                startActivity(intent);
 
-                ApiRechercheFetcher test_recuperation_reponse = new ApiRechercheFetcher();
-                test_recuperation_reponse.execute();
 
 
             }
