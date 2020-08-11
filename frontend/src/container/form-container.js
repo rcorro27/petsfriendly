@@ -6,6 +6,7 @@ import Title from '../component/titre-composant'
 import SpanComponent from '../component/span-composant'
 import Navbar from '../container/navbar-container'
 import DivBoutons from '../component/div-boutons'
+import ImageTitreComposant from '../container/image-titre-container'
 
 class FormContainer extends Component {
     constructor (props) {
@@ -39,7 +40,7 @@ class FormContainer extends Component {
 
                         {this.state.titres.map((text, index) => <DivBoutons classCss='light' titre={text.titreBtn} key={index} />)}
                     </div>
-
+                    <ImageTitreComposant />
                     <Footer />
                 </div>
                 <button onClick={this.props.onHandleSaveOnClickYahia}>retour a page</button>
