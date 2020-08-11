@@ -44,6 +44,11 @@ public class Connexion extends Activity {
                Intent intent = new Intent(ctx, BottomNavigationBar.class);
                 intent.putExtra("email", e_mail.getText().toString());
                 intent.putExtra("mot_de_passe", mot_de_passe.getText().toString());
+
+                // Set error text
+                passwordLayout.error = getString(R.string.error)
+                // Clear error text
+                passwordLayout.error = null
                startActivity(intent);
 
 

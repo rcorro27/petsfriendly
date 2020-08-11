@@ -20,7 +20,7 @@ public class ConnexionManager {
             connexionJson.put("mot_de_passe",  mot_de_passe);
             //connexion a l'Api
             ApiUtilisateurFetcher apiFetcher = new ApiUtilisateurFetcher(context);
-            apiFetcher.execute("https://pets-friendly.herokuapp.com/utilisateur/connexion", connexionJson.toString());
+            apiFetcher.execute("https://pets-friendly.herokuapp.com/utilisateurs/connexion", connexionJson.toString());
 
         }catch (JSONException e) {
             e.printStackTrace();

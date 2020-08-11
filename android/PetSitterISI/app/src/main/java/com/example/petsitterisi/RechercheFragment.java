@@ -104,7 +104,7 @@ public class RechercheFragment extends Fragment {
 //                Intent intent = new Intent(ctx, CardPetSitter.class);
 //                startActivity(intent);
 
-            
+
 
             }
         });
