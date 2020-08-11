@@ -1,5 +1,6 @@
 let pg = require('pg');
 const { path } = require('../app');
+const { connect } = require('mongodb');
 
 let pgClient = new pg.Client()
 
@@ -8,7 +9,7 @@ function excuterRequete(requeteSQL, valeursConditions)
 {
   return new Promise((resolve, reject) => {
 
-    // creer un nouveau client vers la bd
+        // creer un nouveau client vers la bd
     pgClient = new pg.Client({
       user: "dozjybzktpznaa",
       password: "0f08776f321c709a86a7c995de09e6b48a2a9a5a5d044f99856d3b61be77bbaa",
@@ -49,18 +50,6 @@ function excuterRequete(requeteSQL, valeursConditions)
 
 })
 }
-
-
-/*function transformerReqParamsAUnTableau(params) {
-  let body = []
-  let obj = JSON.parse(params)
-
-  for (let i in obj) {
-    body.push(obj[i])
-  }
-
-  return body
-}*/
 
 // les modules a exporter
 module.exports = {
