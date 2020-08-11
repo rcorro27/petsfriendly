@@ -10,6 +10,7 @@ class FormFeedBack extends Component {
         this.state = {
 
             resultat: []
+            const count: 0
 
         }
     }
