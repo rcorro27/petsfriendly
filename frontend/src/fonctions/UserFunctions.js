@@ -9,8 +9,9 @@ export const login = user => {
         .then(response => {
             localStorage.setItem('usertoken', JSON.stringify(response.data))
             // console.log(response.data)
+            console.log(localStorage.getItem('usertoken'))
+
             return response.data
-            // console.log(localStorage.getItem('usertoken'))
         })
         .catch(err => {
             console.log(err)

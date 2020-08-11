@@ -1,23 +1,26 @@
 [
     {
-        "imgSrc": "src/img/icon_reseaux/faceBook_Icon.png"
+        "classa": "fb-ic",
+        "classI": "fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"
     },
     {
-        "imgSrc": "src/img/icon_reseaux/whatsApp_Icon.png"
+        "classa": "tw-ic",
+        "classI": "fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"
     },
     {
-        "imgSrc": "src/img/icon_reseaux/instagram_Icon.png"
+        "classa": "gplus-ic",
+        "classI": "fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"
     },
     {
-        "imgSrc": "src/img/icon_reseaux/linkedln_Icon.png"
+        "classa": "li-ic",
+        "classI": "fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"
     },
     {
-        "imgSrc": "src/img/icon_reseaux/snapChat_Icon.png"
+        "classa": "ins-ic",
+        "classI": "fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"
     },
     {
-        "imgSrc": "src/img/icon_reseaux/twitter_Icon.png"
-    },
-    {
-        "imgSrc": "src/img/icon_reseaux/Pinterest_Icon.png"
+        "classa": "pin-ic",
+        "classI": "fab fa-pinterest fa-lg white-text fa-2x"
     }
 ]

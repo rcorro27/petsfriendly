@@ -1,8 +1,5 @@
-.footer {
+footer {
     background-color: rgba(203, 50, 50, 0.71);
-    color: white;
-    padding-bottom: 20px;
-    padding-top: 60px;
 }
 
 .footer-header {
@@ -87,12 +84,14 @@ div.logo-container {
 }
 
 .networks {
+    display: inline-block;
     border-bottom: 1px white solid;
     width: 50%;
     margin: auto;
 }
 
 .networks-child {
+    display: inline;
     text-align: center;
     position: relative;
     padding-top: 50px;
