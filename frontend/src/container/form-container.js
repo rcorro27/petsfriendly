@@ -43,10 +43,13 @@ class FormContainer extends Component {
                         </div>
 
                     </main>
-                    <div className='block'>
 
-                        {this.state.titres.map((text, index) => <DivBoutons classCss='light' titre={text.titreBtn} key={index} />)}
+                    <div className='row bg-dark'>
+
+                        {this.state.titres.map((text, index) => <DivBoutons classCss='col-lg-4 text-center ' titre={text.titreBtn} key={index} />)}
+
                     </div>
+
                     <ImageTitreComposant />
                     <Footer />
                 </div>

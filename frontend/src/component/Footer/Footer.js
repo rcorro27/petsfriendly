@@ -10,7 +10,7 @@ class Footer extends Component {
         const li1 = ['Connexion', 'Mon profil', 'Mes favoris', 'Tableau de bord']
         const li2 = ['A propos de nous', 'Condition d utilisation', 'Confidentialite', 'Nous contacter']
         return (
-            <footer className='page-footer font-small stylish-color-dark pt-4'>
+            <footer className='page-footer font-small mt-5'>
 
                 <div className='container text-center text-md-left'>
 
@@ -19,7 +19,7 @@ class Footer extends Component {
                         <div className='col-md-2 mx-auto'>
 
                             <div className='view overlay z-depth-1-half'>
-                                <img src='src/img/logo.png' className='img-fluid' alt='' />
+                                <img src='src/img/logo.png' className='img-fluid' alt='' width='100vh' height='150vh' />
                                 <a href=''>
                                     <div className='mask rgba-white-light' />
                                 </a>
