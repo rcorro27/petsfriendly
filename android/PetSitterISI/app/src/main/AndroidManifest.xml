@@ -9,15 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AjouterUnAnimal"></activity>
+        <activity android:name=".ListePetSitter"></activity>
+        <activity android:name=".AjouterUnAnimal" />
         <activity android:name=".Filtres" />
-        <activity android:name=".Feedback" />
-        <activity android:name=".Contact" />
         <activity android:name=".ProfilPetSitter" />
-        <activity android:name=".CreationProfil" />
         <activity android:name=".BottomNavigationBar" />
-        <activity android:name=".Connexion"/>
-        <activity android:name=".CardPetSitter"/>
+        <activity android:name=".Connexion" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
