@@ -1,0 +1,105 @@
+footer {
+    background-color: rgba(203, 50, 50, 0.71);
+}
+
+.footer-header {
+    display: flex;
+    flex-direction: row;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-header {
+    width: 80%;
+    margin: auto;
+}
+
+div.logo-container {
+    position: relative;
+    top: 70px;
+}
+
+.link-container {
+    border-bottom: 2px white solid;
+    width: 80%;
+    margin-left: 40px;
+    padding-bottom: 20px;
+}
+
+.link-container a {
+    display: block;
+}
+
+.link-1 {
+    display: inline-block;
+    height: 150px;
+    border-right: 1px white solid;
+    width: 32%;
+}
+
+.link-1 a:nth-child(1) {
+    position: relative;
+    top: 50px;
+    display: block;
+    text-align: center;
+}
+
+.link-1 a:nth-child(2) {
+    position: relative;
+    top: 80px;
+    display: block;
+    text-align: center;
+}
+
+.link-2 {
+    display: inline-block;
+    height: 150px;
+    border-right: 1px white solid;
+    width: 32%;
+}
+
+.link-2 a:nth-child(1) {
+    position: relative;
+    top: 50px;
+    display: block;
+    text-align: center;
+}
+
+.link-2 a:nth-child(2) {
+    position: relative;
+    top: 80px;
+    display: block;
+    text-align: center;
+}
+
+.link-3 {
+    display: inline-block;
+    height: 150px;
+    width: 20%;
+    position: absolute;
+    margin-left: 5px;
+}
+
+.networks {
+    display: inline-block;
+    border-bottom: 1px white solid;
+    width: 50%;
+    margin: auto;
+}
+
+.networks-child {
+    display: inline;
+    text-align: center;
+    position: relative;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.copyright {
+    width: 20%;
+    margin: auto;
+    font-size: 12px;
+}

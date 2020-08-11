@@ -1,0 +1,10 @@
+Use case Transport
+ cote pettSitter 
+**PettSitter
+- Apres que le premiere enregistrement soit finaliser
+*le pettSitter dois saissir d'autre Info de verification 
+ *Si les services de base sont accepter on passe a la finalisation du compte 
+sinon
+le compte sera fermer 
+** Cote Propriaitere 
+apres avoir ete accepter il insert les infos de son annimal et il finalise sont enregistrement 

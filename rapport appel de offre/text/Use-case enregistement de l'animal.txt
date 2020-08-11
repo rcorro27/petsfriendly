@@ -1,0 +1,5 @@
+USE - CASE :Enregistrement de l'animal par lle proprietaire  
+Cas d'utilisation  : 
+*Suite a l'enregistrement du prorietaire 
+* si l'enregistrement est valider 
+==> le proprietaire passe a l'enregistrement de son animal de compagnie (nom,age,Race...) ;

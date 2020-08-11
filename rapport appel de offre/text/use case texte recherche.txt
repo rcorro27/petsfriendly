@@ -1,0 +1,12 @@
+Use Case  : Rechercher par critere 
+
+Apres  la phase d'inscription  un  proprietaire  peut acceder  a son profil et au menu de recherche 
+des PetSitter  , il peut faire une recherche selon plusieurs criteres  soit par  localisation  , ca 
+veut dire que le propritaire peut filtrer les resultats et afficher seulement  les  PetSitter  qui
+ ont dans la  zonne geographique precise,
+ou un filtre par Ratting   et les feedbacks recu par des clients precedants 
+aussi  un filtre par disponnibilite et le planing du petSitter
+
+Si le systeme trouve des petSitter qui respecte les conditions de  filtre dans la base de donnee ,il les 
+affichent
+Sinon il affiche un message  comme quoi il exeste personne  disponnible .
