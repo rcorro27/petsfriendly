@@ -10,7 +10,7 @@ public class RechercheManager {
 
 
 
-    public static Service getService(Context context, boolean service_gardez_chez_sitter, boolean service_gardez_chez_proprietaire, boolean service_promenade, boolean type_chien, boolean type_chat, String date_debut_contrat, String date_fin_contrat, String adresse_proprietaire) throws JSONException {
+    public static void getService(Context context, boolean service_gardez_chez_sitter, boolean service_gardez_chez_proprietaire, boolean service_promenade, boolean type_chien, boolean type_chat, String date_debut_contrat, String date_fin_contrat, String adresse_proprietaire) throws JSONException {
 
         Service serviceDeBase = null;
         String jsonStringDuServeur = "";
@@ -38,7 +38,8 @@ public class RechercheManager {
             e.printStackTrace();
         }
 
-        return serviceDeBase;
+
+
     }
 
 
