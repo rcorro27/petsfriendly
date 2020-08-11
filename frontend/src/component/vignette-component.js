@@ -30,16 +30,13 @@ import React from 'react'
 
 const VignetteComponent = ({ urlPhoto, className, name, secteurAction, onClick, classInput, classInput2 }) => (
 
-    <div>
+    <div className={className}>
+        <img className='img-fluid img-thumbnail' src={urlPhoto} alt={urlPhoto} />
+        <h2 onClick={onClick} className='mx-auto'>{name}</h2>
+        <p className='mx-auto'>{secteurAction}</p>
+        <button type='button' className={classInput}>Aimer </button>
+        <button type='button' className={classInput2}> Envoyer une demande </button>
 
-        <div className={className}>
-            <img src={urlPhoto} alt={urlPhoto} />
-            <h2 onClick={onClick}>{name}</h2>
-            <p>{secteurAction}</p>
-            <button type='button' className={classInput}>Aimer </button>
-            <button type='button' className={classInput2}> Envoyer une demande </button>
-
-        </div>
     </div>
 
 )

@@ -39,9 +39,9 @@ class ResultatRecherchePetsitter extends Component {
         */
         return (
             <div>
-                <div>
+                <div className='row'>
 
-                    {this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} name={resultat.nom} secteurAction={resultat.secteur_action} className='resultatRechercheDiv' key={index} onClick={this.handleAfficherSitterOnClick} classInput='fas fa-heart' classInput2='fas fa-paper-plane' />)}
+                    {this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} name={resultat.nom} secteurAction={resultat.secteur_action} className='col-lg-4' key={index} onClick={this.handleAfficherSitterOnClick} classInput='fas fa-heart btn btn-outline-danger mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' />)}
 
                 </div>
 
