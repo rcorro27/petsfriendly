@@ -1,8 +1,17 @@
 /*css a ajouter
 */
 
+.img-caroussel {
+    height: 100vh;
+}
+
 .navbar {
     background: rgba(203, 50, 50, 0.71);
+}
+
+.avatarIcon {
+    width: 200px;
+    clip-path: ellipse(50% 50%);
 }
 
 .name {
