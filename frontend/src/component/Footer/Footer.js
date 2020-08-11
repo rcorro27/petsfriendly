@@ -18,10 +18,10 @@ class Footer extends Component {
 
                         <div className='col-md-2 mx-auto'>
 
-                            <div class='view overlay z-depth-1-half'>
-                                <img src='src/img/logo.png' class='img-fluid' alt='' />
+                            <div className='view overlay z-depth-1-half'>
+                                <img src='src/img/logo.png' className='img-fluid' alt='' />
                                 <a href=''>
-                                    <div class='mask rgba-white-light' />
+                                    <div className='mask rgba-white-light' />
                                 </a>
                             </div>
 
