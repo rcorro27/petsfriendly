@@ -41,7 +41,7 @@ class ResultatRecherchePetsitter extends Component {
             <div>
                 <div>
 
-                    {this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} name={resultat.nom} secteurAction={resultat.secteur_action} className='resultatRechercheDiv' key={index} onClick={this.handleAfficherSitterOnClick} />)}
+                    {this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} name={resultat.nom} secteurAction={resultat.secteur_action} className='resultatRechercheDiv' key={index} onClick={this.handleAfficherSitterOnClick} classInput='fas fa-heart' classInput2='fas fa-paper-plane' />)}
 
                 </div>
 

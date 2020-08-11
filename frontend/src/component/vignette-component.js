@@ -28,7 +28,7 @@ import React from 'react'
 
 // EVENEMENT BUTTON A AJOTER LIGNE 36
 
-const VignetteComponent = ({ urlPhoto, className, name, secteurAction, onClick }) => (
+const VignetteComponent = ({ urlPhoto, className, name, secteurAction, onClick, classInput, classInput2 }) => (
 
     <div>
 
@@ -36,7 +36,8 @@ const VignetteComponent = ({ urlPhoto, className, name, secteurAction, onClick }
             <img src={urlPhoto} alt={urlPhoto} />
             <h2 onClick={onClick}>{name}</h2>
             <p>{secteurAction}</p>
-            <button className='far fa-heart' />
+            <button type='button' className={classInput}>Aimer </button>
+            <button type='button' className={classInput2}> Envoyer une demande </button>
 
         </div>
     </div>
@@ -45,3 +46,5 @@ const VignetteComponent = ({ urlPhoto, className, name, secteurAction, onClick }
 
 export default VignetteComponent
 // {buttons.map((button, index) => <span key={index}><button onClick={button.handleOnClick}>{button.label}</button></span>)}
+// far fa-heart
+// fas fa-paper-plane
