@@ -76,6 +76,9 @@ public class ApiUtilisateurFetcher extends AsyncTask<String, Nullable, String> {
 
         BufferedReader rd = new BufferedReader(isr);
 
+        String in = "";
+        JSON
+
         try {
             while ((rLine = rd.readLine()) != null) {
                 answer.append(rLine);
