@@ -1,13 +1,12 @@
-// import React, { useState } from 'react'
+
 import { Button, Modal } from 'react-bootstrap'
-// import ConnectionPopUp from '../container/connection-container'
-// import InscriptionPopUp from './popup-inscription'
-// import { Link, withRouter } from 'react-router-dom'
+
 import { login } from '../fonctions/UserFunctions'
 
 import React, { Component } from 'react'
 import InscriptionContainer from '../container/inscription-container'
 import ModalContainer from '../container/modal-container'
+import RecherchePetsitter from '../container/recherchepetsitter-container'
 
 export default class NavbarLinks extends Component {
     constructor (props) {
@@ -112,7 +111,8 @@ export default class NavbarLinks extends Component {
                     })
                     this.onHandleClose()
 
-                    console.log('test', this.state.users.utilisateur.nom)
+                    console.log('Object', JSON.parse(localStorage.getItem('usertoken')))
+
                     this.setState({ userName: this.state.users.utilisateur.nom })
                 }
             })
@@ -135,7 +135,13 @@ export default class NavbarLinks extends Component {
         const userLink = (
             <ul className='navbar-nav ml-auto'>
                 <li className='nav-item active'>
-                    <a className='nav-link'>{this.state.userName}</a>
+                    <a className='navbar-brand' href='#'>
+                        <img className='rounded-circle' src='src/img/avatar.jpg' width='30' height='30' />
+                    </a>
+                </li>
+
+                <li className='nav-item active'>
+                    <a className='nav-link'> {localStorage.usertoken ? JSON.parse(localStorage.getItem('usertoken')).utilisateur.nom : ''}</a>
 
                 </li>
                 <li className='nav-item active'>
