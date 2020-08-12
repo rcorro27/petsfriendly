@@ -1,55 +1,64 @@
-import '../../footer.css'
-import React from 'react'
+import React, { Component } from 'react'
+import '../../../src/footer.css'
+
 import ListNetworks from '../../container/list-network-container'
-import ImgComposant from '../img-composant'
 
-function Footer () {
-    return (
-        <div className='footer'>
-            <section>
+import FooterLinks from '../footer-links'
 
-                <div className='footer-header'>
+class Footer extends Component {
+    render () {
+        const li1 = ['Connexion', 'Mon profil', 'Mes favoris', 'Tableau de bord']
+        const li2 = ['A propos de nous', 'Condition d utilisation', 'Confidentialite', 'Nous contacter']
+        return (
+            <footer className='page-footer font-small mt-5'>
 
-                    <div className='logo-container'>
+                <div className='container text-center text-md-left'>
 
-                        <img id='logoImg' src='src/img/logo.png' alt='logo' width='100px' height='200px' />
+                    <div className='row'>
 
-                    </div>
+                        <div className='col-md-2 mx-auto'>
 
-                    <div className='link-container'>
-                        <div className='link-1'>
-
-                            <a href=''>Mon Compte</a>
-                            <a href=''>Connexion</a>
-
-                        </div>
-
-                        <div className='link-2'>
-
-                            <a href=''>A Propos</a>
-                            <a href=''>Nous Contacter</a>
+                            <div className='view overlay z-depth-1-half'>
+                                <img src='src/img/logo.png' className='img-fluid' alt='' width='100vh' height='150vh' />
+                                <a href=''>
+                                    <div className='mask rgba-white-light' />
+                                </a>
+                            </div>
 
                         </div>
 
-                        <div className='link-3'>
+                        <hr className='clearfix w-100 d-md-none' />
 
-                            <ImgComposant srcIMG='src/img/icon_reseaux/Paiement_Logo.png' classBo='' />
+                        <hr className='clearfix w-100 d-md-none' />
+
+                        <FooterLinks divClass='col-md-2 mx-auto' classH='font-weight-bold text-uppercase mt-3 mb-4' classUl='list-unstyled' titre='Vous' li={li1} />
+
+                        <hr className='clearfix w-100 d-md-none' />
+                        <FooterLinks divClass='col-md-2 mx-auto' classH='font-weight-bold text-uppercase mt-3 mb-4' classUl='list-unstyled' titre='A propos de Pets Friendly' li={li2} />
+                        <div className='col-md-2'>
+
+                            <div className='view overlay z-depth-1-half'>
+                                <img src='src/img/icon_reseaux/Paiement_Logo.png' className='img-fluid' alt='' />
+
+                            </div>
 
                         </div>
-
                     </div>
 
                 </div>
+
+                <hr />
+
                 <ListNetworks />
-            </section>
 
-            <div className='copyright'>
-                <p>Copyright© 2020-2021 Best-Shop Inc. Tous droits réservés</p>
-            </div>
+                <div className='footer-copyright text-center py-3'>© 2020 Copyright:
 
-        </div>
+                </div>
 
-    )
+            </footer>
+
+        )
+    }
 }
 
 export default Footer

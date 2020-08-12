@@ -28,24 +28,20 @@ import React from 'react'
 
 // EVENEMENT BUTTON A AJOTER LIGNE 36
 
-const VignetteComponent = ({ urlPhoto, className, name, secteurAction }) => (
+const VignetteComponent = ({ urlPhoto, className, nom, secteurAction, onClickProfil, classInput, classInput2, onClickEnvoyer, textBoutonProfil, textBoutonEnvoyer }) => (
 
-    <div>
+    <div className={className}>
+        <img className='img-fluid img-thumbnail' src={urlPhoto} alt={urlPhoto} />
+        <h2 className='mx-auto'>{nom}</h2>
+        <p className='mx-auto'>{secteurAction}</p>
+        <button type='button' onClick={onClickProfil} className={classInput}>{textBoutonProfil} </button>
+        <button type='button' onClick={onClickEnvoyer} className={classInput2}>{textBoutonEnvoyer}</button>
 
-        <img className={className} src={urlPhoto} alt={urlPhoto} />
-        <div>
-            <ol>
-                <li>
-                    <h2>{name}</h2>
-                    <p>{secteurAction}</p>
-                    <button className='far fa-heart' />
-                </li>
-
-            </ol>
-        </div>
     </div>
 
 )
 
 export default VignetteComponent
 // {buttons.map((button, index) => <span key={index}><button onClick={button.handleOnClick}>{button.label}</button></span>)}
+// far fa-heart
+// fas fa-paper-plane

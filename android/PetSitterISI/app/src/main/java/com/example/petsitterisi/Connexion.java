@@ -9,16 +9,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.EditText;
 
-import com.example.petsitterisi.Manager.ConnexionManager;
+import com.example.petsitterisi.managers.ConnexionManager;
 
 public class Connexion extends Activity {
 
     TextView top_textView;
     Button connexion_button;
     Context ctx;
-    TextView e_mail;
-    TextView mot_de_passe;
+    EditText e_mail;
+    EditText mot_de_passe;
     BottomNavigationBar bottomNavigationBar = null;
 
     @Override
@@ -41,6 +42,8 @@ public class Connexion extends Activity {
             @Override
             public void onClick(View v) {
                Intent intent = new Intent(ctx, BottomNavigationBar.class);
+                intent.putExtra("email", e_mail.getText().toString());
+                intent.putExtra("mot_de_passe", mot_de_passe.getText().toString());
                startActivity(intent);
 
 

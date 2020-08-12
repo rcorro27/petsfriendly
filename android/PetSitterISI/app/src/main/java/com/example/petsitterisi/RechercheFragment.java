@@ -19,6 +19,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.petsitterisi.services.ApiRechercheFetcher;
+
+import java.io.InputStream;
 import java.util.Calendar;
 
 public class RechercheFragment extends Fragment {
@@ -26,6 +29,7 @@ public class RechercheFragment extends Fragment {
     DatePickerDialog picker;
     EditText eText;
     EditText eText_2;
+    public static EditText test_reponse;
     Context ctx;
     Button boutton_rechercher;
 
@@ -35,6 +39,7 @@ public class RechercheFragment extends Fragment {
 
         final View monFragmentRecherche = inflater.inflate(R.layout.fragment_recherche, container, false);
         ctx = monFragmentRecherche.getContext();
+        test_reponse= (EditText) monFragmentRecherche.findViewById(R.id.test_reponse_recherche);
         eText = (EditText) monFragmentRecherche.findViewById(R.id.editText1);
         eText.setInputType(InputType.TYPE_NULL);
         eText.setOnClickListener(new View.OnClickListener() {
@@ -76,16 +81,34 @@ public class RechercheFragment extends Fragment {
                         }, year, month, day);
                 picker.show();
 
+
             }
         });
-        boutton_rechercher = monFragmentRecherche.findViewById(R.id.btn_rechercher);
 
+//        public void getJson (){
+//
+//            String json:
+//            try {
+//                InputStream is = getAssets();
+//
+//            } catch (Exception e) {
+//
+//                e.printStackTrace();
+//            }
+//        }
+
+        boutton_rechercher = monFragmentRecherche.findViewById(R.id.btn_rechercher);
 
         boutton_rechercher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ctx, CardPetSitter.class);
-                startActivity(intent);
+//                Intent intent = new Intent(ctx, CardPetSitter.class);
+//                startActivity(intent);
+
+                ApiRechercheFetcher test_recuperation_reponse = new ApiRechercheFetcher();
+                test_recuperation_reponse.execute();
+
+
             }
         });
 

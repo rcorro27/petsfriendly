@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS utilisateur
  mot_de_passe varchar(50) NOT NULL,
  sexe varchar(25) NULL,
  id_adresse int NULL,
- telephone char(10) NULL CHECK (telephone like '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),
+ telephone char(10) NULL CHECK (telephone ~ '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),
  secteur_action double precision NULL,
  url_photo varchar(100) NULL,
  est_disponible boolean NULL DEFAULT TRUE,

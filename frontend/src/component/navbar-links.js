@@ -1,12 +1,12 @@
-// import React, { useState } from 'react'
+
 import { Button, Modal } from 'react-bootstrap'
-import ConnectionPopUp from '../container/connection-container'
-// import InscriptionPopUp from './popup-inscription'
-// import { Link, withRouter } from 'react-router-dom'
+
 import { login } from '../fonctions/UserFunctions'
 
 import React, { Component } from 'react'
 import InscriptionContainer from '../container/inscription-container'
+import ModalContainer from '../container/modal-container'
+import RecherchePetsitter from '../container/recherchepetsitter-container'
 
 export default class NavbarLinks extends Component {
     constructor (props) {
@@ -23,7 +23,7 @@ export default class NavbarLinks extends Component {
         this.onHandleChangePass = this.onHandleChangePass.bind(this)
         this.handleShow = this.handleShow.bind(this)
         this.handleShowInsc = this.handleShowInsc.bind(this)
-        this.handleClose = this.handleClose.bind(this)
+        this.onHandleClose = this.onHandleClose.bind(this)
         this.handleCloseInsc = this.handleCloseInsc.bind(this)
 
         this.onHandleChangeAndEnter = this.onHandleChangeAndEnter.bind(this)
@@ -41,7 +41,7 @@ export default class NavbarLinks extends Component {
         })
     }
 
-    handleClose () {
+    onHandleClose () {
         this.setState({
             show: false
         })
@@ -67,7 +67,7 @@ export default class NavbarLinks extends Component {
                 this.setState({
                     users: res
                 })
-                this.handleClose()
+                this.onHandleClose()
 
                 console.log('test', this.state.users.utilisateur.nom)
                 this.setState({ userName: this.state.users.utilisateur.nom })
@@ -109,9 +109,10 @@ export default class NavbarLinks extends Component {
                     this.setState({
                         users: res
                     })
-                    this.handleClose()
+                    this.onHandleClose()
 
-                    // console.log('test', this.state.users.utilisateur.nom)
+                    console.log('Object', JSON.parse(localStorage.getItem('usertoken')))
+
                     this.setState({ userName: this.state.users.utilisateur.nom })
                 }
             })
@@ -134,7 +135,13 @@ export default class NavbarLinks extends Component {
         const userLink = (
             <ul className='navbar-nav ml-auto'>
                 <li className='nav-item active'>
-                    <a className='nav-link'>{this.state.userName}</a>
+                    <a className='navbar-brand' href='#'>
+                        <img className='rounded-circle' src='src/img/avatar.jpg' width='30' height='30' />
+                    </a>
+                </li>
+
+                <li className='nav-item active'>
+                    <a className='nav-link'> {localStorage.usertoken ? JSON.parse(localStorage.getItem('usertoken')).utilisateur.nom : ''}</a>
 
                 </li>
                 <li className='nav-item active'>
@@ -148,22 +155,12 @@ export default class NavbarLinks extends Component {
         return (
             <div className='collapse navbar-collapse' id='navbarResponsive'>
                 {localStorage.usertoken ? userLink : loginRegLink}
-                <Modal show={this.state.show} onHide={this.handleClose}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Page Connexion</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <ConnectionPopUp FonctionEntrer={this.onHandleChangeAndEnter} />
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant='secondary' onClick={this.handleClose}>
-                            Annuler
-                        </Button>
-                        <Button variant='primary' onClick={this.onSubmit.bind(this)}>
-                            Se connecter
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
+                <ModalContainer
+                    show={this.state.show}
+                    HandleChangeAndEnter={this.onHandleChangeAndEnter} HandleChangePass={this.onHandleChangePass}
+                    HandleChangeName={this.onHandleChangeName} handleClose={this.onHandleClose} onSubmitt={this.onSubmit.bind(this)}
+                />
+
                 <Modal show={this.state.showInscription} onHide={this.handleCloseInsc}>
                     <Modal.Header closeButton>
                         <Modal.Title>Page Inscription</Modal.Title>
