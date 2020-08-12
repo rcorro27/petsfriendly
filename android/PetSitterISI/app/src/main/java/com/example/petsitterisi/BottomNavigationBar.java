@@ -33,9 +33,6 @@ public class BottomNavigationBar extends FragmentActivity {
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        intent = getIntent();
-        String email = intent.getStringExtra("email");
-        String motDePasse = intent.getStringExtra("mot_de_passe");
         ctx = this;
         super.onCreate(savedInstanceState);
         //cacher temporairement  la bare d'etat du haut
@@ -50,8 +47,6 @@ public class BottomNavigationBar extends FragmentActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new RechercheFragment()).commit();
         }
-        ConnexionManager.getUtilisateur(ctx, email, motDePasse);
-
 
     }
 

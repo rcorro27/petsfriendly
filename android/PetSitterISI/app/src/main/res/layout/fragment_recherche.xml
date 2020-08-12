@@ -46,21 +46,12 @@
                             android:text="Saisir les informations du contrat"
                             android:textColor="@color/white" />
                     </LinearLayout>
-                    <EditText
-                        android:id="@+id/test_reponse_recherche"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:layout_weight="5"
-                        android:layout_gravity="center"
-                        android:hint="REPONSE RECHERCHE" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:layout_marginTop="50dp">
-
-
 
 
 

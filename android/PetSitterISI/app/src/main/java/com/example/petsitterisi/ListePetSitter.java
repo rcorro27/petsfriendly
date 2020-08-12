@@ -10,11 +10,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,7 +28,7 @@ public class ListePetSitter extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-ctx = this;
+        ctx = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_liste_pet_sitter);
         ll = findViewById(R.id.card_container);
@@ -41,8 +36,6 @@ ctx = this;
 
 getJson(ll);
     }
-
-
 
 
 
@@ -82,8 +75,6 @@ getJson(ll);
                  }
 
             }
-
-
 
 
 
