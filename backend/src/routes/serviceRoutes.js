@@ -4,6 +4,14 @@ const router = express.Router()
 //les fonctions de callback 
 const serviceController = require('../controllers/serviceController')
 
+//route pour requete post pour ajouter un service
+router.post('/ajout', serviceController.serviceAjout)
+
+//route pour requete post pour ajouter un service a un petsitter
+router.post('/ajout/petsitter', serviceController.serviceAjoutAPetsitter)
+
+//route pour requete post pour modifier un service
+router.put('/modification', serviceController.serviceModification)
 
 //route pour requete get pour recuperer tout les services
 router.get('/recuperation/tout', serviceController.serviceRecuperationTout)

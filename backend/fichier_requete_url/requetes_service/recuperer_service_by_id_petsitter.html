@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Requette - Ajouter_Service</title>
+<title>Requette - Recuperer_Service</title>
 
 <style>
 	h1 
@@ -35,25 +35,14 @@
 </head>
 
 <body>
-			<h1>Requette - Ajouter_Service</h1>
+			<h1>Requette - Recuperer_Service</h1>
 
-	<h2>Methode : <span>POST</span></h2>
+	<h2>Methode : <span>GET</span></h2>
 	
-	<h2>Url : <span>localhost:80/ajout</span></h2> 
+	<h2>Url : <span>localhost:80/services/recuperation/utilisateur/</span></h2> 
 	
 	<h2>Parametre : </h2>
-	<h3>Json {<br/>
-		<div class="bloc_json">
-		"service" : {
-		<div class="bloc_json">
-				"description_service": ,<br/>
-				"prix_service": ,<br/>
-				}<br/>
-		</div>
-		
-		}<br/>
-		</div>
-	}</h3>
+	<h3>/:id</h3>
 	
 	<h2>Reponse : </h2>
 	<h3>Json {<br/>
@@ -61,7 +50,7 @@
 		"service" : {
 		<div class="bloc_json">
 				"id": ,<br/>
-				"description_service": ,<br/>
+				"description": ,<br/>
 				"prix_service": ,<br/>
 				}<br/>
 		</div>
