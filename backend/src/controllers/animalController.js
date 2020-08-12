@@ -25,8 +25,8 @@ function animalAjout(req, res) {// pas ajouter id pcq auto increment de la bd
 
 //la fonction appelee par la route modification d'animal
 function animalModification(req, res) {
-    //########################################## A FAIRE ###########################################//
-    let sql = "update animal set column1 = value1, value2,value3 etc. where id = $1"
+    //########################################## A VERIFIER ###########################################//
+    let sql = "update animal set $1 = $2 where id = $3"
 
     bd.excuterRequete(sql, [req.body.id])
         .then(resultatRequete => {
@@ -37,7 +37,7 @@ function animalModification(req, res) {
         .catch(erreur => {
             console.error(erreur.stack)
 
-            res.setHeader('COntent-Type', 'text/html');
+            res.setHeader('Content-Type', 'text/html');
             res.end(erreur.stack)
         })
 }
