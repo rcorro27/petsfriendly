@@ -28,7 +28,7 @@ public class ListePetSitter extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-ctx = this;
+        ctx = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_liste_pet_sitter);
         ll = findViewById(R.id.card_container);
@@ -36,8 +36,6 @@ ctx = this;
 
 getJson(ll);
     }
-
-
 
 
 
@@ -77,8 +75,6 @@ getJson(ll);
                  }
 
             }
-
-
 
 
 

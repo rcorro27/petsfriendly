@@ -44,6 +44,7 @@ public class Connexion extends Activity {
             @Override
             public void onClick(View v) {
 
+<<<<<<< HEAD
                 if(!e_mail.getText().toString().equals("") && !mot_de_passe.getText().toString().equals("")) {
 
                     Toast.makeText(ctx, "Loading...", Toast.LENGTH_SHORT).show();
@@ -57,6 +58,21 @@ public class Connexion extends Activity {
                 }
 
 
+=======
+
+                String email = e_mail.getText().toString();
+                String motDePasse = mot_de_passe.getText().toString();
+
+                ConnexionManager.getUtilisateur(ctx, email, motDePasse, error);
+
+               Intent intent = new Intent(ctx, BottomNavigationBar.class);
+                intent.putExtra("email", e_mail.getText().toString());
+                intent.putExtra("mot_de_passe", mot_de_passe.getText().toString());
+
+
+               startActivity(intent);
+
+>>>>>>> c662567e94782f7e69b187138458017b33ca2fae
 
 
             }
