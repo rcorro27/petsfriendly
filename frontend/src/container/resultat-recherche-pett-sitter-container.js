@@ -38,16 +38,28 @@ class ResultatRecherchePetsitter extends Component {
     }
 
     render () {
-        /*    this.state.resultat.map((petsitter) => {
-            console.log(petsitter.url_photo)
-        })
-        */
-        console.log(this.state.resultat)
-        console.log(this.props.info)
+        const service = [
+            {
+                id: 1,
+                description: 'Promenade',
+                prix_service: 20
+            },
+            {
+                id: 2,
+                description: 'Garder Chez Vous',
+                prix_service: 15
+            },
+            {
+                id: 3,
+                description: 'Garder Chez Pet Sitter',
+                prix_service: 20
+            }
+
+        ]
         return (
             <div>
                 <div className='row'>
-                    {this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} secteurAction={resultat.secteur_action} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' services={this.props.info} />)}
+                    {this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} rating={resultat.rating} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' servicesTotal={service} servicesSitter={resultat.services} />)}
                 </div>
                 <button onClick={this.props.onHandleSaveOnClick}>retour recherche</button>
             </div>
