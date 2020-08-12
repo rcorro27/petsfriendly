@@ -1,6 +1,7 @@
 {
     "contrat" :
     {
+        "id":1,
         "id_facture":1,
         "date_debut": "18/10/2020",
         "date_fin": "20/10/2020",
