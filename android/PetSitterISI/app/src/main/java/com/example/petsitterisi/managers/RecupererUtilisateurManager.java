@@ -12,8 +12,7 @@ public class RecupererUtilisateurManager {
 
     public static void getUtilisateur(Context context, int id) {
 
-        //creation du Json
-        JSONObject connexionJson = new JSONObject();
+
         try {
 
             //connexion a l'Api

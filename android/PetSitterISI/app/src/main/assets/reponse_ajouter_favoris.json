@@ -1,0 +1,18 @@
+{
+    "favoris" : {
+        "favoris1": {
+            "id": 1,
+            "id_petsitter":1,
+            "id_proprietaire":1,
+        }
+        "favoris2": {
+            "id": 2,
+            "id_pet_sitter":2,
+            "id_proprietaire":2,
+        }
+    }
+}
+
+
+
+
