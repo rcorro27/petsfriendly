@@ -43,23 +43,20 @@ public class Connexion extends Activity {
         connexion_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-<<<<<<< HEAD
 
-                String email = e_mail.getText().toString();
-                String motDePasse = mot_de_passe.getText().toString();
+                if(!e_mail.getText().toString().equals("") && !mot_de_passe.getText().toString().equals("")) {
 
-                ConnexionManager.getUtilisateur(ctx, email, motDePasse, error);
-=======
-               Intent intent = new Intent(ctx, BottomNavigationBar.class);
-                intent.putExtra("email", e_mail.getText().toString());
-                intent.putExtra("mot_de_passe", mot_de_passe.getText().toString());
+                    Toast.makeText(ctx, "Loading...", Toast.LENGTH_SHORT).show();
+                    String email = e_mail.getText().toString();
+                    String motDePasse = mot_de_passe.getText().toString();
 
-                // Set error text
-                passwordLayout.error = getString(R.string.error)
-                // Clear error text
-                passwordLayout.error = null
-               startActivity(intent);
->>>>>>> 2f4bd3eccacfb72772330c3de96f5fc06530a86d
+                    ConnexionManager.getUtilisateur(ctx, error, email, motDePasse);
+
+                }else{
+                    Toast.makeText(ctx, "Veuillez remplire les champ", Toast.LENGTH_SHORT).show();
+                }
+
+
 
 
             }

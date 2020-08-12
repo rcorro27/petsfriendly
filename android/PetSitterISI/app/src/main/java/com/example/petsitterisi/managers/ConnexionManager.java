@@ -12,22 +12,16 @@ import org.json.JSONObject;
 public class ConnexionManager {
 
 
-    public static void getUtilisateur(Context context, String mail, String mot_de_passe, TextView error) {
+    public static void getUtilisateur(Context context, TextView error, String email, String mot_de_passe) {
 
         //creation du Json
         JSONObject connexionJson = new JSONObject();
         try {
-            connexionJson.put("email", mail);
-            connexionJson.put("mot_de_passe",  mot_de_passe);
-            //connexion a l'Api
-<<<<<<< HEAD
-            ApiUtilisateurFetcher apiFetcher = new ApiUtilisateurFetcher(context, error);
-=======
-            ApiUtilisateurFetcher apiFetcher = new ApiUtilisateurFetcher(context);
->>>>>>> 2f4bd3eccacfb72772330c3de96f5fc06530a86d
-            apiFetcher.execute("https://pets-friendly.herokuapp.com/utilisateurs/connexion", connexionJson.toString());
+            ApiUtilisateurFetcher apiFetcher = new ApiUtilisateurFetcher(context, error, email, mot_de_passe);
 
-        }catch (JSONException e) {
+            apiFetcher.execute("https://pets-friendly.herokuapp.com/utilisateurs/connexion");
+
+        }catch (Exception e) {
             e.printStackTrace();
         }
 
