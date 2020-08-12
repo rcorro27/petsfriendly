@@ -25,16 +25,10 @@ import java.util.Iterator;
 public class ApiServicesFetcher extends AsyncTask<String, Nullable, String> {
 
     private Context  context;
-    TextView error;
-    String email;
-    String mot_de_passe;
 
 
-    public ApiServicesFetcher(Context  context, TextView error, String email, String mot_de_passe) {
+    public ApiServicesFetcher(Context  context) {
         this.context = context;
-        this.email = email;
-        this.mot_de_passe = mot_de_passe;
-        this.error = error;
     }
 
     @Override
@@ -52,15 +46,6 @@ public class ApiServicesFetcher extends AsyncTask<String, Nullable, String> {
             urlConnection.setRequestProperty("Content-Type", "application/json");
             urlConnection.connect();
 
-            JSONObject connexionJson = new JSONObject();
-
-                connexionJson.put("email", email);
-                connexionJson.put("mot_de_passe",  mot_de_passe);
-
-            DataOutputStream wr = new DataOutputStream(urlConnection.getOutputStream());
-            wr.writeBytes(connexionJson.toString());
-            wr.flush();
-            wr.close();
 
             int codeRetour = urlConnection.getResponseCode();
 
@@ -97,21 +82,6 @@ public class ApiServicesFetcher extends AsyncTask<String, Nullable, String> {
             while(itr.hasNext()) {
                 String key = itr.next();
 
-                if(key.equals("utilisateur")){
-
-                    JSONObject utilisateurJson = jsonObjectDuServeur.getJSONObject(key);
-                    String id = utilisateurJson.getString("id");
-
-                    UtilisateurManager.addIdUtilisateur(context, Integer.parseInt(id));
-
-                    Intent intent = new Intent(context, BottomNavigationBar.class);
-                    context.startActivity(intent);
-
-                }else if(key.equals("erreur")){
-                    error.setText("Erreur d'email et de mot passe");
-                }
-
-                //l'object json
 
             }
 

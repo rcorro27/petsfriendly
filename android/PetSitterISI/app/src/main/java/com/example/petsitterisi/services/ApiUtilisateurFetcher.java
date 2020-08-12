@@ -106,6 +106,8 @@ public class ApiUtilisateurFetcher extends AsyncTask<String, Nullable, String> {
                     JSONObject utilisateurJson = jsonObjectDuServeur.getJSONObject(key);
                     String id = utilisateurJson.getString("id");
 
+                    ApiServicesFetcher apiServicesFetcher  = new ApiServicesFetcher(context);
+                    apiServicesFetcher.execute("https://pets-friendly.herokuapp.com/services/recuperation/tout");
                     UtilisateurManager.addIdUtilisateur(context, Integer.parseInt(id));
 
                     Intent intent = new Intent(context, BottomNavigationBar.class);
