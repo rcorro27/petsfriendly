@@ -13,29 +13,18 @@ public class ConnexionManager {
 
 
     public static void getUtilisateur(Context context, TextView error, String email, String mot_de_passe) {
-
-        //creation du Json
-        JSONObject connexionJson = new JSONObject();
         try {
-<<<<<<< HEAD
+
             ApiUtilisateurFetcher apiFetcher = new ApiUtilisateurFetcher(context, error, email, mot_de_passe);
 
             apiFetcher.execute("https://pets-friendly.herokuapp.com/utilisateurs/connexion");
 
         }catch (Exception e) {
-=======
-            connexionJson.put("email", mail);
-            connexionJson.put("mot_de_passe",  mot_de_passe);
-            //connexion a l'Api
 
-            ApiUtilisateurFetcher apiFetcher = new ApiUtilisateurFetcher(context, error);
-
-            apiFetcher.execute("https://pets-friendly.herokuapp.com/utilisateurs/connexion", connexionJson.toString());
-
-        }catch (JSONException e) {
->>>>>>> 8b3c7d8fe793e8291cc6691b7ebef865085fe14d
             e.printStackTrace();
+
         }
+
 
     }
 
