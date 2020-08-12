@@ -1,0 +1,19 @@
+{
+    "contrat" :
+    {
+        "id_facture":1,
+        "date_debut": "18/10/2020",
+        "date_fin": "20/10/2020",
+        "est_accepte": true,
+        "est_termine": false,
+        "est_lu_proprietaire": true,
+        "est_lu_petSitter": true,
+        "est_lu_disponible": true,
+        "encore_disponible":false,
+        "date_creation":"17/10/2020"
+    }
+}
+
+
+
+
