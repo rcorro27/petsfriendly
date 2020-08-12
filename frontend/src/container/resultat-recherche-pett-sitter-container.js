@@ -50,7 +50,7 @@ class ResultatRecherchePetsitter extends Component {
                 prix_service: 15
             },
             {
-                id: 1,
+                id: 3,
                 description: 'Garder Chez Pet Sitter',
                 prix_service: 20
             }
@@ -59,7 +59,7 @@ class ResultatRecherchePetsitter extends Component {
         return (
             <div>
                 <div className='row'>
-                    {this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} rating={resultat.rating} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' servicesSitter={service} services={resultat.services} />)}
+                    {this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} rating={resultat.rating} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' servicesTotal={service} servicesSitter={resultat.services} />)}
                 </div>
                 <button onClick={this.props.onHandleSaveOnClick}>retour recherche</button>
             </div>
