@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import PetSitterInput from 'component/PetSitterInput'
 
-class profilPettSitter extends Component {
+class ProfilDemandePettSitter extends Component {
     render () {
         return (
             // AHMED CHAQUE ELEMENT JSX DOIT AVOIR UNE ELEMENT PARENT ( ce ca le div qui envelope tout le restes)
@@ -34,4 +34,4 @@ class profilPettSitter extends Component {
     }
 }
 // tu ne exporte pas la bon classe!!! tu dois exporter la classe container dans ce cas la : FormInscription!!
-export default profilPettSitter
+export default ProfilDemandePettSitter

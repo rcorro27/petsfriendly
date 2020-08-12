@@ -108,8 +108,21 @@ class RecherchePetsitter extends Component {
             label: 'Crocodile',
             value: 'Crocodile'
         }]
+        const infosServices = [{
+            service: 'Garder Chez le Proprietaire',
+            price: 10
+        }, {
+            service: 'Garder chez le Pet Sitter',
+            price: 8
+        }, {
+            service: 'Promenade',
+            price: 15
+        }, {
+            service: 'Toilletage',
+            price: 20
+        }]
 
-        console.log(this.state.garderChezPetsitter)
+        console.log('apres le render', this.state.garderChezPetsitter)
         console.log(this.state.garderChezVous)
         console.log(this.state.promenade)
         console.log(this.state.dateDebut)
@@ -150,7 +163,7 @@ class RecherchePetsitter extends Component {
                     </form>
                 </div>
                 {/* <button onClick={this.handleAddOnClick}>RECHERCHE RESULTAT</button>
-*/}                 {this.state.resultatRecherche ? <ResultatRecherchePetsitter onHandleSaveOnClick={this.handleSaveOnClick} testData={this.state.nomRue} /> : ''}
+*/}                 {this.state.resultatRecherche ? <ResultatRecherchePetsitter onHandleSaveOnClick={this.handleSaveOnClick} info={infosServices} /> : ''}
                 <div id='divPlubicite2'>
                     <h1 className='w-50 p-3 mx-auto'>Des Services Sur mesure pour un Animal d'exeption </h1>
 

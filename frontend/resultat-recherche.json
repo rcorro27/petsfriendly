@@ -9,7 +9,14 @@
             "id_adresse": 552,
             "telephone": 5554555445,
             "secteur_action": "rosemont",
-            "url_photo": "../src/img/caroussel/image1.jpeg"
+            "url_photo": "../src/img/caroussel/image1.jpeg",
+            "services": [
+                1,
+                2,
+                3,
+                4
+            ],
+            "rating": 5
         },
         {
             "id": "426",
