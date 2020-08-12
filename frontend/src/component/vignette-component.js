@@ -28,11 +28,17 @@ import React from 'react'
 
 // EVENEMENT BUTTON A AJOTER LIGNE 36
 
-const VignetteComponent = ({ urlPhoto, className, nom, secteurAction, onClickProfil, classInput, classInput2, onClickEnvoyer, textBoutonProfil, textBoutonEnvoyer }) => (
+const VignetteComponent = ({ urlPhoto, className, nom, secteurAction, onClickProfil, classInput, classInput2, onClickEnvoyer, textBoutonProfil, textBoutonEnvoyer, services }) => (
 
     <div className={className}>
         <img className='img-fluid img-thumbnail' src={urlPhoto} alt={urlPhoto} />
         <h2 className='mx-auto'>{nom}</h2>
+        {console.log(services)}
+        <ul>
+
+            {services.map((infos, index) => <li key={index}> {infos.service}{''}{infos.price}{''}<i className='fas fa-dollar-sign' /></li>)}
+
+        </ul>
         <p className='mx-auto'>{secteurAction}</p>
         <button type='button' onClick={onClickProfil} className={classInput}>{textBoutonProfil} </button>
         <button type='button' onClick={onClickEnvoyer} className={classInput2}>{textBoutonEnvoyer}</button>
