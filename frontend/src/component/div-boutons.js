@@ -5,7 +5,8 @@ const DivBoutons = ({ classCss, titre }) => {
     return (
         <div className={classCss}>
 
-            <Button variant='light'>{titre}</Button>
+            <Button variant='danger mt-3'>{titre}</Button>
+            <p className='text-light'>En savoir plus </p>
 
         </div>
     )

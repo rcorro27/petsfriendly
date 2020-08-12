@@ -7,7 +7,6 @@ import ResultatRecherchePetsitter from 'container/resultat-recherche-pett-sitter
 import Navbar from '../container/navbar-container'
 import Footer from '../component/Footer/Footer'
 import '../css/test.css'
-import car from '../img/image_site/images/Dogs_Cats_Rabbits_504758.jpg'
 
 class RecherchePetsitter extends Component {
     constructor (props) {

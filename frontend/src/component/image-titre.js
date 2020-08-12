@@ -3,8 +3,8 @@ import React from 'react'
 
 const ImageTitre = ({ classDiv, src, classCss, titre }) => (
     <div className={classDiv}>
-        <img src={src} className={classCss} width='140' height='140' />
-        <h3>{titre}</h3>
+        <img src={src} className={classCss} width='200' height='200' />
+        <p className='justify-content-center'>{titre}</p>
     </div>
 )
 

@@ -33,13 +33,23 @@ class FormContainer extends Component {
                     <Navbar />
                     <main id='divContainer'>
                         <CarouselContainer />
-                        <Title titre1='titre 1 ' titre2='titre 2 ' />
-                        <SpanComponent divClass='test' text='test ' />
-                    </main>
-                    <div className='block'>
 
-                        {this.state.titres.map((text, index) => <DivBoutons classCss='light' titre={text.titreBtn} key={index} />)}
+                        <div className='block'>
+
+                            <span
+                                className='SpanTitre'
+                            >Nous considerons votre Animal Comme un membre De notre Famille
+                            </span>
+                        </div>
+
+                    </main>
+
+                    <div className='row bg-dark'>
+
+                        {this.state.titres.map((text, index) => <DivBoutons classCss='col-lg-4 text-center ' titre={text.titreBtn} key={index} />)}
+
                     </div>
+
                     <ImageTitreComposant />
                     <Footer />
                 </div>
