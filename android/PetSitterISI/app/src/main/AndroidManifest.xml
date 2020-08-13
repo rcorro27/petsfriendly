@@ -15,12 +15,12 @@
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".AlertDialogReservation" />
         <activity android:name=".AjouterUnAnimal" />
-        <activity android:name=".ListePetSitter" />
+        <activity android:name=".CardPetSitter" />
         <activity android:name=".Filtres" />
         <activity android:name=".ProfilPetSitter" />
         <activity android:name=".BottomNavigationBar" />
         <activity android:name=".Connexion" />
-        <activity android:name=".CardPetSitter">
+        <activity android:name=".ListePetSitter">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

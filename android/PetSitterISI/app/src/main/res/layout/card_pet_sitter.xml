@@ -124,12 +124,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_weight="7"
+                    android:layout_weight="3"
                     android:layout_marginLeft="10dp"
                     android:minHeight="55dp">
 
 
-                    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                    <Button
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -143,7 +143,8 @@
                         android:theme="@style/MyMaterialTheme"
                         android:gravity="center"/>
 
-                    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+
+                    <Button
                         android:id="@+id/reservervation_liste_pet_sitter"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -157,6 +158,8 @@
                         android:textColor="@color/white"
                         android:theme="@style/MyMaterialTheme"
                         android:gravity="center"/>
+
+
 
 
 
