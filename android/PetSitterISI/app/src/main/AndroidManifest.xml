@@ -13,13 +13,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ListePetSitter"></activity>
+        <activity android:name=".MainActivity"></activity>
         <activity android:name=".AjouterUnAnimal" />
         <activity android:name=".Filtres" />
         <activity android:name=".ProfilPetSitter" />
         <activity android:name=".BottomNavigationBar" />
         <activity android:name=".Connexion" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ListePetSitter">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

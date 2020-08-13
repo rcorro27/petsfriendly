@@ -2,6 +2,7 @@ package com.example.petsitterisi.services;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.view.View;
 import android.widget.Button;
@@ -32,11 +33,13 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
 
     private Context  context;
     LinearLayout ll;
+    SharedPreferences sharedpreferences;
 
 
     public ApiListPetSitterFetcher(Context  context, LinearLayout llParam) {
         this.context = context;
         this.ll = llParam;
+        sharedpreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
     }
 
     @Override
@@ -81,6 +84,23 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
                         View cardPetSitterParam = View.inflate(context , R.layout.card_pet_sitter,null);
                         TextView petSitterName = cardPetSitterParam.findViewById(R.id.name);
                         petSitterName.setText(jsObject.getString("nom"));
+
+                        JSONArray petSitterServiceStringArray = jsObject.getJSONArray("services");
+
+                        for(int k = 0; k <  petSitterServiceStringArray.length(); k++){
+                            String idService = petSitterServiceStringArray.getString(k);
+
+                            String descriptionService = sharedpreferences.getString("description_service_"+idService, null);
+                            String prixService = sharedpreferences.getString("prix_service_"+idService, null);
+
+
+                        }
+
+
+
+
+
+
                         ll.addView(cardPetSitterParam);
 
                         ExtendedFloatingActionButton reservation = cardPetSitterParam.findViewById(R.id.reservation);
