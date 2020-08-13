@@ -1,7 +1,7 @@
 import React from 'react'
 //* import ImgComposant from 'img-composant'
 
-const VignetteComponent = ({ urlPhoto, className, nom, rating, onClickProfil, classInput, classInput2, onClickEnvoyer, textBoutonProfil, textBoutonEnvoyer, servicesSitter, servicesTotal }) => (
+const VignetteComponent = ({ urlPhoto, className, nom, rating, onClickProfil, classInput, classInput2, onClickEnvoyer, textBoutonProfil, textBoutonEnvoyer, servicesSitter, servicesTotal, id }) => (
 
     <div className={className}>
         <img className='img-fluid img-thumbnail' src={urlPhoto} alt={urlPhoto} />
@@ -10,13 +10,13 @@ const VignetteComponent = ({ urlPhoto, className, nom, rating, onClickProfil, cl
             {/* ul  a sortir dans une autre function */}
             {servicesSitter.map((infos, index) => {
                 // infos - 1 est egal a lindex ou ca se trouve dans la constante services
-                return <li key={index} className='list-group-item list-group-item-danger'>{servicesTotal[infos - 1].description} {servicesTotal[infos - 1].prix_service}</li>
+                return <li key={index} className='list-group-item list-group-item-danger'>{servicesTotal[infos - 1].description} {servicesTotal[infos - 1].prix_service}<i className='fas fa-dollar-sign' /></li>
             })}
 
         </ul>
         <p className='mx-auto'>{rating}</p>
-        <button type='button' onClick={onClickProfil} className={classInput}>{textBoutonProfil} </button>
-        <button type='button' onClick={onClickEnvoyer} className={classInput2}>{textBoutonEnvoyer}</button>
+        <button type='button' name={id} onClick={onClickProfil} className={classInput}>{textBoutonProfil} </button>
+        <button type='button' name={id} onClick={onClickEnvoyer} className={classInput2}>{textBoutonEnvoyer}</button>
     </div>
 
 )

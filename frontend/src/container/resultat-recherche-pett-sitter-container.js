@@ -29,12 +29,12 @@ class ResultatRecherchePetsitter extends Component {
     }
 
     handleAfficherSitterOnClick (event) {
-        alert('Profil sitter a afficher ')
-        console.log('evenement declencher', event.target)
+        alert('Profil sitter a afficher ' + event.target.name)
+        console.log('evenement declencher', event.target.name)
     }
 
     handleEnvoyerDemandeOnClick (event) {
-        alert('demande envoyer')
+        alert('demande envoyer' + event.target.name)
     }
 
     render () {
@@ -59,7 +59,7 @@ class ResultatRecherchePetsitter extends Component {
         return (
             <div>
                 <div className='row'>
-                    {this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} rating={resultat.rating} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' servicesTotal={service} servicesSitter={resultat.services} />)}
+                    {this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} rating={resultat.rating} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' servicesTotal={service} servicesSitter={resultat.services} id={resultat.id} />)}
                 </div>
                 <button onClick={this.props.onHandleSaveOnClick}>retour recherche</button>
             </div>
