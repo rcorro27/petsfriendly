@@ -158,13 +158,13 @@ public class RechercheFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if(garde_chez_petsitteSate != garde_chez_vousSate){
+             //   if(garde_chez_petsitteSate != garde_chez_vousSate){
 
-                    if(garde_chez_petsitteSate )
+            //        if(garde_chez_petsitteSate )
 
-                }else{
+         //       }else{
 
-                }
+          //      }
 
 
 

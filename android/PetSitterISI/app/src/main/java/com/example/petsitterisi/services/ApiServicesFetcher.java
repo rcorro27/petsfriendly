@@ -1,34 +1,34 @@
 package com.example.petsitterisi.services;
 
 import android.content.Context;
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
-import com.example.petsitterisi.BottomNavigationBar;
-import com.example.petsitterisi.managers.UtilisateurManager;
-
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class ApiServicesFetcher extends AsyncTask<String, Nullable, String> {
 
     private Context  context;
+    SharedPreferences sharedpreferences;
 
 
     public ApiServicesFetcher(Context  context) {
         this.context = context;
+        sharedpreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
     }
 
     @Override
@@ -40,9 +40,9 @@ public class ApiServicesFetcher extends AsyncTask<String, Nullable, String> {
 
 
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setDoOutput(true);
+            urlConnection.setDoOutput(false);
             urlConnection.setDoInput(true);
-            urlConnection.setRequestMethod("POST");
+            urlConnection.setRequestMethod("GET");
             urlConnection.setRequestProperty("Content-Type", "application/json");
             urlConnection.connect();
 
@@ -74,21 +74,33 @@ public class ApiServicesFetcher extends AsyncTask<String, Nullable, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
+
+        JSONArray jsonArray = null;
         try {
-            JSONObject jsonObjectDuServeur = new JSONObject(s);
+            jsonArray = new JSONArray(s);
 
-            //Recuperateion des nom des enfants JsonObject
-            Iterator<String> itr = jsonObjectDuServeur.keys();
-            while(itr.hasNext()) {
-                String key = itr.next();
+            for(int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = (JSONObject) jsonArray.get(i);
 
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+
+                String idService = jsonObject.getString("id");
+                editor.putString("id_"+idService, idService);
+
+                String descriptionService = jsonObject.getString("description_service");
+                editor.putString("description_service_"+idService, descriptionService);
+
+                String prixService = jsonObject.getString("prix_service");
+                editor.putString("prix_service_"+idService, prixService);
 
             }
-
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+
+
 
 
     }

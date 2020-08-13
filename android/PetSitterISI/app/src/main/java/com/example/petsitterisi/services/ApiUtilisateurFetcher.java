@@ -94,6 +94,8 @@ public class ApiUtilisateurFetcher extends AsyncTask<String, Nullable, String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         try {
+
+
             JSONObject jsonObjectDuServeur = new JSONObject(s);
 
             //Recuperateion des nom des enfants JsonObject
@@ -105,10 +107,11 @@ public class ApiUtilisateurFetcher extends AsyncTask<String, Nullable, String> {
 
                     JSONObject utilisateurJson = jsonObjectDuServeur.getJSONObject(key);
                     String id = utilisateurJson.getString("id");
+                    UtilisateurManager.addIdUtilisateur(context, Integer.parseInt(id));
 
+                    //Recuperation de tous les service depuis la base de donnee
                     ApiServicesFetcher apiServicesFetcher  = new ApiServicesFetcher(context);
                     apiServicesFetcher.execute("https://pets-friendly.herokuapp.com/services/recuperation/tout");
-                    UtilisateurManager.addIdUtilisateur(context, Integer.parseInt(id));
 
                     Intent intent = new Intent(context, BottomNavigationBar.class);
                     context.startActivity(intent);
