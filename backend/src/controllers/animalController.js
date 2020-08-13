@@ -3,9 +3,9 @@ const { Animal } = require('../models/animal')
 
 // GET = req.params. pcq dans url
 // POST req.body. 
-// une fonction
+
 //la fonction appelee par la route ajout d'animal   
-function animalAjout(req, res) {// pas ajouter id pcq auto increment de la bd
+function animalAjout(req, res) {
 
     //requete sql
     let sql = "INSERT INTO animal (race, type_animal, poids_animal, sexe_animal, nom_animal, age_animal, url_photo_animal, tarif_supplementaire) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9)"
@@ -26,7 +26,7 @@ function animalAjout(req, res) {// pas ajouter id pcq auto increment de la bd
 //la fonction appelee par la route modification d'animal
 function animalModification(req, res) {
     //########################################## A VERIFIER ###########################################//
-    let sql = "update animal set $1 = $2 where id = $3"
+    let sql = "update animal set race=$1, type_animal=$2, poids_animal=$3,sexe_animal=$4, nom_animal=$5,age_animal=$6,url_photo_animal=$7,tarif_supplementaire=$8"
 
     bd.excuterRequete(sql, [req.body.id])
         .then(resultatRequete => {
@@ -47,7 +47,7 @@ function animalModification(req, res) {
 function AnimalRecuperationByIdUtilisateur(req, res) {
 
     //reccupere l'utilisateur
-    let sql = "select * from utilisateur where id = $1"
+    let sql = "select * from utilisateur where id_proprietaire = $1"
 
     bd.excuterRequete(sql, [req.params.id])
         .then(resultatRequete => {
@@ -59,8 +59,11 @@ function AnimalRecuperationByIdUtilisateur(req, res) {
             }
             //avec l'id de l'utilisateur on reccupere animal_utilisateur
             reccupererAnimalUtilisateur(req.params.id)
-                .then(resultatRequete => {
+                .then(resultatRequeteAnimalUtilisateur => {
+                    //verifier si un resultat existe
 
+                    res.setHeader('Content-Type', 'application/json');
+                    res.end(JSON.stringify(resultatRequete.rows))
                 })
         })
         .catch(erreur => {
