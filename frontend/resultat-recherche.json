@@ -18,7 +18,7 @@
             "rating": 5
         },
         {
-            "id": "426",
+            "id": 426,
             "nom": "lola",
             "prenom": "palouze",
             "age": "26",
@@ -34,7 +34,7 @@
             "rating": 5
         },
         {
-            "id": "427",
+            "id": 427,
             "nom": "maria",
             "prenom": "martinez",
             "age": "27",
@@ -66,7 +66,7 @@
             "rating": 5
         },
         {
-            "id": "426",
+            "id": 426,
             "nom": "lola",
             "prenom": "palouze",
             "age": "26",
@@ -82,7 +82,7 @@
             "rating": 5
         },
         {
-            "id": "427",
+            "id": 427,
             "nom": "maria",
             "prenom": "martinez",
             "age": "27",
@@ -116,7 +116,7 @@
             "rating": 5
         },
         {
-            "id": "426",
+            "id": 426,
             "nom": "lola",
             "prenom": "palouze",
             "age": "26",
@@ -132,7 +132,7 @@
             "rating": 5
         },
         {
-            "id": "427",
+            "id": 427,
             "nom": "maria",
             "prenom": "martinez",
             "age": "27",
@@ -164,7 +164,7 @@
             "rating": 5
         },
         {
-            "id": "426",
+            "id": 426,
             "nom": "lola",
             "prenom": "palouze",
             "age": "26",
@@ -180,7 +180,7 @@
             "rating": 5
         },
         {
-            "id": "427",
+            "id": 427,
             "nom": "maria",
             "prenom": "martinez",
             "age": "27",

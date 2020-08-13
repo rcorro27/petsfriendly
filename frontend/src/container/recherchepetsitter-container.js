@@ -122,7 +122,7 @@ class RecherchePetsitter extends Component {
             price: 20
         }]
 
-        console.log('apres le render', this.state.garderChezPetsitter)
+        /* console.log('apres le render', this.state.garderChezPetsitter)
         console.log(this.state.garderChezVous)
         console.log(this.state.promenade)
         console.log(this.state.dateDebut)
@@ -132,7 +132,7 @@ class RecherchePetsitter extends Component {
         console.log(this.state.codePostal)
         console.log(this.state.typeAnimal)
         console.log(this.state.infolettre)
-
+*/
         // voir les dates dans le formulaire a chaque fois il y a des erreus dans la console qui pointe le fait de ne pas avoir la bonne valeur date.now??
         return (
 
