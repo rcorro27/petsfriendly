@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import VignetteComponent from 'component/vignette-component'
 import '../css/test.css'
-// import ListItemComponent from '../component/list-item-component'
-import ProfilPettSitter from '../container/profil-petsitter'
-// import ahrefComponent from 'component/ahref-component'
+
 class ResultatRecherchePetsitter extends Component {
     constructor (props) {
         super(props)
@@ -31,9 +29,6 @@ class ResultatRecherchePetsitter extends Component {
 
     handleAfficherSitterOnClick (event) {
         this.setState({ idUser: event.target.name })
-
-        // alert('Profil sitter a afficher ' + event.target.name)
-        // console.log('evenement declencher', event.target.name)
     }
 
     handleEnvoyerDemandeOnClick (event) {
