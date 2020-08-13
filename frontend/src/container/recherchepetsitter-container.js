@@ -3,9 +3,11 @@ import React, { Component } from 'react'
 import InputComponent from 'component/input-component'
 import SelectComponent from 'component/select-component'
 import ListItemComponent from 'component/list-item-component'
-import ResultatRecherchePetsitter from 'container/resultat-recherche-pett-sitter-container'
+// import ResultatRecherchePetsitter from 'container/resultat-recherche-pett-sitter-container'
 import Navbar from '../container/navbar-container'
 import Footer from '../component/Footer/Footer'
+import VignetteComponent from 'component/vignette-component'
+// import ProfilPettSitter from '../container/profil-petsitter'
 import '../css/test.css'
 
 class RecherchePetsitter extends Component {
@@ -27,7 +29,10 @@ class RecherchePetsitter extends Component {
             resultatRecherche: false,
             rechercher: false,
             infosRecherche: [],
-            username: ''
+            username: '',
+            recherche: false,
+            resultat: [],
+            idUser: ''
         }
 
         this.handleAddOnClick = this.handleAddOnClick.bind(this)
@@ -36,6 +41,19 @@ class RecherchePetsitter extends Component {
         this.handleChangeSelect = this.handleChangeSelect.bind(this)
         // this.handleClick = this.handleClick.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleAfficherSitterOnClick = this.handleAfficherSitterOnClick.bind(this)
+        this.handleEnvoyerDemandeOnClick = this.handleEnvoyerDemandeOnClick.bind(this)
+    }
+
+    componentDidMount () {
+        fetch('resultat-recherche.json', { method: 'GET' })
+            .then(response => response.json())
+            .then(response => {
+                const arrayTest = []
+                response.resultatRecherche.map((info, index) => arrayTest.push(info))
+
+                this.setState({ resultat: arrayTest })
+            })
     }
 
     handleChangeSelect (event) {
@@ -76,13 +94,6 @@ class RecherchePetsitter extends Component {
     handleSubmit (event) {
         this.setState({ resultatRecherche: true })
 
-        /*  if (this.state.username !== '') {
-            // envoie de requette
-        } else {
-
-            // envoie du pop up
-        } */
-        // alert('An essay was submitted: ' + JSON.stringify(this.state.promenade) + this.state.garderChezPetsitter)
         event.preventDefault()
     }
 
@@ -94,6 +105,17 @@ class RecherchePetsitter extends Component {
         this.setState({ resultatRecherche: false })
     }
 
+    handleAfficherSitterOnClick (event) {
+        this.setState({ idUser: event.target.name })
+
+        // alert('Profil sitter a afficher ' + event.target.name)
+        // console.log('evenement declencher', event.target.name)
+    }
+
+    handleEnvoyerDemandeOnClick (event) {
+        alert('demande envoyer' + event.target.name)
+    }
+
     render () {
         const TYPEANIMAL = [{
             label: 'Chien',
@@ -102,37 +124,27 @@ class RecherchePetsitter extends Component {
             label: 'Chat',
             value: 'Chat'
         }, {
-            label: 'Souris',
-            value: 'Souris'
-        }, {
-            label: 'Crocodile',
-            value: 'Crocodile'
+            label: 'Autre',
+            value: 'Autre'
         }]
-        const infosServices = [{
-            service: 'Garder Chez le Proprietaire',
-            price: 10
-        }, {
-            service: 'Garder chez le Pet Sitter',
-            price: 8
-        }, {
-            service: 'Promenade',
-            price: 15
-        }, {
-            service: 'Toilletage',
-            price: 20
-        }]
+        const service = [
+            {
+                id: 1,
+                description: 'Promenade',
+                prix_service: 20
+            },
+            {
+                id: 2,
+                description: 'Garder Chez Vous',
+                prix_service: 15
+            },
+            {
+                id: 3,
+                description: 'Garder Chez Pet Sitter',
+                prix_service: 20
+            }
 
-        /* console.log('apres le render', this.state.garderChezPetsitter)
-        console.log(this.state.garderChezVous)
-        console.log(this.state.promenade)
-        console.log(this.state.dateDebut)
-        console.log(this.state.dateFin)
-        console.log(this.state.numeroRue)
-        console.log(this.state.nomRue)
-        console.log(this.state.codePostal)
-        console.log(this.state.typeAnimal)
-        console.log(this.state.infolettre)
-*/
+        ]
         // voir les dates dans le formulaire a chaque fois il y a des erreus dans la console qui pointe le fait de ne pas avoir la bonne valeur date.now??
         return (
 
@@ -140,7 +152,7 @@ class RecherchePetsitter extends Component {
                 <Navbar />
                 <div id='divPublicite'>
                     <div className='w-50 p-3 mx-auto bg-secondary text-white'>
-                        <h1>Gagnez Temps et Tranquilite de d'esprit Recherchez ce qu'il vous faut on se occupe du reste </h1>
+                        <h1 className='h1'>Gagnez Temps et Tranquilite de d'esprit Recherchez ce qu'il vous faut on se occupe du reste </h1>
                     </div>
                 </div>
                 <h1 className='w-25 p-3 mx-auto'>Recherche Petsitter</h1>
@@ -149,31 +161,27 @@ class RecherchePetsitter extends Component {
                         <InputComponent classCss='form-check' classInput='form-form-check-input' labelClass='form-check-label' type='radio' textLabel='Garder Chez le PettSitter' id='garderChezPetsitter' name='gardeMaison' value={this.state.garderChezPetsitter} onChange={this.handleChange} />
                         <InputComponent classCss='form-check' classInput='form-form-check-input' labelClass='form-check-label' type='radio' textLabel='Garder chez vous' id='garderChezVous' name='gardeMaison' value={this.state.garderChezVous} onChange={this.handleChange} />
                         <InputComponent classCss='form-check' classInput='form-form-check-input' labelClass='form-check-label' type='checkbox' textLabel='Promenade' id='promenade' name='Promenade' value={this.state.promenade} onChange={this.handleChange} />
-
                         <InputComponent classCss='form-group' classInput='form-control' textLabel='Date de debut' type='date' id='dateDebut' name='dateDebut' onChange={this.handleChange} />
                         <InputComponent classCss='form-group' classInput='form-control' textLabel='Date de fin' type='date' id='dateFin' name='dateFin' onChange={this.handleChange} />
-
                         <InputComponent classCss='form-group' classInput='form-control' textLabel='Numero' type='number' id='numeroRue' name='numero' min={0} onChange={this.handleChange} />
                         <InputComponent classCss='form-group' classInput='form-control' textLabel='Nom de la rue' type='text' id='nomRue' name='nom de la rue' onChange={this.handleChange} />
                         <InputComponent classCss='form-group' classInput='form-control' textLabel='Code postal' type='text' id='secteurAction' name='secteurAction' onChange={this.handleChange} />
-
                         <SelectComponent classCss='form-group' classInput='form-control' textLabel='Type de animal:' id='typeAnimal' name='TypeAnimal' options={TYPEANIMAL} onChange={this.handleChangeSelect} value={this.state.typeAnimal} />
-
                         <InputComponent classInput='btn btn-outline-danger' type='submit' id='rechercher' name='Rechercher ' value='rechercher' />
                     </form>
                 </div>
-                {/* <button onClick={this.handleAddOnClick}>RECHERCHE RESULTAT</button>
-*/}                 {this.state.resultatRecherche ? <ResultatRecherchePetsitter onHandleSaveOnClick={this.handleSaveOnClick} info={infosServices} /> : ''}
+                <div className='row'>
+                    {this.state.resultatRecherche ? this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} rating={resultat.rating} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' servicesTotal={service} servicesSitter={resultat.services} id={resultat.id} />) : ''}
+                    <button onClick={this.handleSaveOnClick}>retour recherche</button>
+                </div>
                 <div id='divPlubicite2'>
-                    <h1 className='w-50 p-3 mx-auto'>Des Services Sur mesure pour un Animal d'exeption </h1>
-
+                    <h1 className='w-50 p-3 mx-auto h1'>Des Services Sur mesure pour un Animal d'exeption </h1>
                     <div className='row divAnnonce'>
                         <div className='col-lg-4 mx-auto border border-danger rounded'>
                             <ListItemComponent text='Faite garder votre animal a votre domicile ou celui du Pett Sitter' />
                             <ListItemComponent text='Partez a votre rendez vous sans vous soucier de la promenade de votre chien' />
                             <ListItemComponent text='Besoin de flexibilite? Choisisez les horraires et periodes qui vous conviennent' />
                         </div>
-
                         <div className='col-lg-4 mx-auto border border-danger rounded'>
                             {/* METTRE UN ICONE DANS LAVANT DE LES LI POUR LA PUBLICITER */}
                             <ListItemComponent text='Tout les nouveaux gardiens passent une verification des antecedents de base' />
@@ -183,8 +191,8 @@ class RecherchePetsitter extends Component {
                     </div>
                 </div>
                 <div className='infolettreDiv mt-3'>
-                    <h1>Laisse nous vous prevenir des nouveautes</h1>
-                    <h6>Reste informe</h6>
+                    <h1 className='h1'>Laisse nous vous prevenir des nouveautes</h1>
+                    <h6 className='h6'>Reste informe</h6>
                     <form>
                         <InputComponent classCss='form-group' classInput='form-control' textLabel='Entrez votre email' type='email' id='infolettre' name='infolettre' onChange={this.handleChange} />
                         <InputComponent classInput='btn btn-outline-danger' type='submit' id='infolettreButton' name='Envoyer ' value='Envoyer' />

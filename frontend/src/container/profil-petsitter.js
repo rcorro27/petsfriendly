@@ -17,8 +17,8 @@ class ProfilPettSitter extends Component {
 
                 <form id='petSitterpopups'>
                     <p>Message</p>
-                    <div class='texteArea'>
-                        <InputComponent text='pettesitter' type='TEXTAREA' id='message' name='message' value='message' />
+                    <div className='texteArea'>
+                        {/* <InputComponent text='pettesitter' type='TEXTAREA' id='message' name='message' value='message' /> */}
 
                     </div>
                 </form>

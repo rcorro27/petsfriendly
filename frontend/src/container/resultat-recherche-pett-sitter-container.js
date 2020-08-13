@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import VignetteComponent from 'component/vignette-component'
 import '../css/test.css'
 // import ListItemComponent from '../component/list-item-component'
-
+import ProfilPettSitter from '../container/profil-petsitter'
 // import ahrefComponent from 'component/ahref-component'
 class ResultatRecherchePetsitter extends Component {
     constructor (props) {
@@ -10,7 +10,8 @@ class ResultatRecherchePetsitter extends Component {
 
         this.state = {
             recherche: false,
-            resultat: []
+            resultat: [],
+            idUser: ''
 
         }
         this.handleAfficherSitterOnClick = this.handleAfficherSitterOnClick.bind(this)
@@ -29,8 +30,10 @@ class ResultatRecherchePetsitter extends Component {
     }
 
     handleAfficherSitterOnClick (event) {
-        alert('Profil sitter a afficher ' + event.target.name)
-        console.log('evenement declencher', event.target.name)
+        this.setState({ idUser: event.target.name })
+
+        // alert('Profil sitter a afficher ' + event.target.name)
+        // console.log('evenement declencher', event.target.name)
     }
 
     handleEnvoyerDemandeOnClick (event) {
@@ -56,11 +59,14 @@ class ResultatRecherchePetsitter extends Component {
             }
 
         ]
+        // console.log(this.props.test)
         return (
+
             <div>
                 <div className='row'>
                     {this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} rating={resultat.rating} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' servicesTotal={service} servicesSitter={resultat.services} id={resultat.id} />)}
                 </div>
+
                 <button onClick={this.props.onHandleSaveOnClick}>retour recherche</button>
             </div>
         )
