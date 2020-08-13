@@ -5,7 +5,7 @@ import FormContainer from 'container/form-container'
 import RecherchePetsitter from 'container/recherchepetsitter-container'
 /* import FormInscription from 'container/form-inscription' */
 /* import ProfilProprietaireBord from 'container/profil-proprietair-containaire' */
-import FormFeedBack from './feed_back'
+import FormFeedBack from './feed-back'
 class ApplicationContainer extends Component {
     constructor (props) {
         super(props)

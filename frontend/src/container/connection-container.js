@@ -44,7 +44,7 @@ class ConnectionPopUp extends Component {
                                 </div>
                             </div>
                         </div>
-                        <label data-error='wrong' data-success='right' htmlFor='defaultForm-pass'>Ton mot de passe</label>
+                        <label data-error='wrong' data-success='right' htmlFor='defaultForm-pass'>Ton mot de passe</label>*
                     </div>
                 </div>
             </form>

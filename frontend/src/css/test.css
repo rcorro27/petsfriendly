@@ -165,3 +165,13 @@ body {
     height: 60vh;
     margin-top: 2%
 }
+
+button {
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: black;
+    display: inline-block;
+    font-size: 16px;
+    height: 100px;
+}
