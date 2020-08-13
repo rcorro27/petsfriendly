@@ -79,6 +79,7 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
                     String key = itr.next();
                     JSONArray newJsonArray = jsonObject.getJSONArray(key);
                     for(int j = 0; j < newJsonArray.length(); j++) {
+                        
                         JSONObject jsObject = newJsonArray.getJSONObject(j);
 
                         View cardPetSitterParam = View.inflate(context , R.layout.card_pet_sitter,null);
