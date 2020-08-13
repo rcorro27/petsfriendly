@@ -157,6 +157,7 @@ public class RechercheFragment extends Fragment {
         boutton_rechercher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+<<<<<<< HEAD
 //
 //                if(garde_chez_petsitteSate != garde_chez_vousSate){
 //
@@ -165,6 +166,16 @@ public class RechercheFragment extends Fragment {
 //                }else{
 //
 //                }
+=======
+
+             //   if(garde_chez_petsitteSate != garde_chez_vousSate){
+
+            //        if(garde_chez_petsitteSate )
+
+         //       }else{
+
+          //      }
+>>>>>>> mobile_android
 
 
 

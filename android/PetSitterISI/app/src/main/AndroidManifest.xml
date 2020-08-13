@@ -13,7 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"></activity>
+<<<<<<< HEAD
         <activity android:name=".AlertDialogReservation" />
+=======
+>>>>>>> mobile_android
         <activity android:name=".AjouterUnAnimal" />
         <activity android:name=".CardPetSitter" />
         <activity android:name=".Filtres" />

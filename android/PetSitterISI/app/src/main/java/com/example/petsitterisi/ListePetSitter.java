@@ -12,6 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.petsitterisi.services.ApiListPetSitterFetcher;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,7 +46,9 @@ public class ListePetSitter extends Activity {
         setContentView(R.layout.activity_liste_pet_sitter);
         ll = findViewById(R.id.card_container);
 
+        ApiListPetSitterFetcher apiListPetsitter = new ApiListPetSitterFetcher(ctx, ll);
 
+<<<<<<< HEAD
 getJson(ll);
     }
 
@@ -95,18 +99,10 @@ getJson(ll);
 
 
                      }
+=======
+        apiListPetsitter.execute();
+>>>>>>> mobile_android
 
-                 }
-
-            }
-
-
-
-
-        } catch (IOException | JSONException e) {
-            // Handle exceptions here
-
-        }
     }
 
     private void afficherAlertDialogReservation() {
@@ -125,10 +121,6 @@ getJson(ll);
         dialog_reservation.show();
 
     }
-
-
-
-
 
 
 
