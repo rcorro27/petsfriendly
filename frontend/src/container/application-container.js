@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import ToolbarComponent from 'component/toolbar-component'
 import FormContainer from 'container/form-container'
-import RecherchePetsitter from 'container/recherchepetsitter-container'
+// import RecherchePetsitter from 'container/recherchepetsitter-container'
 import ProfilDemandePettSitter from 'container/profil-demande-pettsitter'
 /* import FormInscription from 'container/form-inscription' */
 /* import ProfilProprietaireBord from 'container/profil-proprietair-containaire' */
