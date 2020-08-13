@@ -12,18 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
-<<<<<<< HEAD
+        <activity android:name=".ListePetSitter"></activity>
         <activity android:name=".AlertDialogReservation" />
-=======
->>>>>>> mobile_android
         <activity android:name=".AjouterUnAnimal" />
         <activity android:name=".CardPetSitter" />
         <activity android:name=".Filtres" />
         <activity android:name=".ProfilPetSitter" />
         <activity android:name=".BottomNavigationBar" />
         <activity android:name=".Connexion" />
-        <activity android:name=".ListePetSitter">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

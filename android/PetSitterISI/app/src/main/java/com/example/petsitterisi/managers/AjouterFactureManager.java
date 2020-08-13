@@ -11,16 +11,15 @@ public class AjouterFactureManager {
 
     public static void getFacture(Context context, int id_promotion, double prix) throws JSONException {
 
-        //creation du Json
-        JSONObject ajoutFacture = new JSONObject(); // Json principal qui contient 1 autre objet Json "uneFacture"
-        JSONObject uneFacture = new JSONObject(); // objet1 Json contenant la facture
-        ajoutFacture.put("facture", uneFacture);
-
 
         try {
 
-            uneFacture.put("id_promotion",id_promotion);
-            uneFacture.put("prix",prix);
+            //creation du Json
+        JSONObject ajoutFacture = new JSONObject(); // Json principal qui contient 1 autre objet Json "uneFacture"
+        JSONObject uneFacture = new JSONObject(); // objet1 Json contenant la facture
+        uneFacture.put("id_promotion",id_promotion);
+        uneFacture.put("prix",prix);
+        ajoutFacture.put("facture", uneFacture);
 
 
             //connexion a l'Api
