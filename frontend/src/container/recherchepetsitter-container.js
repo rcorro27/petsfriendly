@@ -117,16 +117,17 @@ class RecherchePetsitter extends Component {
     }
 
     render () {
-        const TYPEANIMAL = [{
-            label: 'Chien',
-            value: 'Chien '
-        }, {
-            label: 'Chat',
-            value: 'Chat'
-        }, {
-            label: 'Autre',
-            value: 'Autre'
-        }]
+        const TYPEANIMAL = [
+            {
+                label: 'Chien',
+                value: 'Chien '
+            }, {
+                label: 'Chat',
+                value: 'Chat'
+            }, {
+                label: 'Autre',
+                value: 'Autre'
+            }]
         const service = [
             {
                 id: 1,
