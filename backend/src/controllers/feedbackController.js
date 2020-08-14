@@ -1,7 +1,7 @@
 
 
 //la fonction appelee par la route ajout de feedback
-function feedbackAjout(req, res) {
+function feedbackAjout(req, res) { //returning * >> retourne ce que j<ai inserer dans la bd
 
     let sql = ""
 
@@ -20,10 +20,10 @@ function feedbackAjout(req, res) {
 //la fonction appelee par la route recupration de feedback avec l'id d'utilisateur
 function feedbackRecuperationByIdUtilisateur(req, res) {
 
-    let sql = ""
+    let sql = "" //requete contrat
 
     bd.excuterRequete(sql, [])
-        .then(resultatRequete => {
+        .then(resultatRequete => { //execute requete feedback
             res.setHeader('Content-Type', 'application/json')
             res.end(JSON.stringify(resultatRequete.rows))
         })
