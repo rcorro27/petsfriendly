@@ -194,7 +194,7 @@ function serviceRecuperationByIdPetsitter(req, res)
 function serviceSuppression(req, res)
 {
     let sql = "DELETE FROM service WHERE id=$1" 
- console.log("hete")
+
     //requete sql pour utilisateur
     bd.excuterRequete(sql, [req.params.id]) 
     .then(resultatRequeteSqlService => { 
