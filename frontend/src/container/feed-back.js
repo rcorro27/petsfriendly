@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import VignetteComponent from 'component/vignette-component'
+import VignettefeedBack from 'component/feed-back-component'
+import { FaStar } from 'React-icons/fa'
 // import Boutton from 'component/bouton-component'
 // import BoutonComponent from '../component/bouton-component'
 
@@ -8,6 +9,7 @@ class FormFeedBack extends Component {
         super(props)
 
         this.state = {
+
             count: 0,
             resultat: []
 
@@ -39,9 +41,7 @@ class FormFeedBack extends Component {
             <div>
                 <form id='form-feedBack'>
                     <div id='form-feedBack'>
-                        {this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} secteurAction={resultat.secteur_action} className='feedBack' onClickProfil={this.handleincrementMe.bind(this)} key={index} />)}
-
-                        <button type='button' onClickProfil={this.handleincrementMe.bind(this)}> like :{this.state.count} </button>
+                        {this.state.resultat.map((resultat, index) => <VignettefeedBack urlPhoto={resultat.url_photo} nom={resultat.nom} secteurAction={resultat.secteur_action} className='feedBack' onClickProfil={this.handleincrementMe.bind(this)} key={index} />)}
 
                     </div>
                 </form>
