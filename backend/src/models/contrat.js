@@ -77,3 +77,5 @@ class Contrat {
         this._date_creation = date_creation
     }
 }
+
+module.exports = Contrat

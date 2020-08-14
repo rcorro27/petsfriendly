@@ -1,51 +1,27 @@
 import React from 'react'
-// import ImgComposant from 'img-composant'
+//* import ImgComposant from 'img-composant'
 
-/* Json {
-"petsitter1" : {
-"id": ,
-"nom": ,
-"prenom": ,
-"age": ,
-"sexe": ,
-"id_adresse": ,
-"telephone": ,
-"secteur_action": ,
-"url_photo": ,
-}
-"petsitter2" : {
-"id": ,
-"nom": ,
-"prenom": ,
-"age": ,
-"sexe": ,
-"id_adresse": ,
-"telephone": ,
-"secteur_action": ,
-"url_photo": ,
-}
-} */
+const VignetteComponent = ({ urlPhoto, className, nom, rating, onClickProfil, classInput, classInput2, onClickEnvoyer, textBoutonProfil, textBoutonEnvoyer, servicesSitter, servicesTotal, id }) => (
 
-// EVENEMENT BUTTON A AJOTER LIGNE 36
+    <div className={className}>
+        <img className='img-fluid img-thumbnail' src={urlPhoto} alt={urlPhoto} />
+        <h2 className='mx-auto'>{nom}</h2>
+        <ul className='list-group'>
+            {/* ul  a sortir dans une autre function */}
+            {servicesSitter.map((infos, index) => {
+                // infos - 1 est egal a lindex ou ca se trouve dans la constante services
+                return <li key={index} className='list-group-item list-group-item-danger'>{servicesTotal[infos - 1].description} {servicesTotal[infos - 1].prix_service}<i className='fas fa-dollar-sign' /></li>
+            })}
 
-const VignetteComponent = ({ urlPhoto, className, name, secteurAction }) => (
-
-    <div>
-
-        <img className={className} src={urlPhoto} alt={urlPhoto} />
-        <div>
-            <ol>
-                <li>
-                    <h2>{name}</h2>
-                    <p>{secteurAction}</p>
-                    <button className='far fa-heart' />
-                </li>
-
-            </ol>
-        </div>
+        </ul>
+        <p className='mx-auto'>{rating}</p>
+        <button type='button' name={id} onClick={onClickProfil} className={classInput}>{textBoutonProfil} </button>
+        <button type='button' name={id} onClick={onClickEnvoyer} className={classInput2}>{textBoutonEnvoyer}</button>
     </div>
 
 )
 
 export default VignetteComponent
 // {buttons.map((button, index) => <span key={index}><button onClick={button.handleOnClick}>{button.label}</button></span>)}
+// far fa-heart
+// fas fa-paper-plane

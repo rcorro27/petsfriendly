@@ -3,7 +3,6 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.database.sqlite.SQLiteDatabase;
 
-
 import com.example.petsitterisi.sqliteHelper.PetHelper;
 
 import java.io.File;
@@ -13,9 +12,10 @@ import java.io.InputStream;
 public class ConnexionBd {
 
     private static int version = 1;
-    private static String nom = "appDBsqlite.db";
+    private static String nom = "titi";
     private static SQLiteDatabase bd;
     public static SQLiteDatabase getBd(Context context) {
+
         PetHelper petHelper = new PetHelper(context, nom, null, version);
         bd = petHelper.getWritableDatabase();
         return bd;
@@ -26,11 +26,11 @@ public class ConnexionBd {
 
     public static void copyBdFromAssets(Context context) {
         File bdApp = context.getDatabasePath(nom);
-//        if (!bdApp.exists()) getBd(context);
+        //if (!bdApp.exists()) getBd(context);
         //        Log.d("debugApp", bdApp.getPath());
         AssetManager assetManager = context.getAssets();
         try {
-            InputStream in = assetManager.open("bd/appDBsqlite.db");
+            InputStream in = assetManager.open("bd/pet_sitter.db");
             FileOutputStream out = new FileOutputStream(bdApp);
             byte[] buffer = new byte[256];
             while (in.read(buffer) != -1) {

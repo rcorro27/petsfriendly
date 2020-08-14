@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.petsitterisi">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,22 +13,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AjouterUnAnimal"></activity>
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".AjouterUnAnimal" />
         <activity android:name=".Filtres" />
-        <activity android:name=".Recherche_service_3" />
-        <activity android:name=".TableauBord" />
-        <activity android:name=".Planning" />
-        <activity android:name=".Paiement" />
-        <activity android:name=".Urgence" />
-        <activity android:name=".Feedback" />
-        <activity android:name=".Contact" />
-        <activity android:name=".Chat" />
-        <activity android:name=".ProfilProprietaire" />
         <activity android:name=".ProfilPetSitter" />
-        <activity android:name=".CreationProfil" />
         <activity android:name=".BottomNavigationBar" />
         <activity android:name=".Connexion" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ListePetSitter">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

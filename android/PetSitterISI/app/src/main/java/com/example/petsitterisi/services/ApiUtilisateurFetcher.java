@@ -2,56 +2,84 @@ package com.example.petsitterisi.services;
 
 import androidx.annotation.Nullable;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.petsitterisi.BottomNavigationBar;
+import com.example.petsitterisi.managers.UtilisateurManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Iterator;
 
 public class ApiUtilisateurFetcher extends AsyncTask<String, Nullable, String> {
 
-    String jsonStringDuServeur;
+    private Context  context;
+    TextView error;
+    String email;
+    String mot_de_passe;
 
-    public ApiUtilisateurFetcher(String jsonStringDuServeur) {
-        this.jsonStringDuServeur = jsonStringDuServeur;
+
+    public ApiUtilisateurFetcher(Context  context, TextView error, String email, String mot_de_passe) {
+        this.context = context;
+        this.email = email;
+        this.mot_de_passe = mot_de_passe;
+        this.error = error;
     }
 
     @Override
     protected String doInBackground(String... urls) {
-        String result = null;
+        String result = "";
 
         try {
-
             URL url = new URL(urls[0]);
+
+
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setDoOutput(false);
+            urlConnection.setDoOutput(true);
             urlConnection.setDoInput(true);
+            urlConnection.setRequestMethod("POST");
+            urlConnection.setRequestProperty("Content-Type", "application/json");
             urlConnection.connect();
 
-            urlConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-            urlConnection.setRequestMethod("POST");
+            JSONObject connexionJson = new JSONObject();
 
-            OutputStream os = urlConnection.getOutputStream();
-            os.write(urls[1].getBytes("UTF-8"));
+                connexionJson.put("email", email);
+                connexionJson.put("mot_de_passe",  mot_de_passe);
+
+            DataOutputStream wr = new DataOutputStream(urlConnection.getOutputStream());
+            wr.writeBytes(connexionJson.toString());
+            wr.flush();
+            wr.close();
 
             int codeRetour = urlConnection.getResponseCode();
+
             if (codeRetour == HttpURLConnection.HTTP_OK) {
-                String line;
+
                 BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+
+              String line = "";
                 while ((line = in.readLine()) != null)
                     result += line;
+
             }
 
         } catch (Exception ex) {
-
+            ex.printStackTrace();
         }
 
         return result;
@@ -65,6 +93,41 @@ public class ApiUtilisateurFetcher extends AsyncTask<String, Nullable, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
+        try {
+
+
+            JSONObject jsonObjectDuServeur = new JSONObject(s);
+
+            //Recuperateion des nom des enfants JsonObject
+            Iterator<String> itr = jsonObjectDuServeur.keys();
+            while(itr.hasNext()) {
+                String key = itr.next();
+
+                if(key.equals("utilisateur")){
+
+                    JSONObject utilisateurJson = jsonObjectDuServeur.getJSONObject(key);
+                    String id = utilisateurJson.getString("id");
+                    UtilisateurManager.addIdUtilisateur(context, Integer.parseInt(id));
+
+                    //Recuperation de tous les service depuis la base de donnee
+                    ApiServicesFetcher apiServicesFetcher  = new ApiServicesFetcher(context);
+                    apiServicesFetcher.execute("https://pets-friendly.herokuapp.com/services/recuperation/tout");
+
+                    Intent intent = new Intent(context, BottomNavigationBar.class);
+                    context.startActivity(intent);
+
+                }else if(key.equals("erreur")){
+                    error.setText("Erreur d'email et de mot passe");
+                }
+
+                //l'object json
+
+            }
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
     }
@@ -76,6 +139,9 @@ public class ApiUtilisateurFetcher extends AsyncTask<String, Nullable, String> {
         InputStreamReader isr = new InputStreamReader(is);
 
         BufferedReader rd = new BufferedReader(isr);
+
+        String in = "";
+
 
         try {
             while ((rLine = rd.readLine()) != null) {

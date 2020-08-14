@@ -1,0 +1,34 @@
+import React from 'react'
+
+// place holder a ajouter ???
+<<<<<<< HEAD
+const InputComponent = ({ text, type, id, name, value, min, onChange, className, classNameLabel }) => (
+    <div>
+        <label htmlFor={id} className={classNameLabel}>{text}</label>
+=======
+const InputComponent = ({ classCss, classIcon, classInput, type, id, name, value, min, onchange, textLabel }) => (
+    <div className={classCss}>
+        <i className={classIcon} />
+
+>>>>>>> front_end
+        <input
+            className={classInput}
+            type={type}
+
+            id={id}
+            name={name}
+            value={value}
+            min={min}
+<<<<<<< HEAD
+            onChange={onChange}
+            className={className}
+=======
+            onChange={onchange}
+>>>>>>> front_end
+        />
+        <label data-error='wrong' data-success='right' htmlFor={id}>{textLabel}</label>
+    </div>
+
+)
+
+export default InputComponent

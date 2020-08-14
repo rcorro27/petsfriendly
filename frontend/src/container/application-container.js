@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 
 import ToolbarComponent from 'component/toolbar-component'
 import FormContainer from 'container/form-container'
-import RecherchePetsitter from 'container/recherchepetsitter-container'
+// import RecherchePetsitter from 'container/recherchepetsitter-container'
+import ProfilDemandePettSitter from 'container/profil-demande-pettsitter'
 /* import FormInscription from 'container/form-inscription' */
-import ProfilProprietaireBord from 'container/profil-proprietair-containaire'
+/* import ProfilProprietaireBord from 'container/profil-proprietair-containaire' */
+import FormFeedBack from './feed_back'
 class ApplicationContainer extends Component {
     constructor (props) {
         super(props)
@@ -69,8 +71,8 @@ class ApplicationContainer extends Component {
                 <ToolbarComponent buttons={BUTTONSAHMED} />
                 <div>
                     {this.state.isFormOpenYahia ? <FormContainer onHandleSaveOnClickYahia={this.handleSaveOnClickYahia} /> : ''}
-                    {this.state.isFormOpenAhmed ? <ProfilProprietaireBord onHandleSaveOnClickAhmed={this.handleSaveOnClickAhmed} /> : ''}
-                    {this.state.isFormOpenRichard ? <RecherchePetsitter onHandleSaveOnClickRichard={this.handleSaveOnClickRichard} /> : ''}
+                    {this.state.isFormOpenAhmed ? <FormFeedBack onHandleSaveOnClickAhmed={this.handleSaveOnClickAhmed} /> : ''}
+                    {this.state.isFormOpenRichard ? <ProfilDemandePettSitter onHandleSaveOnClickRichard={this.handleSaveOnClickRichard} /> : ''}
 
                 </div>
             </div>
