@@ -115,7 +115,7 @@
                         android:layout_marginTop="20dp"
                         android:layout_weight="5"
                         android:gravity=""
-                        android:text="14.975$"
+                        android:text="5%"
                         android:textColor="@color/black"
                         android:textSize="15dp"
                         android:textStyle="bold" />
@@ -147,7 +147,7 @@
                         android:layout_marginTop="20dp"
                         android:layout_weight="5"
                         android:gravity=""
-                        android:text="9.975$"
+                        android:text="9.975%"
                         android:textColor="@color/black"
                         android:textSize="15dp"
                         android:textStyle="bold" />

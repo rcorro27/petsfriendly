@@ -196,20 +196,30 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
 
         dialog_reservation.setContentView(R.layout.activity_alert_dialog_reservation);
 
-        double prixHtTotal = 0;
+        double valeurTps = 0.05 ; // 5%
+        double valeurTvq = 0.09975; // 9,975%
+        float prixHT = 0 ;
+        float montantTps = (float) (prixHT * valeurTps);
+        float montantTvq = (float) (prixHT *valeurTvq);
+        float prixTotal = prixHT + montantTps + montantTvq;
 
         for(int i = 0; i < jsonServiceSelectionnerArray.length(); i++){
             JSONObject nouveauJsonObject = jsonServiceSelectionnerArray.getJSONObject(i);
             String prixService = nouveauJsonObject.getString("prixService");
-            prixHtTotal += Integer.parseInt(prixService);
+            prixHT += Integer.parseInt(prixService);
+            montantTps = (float) (prixHT * valeurTps);
+            montantTvq = (float) (prixHT *valeurTvq);
+            prixTotal = prixHT + montantTps + montantTvq;
+
+
         }
 
-
             prix_ht_facture = (TextView) dialog_reservation.findViewById(R.id.prix_ht_facture);
-            prix_ht_facture.setText(String.valueOf(prixHtTotal));
-            taxe_tps = (TextView) dialog_reservation.findViewById(R.id.taxe_tps);
-            taxe_tvq = (TextView) dialog_reservation.findViewById(R.id.taxe_tvq);
+            prix_ht_facture.setText(String.valueOf(prixHT));
+
             prix_ttc_facture = (TextView) dialog_reservation.findViewById(R.id.prix_ttc_facture);
+            prix_ttc_facture.setText(String.valueOf(prixTotal));
+
             appliquer_code_promo = (Button) dialog_reservation.findViewById(R.id.button_appliquer_code_promo);
             reservation_final = (Button) dialog_reservation.findViewById(R.id.reservervation_final);
             dialog_reservation.show();

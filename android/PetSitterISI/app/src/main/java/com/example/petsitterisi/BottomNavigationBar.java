@@ -31,6 +31,7 @@ public class BottomNavigationBar extends FragmentActivity {
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         |View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY); // cacher temporairement avec transparence
+
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
