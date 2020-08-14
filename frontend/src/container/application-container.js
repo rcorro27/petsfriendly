@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import ToolbarComponent from 'component/toolbar-component'
 import FormContainer from 'container/form-container'
-// import RecherchePetsitter from 'container/recherchepetsitter-container'
+import RecherchePetsitter from 'container/recherchepetsitter-container'
 import ProfilDemandePettSitter from 'container/profil-demande-pettsitter'
 /* import FormInscription from 'container/form-inscription' */
 /* import ProfilProprietaireBord from 'container/profil-proprietair-containaire' */
@@ -72,7 +72,7 @@ class ApplicationContainer extends Component {
                 <div>
                     {this.state.isFormOpenYahia ? <FormContainer onHandleSaveOnClickYahia={this.handleSaveOnClickYahia} /> : ''}
                     {this.state.isFormOpenAhmed ? <FormFeedBack onHandleSaveOnClickAhmed={this.handleSaveOnClickAhmed} /> : ''}
-                    {this.state.isFormOpenRichard ? <ProfilDemandePettSitter onHandleSaveOnClickRichard={this.handleSaveOnClickRichard} /> : ''}
+                    {this.state.isFormOpenRichard ? <RecherchePetsitter onHandleSaveOnClickRichard={this.handleSaveOnClickRichard} /> : ''}
 
                 </div>
             </div>
