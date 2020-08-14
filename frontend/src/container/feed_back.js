@@ -8,24 +8,25 @@ class FormFeedBack extends Component {
         super(props)
 
         this.state = {
-
+            count: 0,
             resultat: []
 
         }
+        this.handleincrementMe = this.handleincrementMe.bind(this)
     }
 
-    incrementMe () {
-        const newCount = this.state.count + 1
+    handleincrementMe () {
+        console.log('nombre de clik', this.state.count)
+        this.setState({ count: this.state.count + 1 })
 
-        this.setState({
-            count: newCount
-        })
+        // console.log('count', this.state.count)
     }
 
     componentDidMount () {
         fetch('resultat-recherche.json', { method: 'GET' })
             .then(response => response.json())
             .then(response => {
+                console.log('test', response)
                 console.log('test', response.resultatRecherche)
 
                 this.setState({ resultat: response.resultatRecherche })
@@ -38,7 +39,10 @@ class FormFeedBack extends Component {
             <div>
                 <form id='form-feedBack'>
                     <div>
-                        {this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} name={resultat.nom} secteurAction={resultat.secteur_action} className='' key={index} />)}
+                        {this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} secteurAction={resultat.secteur_action} className='feedBack' onClickProfil={this.handleincrementMe} key={index} />)}
+
+                        <VignetteComponent type='button'>like {this.state.cout}</VignetteComponent>
+
                     </div>
                 </form>
             </div>
