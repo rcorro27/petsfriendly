@@ -19,6 +19,9 @@ router.get('/recuperation/tout', serviceController.serviceRecuperationTout)
 //route pour requete get pour recuperer un service avec son id
 router.get('/recuperation/:id', serviceController.serviceRecuperationByIdService)
 
+//route pour requete get pour recuperer les service acceptes par un petsitter en utilisant son id
+router.get('/recuperation/petsitter/:id', serviceController.serviceRecuperationByIdPetsitter)
+
 //route pour requete get de suppression service by id
 router.delete('/suppression/:id', serviceController.serviceSuppression)
 
