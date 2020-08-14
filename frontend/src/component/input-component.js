@@ -1,7 +1,7 @@
 import React from 'react'
 
 // place holder a ajouter ???
-const InputComponent = ({ classCss, classIcon, classInput, type, id, name, value, min, onchange, textLabel, labelClass }) => (
+const InputComponent = ({ classCss, classIcon, classInput, type, id, name, value, min, onChange, textLabel, labelClass }) => (
     <div className={classCss}>
         <i className={classIcon} />
         <input
@@ -11,7 +11,7 @@ const InputComponent = ({ classCss, classIcon, classInput, type, id, name, value
             name={name}
             value={value}
             min={min}
-            onChange={onchange}
+            onChange={onChange}
         />
         <label className={labelClass} data-error='wrong' data-success='right' htmlFor={id}>{textLabel}</label>
     </div>

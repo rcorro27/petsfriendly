@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -19,6 +20,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.petsitterisi.services.ApiRechercheFetcher;
+import com.google.android.material.switchmaterial.SwitchMaterial;
+
+import java.io.InputStream;
 import java.util.Calendar;
 
 public class RechercheFragment extends Fragment {
@@ -26,8 +31,29 @@ public class RechercheFragment extends Fragment {
     DatePickerDialog picker;
     EditText eText;
     EditText eText_2;
+    EditText lieu;
+    SwitchMaterial garde_chez_petsitte;
+    SwitchMaterial garde_chez_vous;
+    SwitchMaterial promenade;
+    SwitchMaterial chien;
+    SwitchMaterial chat;
+    public static EditText test_reponse;
     Context ctx;
     Button boutton_rechercher;
+    int moisDebut;
+    int jourDebut;
+    int anneeDebut;
+
+    int moisFin;
+    int jourFin;
+    int anneeFin;
+
+    boolean garde_chez_petsitteSate = true;
+    boolean garde_chez_vousSate = false;
+    boolean promenadeState = false;
+    boolean chienState = true;
+    boolean chatState = false;
+    SharedPreferences sharedpreferences;
 
     @Nullable
     @Override
@@ -35,8 +61,26 @@ public class RechercheFragment extends Fragment {
 
         final View monFragmentRecherche = inflater.inflate(R.layout.fragment_recherche, container, false);
         ctx = monFragmentRecherche.getContext();
+        sharedpreferences = ctx.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         eText = (EditText) monFragmentRecherche.findViewById(R.id.editText1);
+        garde_chez_petsitte = monFragmentRecherche.findViewById(R.id.garde_chez_petsitter);
+        garde_chez_vous = monFragmentRecherche.findViewById(R.id.garde_chez_vous);
+        promenade = monFragmentRecherche.findViewById(R.id.promenade);
+        chien = monFragmentRecherche.findViewById(R.id.chien);
+        chat = monFragmentRecherche.findViewById(R.id.chat);
+        lieu = monFragmentRecherche.findViewById(R.id.lieu);
         eText.setInputType(InputType.TYPE_NULL);
+
+        //
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString("id_service_select", "1");
+        editor.commit();
+
+        editor.putString("service_animal_select", "Chien");
+        editor.commit();
+
+        //
+
         eText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,6 +93,9 @@ public class RechercheFragment extends Fragment {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                moisDebut = monthOfYear;
+                                jourDebut = dayOfMonth;
+                                anneeDebut = year;
                                 eText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                             }
                         }, year, month, day);
@@ -71,21 +118,119 @@ public class RechercheFragment extends Fragment {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                moisFin = monthOfYear;
+                                jourFin = dayOfMonth;
+                                anneeFin = year;
                                 eText_2.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                             }
                         }, year, month, day);
                 picker.show();
 
+
             }
         });
-        boutton_rechercher = monFragmentRecherche.findViewById(R.id.btn_rechercher);
 
+        String animal = "";
+
+        garde_chez_petsitte.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                garde_chez_petsitteSate = isChecked;
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                if(garde_chez_petsitteSate) {
+                    editor.putString("id_service_select", "1");
+                }
+                editor.commit();
+            }
+        });
+
+        garde_chez_vous.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                garde_chez_vousSate = isChecked;
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                if(garde_chez_vousSate) {
+                    editor.putString("id_service_select", "2");
+                }
+                editor.commit();
+            }
+        });
+
+        promenade.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                promenadeState = isChecked;
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                if(promenadeState){
+                    editor.putString("id_service_promenade_select", "3");
+                }else{
+                    editor.putString("id_service_promenade_select", "0");
+                }
+                editor.commit();
+            }
+        });
+
+        chien.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                chienState = isChecked;
+            }
+        });
+
+        chat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                chatState = isChecked;
+            }
+        });
+
+        boutton_rechercher = monFragmentRecherche.findViewById(R.id.btn_rechercher);
 
         boutton_rechercher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ctx, CardPetSitter.class);
-                startActivity(intent);
+
+                boolean continutionEtat1 = false;
+                boolean continutionEtat2 = false;
+                String animal = "";
+
+                if(garde_chez_petsitteSate != garde_chez_vousSate){
+
+                    continutionEtat1 = true;
+
+                }else{
+                    continutionEtat1 = false;
+                          Toast.makeText(ctx, "Veuillez selectionnez omoins 1 service", Toast.LENGTH_LONG).show();
+                }
+
+                if(chienState != chatState){
+                    continutionEtat2 = true;
+                    if(chienState){
+                        animal = "Chien";
+                    }else{
+                        animal = "Chat";
+                    }
+
+                    SharedPreferences.Editor editor = sharedpreferences.edit();
+                    editor.putString("service_animal_select", animal);
+                    editor.commit();
+
+                }else{
+                    continutionEtat2 = false;
+                    Toast.makeText(ctx, "Veuillez selectionnez omoins 1 animal", Toast.LENGTH_LONG).show();
+                }
+
+                if(continutionEtat1 == true && continutionEtat2 == true){
+
+
+                   Intent intent = new Intent(ctx, BottomNavigationBar.class);
+                   intent.putExtra("list_pet_sitter", "true");
+                   startActivity(intent);
+
+
+                }
+
+
             }
         });
 

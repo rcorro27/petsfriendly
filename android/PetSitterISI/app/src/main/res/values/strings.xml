@@ -9,11 +9,14 @@
     <string name="reservation">Reservation</string>
     <string name="connexion">Connexion</string>
     <string name="enregistrer">Enregistrer</string>
-        <string-array name="nb_animaux_array">
-            <item>1</item>
-            <item>2</item>
-            <item>3</item>
-        </string-array>
+    <string name="code_promotionel">Entrez votre code</string>
+    <string name="appliquer_code_promo">Appliquer</string>
+    <string name="reservation_final">Reserver</string>
+    <string-array name="nb_animaux_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
 
     <string-array name="type_animal_array_string">
         <item>Chien</item>
