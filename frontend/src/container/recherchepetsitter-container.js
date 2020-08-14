@@ -7,7 +7,7 @@ import ListItemComponent from 'component/list-item-component'
 import Navbar from '../container/navbar-container'
 import Footer from '../component/Footer/Footer'
 import VignetteComponent from 'component/vignette-component'
-// import ProfilPettSitter from '../container/profil-petsitter'
+
 import '../css/test.css'
 
 class RecherchePetsitter extends Component {
@@ -32,7 +32,7 @@ class RecherchePetsitter extends Component {
             username: '',
             recherche: false,
             resultat: [],
-            idUser: ''
+            idUser: false
         }
 
         this.handleAddOnClick = this.handleAddOnClick.bind(this)
@@ -106,7 +106,8 @@ class RecherchePetsitter extends Component {
     }
 
     handleAfficherSitterOnClick (event) {
-        this.setState({ idUser: event.target.name })
+        this.setState({ idUser: true })
+        // this.setState({ idUser: event.target.name })
 
         // alert('Profil sitter a afficher ' + event.target.name)
         // console.log('evenement declencher', event.target.name)
@@ -175,6 +176,7 @@ class RecherchePetsitter extends Component {
                     {this.state.resultatRecherche ? this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} rating={resultat.rating} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' servicesTotal={service} servicesSitter={resultat.services} id={resultat.id} />) : ''}
                     <button onClick={this.handleSaveOnClick}>retour recherche</button>
                 </div>
+
                 <div id='divPlubicite2'>
                     <h1 className='w-50 p-3 mx-auto h1'>Des Services Sur mesure pour un Animal d'exeption </h1>
                     <div className='row divAnnonce'>
