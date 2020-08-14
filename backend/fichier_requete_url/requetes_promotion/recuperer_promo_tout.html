@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Requete - Ajouter_Promotions</title>
+<title>Requete - Recuperer_Promotion</title>
 
 <style>
 	h1 
@@ -35,17 +35,23 @@
 </head>
 
 <body>
-			<h1>Requete - Ajouter_Promotions</h1>
+			<h1>Requete - Recuperer_Promotion</h1>
 
-	<h2>Methode : <span> POST </span></h2>
+	<h2>Methode : <span> GET </span></h2>
 	
-	<h2>Url : <span>localhost:80/promotions/ajout</span></h2> 
+	<h2>Url : <span>localhost:80/promotions/recuperation</span></h2> 
 	
 	<h2>Parametre : </h2>
+	<h3>
+		/:id
+	</h3>
+	
+	<h2>Reponse : </h2>
 	<h3>Json {<br/>
 		<div class="bloc_json">
-		"promotion" :{<br/>
+		"promotion" {<br/>
 			<div class="bloc_json">
+			"id" : , <br/>
 			"code_promotion" : ,<br/>
 			"pourcentage" :,<br/>
 			"date_fin" :,<br/>
@@ -53,9 +59,6 @@
 			}<br/>
 		</div>
 	}</h3>
-	
-	<h2>Reponse : </h2>
-	<h3>NULL</h3>
 </body>
 	
 </html>
