@@ -1,11 +1,19 @@
 package com.example.petsitterisi;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,25 +30,27 @@ import java.io.InputStream;
 import java.lang.reflect.Array;
 import java.util.Iterator;
 import java.util.Set;
-public class ListePetSitter extends Activity {
-
+public class ListePetSitter extends Fragment {
     Context ctx;
     LinearLayout ll;
-
+    Button reservervation_liste_pet_sitter;
+    Dialog dialog_reservation;
+    TextView prix_ht_facture;
+    TextView taxe_tps;
+    TextView taxe_tvq;
+    TextView prix_ttc_facture;
+    Button appliquer_code_promo;
+    Button reservation_final;
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-
-        ctx = this;
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_liste_pet_sitter);
-        ll = findViewById(R.id.card_container);
-
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        final View monFragmentRecherche = inflater.inflate(R.layout.activity_liste_pet_sitter, container, false);
+        ctx = monFragmentRecherche.getContext();
+        dialog_reservation = new Dialog(ctx);
+        ll = monFragmentRecherche.findViewById(R.id.card_container);
         ApiListPetSitterFetcher apiListPetsitter = new ApiListPetSitterFetcher(ctx, ll);
-
-        apiListPetsitter.execute();
-
+        apiListPetsitter.execute("");
+        return monFragmentRecherche;
     }
-
-
-
 }
+

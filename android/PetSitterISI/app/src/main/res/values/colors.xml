@@ -10,5 +10,8 @@
     <color name="green">#CC54AF6E</color>
     <color name="lightGrey">#E4E4E4</color>
     <color name="redTransparenceBar">#B5CB3232</color>
+    <color name="redText">#B5CB3232</color>
+    <color name="greyText">#4C4C4C</color>
+
 
 </resources>
