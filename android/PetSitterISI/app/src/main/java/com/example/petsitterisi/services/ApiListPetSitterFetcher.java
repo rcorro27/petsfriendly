@@ -1,5 +1,6 @@
 package com.example.petsitterisi.services;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,6 +16,7 @@ import com.example.petsitterisi.BottomNavigationBar;
 import com.example.petsitterisi.R;
 import com.example.petsitterisi.managers.UtilisateurManager;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,12 +36,21 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
     private Context  context;
     LinearLayout ll;
     SharedPreferences sharedpreferences;
+    Button  reservervation_liste_pet_sitter;
+    Dialog dialog_reservation;
+    TextView prix_ht_facture;
+    TextView taxe_tps;
+    TextView taxe_tvq;
+    TextView prix_ttc_facture;
+    Button appliquer_code_promo;
+    Button reservation_final;
 
 
     public ApiListPetSitterFetcher(Context  context, LinearLayout llParam) {
         this.context = context;
         this.ll = llParam;
         sharedpreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        dialog_reservation = new Dialog(context);
     }
 
     @Override
@@ -79,12 +90,25 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
                     String key = itr.next();
                     JSONArray newJsonArray = jsonObject.getJSONArray(key);
                     for(int j = 0; j < newJsonArray.length(); j++) {
-                        
+
                         JSONObject jsObject = newJsonArray.getJSONObject(j);
 
                         View cardPetSitterParam = View.inflate(context , R.layout.card_pet_sitter,null);
                         TextView petSitterName = cardPetSitterParam.findViewById(R.id.name);
                         petSitterName.setText(jsObject.getString("nom"));
+
+                        reservervation_liste_pet_sitter = cardPetSitterParam.findViewById(R.id.reservervation_liste_pet_sitter);
+
+                        reservervation_liste_pet_sitter.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                try {
+                                    afficherAlertDialogReservation();
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
 
                         JSONArray petSitterServiceStringArray = jsObject.getJSONArray("services");
 
@@ -99,39 +123,17 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
 
 
 
-
-
-
                         ll.addView(cardPetSitterParam);
 
-                        ExtendedFloatingActionButton reservation = cardPetSitterParam.findViewById(R.id.reservation);
 
-                        reservation.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                      //alert dialogue
-                            }
-                        });
-
-
-                        //recuperation de tableau de des id service ce chaque petsitter
-
-                        //Boucler sur le tableau pis prendre chaque id de service
-
-                        //id => 3,  6,  2
-
-                        JSONArray jsonArrayservices = jsObject.getJSONArray("services");
-
-                        for(int k = 0; k < jsonArray.length(); k++) {
-                            JSONObject jsonObjectServices = (JSONObject) jsonArray.get(i);
-                            Iterator<String> itrServices = jsonObject.keys();
-
-                            while (itrServices.hasNext()) {
-                                String servicesKey = itr.next();
-
-                            }
-
-                        }
+//                        JSONArray jsonArrayservices = jsObject.getJSONArray("services");
+//
+//                        for(int k = 0; k < jsonArrayservices.length(); k++) {
+//                            String servicesKey = jsonArrayservices.getString(k);
+//
+//
+//
+//                        }
 
 
 
@@ -153,6 +155,75 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
             // Handle exceptions here
 
         }
+
+    }
+
+    private void afficherAlertDialogReservation() throws JSONException {
+
+        //material_dialog_reservation.setView(R.layout.activity_alert_dialog_reservation);
+
+        JSONArray jsonServiceSelectionnerArray = new JSONArray();
+
+        sharedpreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String serviceSelectId = sharedpreferences.getString("id_service_select", null);
+        if(serviceSelectId != null){
+
+            String descriptionService = sharedpreferences.getString("description_service_"+serviceSelectId, null);
+            String prixService = sharedpreferences.getString("prix_service_"+serviceSelectId, null);
+
+            JSONObject serviceJson = new JSONObject();
+            serviceJson.put("descriptionService", descriptionService );
+            serviceJson.put("prixService", prixService);
+
+            jsonServiceSelectionnerArray.put(serviceJson);
+
+        }
+
+        String id_service_promenade_select = sharedpreferences.getString("id_service_promenade_select", null);
+
+        if(id_service_promenade_select != null && id_service_promenade_select != "0"){
+
+            String descriptionService = sharedpreferences.getString("description_service_"+id_service_promenade_select, null);
+            String prixService = sharedpreferences.getString("prix_service_"+id_service_promenade_select, null);
+
+            JSONObject serviceJson = new JSONObject();
+            serviceJson.put("descriptionService", descriptionService );
+            serviceJson.put("prixService", prixService);
+
+            jsonServiceSelectionnerArray.put(serviceJson);
+
+        }
+
+        dialog_reservation.setContentView(R.layout.activity_alert_dialog_reservation);
+
+        double valeurTps = 0.05 ; // 5%
+        double valeurTvq = 0.09975; // 9,975%
+        float prixHT = 0 ;
+        float montantTps = (float) (prixHT * valeurTps);
+        float montantTvq = (float) (prixHT *valeurTvq);
+        float prixTotal = prixHT + montantTps + montantTvq;
+
+        for(int i = 0; i < jsonServiceSelectionnerArray.length(); i++){
+            JSONObject nouveauJsonObject = jsonServiceSelectionnerArray.getJSONObject(i);
+            String prixService = nouveauJsonObject.getString("prixService");
+            prixHT += Integer.parseInt(prixService);
+            montantTps = (float) (prixHT * valeurTps);
+            montantTvq = (float) (prixHT *valeurTvq);
+            prixTotal = prixHT + montantTps + montantTvq;
+
+
+        }
+
+            prix_ht_facture = (TextView) dialog_reservation.findViewById(R.id.prix_ht_facture);
+            prix_ht_facture.setText(String.valueOf(prixHT));
+
+            prix_ttc_facture = (TextView) dialog_reservation.findViewById(R.id.prix_ttc_facture);
+            prix_ttc_facture.setText(String.valueOf(prixTotal));
+
+            appliquer_code_promo = (Button) dialog_reservation.findViewById(R.id.button_appliquer_code_promo);
+            reservation_final = (Button) dialog_reservation.findViewById(R.id.reservervation_final);
+            dialog_reservation.show();
+
 
     }
 
