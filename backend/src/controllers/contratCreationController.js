@@ -19,27 +19,7 @@ function contratCreation(req, res) {
         })
 }
 
-//la fonction appelee par la route recuperation de contrat avec l'id d'utilisateur
-function contratRecuperationByIdUtilisateur(req, res) {
-
-    /* creer la bonne requete selon le json a envoyer*/
-    
-    let sql = "select * from contrat where id = $1"
-
-    bd.excuterRequete(sql, [])
-        .then(resultatRequete => {
-            res.setHeader('Content-Type', 'application/json')
-            res.end(JSON.stringify(resultatRequete.rows))
-        })
-        .catch(erreur => {
-            console.error(erreur.stack)
-            res.setHeader('Content-Type', 'text/html')
-            res.end(erreur.stack)
-        })
-}
-
 
 module.exports = {
-    contratCreation,
-    contratRecuperationByIdUtilisateur
+    contratCreation
 }
