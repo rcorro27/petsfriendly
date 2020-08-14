@@ -11,7 +11,7 @@ class ProfilDemandePettSitter extends Component {
                 <div>
                     <h1 className='h1 w-25 p-3 mx-auto'>Profile Pet Sitter</h1>
                 </div>
-                <div className='row m-5 bg-white border border-danger rounded'>
+                <div className='row m-5 bg-white border border-danger rounded shadow'>
                     <img src='../src/img/caroussel/image1.jpeg' alt='Carlos' className='img-fluid rounded-circle w-25 p-3' />
                     <div className='m-5'>
                         <h2 className='h2'>Carlos</h2>
@@ -23,8 +23,8 @@ class ProfilDemandePettSitter extends Component {
                         <input type='button' value='Aimer' className='btn btn-danger m-2' />
                     </div>
                 </div>
-                <div className='clearfix'>
-                    <div className='m-5 w-25 p3 float-left bg-white border border-danger rounded '>
+                <div className='clearfix '>
+                    <div className='m-5 w-25 p3 float-left bg-white border border-danger rounded shadow '>
                         <h6 className='h6 w-25 p-3 mx-auto'>Services </h6>
                         <ul className='list-group'>
                             <li className='list-group-item'>service1</li>
@@ -34,7 +34,7 @@ class ProfilDemandePettSitter extends Component {
                             <li className='list-group-item'>service5</li>
                         </ul>
                     </div>
-                    <div className=' m-5 w-50 p-3 float-right border border-danger rounded'>
+                    <div className=' m-5 w-50 p-3 float-right border border-danger rounded shadow'>
                         <h1 className='w-25 p-3 mx-auto'>feedback</h1>
                         <div className=' m-2 border bg-white border-danger rounded'>
                             <h3>Nom PROPRIETAIRE</h3>
