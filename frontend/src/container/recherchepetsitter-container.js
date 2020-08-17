@@ -151,7 +151,7 @@ class RecherchePetsitter extends Component {
         return (
 
             <div>
-                <Navbar />
+
                 <div id='divPublicite'>
                     <div className='w-50 p-3 mx-auto bg-secondary text-white'>
                         <h1 className='h1'>Gagnez Temps et Tranquilite de d'esprit Recherchez ce qu'il vous faut on se occupe du reste </h1>
@@ -201,7 +201,7 @@ class RecherchePetsitter extends Component {
                         <InputComponent classInput='btn btn-outline-danger' type='submit' id='infolettreButton' name='Envoyer ' value='Envoyer' />
                     </form>
                 </div>
-                <Footer />
+
                 <button onClick={this.props.onHandleSaveOnClickRichard}>retour a la page developement</button>
 
             </div>

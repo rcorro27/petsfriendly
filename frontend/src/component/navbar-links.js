@@ -2,23 +2,25 @@
 import { Button, Modal } from 'react-bootstrap'
 
 import { login, register } from '../fonctions/UserFunctions'
-import { Link } from 'react-router-dom'
 
 import React, { Component } from 'react'
 import InscriptionContainer from '../container/inscription-container'
 import ModalContainer from '../container/modal-container'
+import ConnectionPopUp from '../container/connection-container'
+import { Link } from 'react-router-dom'
 
 export default class NavbarLinks extends Component {
     constructor (props) {
         super(props)
         this.state = {
+
             id_role: 0,
             nom: '',
             prenom: '',
-            age: 17,
+            age: '',
             email: '',
             mot_de_passe: '',
-            sexe: '',
+            sexe: 'if',
             telephone: '',
             numero_rue: '',
             nom_rue: '',
@@ -27,9 +29,11 @@ export default class NavbarLinks extends Component {
             province: '',
             pays: '',
             numero_appt: '',
+
             show: false,
             showInscription: false,
-            user: []
+            user: [],
+            newUser: []
         }
         this.onHandleChangeName = this.onHandleChangeName.bind(this)
 
@@ -39,7 +43,45 @@ export default class NavbarLinks extends Component {
         this.onHandleClose = this.onHandleClose.bind(this)
         this.handleCloseInsc = this.handleCloseInsc.bind(this)
         this.getValues = this.getValues.bind(this)
+        this.getValuesRadio = this.getValuesRadio.bind(this)
         this.onHandleChangeAndEnter = this.onHandleChangeAndEnter.bind(this)
+    }
+
+    onSubmitRegister (e) {
+        console.log('new User', this.state)
+        // if (e.key === 'Enter') {
+        e.preventDefault()
+
+        const newUser = {
+            id_role: this.state.id_role,
+            nom: this.state.nom,
+            prenom: this.state.prenom,
+            age: this.state.age,
+            email: this.state.email,
+            mot_de_passe: this.state.mot_de_passe,
+            sexe: this.state.sexe,
+            telephone: this.state.telephone,
+            numero_rue: this.state.numero_rue,
+            nom_rue: this.state.nom_rue,
+            code_postal: this.state.code_postal,
+            ville: this.state.ville,
+            province: this.state.province,
+            pays: this.state.pays,
+            numero_appt: this.state.numero_appt
+        }
+        register(newUser).then(res => {
+            if (res) {
+                console.log('test', res)
+                this.setState({
+                    users: res
+                })
+                this.onHandleClose()
+
+                console.log('test', this.state.users.utilisateur.nom)
+                this.setState({ userName: this.state.users.utilisateur.nom })
+            }
+        })
+        // this.register(user)
     }
 
     handleShow () {
@@ -67,6 +109,7 @@ export default class NavbarLinks extends Component {
     }
 
     onSubmit (e) {
+        console.log('email', this.state.utilisateur)
         // if (e.key === 'Enter') {
         e.preventDefault()
 
@@ -76,65 +119,28 @@ export default class NavbarLinks extends Component {
         }
         login(user).then(res => {
             if (res) {
-                console.log('test', res)
+                console.log('Email')
                 this.setState({
                     users: res
                 })
                 this.onHandleClose()
 
                 console.log('test', this.state.users.utilisateur.nom)
-                this.setState({ nom: this.state.users.utilisateur.nom })
+                this.setState({ userName: this.state.users.utilisateur.nom })
             }
         })
-        // this.register(user)
-    }
-
-    register (e) {
-        // if (e.key === 'Enter') {
-        e.preventDefault()
-
-        const newUser = {
-            id_role: this.state.id_role,
-            nom: this.state.nom,
-            prenom: this.state.prenom,
-            age: this.state.age,
-            email: this.state.email,
-            mot_de_passe: this.state.mot_de_passe,
-            sexe: this.state.sexe,
-            telephone: this.state.telephone,
-            numero_rue: this.state.numero_rue,
-            nom_rue: this.state.nom_rue,
-            code_postal: this.state.code_postal,
-            ville: this.state.ville,
-            province: this.state.province,
-            pays: this.state.pays,
-            numero_appt: this.state.numero_appt
-        }
-        console.log('new User', newUser)
-    /*    register(newUser).then(res => {
-            if (res) {
-                console.log('test', res)
-                this.setState({
-                    users: res
-                })
-                this.onHandleClose()
-
-                console.log('test', this.state.users.utilisateur.nom)
-                this.setState({ nom: this.state.users.utilisateur.nom })
-            }
-        }) */
         // this.register(user)
     }
     // }
 
     onHandleChangeName (e) {
-        // this.setState({ [e.target.name]: e.target.value })
         this.setState({ email: e.target.value })
+        // this.setState({ utilisateur: { email: e.target.value } })
     }
 
     onHandleChangePass (e) {
-        // this.setState({ [e.target.name]: e.target.value })
         this.setState({ mot_de_passe: e.target.value })
+        // this.setState({ utilisateur: { mot_de_passe: e.target.value } })
     }
 
     logOut (e) {
@@ -155,15 +161,15 @@ export default class NavbarLinks extends Component {
             }
             login(user).then(res => {
                 if (res) {
-                    console.log('test', res)
+                    // console.log('test', res)
                     this.setState({
                         users: res
                     })
                     this.onHandleClose()
 
-                    console.log('Object', JSON.parse(localStorage.getItem('usertoken')))
+                    // console.log('Object', JSON.parse(localStorage.getItem('usertoken')))
 
-                    this.setState({ nom: this.state.users.utilisateur.nom })
+                    this.setState({ userName: this.state.users.utilisateur.nom })
                 }
             })
         }
@@ -173,42 +179,78 @@ export default class NavbarLinks extends Component {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    render () {
-        // console.log(this.state.userName)
-        const loginRegLink = (
-            <ul className='navbar-nav ml-auto'>
-                <li className='nav-item active'>
-                    <Link to='/' className='nav-link' onClick={this.handleShow}>Se connecter</Link>
-                </li>
-                <li className='nav-item'>
-                    <Link className='nav-link' onClick={this.handleShowInsc}> S'inscrire</Link>
-                </li>
+    getValuesRadio (e) {
+        if (e.target.name === 'sexe') {
+            console.log('sexe', e.target.value)
+            this.setState({ sexe: e.target.value })
+            // console.log('sexe', this.state.sexe)
+        } else if (e.target.name === 'id_role') { this.setState({ id_role: e.target.value }) }
+    }
 
-            </ul>
+    render () {
+        // console.log(this.state.utilisateur.sexe)
+        const loginRegLink = (
+            <div className='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
+                <ul className='navbar-nav ml-auto'>
+                    <li className='nav-item active'>
+                        <a className='nav-link' onClick={this.handleShow}>Se connecter</a>
+                    </li>
+                    <li className='nav-item'>
+                        <a className='nav-link' onClick={this.handleShowInsc}> S'inscrire</a>
+                    </li>
+
+                </ul>
+            </div>
         )
         const userLink = (
-            <ul className='navbar-nav ml-auto'>
-                <li className='nav-item active'>
-                    <a className='navbar-brand' href='#'>
-                        <img className='rounded-circle' src='src/img/avatar.jpg' width='30' height='30' />
-                    </a>
-                </li>
+            <div className='collapse navbar-collapse' id='navbarResponsive'>
+                <ul className='navbar-nav ml-auto'>
+                    <li className='nav-item active'>
+                        <a className='navbar-brand' href='#'>
+                            <img className='rounded-circle' src='src/img/avatar.jpg' width='30' height='30' />
+                        </a>
+                    </li>
 
-                <li className='nav-item active'>
-                    <a className='nav-link'> {localStorage.usertoken ? this.state.nom : ''}</a>
+                    <li className='nav-item active'>
+                        <Link to='/profil' className='nav-link'> {localStorage.usertoken ? JSON.parse(localStorage.getItem('usertoken')).utilisateur.nom : ''}</Link>
 
-                </li>
-                <li className='nav-item active'>
+                    </li>
+                    <li className='nav-item active'>
+                        <Link to='/search' className='nav-link'>
+                            chercher
+                        </Link>
 
-                    <a className='nav-link' onClick={this.logOut.bind(this)}>Se deconnecter</a>
-                </li>
+                    </li>
+                    <li className='nav-item active'>
 
-            </ul>
+                        <a className='nav-link' onClick={this.logOut.bind(this)}>Se deconnecter</a>
+                    </li>
+
+                </ul>
+            </div>
         )
 
         return (
             <div className='collapse navbar-collapse' id='navbarResponsive'>
                 {localStorage.usertoken ? userLink : loginRegLink}
+
+                <Modal show={this.state.show} onHide={this.handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Page Connexion</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <ConnectionPopUp FonctionEntrer={this.onHandleChangeAndEnter} getPass={this.onHandleChangePass} getEmail={this.onHandleChangeName} />
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant='secondary' onClick={this.handleClose}>
+                            Annuler
+                        </Button>
+                        <Button variant='primary' onClick={this.onSubmit.bind(this)}>
+                            Se connecter
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+
                 <ModalContainer
                     show={this.state.show}
                     HandleChangeAndEnter={this.onHandleChangeAndEnter} HandleChangePass={this.onHandleChangePass}
@@ -220,14 +262,14 @@ export default class NavbarLinks extends Component {
                         <Modal.Title>Page Inscription</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <InscriptionContainer change={this.getValues} />
+                        <InscriptionContainer onchange={this.getValues} onchangeRadio={this.getValuesRadio} />
 
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant='secondary' onClick={this.handleCloseInsc}>
                             Annuler
                         </Button>
-                        <Button variant='primary' onClick={this.register.bind(this)}>
+                        <Button variant='primary' onClick={this.onSubmitRegister.bind(this)}>
                             Creer votre compte
                         </Button>
                     </Modal.Footer>

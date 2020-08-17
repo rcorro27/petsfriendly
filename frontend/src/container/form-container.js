@@ -30,7 +30,7 @@ class FormContainer extends Component {
             <div>
 
                 <div>
-                    <Navbar />
+
                     <main id='divContainer'>
                         <CarouselContainer />
 
@@ -51,7 +51,7 @@ class FormContainer extends Component {
                     </div>
 
                     <ImageTitreComposant />
-                    <Footer />
+
                 </div>
                 <button onClick={this.props.onHandleSaveOnClickYahia}>retour a page</button>
             </div>
