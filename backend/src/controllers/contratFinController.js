@@ -1,4 +1,7 @@
+const bd = require('../servers/bd')
+const {Service} = require('../models/service')
 
+//-----------------------------------------------------------------------------------------------------------------------------
 
 //la fonction appelee par la route ajout de contrat
 function contratFin(req, res) {
