@@ -1,8 +1,8 @@
 import React from 'react'
 
-const FactureDemandeComponent = ({ text, className }) => (
+const FactureDemandeComponent = ({ text, className, classNameText }) => (
 
-    <p>{text}<i className={className} /></p>
+    <p className={classNameText}>{text}<i className={className} /></p>
 
 )
 

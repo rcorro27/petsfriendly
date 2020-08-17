@@ -73,7 +73,7 @@ class ApplicationContainer extends Component {
                 <div>
                     {this.state.isFormOpenYahia ? <FormContainer onHandleSaveOnClickYahia={this.handleSaveOnClickYahia} /> : ''}
                     {this.state.isFormOpenAhmed ? <FormFeedBack onHandleSaveOnClickAhmed={this.handleSaveOnClickAhmed} /> : ''}
-                    {this.state.isFormOpenRichard ? <ProfilDemandePettSitter onHandleSaveOnClickRichard={this.handleSaveOnClickRichard} /> : ''}
+                    {this.state.isFormOpenRichard ? <RecherchePetsitter onHandleSaveOnClickRichard={this.handleSaveOnClickRichard} /> : ''}
 
                 </div>
             </div>

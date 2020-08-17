@@ -18,6 +18,27 @@ class ProfilDemandePettSitter extends Component {
     }
 
     render () {
+        function PrixAvantTaxes (prix) {
+            let prixAvantTaxes = 0
+            prix.map((infoPrix, index) => {
+                prixAvantTaxes = prixAvantTaxes + infoPrix.prix_service
+                return prixAvantTaxes
+            })
+            return prixAvantTaxes
+        }
+        function TPS (prix) {
+            const tps = PrixAvantTaxes(prix) * 5 / 100
+            return tps
+        }
+        function TVQ (prix) {
+            const tvq = PrixAvantTaxes(prix) * 9.975 / 100
+            return tvq
+        }
+        function PrixAvecTaxes (prix) {
+            const prixTotal = Math.ceil(PrixAvantTaxes(prix) + TVQ(prix) + TPS(prix))
+            return prixTotal
+        }
+
         const service = [
             {
                 id: 1,
@@ -61,19 +82,17 @@ class ProfilDemandePettSitter extends Component {
         ]
         const facture = [
             'Total hors taxes :',
-            'TPS',
-            'TVQ',
-            'TOTAL avec taxes'
-
-        ]
-        const price = [
-            45,
-            12,
-            2
+            'TPS : ',
+            'TVQ : ',
+            'TOTAL avec taxes :'
 
         ]
 
+        console.log('taxes tps', TPS(service))
+        console.log('taxes tvq', TVQ(service))
+        console.log('Prix Total : ', PrixAvecTaxes(service))
         return (
+
             // AHMED CHAQUE ELEMENT JSX DOIT AVOIR UNE ELEMENT PARENT ( ce ca le div qui envelope tout le restes)
             // ligne 21 pas la bonne syntaxe
             <div>
@@ -104,10 +123,7 @@ class ProfilDemandePettSitter extends Component {
                         {feedback.map((info, index) => <FeedBackCommentaire nomProprietaire={info.nameProprietaire} dateCommentaire={info.dateCommentaire} commentaire={info.commentaire} key={index} divClass=' m-2 border bg-white border-danger rounded' />)}
                     </div>
                 </div>
-                {/* <div className='w-50 p-3 float-left'>
-                    <h6>Geolocalitation</h6>
-                    <iframe className='w-50 p-3 float-left border border-dangers' frameBorder='0' scrolling='no' marginHeight='0' marginWidth='0' src='https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=Les%20Rambles,%201%20Barcelona,%20Spain+(Mi%20nombre%20de%20egocios)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed' /><a href='https://www.mapsdirections.info/marcar-radio-circulo-mapa/'>Marcar radio en el mapa</a>
-                </div> */}
+
                 <div className=' m-5 w-50 p-3 float-right border border-danger rounded bg-white  shadow'>
 
                     <h2 className=' h2 w-25 p-3 mx-auto'>Prix des services</h2>
@@ -117,11 +133,10 @@ class ProfilDemandePettSitter extends Component {
 
                         </div>
                         <div className='float-right m-2 w-25 p-3'>
-                            {price.map((infoPrix, index) => <FactureDemandeComponent text={infoPrix} className='fab fa-canadian-maple-leaf fas fa-dollar-sign ' key={index} />)}
-                            {/* <p><strong>45 Cad$</strong></p>
-                            <p>15 Cad$ </p>
-                            <p>13 Cad$ </p>
-                            <p><strong>TOTAL PRIX DOLLARS</strong></p> */}
+                            <p><strong>{PrixAvantTaxes(service)}</strong></p>
+                            <p>{TPS(service)}</p>
+                            <p>{TVQ(service)}</p>
+                            <p><strong>{PrixAvecTaxes(service)}</strong></p>
                             <input type='button' value='Envoyer Demande' className='btn btn-success' />
                         </div>
 
