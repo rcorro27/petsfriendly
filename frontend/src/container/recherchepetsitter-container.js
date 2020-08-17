@@ -147,6 +147,7 @@ class RecherchePetsitter extends Component {
             }
 
         ]
+
         // voir les dates dans le formulaire a chaque fois il y a des erreus dans la console qui pointe le fait de ne pas avoir la bonne valeur date.now??
         return (
 
@@ -184,15 +185,15 @@ class RecherchePetsitter extends Component {
                     <h1 className='w-50 p-3 mx-auto h1'>Des Services Sur mesure pour un Animal d'exeption </h1>
                     <div className='row divAnnonce'>
                         <div className='col-lg-4 mx-auto border border-danger rounded'>
-                            <ListItemComponent text='Faite garder votre animal a votre domicile ou celui du Pett Sitter' />
-                            <ListItemComponent text='Partez a votre rendez vous sans vous soucier de la promenade de votre chien' />
-                            <ListItemComponent text='Besoin de flexibilite? Choisisez les horraires et periodes qui vous conviennent' />
+                            <ListItemComponent text='Faite garder votre animal a votre domicile ou celui du Pett Sitter' className='fas fa-check' />
+                            <ListItemComponent text='Partez a votre rendez vous sans vous soucier de la promenade de votre chien' className='fas fa-check' />
+                            <ListItemComponent text='Besoin de flexibilite? Choisisez les horraires et periodes qui vous conviennent' className='fas fa-check' />
                         </div>
                         <div className='col-lg-4 mx-auto border border-danger rounded'>
                             {/* METTRE UN ICONE DANS LAVANT DE LES LI POUR LA PUBLICITER */}
-                            <ListItemComponent text='Tout les nouveaux gardiens passent une verification des antecedents de base' />
-                            <ListItemComponent text='Tout les gardiens fournissent un profil detaille et des informations personnel ' />
-                            <ListItemComponent text='tout les Pet Sitter sont agrees par notre equipe de specialistes chez Pets Friendly' />
+                            <ListItemComponent text='Tout les nouveaux gardiens passent une verification des antecedents de base' className='fas fa-check' />
+                            <ListItemComponent text='Tout les gardiens fournissent un profil detaille et des informations personnel ' className='fas fa-check' />
+                            <ListItemComponent text='tout les Pet Sitter sont agrees par notre equipe de specialistes chez Pets Friendly' className='fas fa-check' />
                         </div>
                     </div>
                 </div>
