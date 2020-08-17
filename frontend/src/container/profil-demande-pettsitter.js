@@ -25,7 +25,7 @@ class ProfilDemandePettSitter extends Component {
                 </div>
                 <div className='clearfix '>
                     <div className='m-5 w-25 p3 float-left bg-white border border-danger rounded shadow '>
-                        <h6 className='h6 w-25 p-3 mx-auto'>Services </h6>
+                        <h3 className='h3 w-25 p-3 mx-auto'><strong>Services</strong> </h3>
                         <ul className='list-group'>
                             <li className='list-group-item'>service1</li>
                             <li className='list-group-item'>service2</li>
@@ -35,7 +35,7 @@ class ProfilDemandePettSitter extends Component {
                         </ul>
                     </div>
                     <div className=' m-5 w-50 p-3 float-right border border-danger rounded shadow'>
-                        <h1 className='w-25 p-3 mx-auto'>feedback</h1>
+                        <h1 className='w-25 p-3 mx-auto'><strong>Feedback</strong></h1>
                         <div className=' m-2 border bg-white border-danger rounded'>
                             <h3>Nom PROPRIETAIRE</h3>
                             <h4>Date de commentaire</h4>
@@ -69,17 +69,17 @@ class ProfilDemandePettSitter extends Component {
                     <div>
 
                         <div className='float-left m-2 w-25 p-3'>
-                            <p>Total des services Hors Taxes: </p>
+                            <p><strong>Total services Hors Taxes : </strong></p>
                             <p>TPS: </p>
                             <p>TVQ: </p>
-                            <p>TOTAL : </p>
+                            <p><strong>TOTAL :</strong> </p>
 
                         </div>
                         <div className='float-right m-2 w-25 p-3'>
-                            <p>45 Cad$ </p>
+                            <p><strong>45 Cad$</strong></p>
                             <p>15 Cad$ </p>
                             <p>13 Cad$ </p>
-                            <p>TOTAL PRIX DOLLARS</p>
+                            <p><strong>TOTAL PRIX DOLLARS</strong></p>
                             <input type='button' value='Envoyer Demande' className='btn btn-success' />
                         </div>
 
