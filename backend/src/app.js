@@ -9,6 +9,10 @@ const cors = require('cors')
 let indexRouter = require('./routes/index')
 let utilisateurRouter = require('./routes/utilisateurRoutes')
 let animalRouter = require('./routes/animalRoutes')
+let serviceRouter = require('./routes/serviceRoutes')
+let promotionRouter = require('./routes/promotionRoutes')
+let contratRouter = require('./routes/contratRoutes')
+
 
 //instancier le serveur
 let app = express()
@@ -23,6 +27,10 @@ app.use(cors())
 //les routes du serveur
 app.use('/', indexRouter)
 app.use('/utilisateurs', utilisateurRouter)
+app.use('/animaux',  animalRouter)
+app.use('/services',  serviceRouter)
+app.use('/promotions',  promotionRouter)
+app.use('/contrats', contratRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

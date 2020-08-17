@@ -1,6 +1,16 @@
 /*css a ajouter
 */
 
+.SpanTitre {
+    width: 100%;
+    font-family: Cardo;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 64px;
+    line-height: 100px;
+    text-align: center;
+}
+
 .img-caroussel {
     height: 100vh;
 }
@@ -78,6 +88,7 @@ h1 {
 
 .infolettreDiv {
     background-image: url('../img/image_site/images/do-pet-sitters-need-pet-sitter-insurance-the-pet-sitter-blog.jpg');
+    /* background-image: url('../img/image_site/images/Dogs_Cats_Rabbits_504758.jpg');*/
     width: 60%;
     height: 50vh;
     margin: auto
@@ -124,13 +135,33 @@ h1 {
 }
 
 h2, p {
-    width: 20%;
+    /* width: 20%;*/
+    cursor: pointer;
 }
 
 button {
     width: 50%;
 }
 
-h1 {
+/*h1 {
     width: 59%;
+}*/
+
+.divAnnonce {
+    margin: 5%;
+}
+
+body {
+    background-color: #f443361f
+}
+
+#divPublicite {
+    background-image: url('../img/image_site/images/Dogs_Cats_Rabbits_504758.jpg');
+    height: 60vh;
+}
+
+#divPlubicite2 {
+    background-image: url('../img/image_site/images/Dogs_Cats_Rabbits_504758.jpg');
+    height: 60vh;
+    margin-top: 2%
 }

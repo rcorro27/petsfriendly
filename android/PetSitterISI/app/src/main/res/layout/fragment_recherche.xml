@@ -46,21 +46,12 @@
                             android:text="Saisir les informations du contrat"
                             android:textColor="@color/white" />
                     </LinearLayout>
-                    <EditText
-                        android:id="@+id/test_reponse_recherche"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:layout_weight="5"
-                        android:layout_gravity="center"
-                        android:hint="REPONSE RECHERCHE" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:layout_marginTop="50dp">
-
-
 
 
 
@@ -125,7 +116,7 @@
 
 
                         <EditText
-
+                            android:id="@+id/lieu"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -161,12 +152,13 @@
                         android:text="Garder chez le Pet Sitter" />
 
                     <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/garde_chez_petsitter"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:checked="false"
+                        android:checked="true"
                         android:textColor="@color/white"
-                        app:thumbTint="@color/green"
-                        app:trackTint="@color/lightGrey" />
+                        app:thumbTint="@color/white"
+                        app:trackTint="@color/lightGrey"/>
 
                 </LinearLayout>
 
@@ -192,11 +184,12 @@
                         android:text="Garder chez vous" />
 
                     <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/garde_chez_vous"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:checked="false"
                         android:textColor="@color/white"
-                        app:thumbTint="@color/green"
+                        app:thumbTint="@color/white"
                         app:trackTint="@color/lightGrey" />
 
                 </LinearLayout>
@@ -224,11 +217,12 @@
                         android:text="Promenade" />
 
                     <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/promenade"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:checked="false"
                         android:textColor="@color/white"
-                        app:thumbTint="@color/green"
+                        app:thumbTint="@color/white"
                         app:trackTint="@color/lightGrey" />
 
                 </LinearLayout>
@@ -292,12 +286,13 @@
 
 
                             <com.google.android.material.switchmaterial.SwitchMaterial
+                                android:id="@+id/chien"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:checked="false"
+                                android:checked="true"
                                 android:textColor="@color/white"
-                                app:thumbTint="@color/green"
-                                app:trackTint="@color/green"
+                                app:thumbTint="@color/white"
+                                app:trackTint="@color/lightGrey"
                                 android:layout_alignParentRight="true"/>
 
                         </RelativeLayout>
@@ -327,11 +322,12 @@
 
 
                             <com.google.android.material.switchmaterial.SwitchMaterial
+                                android:id="@+id/chat"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 app:thumbTint="@color/white"
                                 android:checked="false"
-                                app:trackTint="@color/green"
+                                app:trackTint="@color/lightGrey"
                                 android:textColor="@color/white"
                                 android:layout_alignParentRight="true"/>
 

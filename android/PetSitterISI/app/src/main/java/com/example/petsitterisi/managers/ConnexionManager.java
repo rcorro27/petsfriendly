@@ -1,6 +1,7 @@
 package com.example.petsitterisi.managers;
 
 import android.content.Context;
+import android.widget.TextView;
 
 import com.example.petsitterisi.entitees.Utilisateur;
 import com.example.petsitterisi.services.ApiUtilisateurFetcher;
@@ -11,20 +12,19 @@ import org.json.JSONObject;
 public class ConnexionManager {
 
 
-    public static void getUtilisateur(Context context, String mail, String mot_de_passe) {
-
-        //creation du Json
-        JSONObject connexionJson = new JSONObject();
+    public static void getUtilisateur(Context context, TextView error, String email, String mot_de_passe) {
         try {
-            connexionJson.put("e_mail", mail);
-            connexionJson.put("mot_de_passe",  mot_de_passe);
-            //connexion a l'Api
-            ApiUtilisateurFetcher apiFetcher = new ApiUtilisateurFetcher(context);
-            apiFetcher.execute("https://pets-friendly.herokuapp.com/utilisateur/connexion", connexionJson.toString());
 
-        }catch (JSONException e) {
+            ApiUtilisateurFetcher apiFetcher = new ApiUtilisateurFetcher(context, error, email, mot_de_passe);
+
+            apiFetcher.execute("https://pets-friendly.herokuapp.com/utilisateurs/connexion");
+
+        }catch (Exception e) {
+
             e.printStackTrace();
+
         }
+
 
     }
 
