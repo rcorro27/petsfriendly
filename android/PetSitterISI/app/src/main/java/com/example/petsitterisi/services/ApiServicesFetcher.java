@@ -92,6 +92,7 @@ public class ApiServicesFetcher extends AsyncTask<String, Nullable, String> {
 
                 String prixService = jsonObject.getString("prix_service");
                 editor.putString("prix_service_"+idService, prixService);
+                editor.commit();
 
             }
 

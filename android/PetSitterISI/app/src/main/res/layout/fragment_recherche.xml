@@ -155,10 +155,10 @@
                         android:id="@+id/garde_chez_petsitter"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:checked="false"
+                        android:checked="true"
                         android:textColor="@color/white"
-                        app:thumbTint="@color/green"
-                        app:trackTint="@color/lightGrey" />
+                        app:thumbTint="@color/white"
+                        app:trackTint="@color/lightGrey"/>
 
                 </LinearLayout>
 
@@ -189,7 +189,7 @@
                         android:layout_height="match_parent"
                         android:checked="false"
                         android:textColor="@color/white"
-                        app:thumbTint="@color/green"
+                        app:thumbTint="@color/white"
                         app:trackTint="@color/lightGrey" />
 
                 </LinearLayout>
@@ -222,7 +222,7 @@
                         android:layout_height="match_parent"
                         android:checked="false"
                         android:textColor="@color/white"
-                        app:thumbTint="@color/green"
+                        app:thumbTint="@color/white"
                         app:trackTint="@color/lightGrey" />
 
                 </LinearLayout>
@@ -289,10 +289,10 @@
                                 android:id="@+id/chien"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:checked="false"
+                                android:checked="true"
                                 android:textColor="@color/white"
-                                app:thumbTint="@color/green"
-                                app:trackTint="@color/green"
+                                app:thumbTint="@color/white"
+                                app:trackTint="@color/lightGrey"
                                 android:layout_alignParentRight="true"/>
 
                         </RelativeLayout>
@@ -327,7 +327,7 @@
                                 android:layout_height="match_parent"
                                 app:thumbTint="@color/white"
                                 android:checked="false"
-                                app:trackTint="@color/green"
+                                app:trackTint="@color/lightGrey"
                                 android:textColor="@color/white"
                                 android:layout_alignParentRight="true"/>
 
