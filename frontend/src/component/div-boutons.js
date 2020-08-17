@@ -13,7 +13,7 @@ const DivBoutons = ({ classCss, titre }) => {
                 </Button>
             </Link>
 
-            <p className='text-light'>En savoir plus </p>
+            <p className='text-light mx-auto'>En savoir plus </p>
 
         </div>
     )
