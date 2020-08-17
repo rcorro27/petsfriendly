@@ -1,10 +1,7 @@
 package com.example.petsitterisi.services;
 
-<<<<<<< HEAD
 import android.annotation.SuppressLint;
-=======
 import android.app.Dialog;
->>>>>>> c2688a6df881d501aae7243a79382135b6961bc5
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -126,7 +123,7 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
                             String prixService = sharedpreferences.getString("prix_service_"+idService, null);
 
                             LinearLayout parent = new LinearLayout(context);
-                            parent.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                            parent.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
                             parent.setOrientation(LinearLayout.HORIZONTAL);
 
                             ImageView iv = new ImageView(context);
