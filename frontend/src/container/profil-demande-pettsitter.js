@@ -59,9 +59,31 @@ class ProfilDemandePettSitter extends Component {
                     </div>
 
                 </div>
-                <div className='w-100 p-3 float-left'>
+                {/* <div className='w-50 p-3 float-left'>
                     <h6>Geolocalitation</h6>
-                    <iframe className='w-25 p-3' frameBorder='0' scrolling='no' marginHeight='0' marginWidth='0' src='https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=Les%20Rambles,%201%20Barcelona,%20Spain+(Mi%20nombre%20de%20egocios)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed' /><a href='https://www.mapsdirections.info/marcar-radio-circulo-mapa/'>Marcar radio en el mapa</a>
+                    <iframe className='w-50 p-3 float-left border border-dangers' frameBorder='0' scrolling='no' marginHeight='0' marginWidth='0' src='https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=Les%20Rambles,%201%20Barcelona,%20Spain+(Mi%20nombre%20de%20egocios)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed' /><a href='https://www.mapsdirections.info/marcar-radio-circulo-mapa/'>Marcar radio en el mapa</a>
+                </div> */}
+                <div className=' m-5 w-50 p-3 float-right border border-danger bg-white shadow'>
+
+                    <h2 className=' h2 w-25 p-3 mx-auto'>Prix des services</h2>
+                    <div>
+
+                        <div className='float-left m-2 w-25 p-3'>
+                            <p>Total des services Hors Taxes: </p>
+                            <p>TPS: </p>
+                            <p>TVQ: </p>
+                            <p>TOTAL : </p>
+
+                        </div>
+                        <div className='float-right m-2 w-25 p-3'>
+                            <p>45 Cad$ </p>
+                            <p>15 Cad$ </p>
+                            <p>13 Cad$ </p>
+                            <p>TOTAL PRIX DOLLARS</p>
+                            <input type='button' value='Envoyer Demande' className='btn btn-success' />
+                        </div>
+
+                    </div>
                 </div>
 
                 <button onClick={this.props.onHandleSaveOnClickRichard}>retour a la page developement</button>

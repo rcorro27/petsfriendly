@@ -151,7 +151,7 @@ class RecherchePetsitter extends Component {
         return (
 
             <div>
-                <Navbar />
+
                 <div id='divPublicite'>
                     <div className='w-50 p-3 mx-auto bg-secondary text-white'>
                         <h1 className='h1'>Gagnez Temps et Tranquilite de d'esprit Recherchez ce qu'il vous faut on se occupe du reste </h1>
@@ -168,6 +168,9 @@ class RecherchePetsitter extends Component {
                         <InputComponent classCss='form-group' classInput='form-control' textLabel='Numero' type='number' id='numeroRue' name='numero' min={0} onChange={this.handleChange} />
                         <InputComponent classCss='form-group' classInput='form-control' textLabel='Nom de la rue' type='text' id='nomRue' name='nom de la rue' onChange={this.handleChange} />
                         <InputComponent classCss='form-group' classInput='form-control' textLabel='Code postal' type='text' id='secteurAction' name='secteurAction' onChange={this.handleChange} />
+                        <SelectComponent classCss='form-group' classInput='form-control' textLabel='Ville:' id='province' name='province' options={TYPEANIMAL} onChange={this.handleChangeSelect} value={this.state.typeAnimal} />
+                        <SelectComponent classCss='form-group' classInput='form-control' textLabel='Province:' id='ville' name='ville' options={TYPEANIMAL} onChange={this.handleChangeSelect} value={this.state.typeAnimal} />
+                        <SelectComponent classCss='form-group' classInput='form-control' textLabel='Pays:' id='pays' name='pays' options={TYPEANIMAL} onChange={this.handleChangeSelect} value={this.state.typeAnimal} />
                         <SelectComponent classCss='form-group' classInput='form-control' textLabel='Type de animal:' id='typeAnimal' name='TypeAnimal' options={TYPEANIMAL} onChange={this.handleChangeSelect} value={this.state.typeAnimal} />
                         <InputComponent classInput='btn btn-outline-danger' type='submit' id='rechercher' name='Rechercher ' value='rechercher' />
                     </form>
