@@ -6,7 +6,10 @@
     <string name="title_notifications">Notifications</string>
     <string name="suivant">Suivant</string>
     <string name="contacter">Contacter</string>
+    <string name="commentaire">Commentaire</string>
     <string name="reservation">Reservation</string>
+    <string name="voir_profil_pet_sitter">Profil</string>
+    <string name="annuler">Annuler</string>
     <string name="connexion">Connexion</string>
     <string name="enregistrer">Enregistrer</string>
     <string name="code_promotionel">Entrez votre code</string>

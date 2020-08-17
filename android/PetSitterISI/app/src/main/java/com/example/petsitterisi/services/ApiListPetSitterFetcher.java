@@ -1,15 +1,12 @@
 package com.example.petsitterisi.services;
 
-<<<<<<< HEAD
 import android.annotation.SuppressLint;
 import android.app.Dialog;
-=======
 
 import android.annotation.SuppressLint;
 
 import android.app.Dialog;
 
->>>>>>> 7a81e087209f4c5bd128bc202ac2722ec5d9eba0
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -130,9 +127,8 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
                             String descriptionService = sharedpreferences.getString("description_service_"+idService, null);
                             String prixService = sharedpreferences.getString("prix_service_"+idService, null);
 
-<<<<<<< HEAD
                             LinearLayout parent = new LinearLayout(context);
-                            parent.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+                            parent.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
                             parent.setOrientation(LinearLayout.HORIZONTAL);
 
                             ImageView iv = new ImageView(context);
@@ -163,7 +159,7 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
                             tx2.setText(prixService+"$");
                             tx2.setTextColor(R.color.black);
                             enfant.addView(tx1);
-=======
+
 //                            LinearLayout parent = new LinearLayout(context);
 //                            parent.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
 //                            parent.setOrientation(LinearLayout.HORIZONTAL);
@@ -196,7 +192,7 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
 //                            tx2.setText(prixService+"$");
 //                            tx2.setTextColor(R.color.black);
 //                            enfant.addView(tx1);
->>>>>>> 7a81e087209f4c5bd128bc202ac2722ec5d9eba0
+
 
 
                         }
@@ -305,6 +301,7 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
 
                     //ApiAjouterFactureFetcher apiFacture = new ApiAjouterFactureFetcher(context,finalPrixTotal);
                     ApiAjouterContratFetcher apiContrat = new ApiAjouterContratFetcher(context);
+
                 }
             });
 
