@@ -1,7 +1,15 @@
 package com.example.petsitterisi.services;
 
+<<<<<<< HEAD
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+=======
+
+import android.annotation.SuppressLint;
+
+import android.app.Dialog;
+
+>>>>>>> 7a81e087209f4c5bd128bc202ac2722ec5d9eba0
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -122,6 +130,7 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
                             String descriptionService = sharedpreferences.getString("description_service_"+idService, null);
                             String prixService = sharedpreferences.getString("prix_service_"+idService, null);
 
+<<<<<<< HEAD
                             LinearLayout parent = new LinearLayout(context);
                             parent.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
                             parent.setOrientation(LinearLayout.HORIZONTAL);
@@ -154,6 +163,40 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
                             tx2.setText(prixService+"$");
                             tx2.setTextColor(R.color.black);
                             enfant.addView(tx1);
+=======
+//                            LinearLayout parent = new LinearLayout(context);
+//                            parent.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+//                            parent.setOrientation(LinearLayout.HORIZONTAL);
+//
+//                            ImageView iv = new ImageView(context);
+//                            iv.setImageResource(R.drawable.image_16);
+//
+//                            LinearLayout enfant = new LinearLayout(context);
+//                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+//                                    LinearLayout.LayoutParams.WRAP_CONTENT,
+//                                    LinearLayout.LayoutParams.WRAP_CONTENT
+//                            );
+//
+//                            params.setMarginStart(5);
+//                            enfant.setLayoutParams(params);
+//                            enfant.setOrientation(LinearLayout.VERTICAL);
+//
+//                            parent.addView(enfant);
+//
+//
+//                            TextView tx1 = new TextView(context);
+//                            tx1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+//                            tx1.setText(prixService+"$");
+//                            tx1.setTextColor(R.color.black);
+//                            enfant.addView(tx1);
+//
+//
+//                            TextView tx2 = new TextView(context);
+//                            tx2.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+//                            tx2.setText(prixService+"$");
+//                            tx2.setTextColor(R.color.black);
+//                            enfant.addView(tx1);
+>>>>>>> 7a81e087209f4c5bd128bc202ac2722ec5d9eba0
 
 
                         }
@@ -175,16 +218,11 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
 
 
 
-
-
-
-
                     }
 
                 }
 
             }
-
 
 
 
@@ -259,8 +297,18 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
 
             appliquer_code_promo = (Button) dialog_reservation.findViewById(R.id.button_appliquer_code_promo);
             reservation_final = (Button) dialog_reservation.findViewById(R.id.reservervation_final);
-            dialog_reservation.show();
+        final float finalPrixTotal = prixTotal;
 
+        reservation_final.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    //ApiAjouterFactureFetcher apiFacture = new ApiAjouterFactureFetcher(context,finalPrixTotal);
+                    ApiAjouterContratFetcher apiContrat = new ApiAjouterContratFetcher(context);
+                }
+            });
+
+            dialog_reservation.show();
 
     }
 
