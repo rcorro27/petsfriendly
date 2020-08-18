@@ -4,11 +4,12 @@ import InputComponent from 'component/input-component'
 import SelectComponent from 'component/select-component'
 import ListItemComponent from 'component/list-item-component'
 // import ResultatRecherchePetsitter from 'container/resultat-recherche-pett-sitter-container'
-import Navbar from '../container/navbar-container'
+// import Navbar from '../container/navbar-container'
 import Footer from '../component/Footer/Footer'
 import VignetteComponent from 'component/vignette-component'
 
 import '../css/test.css'
+import ProfilDemandePettSitter from './profil-demande-pettsitter'
 
 class RecherchePetsitter extends Component {
     constructor (props) {
@@ -106,7 +107,8 @@ class RecherchePetsitter extends Component {
     }
 
     handleAfficherSitterOnClick (event) {
-        this.setState({ idUser: true })
+        // alert('demande envoyer' + event.target.name)
+        this.setState({ idUser: event.target.name })
         // this.setState({ idUser: event.target.name })
 
         // alert('Profil sitter a afficher ' + event.target.name)
@@ -147,11 +149,27 @@ class RecherchePetsitter extends Component {
             }
 
         ]
+        function niveauPetSitter (niveau) {
+            let niveauSitter = ''
+            if (niveau > 0 && niveau < 50) {
+                niveauSitter = 'Debutant'
+            } else if (niveau >= 50 && niveau < 100) {
+                niveauSitter = 'Normal'
+            } else if (niveau >= 100 && niveau < 200) {
+                niveauSitter = 'Intermediare'
+            } else if (niveau >= 200 && niveau < 400) {
+                niveauSitter = 'Proffesionel'
+            } else if (niveau >= 400) {
+                niveauSitter = 'Expert'
+            }
+            return niveauSitter
+        }
+        console.log(this.state.idUser)
         // voir les dates dans le formulaire a chaque fois il y a des erreus dans la console qui pointe le fait de ne pas avoir la bonne valeur date.now??
         return (
 
             <div>
-                <Navbar />
+
                 <div id='divPublicite'>
                     <div className='w-50 p-3 mx-auto bg-secondary text-white'>
                         <h1 className='h1'>Gagnez Temps et Tranquilite de d'esprit Recherchez ce qu'il vous faut on se occupe du reste </h1>
@@ -168,12 +186,16 @@ class RecherchePetsitter extends Component {
                         <InputComponent classCss='form-group' classInput='form-control' textLabel='Numero' type='number' id='numeroRue' name='numero' min={0} onChange={this.handleChange} />
                         <InputComponent classCss='form-group' classInput='form-control' textLabel='Nom de la rue' type='text' id='nomRue' name='nom de la rue' onChange={this.handleChange} />
                         <InputComponent classCss='form-group' classInput='form-control' textLabel='Code postal' type='text' id='secteurAction' name='secteurAction' onChange={this.handleChange} />
+                        <SelectComponent classCss='form-group' classInput='form-control' textLabel='Ville:' id='province' name='province' options={TYPEANIMAL} onChange={this.handleChangeSelect} value={this.state.typeAnimal} />
+                        <SelectComponent classCss='form-group' classInput='form-control' textLabel='Province:' id='ville' name='ville' options={TYPEANIMAL} onChange={this.handleChangeSelect} value={this.state.typeAnimal} />
+                        <SelectComponent classCss='form-group' classInput='form-control' textLabel='Pays:' id='pays' name='pays' options={TYPEANIMAL} onChange={this.handleChangeSelect} value={this.state.typeAnimal} />
                         <SelectComponent classCss='form-group' classInput='form-control' textLabel='Type de animal:' id='typeAnimal' name='TypeAnimal' options={TYPEANIMAL} onChange={this.handleChangeSelect} value={this.state.typeAnimal} />
-                        <InputComponent classInput='btn btn-outline-danger' type='submit' id='rechercher' name='Rechercher ' value='rechercher' />
+                        <InputComponent classInput='btn btn-outline-success' type='submit' id='rechercher' name='Rechercher ' value='rechercher' />
                     </form>
                 </div>
+                {this.state.idUser ? <ProfilDemandePettSitter idSitter={this.state.idUser} /> : ''}
                 <div className='row'>
-                    {this.state.resultatRecherche ? this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} rating={resultat.rating} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' servicesTotal={service} servicesSitter={resultat.services} id={resultat.id} />) : ''}
+                    {this.state.resultatRecherche ? this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} rating={niveauPetSitter(resultat.rating)} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' servicesTotal={service} servicesSitter={resultat.services} id={resultat.id} />) : ''}
                     <button onClick={this.handleSaveOnClick}>retour recherche</button>
                 </div>
 
@@ -181,15 +203,15 @@ class RecherchePetsitter extends Component {
                     <h1 className='w-50 p-3 mx-auto h1'>Des Services Sur mesure pour un Animal d'exeption </h1>
                     <div className='row divAnnonce'>
                         <div className='col-lg-4 mx-auto border border-danger rounded'>
-                            <ListItemComponent text='Faite garder votre animal a votre domicile ou celui du Pett Sitter' />
-                            <ListItemComponent text='Partez a votre rendez vous sans vous soucier de la promenade de votre chien' />
-                            <ListItemComponent text='Besoin de flexibilite? Choisisez les horraires et periodes qui vous conviennent' />
+                            <ListItemComponent text='Faite garder votre animal a votre domicile ou celui du Pett Sitter' className='fas fa-check' />
+                            <ListItemComponent text='Partez a votre rendez vous sans vous soucier de la promenade de votre chien' className='fas fa-check' />
+                            <ListItemComponent text='Besoin de flexibilite? Choisisez les horraires et periodes qui vous conviennent' className='fas fa-check' />
                         </div>
                         <div className='col-lg-4 mx-auto border border-danger rounded'>
                             {/* METTRE UN ICONE DANS LAVANT DE LES LI POUR LA PUBLICITER */}
-                            <ListItemComponent text='Tout les nouveaux gardiens passent une verification des antecedents de base' />
-                            <ListItemComponent text='Tout les gardiens fournissent un profil detaille et des informations personnel ' />
-                            <ListItemComponent text='tout les Pet Sitter sont agrees par notre equipe de specialistes chez Pets Friendly' />
+                            <ListItemComponent text='Tout les nouveaux gardiens passent une verification des antecedents de base' className='fas fa-check' />
+                            <ListItemComponent text='Tout les gardiens fournissent un profil detaille et des informations personnel ' className='fas fa-check' />
+                            <ListItemComponent text='tout les Pet Sitter sont agrees par notre equipe de specialistes chez Pets Friendly' className='fas fa-check' />
                         </div>
                     </div>
                 </div>
