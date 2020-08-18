@@ -101,6 +101,8 @@ public class ApiListReservationFetcher extends AsyncTask<String, Nullable, Strin
                 String idPetSitter = planningJsonObject.getString("id_proprietaire");
 
 
+                
+
             }
 
         } catch (JSONException e) {
@@ -125,6 +127,8 @@ public class ApiListReservationFetcher extends AsyncTask<String, Nullable, Strin
 
 
     }
+
+
     private void afficherAlertDialogReservation() {
 
         dialog_reservation.setContentView(R.layout.alert_dialog_commentaire);

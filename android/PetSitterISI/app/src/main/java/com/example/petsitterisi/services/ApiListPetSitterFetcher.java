@@ -77,7 +77,6 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-
         String tContents = "";
         String concat = "";
         try {
