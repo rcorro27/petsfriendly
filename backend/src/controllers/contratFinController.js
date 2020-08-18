@@ -35,17 +35,15 @@ function contratFin(req, res) {
 //la fonction appelee par la route recuperation de contrat avec l'id du proprietaire
 function contratRecuperationByIdProprietaire(req, res) {
 
-    /* creer la bonne requete selon le json a envoyer*/
-
     let sqlReccupererContratParIdProprietaire = "SELECT * FROM contrat_utilisateur WHERE id = $1 RETURNING *"
 
     //execution de la requete
-    bd.excuterRequete(sqlReccupererContratParIdProprietaire, [req.body.id, req.body.id_contrat])
+    bd.excuterRequete(sqlReccupererContratParIdProprietaire, [req.body.id])
         .then(resultatRequete => {
 
             let requeteSQLFinContratPetsitter = "SELECT * FROM contrat WHERE id_petsitter = $1"
 
-            bd.excuterRequete(requeteSQLFinContratPetsitter, [req.body.utilisateur.id, resultatRequete.rows[0].id])
+            bd.excuterRequete(requeteSQLFinContratPetsitter, [resultatRequete.rows[0].id_contrat])
                 .then(resultatRequeteContratPetsitter => {
                     res.setHeader('Content-Type', 'application/json');
                     res.end(JSON.stringify(resultatRequeteContratPetsitter.rows))
@@ -59,7 +57,7 @@ function contratRecuperationByIdProprietaire(req, res) {
             res.setHeader('Content-Type', 'application/json')
             res.end(JSON.stringify(resultatRequete.rows))
         })
-        .catch(erreur => { // si erreur on affiche les details et et on l'envois --- developpement seulement
+        .catch(erreur => {
             console.error(erreur.stack)
             res.setHeader('Content-Type', 'text/html')
             res.end(erreur.stack)
@@ -71,17 +69,14 @@ function contratRecuperationByIdProprietaire(req, res) {
 //la fonction appelee par la route recuperation de contrat avec l'id petsitter
 function contratRecuperationByIdPetsitter(req, res) {
 
-    /* creer la bonne requete selon le json a envoyer*/
-
     let sqlReccupererContratParIdPetsitter = "SELECT * FROM contrat_utilisateur WHERE id = $1 RETURNING *"
 
-    //execution de la requete
-    bd.excuterRequete(sqlReccupererContratParIdPetsitter, [req.body.id, req.body.id_contrat])
+    bd.excuterRequete(sqlReccupererContratParIdPetsitter, [req.body.id_contrat])
         .then(resultatRequete => {
 
             let requeteSQLFinContratPetsitter = "SELECT * FROM contrat WHERE id_petsitter = $1"
 
-            bd.excuterRequete(requeteSQLFinContratPetsitter, [req.body.utilisateur.id, resultatRequete.rows[0].id])
+            bd.excuterRequete(requeteSQLFinContratPetsitter, [resultatRequete.rows[0].id])
                 .then(resultatRequeteContratPetsitter => {
                     res.setHeader('Content-Type', 'application/json');
                     res.end(JSON.stringify(resultatRequeteContratPetsitter.rows))
@@ -95,7 +90,7 @@ function contratRecuperationByIdPetsitter(req, res) {
             res.setHeader('Content-Type', 'application/json')
             res.end(JSON.stringify(resultatRequete.rows))
         })
-        .catch(erreur => { // si erreur on affiche les details et et on l'envois --- developpement seulement
+        .catch(erreur => {
             console.error(erreur.stack)
             res.setHeader('Content-Type', 'text/html')
             res.end(erreur.stack)

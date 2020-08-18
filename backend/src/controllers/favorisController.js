@@ -75,6 +75,6 @@ function favorisSuppression(req, res) {
 module.exports = {
     favorisAjout,
     favorisModification,
-    factureRecuperationByIdUtilisateur,
+    favorisRecuperationByIdUtilisateur,
     favorisSuppression
 }
