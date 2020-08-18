@@ -8,6 +8,23 @@
     android:orientation="vertical"
     android:background="@color/white">
 
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/welcomeTextView"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Critere de recherche"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+    </LinearLayout>
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -18,14 +35,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -35,23 +48,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/welcomeTextView"
-                        android:padding="20dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="Critere de recherche"
-                            android:textColor="@color/white"
-                            android:textSize="22sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:layout_marginTop="50dp">
+                        android:layout_marginTop="20dp">
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -158,9 +156,10 @@
                         android:id="@+id/garde_chez_petsitter"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:layout_marginRight="20dp"
                         android:checked="true"
                         android:textColor="@color/white"
-                        app:thumbTint="@color/white"
+                        app:thumbTint="@color/black"
                         app:trackTint="@color/lightGrey"/>
 
                 </LinearLayout>
@@ -170,7 +169,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="35dp"
-                    android:layout_marginLeft="5dp">
+                    android:layout_marginLeft="4dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -193,8 +192,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:checked="false"
+                        android:layout_marginRight="20dp"
                         android:textColor="@color/white"
-                        app:thumbTint="@color/white"
+                        app:thumbTint="@color/black"
                         app:trackTint="@color/lightGrey"/>
 
                 </LinearLayout>
@@ -205,7 +205,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="35dp"
-                    android:layout_marginLeft="5dp">
+                    android:layout_marginLeft="4dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -228,8 +228,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:checked="false"
+                        android:layout_marginRight="20dp"
                         android:textColor="@color/white"
-                        app:thumbTint="@color/white"
+                        app:thumbTint="@color/black"
                         app:trackTint="@color/lightGrey"/>
 
                 </LinearLayout>
@@ -313,8 +314,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:checked="true"
+                                android:layout_marginRight="20dp"
                                 android:textColor="@color/white"
-                                app:thumbTint="@color/white"
+                                app:thumbTint="@color/black"
                                 app:trackTint="@color/lightGrey"
                                 android:layout_alignParentRight="true"/>
 
@@ -350,8 +352,9 @@
                                 android:id="@+id/chat"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                app:thumbTint="@color/white"
+                                app:thumbTint="@color/black"
                                 android:checked="false"
+                                android:layout_marginRight="20dp"
                                 app:trackTint="@color/lightGrey"
                                 android:textColor="@color/white"
                                 android:layout_alignParentRight="true"/>

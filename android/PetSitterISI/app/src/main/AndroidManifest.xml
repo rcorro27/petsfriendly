@@ -21,7 +21,8 @@
         <activity android:name=".AlertDialogReservation" />
         <activity android:name=".AjouterUnAnimal" />
         <activity android:name=".CardPetSitter" />
-        <activity android:name=".Filtres" />
+        <activity android:name=".Filtres"
+            tools:ignore="Instantiatable" />
         <activity android:name=".ProfilPetSitter" />
         <activity android:name=".BottomNavigationBar" />
         <activity android:name=".Connexion" />
