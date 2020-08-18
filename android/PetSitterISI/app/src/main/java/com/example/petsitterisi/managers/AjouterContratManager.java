@@ -13,7 +13,7 @@ import java.util.Date;
 public class AjouterContratManager {
 
 
-    public static void getContrat(Context context, String date_debut, String date_fin, int id_service1, int id_service2, int id_service3, int id_service4, String date_debut_promotion, String date_fin_promotion, double prix) throws JSONException {
+    public static void getContrat(Context context, String date_debut, String date_fin, int id_service1, int id_service2, int id_service3, String date_debut_promotion, String date_fin_promotion, double prix) throws JSONException {
         try {
 
             //creation du Json
@@ -29,7 +29,6 @@ public class AjouterContratManager {
             service.put(Integer.parseInt("id_service1"),id_service1);
             service.put(Integer.parseInt("id_service2"),id_service2);
             service.put(Integer.parseInt("id_service3"),id_service3);
-            service.put(Integer.parseInt("id_service4"),id_service4);
 
             promotion.put("date_debut",date_debut_promotion);
             promotion.put("date_fin",date_fin_promotion);

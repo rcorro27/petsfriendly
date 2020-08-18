@@ -37,11 +37,37 @@ public class BottomNavigationBar extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         ctx = this;
         String valeurNavigation =  "false";
+        String valeurNavigationFiltre =  "false";
+        String valeurNavigationProfilSitter =  "false";
+        String valeurNavigationChat =  "false";
+        String valeurNavigationDemande =  "false";
+
         Intent intentValeur = getIntent();
         String extraValue = intentValeur.getStringExtra("list_pet_sitter");
         if(extraValue != null){
             valeurNavigation = extraValue;
         }
+
+        String extraValue2 = intentValeur.getStringExtra("Filtres");
+        if(extraValue2 != null){
+            valeurNavigationFiltre = extraValue2;
+        }
+
+        String extraValue3 = intentValeur.getStringExtra("Profil");
+        if(extraValue3 != null){
+            valeurNavigationProfilSitter = extraValue3;
+        }
+
+        String extraValue4 = intentValeur.getStringExtra("Chat");
+        if(extraValue4 != null){
+            valeurNavigationChat = extraValue4;
+        }
+
+        String extraValue5 = intentValeur.getStringExtra("Demande");
+        if(extraValue5 != null){
+            valeurNavigationDemande = extraValue5;
+        }
+
 
         super.onCreate(savedInstanceState);
         //cacher temporairement  la bare d'etat du haut
@@ -51,18 +77,41 @@ public class BottomNavigationBar extends FragmentActivity {
         bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        //prendre le fragment selectionner quand le tel est en rotation
         if(valeurNavigation.equals("true")){
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new ListePetSitter()).commit();
-        }else {
+
+
+        }
+        else if (valeurNavigationFiltre.equals("true")){
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new Filtres()).commit();
+        }
+        else if (valeurNavigationProfilSitter.equals("true")){
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new ProfilPetSitter()).commit();
+        }
+        else if (valeurNavigationChat.equals("true")){
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new ChatFragment()).commit();
+        }
+        else if (valeurNavigationDemande.equals("true")){
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new DemandesFragment()).commit();
+        }
+        else {
 
             if (savedInstanceState == null) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new RechercheFragment()).commit();
             }
         }
+
 
     }
 
