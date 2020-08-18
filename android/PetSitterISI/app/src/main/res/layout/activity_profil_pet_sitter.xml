@@ -362,7 +362,7 @@
 
 
             <Button
-                android:id="@+id/buttom_contacter_profil_sitter"
+                android:id="@+id/button_contacter_profil_sitter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

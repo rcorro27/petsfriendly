@@ -6,17 +6,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.petsitterisi.services.ApiAjouterContratFetcher;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
@@ -29,19 +34,60 @@ import java.io.InputStream;
 import java.util.Iterator;
 public class ProfilPetSitter extends Fragment {
     Context ctx;
+    Button button_contacterSitter;
+    Dialog dialog_contacter_sitter;
+    TextInputEditText message_envoyer;
+    Button button_envoyer_message;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View leProfilPetSitter = inflater.inflate(R.layout.activity_profil_pet_sitter, container, false);
         ctx = leProfilPetSitter.getContext();
+        button_contacterSitter = leProfilPetSitter.findViewById(R.id.button_contacter_profil_sitter);
+        dialog_contacter_sitter = new Dialog(ctx);
+
+        button_contacterSitter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    afficherAlertDialogContacter();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         return leProfilPetSitter;
         //getJson();
 
+
+
     }
+    private void afficherAlertDialogContacter() {
+
+        dialog_contacter_sitter.setContentView(R.layout.alert_dialog_contacter_pet_sitter);
+
+        button_envoyer_message = dialog_contacter_sitter.findViewById(R.id.button_envoyer_message);
+
+        message_envoyer = dialog_contacter_sitter.findViewById(R.id.message_envoyer);
+        message_envoyer.getText();
+
+        button_envoyer_message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(ctx, BottomNavigationBar.class);
+                intent.putExtra("Chat", "true");
+                ctx.startActivity(intent);
+
+            }
+        });
+        
 
 
+        dialog_contacter_sitter.show();
+    }
 //    public void getJson () {
 //        String tContents = "";
 //        String concat = "";

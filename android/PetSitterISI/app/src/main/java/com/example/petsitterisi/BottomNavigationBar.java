@@ -39,6 +39,9 @@ public class BottomNavigationBar extends FragmentActivity {
         String valeurNavigation =  "false";
         String valeurNavigationFiltre =  "false";
         String valeurNavigationProfilSitter =  "false";
+        String valeurNavigationChat =  "false";
+        String valeurNavigationDemande =  "false";
+
         Intent intentValeur = getIntent();
         String extraValue = intentValeur.getStringExtra("list_pet_sitter");
         if(extraValue != null){
@@ -55,6 +58,16 @@ public class BottomNavigationBar extends FragmentActivity {
             valeurNavigationProfilSitter = extraValue3;
         }
 
+        String extraValue4 = intentValeur.getStringExtra("Chat");
+        if(extraValue4 != null){
+            valeurNavigationChat = extraValue4;
+        }
+
+        String extraValue5 = intentValeur.getStringExtra("Demande");
+        if(extraValue5 != null){
+            valeurNavigationDemande = extraValue5;
+        }
+
 
         super.onCreate(savedInstanceState);
         //cacher temporairement  la bare d'etat du haut
@@ -63,7 +76,6 @@ public class BottomNavigationBar extends FragmentActivity {
         setContentView(R.layout.activity_bottom_navigation_bar);
         bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
-
 
         if(valeurNavigation.equals("true")){
 
@@ -81,6 +93,16 @@ public class BottomNavigationBar extends FragmentActivity {
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new ProfilPetSitter()).commit();
+        }
+        else if (valeurNavigationChat.equals("true")){
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new ChatFragment()).commit();
+        }
+        else if (valeurNavigationDemande.equals("true")){
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new DemandesFragment()).commit();
         }
         else {
 

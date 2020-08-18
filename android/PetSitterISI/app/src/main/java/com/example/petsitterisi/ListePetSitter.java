@@ -44,7 +44,8 @@ public class ListePetSitter extends Fragment {
     Button appliquer_code_promo;
     Button reservation_final;
     Button filtre;
-    Button button_profil;
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -53,7 +54,7 @@ public class ListePetSitter extends Fragment {
         dialog_reservation = new Dialog(ctx);
         //filtre = new Button(ctx);
         filtre = monFragmentRecherche.findViewById(R.id.button_filtre);
-        button_profil = monFragmentRecherche.findViewById(R.id.button_profil);
+        //button_profil = monFragmentRecherche.findViewById(R.id.button_profil);
         ll = monFragmentRecherche.findViewById(R.id.card_container);
         ApiListPetSitterFetcher apiListPetsitter = new ApiListPetSitterFetcher(ctx, ll);
         apiListPetsitter.execute("");
@@ -70,17 +71,6 @@ public class ListePetSitter extends Fragment {
             }
         });
 
-        //probleme ici
-        button_profil.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(ctx, BottomNavigationBar.class);
-                intent.putExtra("Profil", "true");
-                startActivity(intent);
-
-            }
-        });
 
 
 

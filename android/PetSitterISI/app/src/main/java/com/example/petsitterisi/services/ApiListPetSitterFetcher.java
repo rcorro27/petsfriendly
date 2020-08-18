@@ -3,6 +3,7 @@ package com.example.petsitterisi.services;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.example.petsitterisi.BottomNavigationBar;
 import com.example.petsitterisi.R;
 
 import org.json.JSONArray;
@@ -38,6 +40,7 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
     TextView prix_ttc_facture;
     Button appliquer_code_promo;
     Button reservation_final;
+    Button button_profil;
 
 
     public ApiListPetSitterFetcher(Context  context, LinearLayout llParam) {
@@ -91,8 +94,20 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
                         View cardPetSitterParam = View.inflate(context , R.layout.card_pet_sitter,null);
                         TextView petSitterName = cardPetSitterParam.findViewById(R.id.name);
                         petSitterName.setText(jsObject.getString("nom"));
-
+                        button_profil = cardPetSitterParam.findViewById(R.id.button_profil);
                         reservervation_liste_pet_sitter = cardPetSitterParam.findViewById(R.id.reservervation_liste_pet_sitter);
+
+                        button_profil.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                Intent intent = new Intent(context, BottomNavigationBar.class);
+                                intent.putExtra("Profil", "true");
+                                context.startActivity(intent);
+
+                            }
+                        });
+
 
                         reservervation_liste_pet_sitter.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -220,6 +235,10 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
 
     }
 
+
+
+
+
     private void afficherAlertDialogReservation() throws JSONException {
 
         //material_dialog_reservation.setView(R.layout.alert_dialog_reservation);
@@ -292,6 +311,10 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
 
                     //ApiAjouterFactureFetcher apiFacture = new ApiAjouterFactureFetcher(context,finalPrixTotal);
                     ApiAjouterContratFetcher apiContrat = new ApiAjouterContratFetcher(context);
+
+                    Intent intent = new Intent(context, BottomNavigationBar.class);
+                    intent.putExtra("Demande", "true");
+                    context.startActivity(intent);
 
                 }
             });
