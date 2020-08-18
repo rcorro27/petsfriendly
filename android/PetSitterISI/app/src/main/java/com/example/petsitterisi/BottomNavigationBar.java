@@ -13,9 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
 
-import com.example.petsitterisi.managers.ConnexionManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class BottomNavigationBar extends FragmentActivity {
         BottomNavigationView bottomNav;
@@ -41,6 +39,7 @@ public class BottomNavigationBar extends FragmentActivity {
         String valeurNavigationProfilSitter =  "false";
         String valeurNavigationChat =  "false";
         String valeurNavigationDemande =  "false";
+        String valeurNavigationFeedBack =  "false";
 
         Intent intentValeur = getIntent();
         String extraValue = intentValeur.getStringExtra("list_pet_sitter");
@@ -66,6 +65,11 @@ public class BottomNavigationBar extends FragmentActivity {
         String extraValue5 = intentValeur.getStringExtra("Demande");
         if(extraValue5 != null){
             valeurNavigationDemande = extraValue5;
+        }
+
+        String extraValue6 = intentValeur.getStringExtra("FeedBack");
+        if(extraValue6 != null){
+            valeurNavigationFeedBack = extraValue6;
         }
 
 
@@ -102,7 +106,12 @@ public class BottomNavigationBar extends FragmentActivity {
         else if (valeurNavigationDemande.equals("true")){
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new DemandesFragment()).commit();
+                    new ReservationFragment()).commit();
+        }
+        else if (valeurNavigationFeedBack.equals("true")){
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new RechercheFragment()).commit();
         }
         else {
 
@@ -128,7 +137,7 @@ public class BottomNavigationBar extends FragmentActivity {
                             selectedFragment = new RechercheFragment();
                             break;
                         case R.id.nav_demandes:
-                            selectedFragment = new DemandesFragment();
+                            selectedFragment = new ReservationFragment();
                             break;
                         case R.id.nav_favoris:
                             selectedFragment = new FavorisFragment();

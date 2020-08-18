@@ -48,7 +48,6 @@ public class ApiUtilisateurFetcher extends AsyncTask<String, Nullable, String> {
         try {
             URL url = new URL(urls[0]);
 
-
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setDoOutput(true);
             urlConnection.setDoInput(true);
