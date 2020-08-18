@@ -1,21 +1,20 @@
 package com.example.petsitterisi.services;
 
-<<<<<<< HEAD
-import android.annotation.SuppressLint;
-import android.app.Dialog;
-=======
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.Dialog;
+
+import android.annotation.SuppressLint;
 
 import android.app.Dialog;
 
->>>>>>> 7a81e087209f4c5bd128bc202ac2722ec5d9eba0
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,21 +24,19 @@ import androidx.annotation.Nullable;
 
 import com.example.petsitterisi.BottomNavigationBar;
 import com.example.petsitterisi.R;
-import com.example.petsitterisi.managers.UtilisateurManager;
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
-import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.Iterator;
 
 public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String> {
@@ -55,6 +52,7 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
     TextView prix_ttc_facture;
     Button appliquer_code_promo;
     Button reservation_final;
+    Button button_profil;
 
 
     public ApiListPetSitterFetcher(Context  context, LinearLayout llParam) {
@@ -75,7 +73,7 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
         super.onPreExecute();
     }
 
-    @SuppressLint("ResourceAsColor")
+    @SuppressLint({"ResourceAsColor", "SetTextI18n"})
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
@@ -108,8 +106,20 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
                         View cardPetSitterParam = View.inflate(context , R.layout.card_pet_sitter,null);
                         TextView petSitterName = cardPetSitterParam.findViewById(R.id.name);
                         petSitterName.setText(jsObject.getString("nom"));
-
+                        button_profil = cardPetSitterParam.findViewById(R.id.button_profil);
                         reservervation_liste_pet_sitter = cardPetSitterParam.findViewById(R.id.reservervation_liste_pet_sitter);
+
+                        button_profil.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                Intent intent = new Intent(context, BottomNavigationBar.class);
+                                intent.putExtra("Profil", "true");
+                                context.startActivity(intent);
+
+                            }
+                        });
+
 
                         reservervation_liste_pet_sitter.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -130,90 +140,35 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
                             String descriptionService = sharedpreferences.getString("description_service_"+idService, null);
                             String prixService = sharedpreferences.getString("prix_service_"+idService, null);
 
-<<<<<<< HEAD
-                            LinearLayout parent = new LinearLayout(context);
-                            parent.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-                            parent.setOrientation(LinearLayout.HORIZONTAL);
+                            View serviceView = View.inflate(context , R.layout.service,null);
+                            ImageView serviceImage = serviceView.findViewById(R.id.service_image);
 
-                            ImageView iv = new ImageView(context);
-                            iv.setImageResource(R.drawable.image_16);
+                            LinearLayout pet_sitter_services_container = cardPetSitterParam.findViewById(R.id.pet_sitter_services_container);
 
-                            LinearLayout enfant = new LinearLayout(context);
-                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                                    LinearLayout.LayoutParams.WRAP_CONTENT
-                            );
+                            try {
+                                if (descriptionService.equals("Promenade")) {
+                                    serviceImage.setImageResource(R.drawable.image_16);
+                                } else if (descriptionService.equals("Garder chez vous")) {
+                                    serviceImage.setImageResource(R.drawable.image_icon_2);
+                                } else if (descriptionService.equals("Garder chez le Pet Sitter")) {
+                                    serviceImage.setImageResource(R.drawable.image_icon_1);
+                                }
 
-                            params.setMarginStart(5);
-                            enfant.setLayoutParams(params);
-                            enfant.setOrientation(LinearLayout.VERTICAL);
+                                TextView servicePrix = serviceView.findViewById(R.id.service_prix);
+                                servicePrix.setText(prixService + "$");
 
-                            parent.addView(enfant);
-
-
-                            TextView tx1 = new TextView(context);
-                            tx1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                            tx1.setText(prixService+"$");
-                            tx1.setTextColor(R.color.black);
-                            enfant.addView(tx1);
+                                TextView serviceName = serviceView.findViewById(R.id.service_name);
+                                serviceName.setText(descriptionService);
 
 
-                            TextView tx2 = new TextView(context);
-                            tx2.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                            tx2.setText(prixService+"$");
-                            tx2.setTextColor(R.color.black);
-                            enfant.addView(tx1);
-=======
-//                            LinearLayout parent = new LinearLayout(context);
-//                            parent.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-//                            parent.setOrientation(LinearLayout.HORIZONTAL);
-//
-//                            ImageView iv = new ImageView(context);
-//                            iv.setImageResource(R.drawable.image_16);
-//
-//                            LinearLayout enfant = new LinearLayout(context);
-//                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-//                                    LinearLayout.LayoutParams.WRAP_CONTENT,
-//                                    LinearLayout.LayoutParams.WRAP_CONTENT
-//                            );
-//
-//                            params.setMarginStart(5);
-//                            enfant.setLayoutParams(params);
-//                            enfant.setOrientation(LinearLayout.VERTICAL);
-//
-//                            parent.addView(enfant);
-//
-//
-//                            TextView tx1 = new TextView(context);
-//                            tx1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-//                            tx1.setText(prixService+"$");
-//                            tx1.setTextColor(R.color.black);
-//                            enfant.addView(tx1);
-//
-//
-//                            TextView tx2 = new TextView(context);
-//                            tx2.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-//                            tx2.setText(prixService+"$");
-//                            tx2.setTextColor(R.color.black);
-//                            enfant.addView(tx1);
->>>>>>> 7a81e087209f4c5bd128bc202ac2722ec5d9eba0
-
+                                pet_sitter_services_container.addView(serviceView);
+                            }catch(Exception e){
+                                e.printStackTrace();
+                            }
 
                         }
 
-
-
                         ll.addView(cardPetSitterParam);
-
-
-//                        JSONArray jsonArrayservices = jsObject.getJSONArray("services");
-//
-//                        for(int k = 0; k < jsonArrayservices.length(); k++) {
-//                            String servicesKey = jsonArrayservices.getString(k);
-//
-//
-//
-//                        }
 
 
 
@@ -233,9 +188,13 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
 
     }
 
+
+
+
+
     private void afficherAlertDialogReservation() throws JSONException {
 
-        //material_dialog_reservation.setView(R.layout.activity_alert_dialog_reservation);
+        //material_dialog_reservation.setView(R.layout.alert_dialog_reservation);
 
         JSONArray jsonServiceSelectionnerArray = new JSONArray();
 
@@ -269,7 +228,7 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
 
         }
 
-        dialog_reservation.setContentView(R.layout.activity_alert_dialog_reservation);
+        dialog_reservation.setContentView(R.layout.alert_dialog_reservation);
 
         double valeurTps = 0.05 ; // 5%
         double valeurTvq = 0.09975; // 9,975%
@@ -285,19 +244,20 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
             montantTps = (float) (prixHT * valeurTps);
             montantTvq = (float) (prixHT *valeurTvq);
             prixTotal = prixHT + montantTps + montantTvq;
-
-
         }
+
+            DecimalFormat df = new DecimalFormat("########.00");
+            String prixTotalArondissement = df.format(prixTotal);
 
             prix_ht_facture = (TextView) dialog_reservation.findViewById(R.id.prix_ht_facture);
             prix_ht_facture.setText(String.valueOf(prixHT));
 
             prix_ttc_facture = (TextView) dialog_reservation.findViewById(R.id.prix_ttc_facture);
-            prix_ttc_facture.setText(String.valueOf(prixTotal));
+            prix_ttc_facture.setText(String.valueOf(prixTotalArondissement));
 
             appliquer_code_promo = (Button) dialog_reservation.findViewById(R.id.button_appliquer_code_promo);
             reservation_final = (Button) dialog_reservation.findViewById(R.id.reservervation_final);
-        final float finalPrixTotal = prixTotal;
+            final double finalPrixTotal = prixTotal;
 
         reservation_final.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -305,6 +265,11 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
 
                     //ApiAjouterFactureFetcher apiFacture = new ApiAjouterFactureFetcher(context,finalPrixTotal);
                     ApiAjouterContratFetcher apiContrat = new ApiAjouterContratFetcher(context);
+
+                    Intent intent = new Intent(context, BottomNavigationBar.class);
+                    intent.putExtra("Demande", "true");
+                    context.startActivity(intent);
+
                 }
             });
 

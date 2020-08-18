@@ -1,12 +1,11 @@
 package com.example.petsitterisi;
-import android.app.Activity;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
-public class AlertDialogReservation extends Activity {
+public class CardDemandePetSitter extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.alert_dialog_reservation);
-
-
+        setContentView(R.layout.card_demande_pet_sitter);
     }
 }

@@ -322,5 +322,6 @@ module.exports = {
     utilisateurCreation,
     utilisateurConfiguration,
     utilisateurRecuperation,
-    utilisateurSuppression
+    utilisateurSuppression,
+    recupererAdresseUtilisateur
 }
