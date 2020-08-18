@@ -273,7 +273,7 @@ export default class NavbarLinks extends Component {
                     </li>
 
                     <li className='nav-item active'>
-                        <Link to='/profil' className='nav-link'> {localStorage.usertoken ? JSON.parse(localStorage.getItem('usertoken')).utilisateur.nom : ''}</Link>
+                        <Link to='/profil' className='nav-link'> {localStorage.usertoken ? "JSON.parse(localStorage.getItem('usertoken')).utilisateur.nom" : ''}</Link>
 
                     </li>
                     <li className='nav-item active'>

@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-
+import axios from 'axios'
 import InputComponent from 'component/input-component'
 import SelectComponent from 'component/select-component'
 import ListItemComponent from 'component/list-item-component'
 // import ResultatRecherchePetsitter from 'container/resultat-recherche-pett-sitter-container'
 // import Navbar from '../container/navbar-container'
-import Footer from '../component/Footer/Footer'
+// import Footer from '../component/Footer/Footer'
 import VignetteComponent from 'component/vignette-component'
 
 import '../css/test.css'
@@ -32,8 +32,8 @@ class RecherchePetsitter extends Component {
             infosRecherche: [],
             username: '',
             recherche: false,
-            resultat: [],
-            idUser: false
+            resultat: []
+            // idUser: false
         }
 
         this.handleAddOnClick = this.handleAddOnClick.bind(this)
@@ -44,6 +44,24 @@ class RecherchePetsitter extends Component {
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleAfficherSitterOnClick = this.handleAfficherSitterOnClick.bind(this)
         this.handleEnvoyerDemandeOnClick = this.handleEnvoyerDemandeOnClick.bind(this)
+    }
+
+    recherche (user) {
+        return axios
+            .post('https://pets-friendly.herokuapp.com/utilisateurs/connexion', {
+                email: user.userName,
+                mot_de_passe: user.password
+            })
+            .then(response => response.json())
+            .then(response => {
+                const arrayTest = []
+                response.resultatRecherche.map((info, index) => arrayTest.push(info))
+
+                this.setState({ resultat: arrayTest })
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     componentDidMount () {
@@ -107,16 +125,16 @@ class RecherchePetsitter extends Component {
     }
 
     handleAfficherSitterOnClick (event) {
-        // alert('demande envoyer' + event.target.name)
-        this.setState({ idUser: event.target.name })
-        // this.setState({ idUser: event.target.name })
+        // localStorage.removeItem('sitter')
 
-        // alert('Profil sitter a afficher ' + event.target.name)
-        // console.log('evenement declencher', event.target.name)
+        // console.log('local Storage:', JSON.parse(localStorage.getItem('sitter')))
     }
 
     handleEnvoyerDemandeOnClick (event) {
-        alert('demande envoyer' + event.target.name)
+        console.log(this.state.resultat[event.target.name])
+        localStorage.setItem('sitter', JSON.stringify(this.state.resultat[event.target.name]))
+
+        // alert('demande envoyer' + event.target.name)
     }
 
     render () {
@@ -195,7 +213,7 @@ class RecherchePetsitter extends Component {
                 </div>
                 {this.state.idUser ? <ProfilDemandePettSitter idSitter={this.state.idUser} /> : ''}
                 <div className='row'>
-                    {this.state.resultatRecherche ? this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} rating={niveauPetSitter(resultat.rating)} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' servicesTotal={service} servicesSitter={resultat.services} id={resultat.id} />) : ''}
+                    {this.state.resultatRecherche ? this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} rating={niveauPetSitter(resultat.rating)} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' servicesTotal={service} servicesSitter={resultat.services} id={index} />) : ''}
                     <button onClick={this.handleSaveOnClick}>retour recherche</button>
                 </div>
 

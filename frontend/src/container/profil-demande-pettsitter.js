@@ -10,14 +10,14 @@ class ProfilDemandePettSitter extends Component {
 
         this.state = {
             recherche: false,
-            resultat: [],
-            idUser: '',
-            services: []
+            resultat: []
 
         }
     }
 
     render () {
+        const sitter = JSON.parse(localStorage.getItem('sitter'))
+
         function PrixAvantTaxes (prix) {
             let prixAvantTaxes = 0
             prix.map((infoPrix, index) => {
@@ -91,20 +91,22 @@ class ProfilDemandePettSitter extends Component {
         console.log('taxes tps', TPS(service))
         console.log('taxes tvq', TVQ(service))
         console.log('Prix Total : ', PrixAvecTaxes(service))
+        // console.log('local Storage:', JSON.parse(localStorage.getItem('sitter')))
+        console.log('sitter', sitter.id)
         return (
 
             // AHMED CHAQUE ELEMENT JSX DOIT AVOIR UNE ELEMENT PARENT ( ce ca le div qui envelope tout le restes)
             // ligne 21 pas la bonne syntaxe
             <div>
                 <div>
-                    <h1 className='h1 w-25 p-3 mx-auto'>Profile Pet Sitter</h1>
+                    <h1 className='h1 w-25 p-3 mx-auto'>Demande services sitter </h1>
                 </div>
                 <div className='row m-5 bg-white border border-danger rounded shadow'>
                     <img src='../src/img/caroussel/image1.jpeg' alt='Carlos' className='img-fluid rounded-circle w-25 p-3' />
                     <div className='m-5'>
-                        <h2 className='h2'>Carlos</h2>
-                        <h3 className='h6'>Secteur de Action</h3>
-                        <h6 className='h6'>Rating</h6>
+                        <h2 className='h2'>{sitter.nom}</h2>
+                        <h3 className='h6'>{sitter.secteur_action}</h3>
+                        <h6 className='h6'>{sitter.rating}</h6>
                     </div>
                     <div className='m-5'>
                         <input type='button' value='Contacter' className='btn btn-success m-2' />
