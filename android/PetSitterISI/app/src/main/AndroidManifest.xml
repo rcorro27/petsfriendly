@@ -13,19 +13,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<<<<<<< HEAD
-        <activity android:name=".PlaningsFragment"></activity>
-        <activity android:name=".ListePetSitter" />
-=======
-        <activity android:name=".FragmentPlanning"></activity>
-        <activity android:name=".CardDemandePetSitter" />
+
+        <activity android:name=".PlaningsFragment"
+            tools:ignore="Instantiatable"></activity>
         <activity android:name=".AlertDialogContacterPetSitter" />
         <activity android:name=".AlertDialogCommentaire" />
-        <activity android:name=".CardDemandeProprietaire" />
         <activity
             android:name=".ListePetSitter"
             tools:ignore="Instantiatable" />
->>>>>>> b35b53c465b07bcabad25c851df6ac2a190d4da2
+
         <activity android:name=".AlertDialogReservation" />
         <activity android:name=".AjouterUnAnimal" />
         <activity android:name=".CardPetSitter" />

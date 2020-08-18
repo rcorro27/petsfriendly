@@ -105,6 +105,7 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
 
                         View cardPetSitterParam = View.inflate(context , R.layout.card_pet_sitter,null);
                         TextView petSitterName = cardPetSitterParam.findViewById(R.id.name);
+                        final String petSitterId = jsObject.getString("id");
                         petSitterName.setText(jsObject.getString("nom"));
                         button_profil = cardPetSitterParam.findViewById(R.id.button_profil);
                         reservervation_liste_pet_sitter = cardPetSitterParam.findViewById(R.id.reservervation_liste_pet_sitter);
@@ -115,6 +116,7 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
 
                                 Intent intent = new Intent(context, BottomNavigationBar.class);
                                 intent.putExtra("Profil", "true");
+                                intent.putExtra("petSitterId", petSitterId);
                                 context.startActivity(intent);
 
                             }
