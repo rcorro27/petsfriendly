@@ -71,6 +71,9 @@ function contratAcceptation(req, res)
         ajoutPlanning(req)
         .then(resultatRequetePlanning => {
                 
+
+
+
             res.setHeader('Content-Type', 'application/json');
             res.end(JSON.stringify({}))
         })
