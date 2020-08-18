@@ -1,19 +1,22 @@
 package com.example.petsitterisi.services;
+
+
+import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.example.petsitterisi.BottomNavigationBar;
 import com.example.petsitterisi.R;
-import com.example.petsitterisi.managers.UtilisateurManager;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -21,23 +24,36 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.Iterator;
-public class ApiRecupererUtilisateurFetcher extends AsyncTask<String, Nullable, String> {
+
+public class ApiListPlanningsFetcher extends AsyncTask<String, Nullable, String> {
 
     private Context  context;
+    LinearLayout ll;
+    SharedPreferences sharedpreferences;
+    Button  reservervation_liste_pet_sitter;
+    Dialog dialog_reservation;
+    TextView prix_ht_facture;
+    TextView taxe_tps;
+    TextView taxe_tvq;
+    TextView prix_ttc_facture;
+    Button appliquer_code_promo;
+    Button reservation_final;
 
-    LinearLayout favorisContainer;
 
-    public ApiRecupererUtilisateurFetcher(Context  context, LinearLayout favorisContainer) {
+    public ApiListPlanningsFetcher(Context  context, LinearLayout llParam) {
         this.context = context;
-        this.favorisContainer = favorisContainer;
+        this.ll = llParam;
+        sharedpreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        dialog_reservation = new Dialog(context);
     }
 
     @Override
     protected String doInBackground(String... urls) {
+
         String result = "";
 
         try {
@@ -77,45 +93,25 @@ public class ApiRecupererUtilisateurFetcher extends AsyncTask<String, Nullable, 
         super.onPreExecute();
     }
 
+    @SuppressLint({"ResourceAsColor", "SetTextI18n"})
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
 
+
         try {
+            JSONArray jsonArray = new JSONArray(s);
 
-            View favorisCardPetSitterParam = View.inflate(context , R.layout.favoris_card_pet_sitter,null);
-            JSONObject jsonObjectDuServeur = new JSONObject(s);
+            for(int i = 0; i < jsonArray.length(); i++){
+                JSONObject planningJsonObject = jsonArray.getJSONObject(i);
+                String idPetSitter = planningJsonObject.getString("id_petsitter");
 
-            //Recuperateion des nom des enfants JsonObject
-            Iterator<String> itr = jsonObjectDuServeur.keys();
-            while(itr.hasNext()) {
-                String key = itr.next();
-
-                JSONObject utilisateurJson = jsonObjectDuServeur.getJSONObject(key);
-
-
-                if(key.equals("utilisateur")){
-
-                    TextView petSitterName = favorisCardPetSitterParam.findViewById(R.id.name);
-                    petSitterName.setText(utilisateurJson.getString("nom"));
-
-                }else if(key.equals("adresse")){
-
-                    TextView petSitterAdresse = favorisCardPetSitterParam.findViewById(R.id.adresse);
-                    petSitterAdresse.setText("Modneue ,doeuee,do0e fjee");
-                    petSitterAdresse.setText(utilisateurJson.getString("ville")+", "+utilisateurJson.getString("province")+", "+utilisateurJson.getString("code_postal"));
-
-                }
 
             }
-
-            favorisContainer.addView(favorisCardPetSitterParam);
-
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
 
 
     }
@@ -129,6 +125,7 @@ public class ApiRecupererUtilisateurFetcher extends AsyncTask<String, Nullable, 
         BufferedReader rd = new BufferedReader(isr);
 
         String in = "";
+
 
         try {
             while ((rLine = rd.readLine()) != null) {

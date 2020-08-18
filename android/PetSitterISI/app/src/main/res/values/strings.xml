@@ -12,6 +12,7 @@
     <string name="code_promotionel">Entrez votre code</string>
     <string name="appliquer_code_promo">Appliquer</string>
     <string name="reservation_final">Reserver</string>
+    <string name="profil">Profil</string>
     <string-array name="nb_animaux_array">
         <item>1</item>
         <item>2</item>

@@ -20,7 +20,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="170dp"
         android:background="@drawable/rounded_corner_red_transparence"
         android:padding="10dp"
         android:orientation="vertical">
@@ -50,6 +50,7 @@
                 android:textSize="25dp"/>
 
             <TextView
+                android:id="@+id/adresse"
                 android:layout_width="170dp"
                 android:layout_height="50dp"
                 android:text="Montreal, Qc, H4P"
@@ -154,7 +155,7 @@
                         android:layout_weight="3"
                         android:minWidth="0dp"
                         android:contentDescription="@string/reservation"
-                        android:text="@string/reservation"
+                        android:text="@string/profil"
                         android:textColor="@color/white"
                         android:theme="@style/MyMaterialTheme"
                         android:gravity="center"/>
@@ -171,36 +172,6 @@
 
 
         </LinearLayout>
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
-            android:background="@color/white"
-            android:layout_marginTop="10dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:padding="10dp">
-                <LinearLayout
-                    android:id="@+id/pet_sitter_services_container"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:minHeight="100dp">
-                </LinearLayout>
-
-
-            </HorizontalScrollView>
-
-        </LinearLayout>
-
-
-
-
 
 
     </LinearLayout>

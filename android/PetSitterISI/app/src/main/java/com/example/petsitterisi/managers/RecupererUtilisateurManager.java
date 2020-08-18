@@ -16,11 +16,11 @@ public class RecupererUtilisateurManager {
         try {
 
             //connexion a l'Api
-            ApiRecupererUtilisateurFetcher apiFetcher = new ApiRecupererUtilisateurFetcher(context);
+           // ApiRecupererUtilisateurFetcher apiFetcher = new ApiRecupererUtilisateurFetcher(context);
 
-            String url = "https://pets-friendly.herokuapp.com/utilisateurs/recuperation/"+id;
+          //  String url = "https://pets-friendly.herokuapp.com/utilisateurs/recuperation/"+id;
 
-            apiFetcher.execute(url);
+           //  apiFetcher.execute(url);
 
         }catch (Exception e) {
         e.printStackTrace();
