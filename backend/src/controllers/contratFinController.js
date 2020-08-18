@@ -5,21 +5,33 @@ const { Service } = require('../models/service')
 
 //la fonction appelee par la route ajout de contrat
 function contratFin(req, res) {
+    //facture
+    let sqlFacture = "INSERT INTO facture (id_promotion, prix) VALUES ($1,$2) RETURNING *"
 
-    /* creer la bonne structure pour la fin du contrat et tout ce qui va avec*/
+    bd.excuterRequete(sqlFacture, [req.body.id_promotion, req.body.prix])
+        .then(resultatRequete1 => {
+            let sqlContrat = "UPDATE contrat SET id=$1,id_facture=$2,date_debut=$3,date_fin=$4,est_accepte=$5,est_termine=$6,est_lu_proprietaire=$7,est_lu_disponible=$8,encore_disponible=$9,date_creation=$10"
 
-    let sql = "insert into contrat (id_facture, date_debut, date_fin, est_accepte, est_termine, est_lu_proprietaire, est_lu_petsitter, encore_disponible,date_creation) values ($1,$2,$3,$4,$5,$6,$7,$8,$9  )"
-
-    bd.excuterRequete(sql, [req.body.id_facture, req.body.date_debut, req.body.date_fin, req.body.est_accepte, req.body.est_termine, req.body.est_lu_proprietaire, req.body.est_lu_petsitter, req.body.encore_disponible, req.body.date_creation])
-        .then(resultatRequete => {
-            res.setHeader('Content-Type', 'application/json')
-            res.end(JSON.stringify(resultatRequete.rows))
+            bd.excuterRequete(sql, [req.body.id_facture, req.body.date_debut, req.body.date_fin, req.body.est_accepte, req.body.est_termine, req.body.est_lu_proprietaire, req.body.est_lu_petsitter, req.body.encore_disponible, req.body.date_creation])
+                .then(resultatRequete2 => {
+                    res.setHeader('Content-Type', 'application/json')
+                    res.end(JSON.stringify(resultatRequete.rows))
+                })
+                .catch(erreur => {
+                    console.error(erreur.stack)
+                    res.setHeader('Content-Type', 'text/html')
+                    res.end(erreur.stack)
+                })
         })
         .catch(erreur => {
             console.error(erreur.stack)
             res.setHeader('Content-Type', 'text/html')
             res.end(erreur.stack)
-        })
+        }
+
+    //contrat
+
+   
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -27,6 +39,7 @@ function contratFin(req, res) {
 //la fonction appelee par la route recuperation de contrat avec l'id du proprietaire
 function contratRecuperationByIdProprietaire(req, res) {
 
+    let sqlFacture = "INSERT INTO facture (id_promotion, prix) VALUES ($1,$2) RETURNING *"
     /*reccuperer id du proprietaire*/
 
     let sql = "SELECT * FROM contrat_utilisateur WHERE id = $1 RETURNING *"
@@ -36,7 +49,7 @@ function contratRecuperationByIdProprietaire(req, res) {
         .then(resultatRequete => {
 
             //reccuperer contrat par l'id user
-            let requeteSQLFinContratProprietaire = "SELECT * FROM contrat WHERE id_proprietaire = $1"
+            let requeteSQLFinContratProprietaire = "UPDATE contrat SET id=$1,id_facture=$2,date_debut=$3,date_fin=$4,est_accepte=$5,est_termine=$6,est_lu_proprietaire=$7,est_lu_disponible=$8,encore_disponible=$9,date_creation=$10"
 
             bd.excuterRequete(requeteSQLFinContratProprietaire, [req.body.utilisateur.id, resultatRequete.rows[0].id])
                 .then(resultatRequeteContratProprietaire => {
