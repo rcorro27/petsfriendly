@@ -223,7 +223,7 @@ class RecherchePetsitter extends Component {
                         <InputComponent classInput='btn btn-outline-danger' type='submit' id='infolettreButton' name='Envoyer ' value='Envoyer' />
                     </form>
                 </div>
-                <Footer />
+
                 <button onClick={this.props.onHandleSaveOnClickRichard}>retour a la page developement</button>
 
             </div>

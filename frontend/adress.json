@@ -1,0 +1,93 @@
+[
+    {
+        "classCss": "md-form mb-5",
+        "classIcon": "",
+        "classInput": "form-control validate",
+        "type": "text",
+        "id": "numero_rue",
+        "name": "numero_rue",
+        "min": "",
+        "max": "",
+        "value": "",
+        "onChange": "getText",
+        "textLabel": "Numero de la rue "
+    },
+    {
+        "classCss": "md-form mb-5",
+        "classIcon": "",
+        "classInput": "form-control validate",
+        "type": "text",
+        "id": "nom_rue",
+        "name": "nom_rue",
+        "min": "",
+        "max": "",
+        "value": "",
+        "onChange": "getText",
+        "textLabel": "nom de la rue "
+    },
+    {
+        "classCss": "md-form mb-5",
+        "classIcon": "",
+        "classInput": "form-control validate",
+        "type": "text",
+        "id": "code_postal",
+        "name": "code_postal",
+        "min": "",
+        "max": "",
+        "value": "",
+        "onChange": "getText",
+        "textLabel": "Code postal : "
+    },
+    {
+        "classCss": "md-form mb-5",
+        "classIcon": "",
+        "classInput": "form-control validate",
+        "type": "text",
+        "id": "ville",
+        "name": "ville",
+        "min": "",
+        "max": "",
+        "value": "",
+        "onChange": "getText",
+        "textLabel": "Ville : "
+    },
+    {
+        "classCss": "md-form mb-5",
+        "classIcon": "",
+        "classInput": "form-control validate",
+        "type": "text",
+        "id": "province",
+        "name": "province",
+        "min": "",
+        "max": "",
+        "value": "",
+        "onChange": "getText",
+        "textLabel": "Province : "
+    },
+    {
+        "classCss": "md-form mb-5",
+        "classIcon": "",
+        "classInput": "form-control validate",
+        "type": "text",
+        "id": "pays",
+        "name": "pays",
+        "min": "",
+        "max": "",
+        "value": "",
+        "onChange": "getText",
+        "textLabel": "Pays : "
+    },
+    {
+        "classCss": "md-form mb-5",
+        "classIcon": "",
+        "classInput": "form-control validate",
+        "type": "text",
+        "id": "numero_appt",
+        "name": "numero_appt",
+        "min": "",
+        "max": "",
+        "value": "",
+        "onChange": "getText",
+        "textLabel": "Numero d appartement : "
+    }
+]

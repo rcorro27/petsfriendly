@@ -27,7 +27,14 @@ export const register = newUser => {
             email: newUser.email,
             mot_de_passe: newUser.mot_de_passe,
             sexe: newUser.sexe,
-            telephone: newUser.telephone
+            telephone: newUser.telephone,
+            numero_rue: newUser.numero_rue,
+            nom_rue: newUser.nom_rue,
+            code_postal: newUser.code_postal,
+            ville: newUser.ville,
+            province: newUser.province,
+            pays: newUser.pays,
+            numero_appt: newUser.numero_appt
 
         })
         .then(response => {
