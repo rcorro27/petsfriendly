@@ -12,10 +12,10 @@ function animalAjout(req, res) {
 
             let requeteSQLAnimalUtilisateur = "INSERT INTO animal_utilisateur (id_proprietaire, id_animal) VALUES ($1,$2)"
 
-            bd.excuterRequete(requeteSQLAnimalUtilisateur, [req.body.utilisateur.id, resultatRequete.rows[0].id])//id user 
+            bd.excuterRequete(requeteSQLAnimalUtilisateur, [req.body.utilisateur.id, resultatRequete.rows[0].id])
                 .then(resultatRequeteAnimal => {
                     res.setHeader('Content-Type', 'application/json');
-                    res.end(JSON.stringify(resultatRequete.rows))
+                    res.end(JSON.stringify(resultatRequeteAnimal.rows))
                 })
                 .catch(erreur => {
                     console.error(erreur.stack)

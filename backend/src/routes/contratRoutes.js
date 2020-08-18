@@ -11,7 +11,10 @@ router.post("/creation", contratCreationController.contratCreation)
 // route pour fin du contrat et tout ce qui va avec
 router.put("/fin", contratFinController.contratFin)
 
-// route pour recuperer les contrats de l'utilisateur avec son id
-router.get("/recuperation/utilisateur/:id", contratCreationController.contratRecuperationByIdUtilisateur)
+// route pour recuperer les contrats du proprietaire avec son id
+router.get("/recuperation/proprietaire/:id", contratFinController.contratRecuperationByIdProprietaire)
+
+// route pour recuperer les contrats du petsitter avec son id
+router.get("/recuperation/petsitter/:id", contratFinController.contratRecuperationByIdPetsitter)
 
 module.exports = router

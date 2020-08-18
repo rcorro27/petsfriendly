@@ -5,7 +5,7 @@ const VignetteComponent = ({ urlPhoto, className, nom, rating, onClickProfil, cl
 
     <div className={className}>
         <img className='img-fluid img-thumbnail' src={urlPhoto} alt={urlPhoto} />
-        <h2 className='mx-auto'>{nom}</h2>
+        <h2 className=' w-25 p-3 mx-auto'>{nom}</h2>
         <ul className='list-group'>
             {/* ul  a sortir dans une autre function */}
             {servicesSitter.map((infos, index) => {
@@ -14,7 +14,7 @@ const VignetteComponent = ({ urlPhoto, className, nom, rating, onClickProfil, cl
             })}
 
         </ul>
-        <p className='mx-auto'>{rating}</p>
+        <p className=' w-25 p-3 mx-auto'>{rating}</p>
         <button type='button' name={id} onClick={onClickProfil} className={classInput}>{textBoutonProfil} </button>
         <button type='button' name={id} onClick={onClickEnvoyer} className={classInput2}>{textBoutonEnvoyer}</button>
     </div>
