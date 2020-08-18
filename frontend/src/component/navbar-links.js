@@ -5,14 +5,22 @@ import { login, register } from '../fonctions/UserFunctions'
 
 import React, { Component } from 'react'
 import InscriptionContainer from '../container/inscription-container'
-import ModalContainer from '../container/modal-container'
+import InscriptionAdressContainer from '../container/adress-inscription-container'
+import QuestionValidation from '../container/qst-validation'
 import ConnectionPopUp from '../container/connection-container'
+// import InscriptionContainer from '../container/inscription-container'
 import { Link } from 'react-router-dom'
 
 export default class NavbarLinks extends Component {
     constructor (props) {
         super(props)
         this.state = {
+            step: 1,
+            qs1: '',
+            qs2: '',
+            qs3: '',
+            qs4: '',
+            qs5: '',
 
             id_role: 0,
             nom: '',
@@ -45,6 +53,9 @@ export default class NavbarLinks extends Component {
         this.getValues = this.getValues.bind(this)
         this.getValuesRadio = this.getValuesRadio.bind(this)
         this.onHandleChangeAndEnter = this.onHandleChangeAndEnter.bind(this)
+        this.showStep = this.showStep.bind(this)
+        this.nextStep = this.nextStep.bind(this)
+        this.prevStep = this.prevStep.bind(this)
     }
 
     onSubmitRegister (e) {
@@ -82,6 +93,55 @@ export default class NavbarLinks extends Component {
             }
         })
         // this.register(user)
+    }
+
+    nextStep (e) {
+        console.log('step', this.state.step)
+        e.preventDefault()
+        this.setState({
+            step: this.state.step + 1
+        })
+    }
+
+    prevStep (e) {
+        const { step } = this.state
+        e.preventDefault()
+        this.setState({
+            step: step - 1
+        })
+    }
+
+    showStep () {
+        // const { step } = this.state
+
+        if (this.state.step === 1) {
+            return (
+                <InscriptionContainer
+                    change={this.getValues}
+                    click={this.nextStep}
+                />
+            )
+        }
+        if (this.state.step === 2) {
+            return (
+                <InscriptionAdressContainer
+                    change={this.getValues}
+                    next={this.nextStep}
+                    back={this.prevStep}
+                />
+            )
+        }
+        if (this.state.step === 3) {
+            return (
+
+                <QuestionValidation
+                    change={this.getValues}
+
+                    back={this.prevStep}
+                />
+
+            )
+        }
     }
 
     handleShow () {
@@ -176,6 +236,7 @@ export default class NavbarLinks extends Component {
     }
 
     getValues (e) {
+        console.log('sexe', e.target.value)
         this.setState({ [e.target.name]: e.target.value })
     }
 
@@ -251,19 +312,12 @@ export default class NavbarLinks extends Component {
                     </Modal.Footer>
                 </Modal>
 
-                <ModalContainer
-                    show={this.state.show}
-                    HandleChangeAndEnter={this.onHandleChangeAndEnter} HandleChangePass={this.onHandleChangePass}
-                    HandleChangeName={this.onHandleChangeName} handleClose={this.onHandleClose} onSubmitt={this.onSubmit.bind(this)}
-                />
-
                 <Modal show={this.state.showInscription} onHide={this.handleCloseInsc}>
                     <Modal.Header closeButton>
                         <Modal.Title>Page Inscription</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <InscriptionContainer onchange={this.getValues} onchangeRadio={this.getValuesRadio} />
-
+                        {this.showStep()}
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant='secondary' onClick={this.handleCloseInsc}>
