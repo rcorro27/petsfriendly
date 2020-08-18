@@ -12,6 +12,8 @@ let animalRouter = require('./routes/animalRoutes')
 let serviceRouter = require('./routes/serviceRoutes')
 let promotionRouter = require('./routes/promotionRoutes')
 let contratRouter = require('./routes/contratRoutes')
+let planningRouter = require('./routes/planningRoutes')
+let rechercheRouter = require('./routes/rechercheRoutes')
 
 
 //instancier le serveur
@@ -31,6 +33,8 @@ app.use('/animaux',  animalRouter)
 app.use('/services',  serviceRouter)
 app.use('/promotions',  promotionRouter)
 app.use('/contrats', contratRouter)
+app.use('/plannings',  planningRouter)
+app.use('/recherche', rechercheRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

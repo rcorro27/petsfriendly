@@ -6,11 +6,11 @@ const {Service} = require('../models/service')
 //la fonction appelee par la route ajout de contrat
 function contratCreation(req, res) {
             // ***************  ajout de la facture  ****************
-    ajoutFacture(req)
-    .then(resultatRequeteFacture => {
+    //ajoutFacture(req)
+    //.then(resultatRequeteFacture => {
 
                     // ***************  ajout du contrat  ****************
-            ajoutContrat(req, resultatRequeteFacture.rows[0].id)
+            ajoutContrat(req)
             .then(resultatRequeteContrat => {
 
                              // ***************  ajout du contrat_utilisateur  ****************
@@ -20,24 +20,14 @@ function contratCreation(req, res) {
                                      // ***************  ajout du promotion_utilisateur  ****************
                             ajoutPromotionUtilisateur(req)
                             .then(resultatRequetePromotionUtilisateur => {
-                                
-                                             // ***************  ajout du planning  ****************
-                                    ajoutPlanning(req, resultatRequeteContrat.rows[0].id)
-                                    .then(resultatRequetePlanning => {
                                                     
-                                                     // ***************  ajout des service_contrat  ****************
-                                            ajoutServiceContrat(req, resultatRequeteContrat.rows[0].id)
-                                            .then(resultatRequeteServiceContrat => {
-                                                     res.setHeader('Content-Type', 'application/json');
-                                                     res.end(JSON.stringify({}))
-                                            })
-                                            .catch(erreur => {
-                                                console.error(erreur.stack)
-                                                res.setHeader('Content-Type', 'text/html')
-                                                res.end(erreur.stack)
-                                            })
+                                             // ***************  ajout des service_contrat  ****************
+                                   ajoutServiceContrat(req, resultatRequeteContrat.rows[0].id)
+                                   .then(resultatRequeteServiceContrat => {
+                                         res.setHeader('Content-Type', 'application/json');
+                                         res.end(JSON.stringify({}))
                                     })
-                                    .catch(erreur => {
+                                   .catch(erreur => {
                                         console.error(erreur.stack)
                                         res.setHeader('Content-Type', 'text/html')
                                         res.end(erreur.stack)
@@ -64,13 +54,35 @@ function contratCreation(req, res) {
                 res.end(erreur.stack)
             })
 
-    })
-    .catch(erreur => {
-        console.error(erreur.stack)
+   // })
+   // .catch(erreur => {
+      //  console.error(erreur.stack)
+     //   res.setHeader('Content-Type', 'text/html')
+      //  res.end(erreur.stack)
+    //})
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+
+
+function contratAcceptation(req, res) 
+{                               
+                 // ***************  ajout du planning  ****************
+        ajoutPlanning(req)
+        .then(resultatRequetePlanning => {
+                
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify({}))
+        })
+       .catch(erreur => {
+       console.error(erreur.stack)
         res.setHeader('Content-Type', 'text/html')
         res.end(erreur.stack)
-    })
+         })
 }
+
+
+//-----------------------------------------------------------------------------------------------------------------------------
 
 function ajoutFacture(req) 
 {
@@ -91,13 +103,13 @@ function ajoutFacture(req)
         })
 }
 
-function ajoutContrat(req, id_facture)
+function ajoutContrat(req)
 {
     return new Promise((resolve, reject) => {
     
-        let sql = "INSERT INTO contrat (id_facture, date_debut, date_fin) VALUES ($1,$2,$3) RETURNING *"
+        let sql = "INSERT INTO contrat (date_debut, date_fin) VALUES ($1,$2,$3) RETURNING *"
 
-        bd.excuterRequete(sql, [id_facture, req.body.contrat.date_debut, req.body.contrat.date_fin])
+        bd.excuterRequete(sql, [req.body.contrat.date_debut, req.body.contrat.date_fin])
             .then(resultatRequeteContrat => {
                 if (resultatRequeteContrat.rowCount >= 1) {
                     resolve(resultatRequeteContrat)
@@ -115,7 +127,6 @@ function ajoutContratUtilisateur(req, id_contrat)
     return new Promise((resolve, reject) => {
     
         let sql = "INSERT INTO contrat_utilisateur (id_contrat, id_proprietaire, id_petsitter) VALUES ($1,$2,$3) RETURNING *"
-        console.log(id_contrat)
 
         bd.excuterRequete(sql, [id_contrat, req.body.utilisateur.id_proprietaire, req.body.utilisateur.id_petsitter])
             .then(resultatRequeteContratUtilisateur => {
@@ -155,7 +166,7 @@ function ajoutPlanning(req, id_contrat)
     
         let sql = "INSERT INTO planning (id_contrat, id_proprietaire, id_petsitter, date_debut, date_fin) VALUES ($1,$2,$3,$4,$5) RETURNING *"
     
-        bd.excuterRequete(sql, [id_contrat, req.body.utilisateur.id_proprietaire, req.body.utilisateur.id_petsitter, req.body.contrat.date_debut, req.body.contrat.date_fin])
+        bd.excuterRequete(sql, [req.body.contrat.id_contrat, req.body.utilisateur.id_proprietaire, req.body.utilisateur.id_petsitter, req.body.contrat.date_debut, req.body.contrat.date_fin])
             .then(resultatRequetePlanning => {
                 if (resultatRequetePlanning.rowCount >= 1) {
                     resolve(resultatRequetePlanning)
@@ -207,5 +218,7 @@ function ajoutServiceContrat(req, id_contrat)
 
 
 module.exports = {
-    contratCreation
+    contratCreation,
+    contratAcceptation,
+    ajoutFacture
 }
