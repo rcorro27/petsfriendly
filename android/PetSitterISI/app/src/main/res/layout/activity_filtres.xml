@@ -22,7 +22,10 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Service supplementaire"
-                android:textColor="@color/white" />
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
 

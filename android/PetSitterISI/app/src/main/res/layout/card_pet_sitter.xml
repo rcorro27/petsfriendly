@@ -21,7 +21,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:background="@drawable/rounded_corner_red_transparence"
+        android:background="@drawable/rounded_corner_grey_transparence"
         android:padding="10dp"
         android:orientation="vertical">
 
@@ -33,12 +33,14 @@
         <ImageView
             android:layout_width="90dp"
             android:layout_height="90dp"
+            android:layout_weight="1"
             android:src="@drawable/rectangle_66"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_weight="1"
             android:layout_marginLeft="10dp">
 
             <TextView
@@ -63,6 +65,7 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_weight="1"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="11dp"
                 android:src="@drawable/like" />
@@ -86,37 +89,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_weight="3"
+                    android:layout_weight="1"
                     android:layout_marginTop="10dp">
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
                     android:src="@drawable/image_31"/>
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:src="@drawable/image_31"/>
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:src="@drawable/image_31"/>
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:src="@drawable/image_31"/>
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:src="@drawable/image_31"/>
 
                 </LinearLayout>
 
@@ -124,21 +102,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_weight="3"
+                    android:layout_weight="1"
                     android:layout_marginLeft="10dp"
                     android:minHeight="55dp">
 
 
                     <Button
-
+                        android:id="@+id/button_profil"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:contentDescription="@string/contacter"
                         android:textSize="11.5dp"
-                        android:layout_weight="3"
-                        android:backgroundTint="@color/green"
+                        android:layout_weight="2"
+                        android:backgroundTint="@color/black"
                         android:minWidth="0dp"
-                        android:text="@string/contacter"
+                        android:text="@string/voir_profil_pet_sitter"
                         android:textColor="@color/white"
                         android:theme="@style/MyMaterialTheme"
                         android:gravity="center"/>
@@ -151,15 +128,13 @@
                         android:backgroundTint="@color/green"
                         android:textSize="11.5dp"
                         android:layout_marginLeft="5dp"
-                        android:layout_weight="3"
+                        android:layout_weight="2"
                         android:minWidth="0dp"
                         android:contentDescription="@string/reservation"
                         android:text="@string/reservation"
                         android:textColor="@color/white"
                         android:theme="@style/MyMaterialTheme"
                         android:gravity="center"/>
-
-
 
 
 
