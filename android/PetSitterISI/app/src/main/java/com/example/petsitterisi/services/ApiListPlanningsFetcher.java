@@ -103,8 +103,27 @@ public class ApiListPlanningsFetcher extends AsyncTask<String, Nullable, String>
             JSONArray jsonArray = new JSONArray(s);
 
             for(int i = 0; i < jsonArray.length(); i++){
+                View cardPlanningPetSitter = View.inflate(context , R.layout.card_planning_pet_sitter,null);
+                TextView dateDebutContratDemandeSitter = cardPlanningPetSitter.findViewById(R.id.date_debut_contrat_demande_sitter);
+                TextView dateFinContratDemandeSitter = cardPlanningPetSitter.findViewById(R.id.date_fin_contrat_demande_sitter);
+                TextView dateReservationDemandeSitter = cardPlanningPetSitter.findViewById(R.id.date_reservation_demande_sitter);
                 JSONObject planningJsonObject = jsonArray.getJSONObject(i);
                 String idPetSitter = planningJsonObject.getString("id_petsitter");
+                String idProprietaire = planningJsonObject.getString("id_proprietaire");
+                String dateDebut = planningJsonObject.getString("date_debut");
+                String dateFin = planningJsonObject.getString("date_fin");
+                String dateReservation = planningJsonObject.getString("date_creation");
+                dateReservationDemandeSitter.setText(dateReservation);
+
+                dateDebutContratDemandeSitter.setText(dateDebut);
+                dateFinContratDemandeSitter.setText(dateFin);
+
+                ll.addView(cardPlanningPetSitter);
+
+
+
+
+
 
 
             }

@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -115,11 +116,15 @@ public class BottomNavigationBar extends FragmentActivity {
 
     }
 
+
+
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
                     Fragment selectedFragment = new Fragment();
+
                     switch (item.getItemId()) {
                         case R.id.nav_chat:
                             selectedFragment = new ChatFragment();
@@ -128,7 +133,7 @@ public class BottomNavigationBar extends FragmentActivity {
                             selectedFragment = new RechercheFragment();
                             break;
                         case R.id.nav_demandes:
-                            selectedFragment = new DemandesFragment();
+                            selectedFragment = new PlaningsFragment();
                             break;
                         case R.id.nav_favoris:
                             selectedFragment = new FavorisFragment();
