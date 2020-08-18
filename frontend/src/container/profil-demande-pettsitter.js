@@ -92,7 +92,8 @@ class ProfilDemandePettSitter extends Component {
         console.log('taxes tvq', TVQ(service))
         console.log('Prix Total : ', PrixAvecTaxes(service))
         // console.log('local Storage:', JSON.parse(localStorage.getItem('sitter')))
-        console.log('sitter', sitter.id)
+        console.log('sitter', sitter.services)
+        console.log(sitter)
         return (
 
             // AHMED CHAQUE ELEMENT JSX DOIT AVOIR UNE ELEMENT PARENT ( ce ca le div qui envelope tout le restes)
@@ -117,7 +118,7 @@ class ProfilDemandePettSitter extends Component {
                     <div className='m-5 w-25 p3 float-left bg-white border border-danger rounded shadow '>
                         <h3 className='h3 w-25 p-3 mx-auto'><strong>Services</strong> </h3>
                         <ul className='list-group'>
-                            {service.map((info, index) => <ServiceDemandeComponent key={index} classNameLi='list-group-item' textLi={info.description} textPrice={info.prix_service} classIcone='fas fa-dollar-sign' />)}
+                            <ServiceDemandeComponent classNameLi='list-group-item' servicesTotal={service} servicesSitter={sitter.services} classIcone='fas fa-dollar-sign' />
                         </ul>
                     </div>
                     <div className=' m-5 w-50 p-3 float-right border border-danger rounded shadow'>
