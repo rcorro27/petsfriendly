@@ -1,19 +1,27 @@
 const bd = require('../servers/bd')
-const {Service} = require('../models/service')
+const { Service } = require('../models/service')
 
 //-----------------------------------------------------------------------------------------------------------------------------
 
 //la fonction appelee par la route ajout de contrat
 function contratFin(req, res) {
+    //facture
+    let sqlFacture = "INSERT INTO facture (id_contrat,id_promotion, prix) VALUES ($1,$2) RETURNING *"
 
-    /* creer la bonne structure pour la fin du contrat et tout ce qui va avec*/
+    bd.excuterRequete(sqlFacture, [req.body.contrat.id_contrat, req.body.promotion.id_promotion, req.body.facture.prix])
+        .then(resultatRequete1 => {
+            let sqlContrat = "UPDATE contrat SET id_facture=$1,est_termine=true where id=$2"
 
-    let sql = "insert into contrat (id, id_facture, date_debut, date_fin, est_accepte, est_termine, est_lu_proprietaire, est_lu_petsitter, encore_disponible,date_creation) values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)"
-
-    bd.excuterRequete(sql, [req.body.id, req.body.id_facture, req.body.date_debut, req.body.date_fin, req.body.est_accepte, req.body.est_termine, req.body.est_lu_proprietaire, req.body.est_lu_petsitter, req.body.encore_disponible, req.body.date_creation])
-        .then(resultatRequete => {
-            res.setHeader('Content-Type', 'application/json')
-            res.end(JSON.stringify(resultatRequete.rows))
+            bd.excuterRequete(sqlContrat, [resultatRequete1.rows[0].id_facture])
+                .then(resultatRequete2 => {
+                    res.setHeader('Content-Type', 'application/json')
+                    res.end(JSON.stringify(resultatRequete2.rows))
+                })
+                .catch(erreur => {
+                    console.error(erreur.stack)
+                    res.setHeader('Content-Type', 'text/html')
+                    res.end(erreur.stack)
+                })
         })
         .catch(erreur => {
             console.error(erreur.stack)
@@ -24,15 +32,28 @@ function contratFin(req, res) {
 
 //-----------------------------------------------------------------------------------------------------------------------------
 
-//la fonction appelee par la route recuperation de contrat avec l'id d'utilisateur
+//la fonction appelee par la route recuperation de contrat avec l'id du proprietaire
 function contratRecuperationByIdProprietaire(req, res) {
 
-    /* creer la bonne requete selon le json a envoyer*/
+    let sqlReccupererContratParIdProprietaire = "SELECT * FROM contrat_utilisateur WHERE id = $1 RETURNING *"
 
-    let sql = "select * from contrat where id = $1"
-
-    bd.excuterRequete(sql, [])
+    //execution de la requete
+    bd.excuterRequete(sqlReccupererContratParIdProprietaire, [req.body.id])
         .then(resultatRequete => {
+
+            let requeteSQLFinContratPetsitter = "SELECT * FROM contrat WHERE id_petsitter = $1"
+
+            bd.excuterRequete(requeteSQLFinContratPetsitter, [resultatRequete.rows[0].id_contrat])
+                .then(resultatRequeteContratPetsitter => {
+                    res.setHeader('Content-Type', 'application/json');
+                    res.end(JSON.stringify(resultatRequeteContratPetsitter.rows))
+                })
+                .catch(erreur => {
+                    console.error(erreur.stack)
+                    res.setHeader('Content-Type', 'text/html')
+                    res.end(erreur.stack)
+                })
+
             res.setHeader('Content-Type', 'application/json')
             res.end(JSON.stringify(resultatRequete.rows))
         })
@@ -45,15 +66,27 @@ function contratRecuperationByIdProprietaire(req, res) {
 
 //-----------------------------------------------------------------------------------------------------------------------------
 
-//la fonction appelee par la route recuperation de contrat avec l'id d'utilisateur
+//la fonction appelee par la route recuperation de contrat avec l'id petsitter
 function contratRecuperationByIdPetsitter(req, res) {
 
-    /* creer la bonne requete selon le json a envoyer*/
-    
-    let sql = "select * from contrat where id = $1"
+    let sqlReccupererContratParIdPetsitter = "SELECT * FROM contrat_utilisateur WHERE id = $1 RETURNING *"
 
-    bd.excuterRequete(sql, [])
+    bd.excuterRequete(sqlReccupererContratParIdPetsitter, [req.body.id_contrat])
         .then(resultatRequete => {
+
+            let requeteSQLFinContratPetsitter = "SELECT * FROM contrat WHERE id_petsitter = $1"
+
+            bd.excuterRequete(requeteSQLFinContratPetsitter, [resultatRequete.rows[0].id])
+                .then(resultatRequeteContratPetsitter => {
+                    res.setHeader('Content-Type', 'application/json');
+                    res.end(JSON.stringify(resultatRequeteContratPetsitter.rows))
+                })
+                .catch(erreur => {
+                    console.error(erreur.stack)
+                    res.setHeader('Content-Type', 'text/html')
+                    res.end(erreur.stack)
+                })
+
             res.setHeader('Content-Type', 'application/json')
             res.end(JSON.stringify(resultatRequete.rows))
         })
@@ -63,8 +96,6 @@ function contratRecuperationByIdPetsitter(req, res) {
             res.end(erreur.stack)
         })
 }
-
-
 module.exports = {
     contratFin,
     contratRecuperationByIdProprietaire,
