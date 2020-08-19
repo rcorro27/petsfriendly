@@ -2,23 +2,21 @@ package com.example.petsitterisi.services;
 
 
 import android.annotation.SuppressLint;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.petsitterisi.BottomNavigationBar;
 import com.example.petsitterisi.R;
-import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,21 +26,17 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
-import java.util.Objects;
-public class ApiListChatFetcher extends AsyncTask<String, Nullable, String> {
+public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, String> {
 
     private Context  context;
-    LinearLayout ll;
+    RecyclerView ll;
     SharedPreferences sharedpreferences;
     LinearLayout card_chat_select;
 
 
 
 
-    public ApiListChatFetcher(Context  context, LinearLayout llParam) {
+    public ApiListChatDiscussionFetcher(Context  context, RecyclerView llParam) {
         this.context = context;
         this.ll = llParam;
         sharedpreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
@@ -116,29 +110,29 @@ public class ApiListChatFetcher extends AsyncTask<String, Nullable, String> {
 
                 JSONObject chatJsonObject = jsonArray.getJSONObject(i);
 
-                String nom_proprietaire = chatJsonObject.getString("nom");
-
-                View cardChatParam = View.inflate(context , R.layout.card_chat,null);
-
-                TextView prenom_chat = cardChatParam.findViewById(R.id.prenom_chat);
-
-                prenom_chat.setText(nom_proprietaire);
-
-                card_chat_select = cardChatParam.findViewById(R.id.car_chat_selectionner);
-
-                card_chat_select.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        Intent intent = new Intent(context, BottomNavigationBar.class);
-                        intent.putExtra("ChatDiscussion", "true");
-                        context.startActivity(intent);
-
-                    }
-                });
-
-
-                ll.addView(cardChatParam);
+//                String nom_proprietaire = chatJsonObject.getString("nom");
+//
+//                View cardChatParam = View.inflate(context , R.layout.card_chat,null);
+//
+//                TextView prenom_chat = cardChatParam.findViewById(R.id.prenom_chat);
+//
+//                prenom_chat.setText(nom_proprietaire);
+//
+//                card_chat_select = cardChatParam.findViewById(R.id.car_chat_selectionner);
+//
+//                card_chat_select.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//
+//                        Intent intent = new Intent(context, BottomNavigationBar.class);
+//                        intent.putExtra("ChatDiscussion", "true");
+//                        context.startActivity(intent);
+//
+//                    }
+//                });
+//
+//
+//                ll.addView(cardChatParam);
 
             }
 
