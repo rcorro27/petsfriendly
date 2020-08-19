@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ServiceDemandeComponent from '../component/services-demande-component'
 import FeedBackCommentaire from '../component/feedback-commentaire-component'
 import FactureDemandeComponent from '../component/facture-demande-component'
+import axios from 'axios'
 // import PetSitterInput from 'component/PetSitterInput'
 
 class ProfilDemandePettSitter extends Component {
@@ -10,18 +11,42 @@ class ProfilDemandePettSitter extends Component {
 
         this.state = {
             recherche: false,
-            resultat: []
+            resultat: [],
+            prixSitter: [],
+            servicesTotal: []
 
         }
     }
 
+    componentDidMount () {
+        return axios
+            .get('https://pets-friendly.herokuapp.com/services/recuperation/tout')
+        // .then(response => console.log(response.data))
+            .then(response => {
+                const service = []
+                response.data.map((info, index) => service.push(info))
+                console.log(service)
+                this.setState({ servicesTotal: service })
+            // event.preventDefault()
+            })
+            .catch(err => {
+                console.log('erreur recherche:', err)
+            })
+    }
+
     render () {
         const sitter = JSON.parse(localStorage.getItem('sitter'))
-
+        // const priceTotal = 0
+        // const price = sitter.services.map((price, index) => priceTotal + service[price - 1].prix_service)
+        /* function name () {
+            const priceTotalSansTaxe = 0
+            sitter.services.map((info, index) => priceTotalSansTaxe + service[info - 1].prix_service)
+            return priceTotalSansTaxe
+        } */
         function PrixAvantTaxes (prix) {
             let prixAvantTaxes = 0
             prix.map((infoPrix, index) => {
-                prixAvantTaxes = prixAvantTaxes + infoPrix.prix_service
+                prixAvantTaxes = prixAvantTaxes + service[infoPrix - 1].prix_service
                 return prixAvantTaxes
             })
             return prixAvantTaxes
@@ -39,24 +64,7 @@ class ProfilDemandePettSitter extends Component {
             return prixTotal
         }
 
-        const service = [
-            {
-                id: 1,
-                description: 'Promenade',
-                prix_service: 20
-            },
-            {
-                id: 2,
-                description: 'Garder Chez Vous',
-                prix_service: 15
-            },
-            {
-                id: 3,
-                description: 'Garder Chez Pet Sitter',
-                prix_service: 20
-            }
-
-        ]
+        const service = JSON.parse(localStorage.getItem('servicestotal'))
         const feedback = [
             {
                 nameProprietaire: 'Carlos',
@@ -87,17 +95,10 @@ class ProfilDemandePettSitter extends Component {
             'TOTAL avec taxes :'
 
         ]
-
-        console.log('taxes tps', TPS(service))
-        console.log('taxes tvq', TVQ(service))
-        console.log('Prix Total : ', PrixAvecTaxes(service))
-        // console.log('local Storage:', JSON.parse(localStorage.getItem('sitter')))
-        console.log('sitter', sitter.services)
         console.log(sitter)
+        console.log(this.state.servicesTotal)
+        console.log('services total : ', JSON.parse(localStorage.getItem('servicestotal')))
         return (
-
-            // AHMED CHAQUE ELEMENT JSX DOIT AVOIR UNE ELEMENT PARENT ( ce ca le div qui envelope tout le restes)
-            // ligne 21 pas la bonne syntaxe
             <div>
                 <div>
                     <h1 className='h1 w-25 p-3 mx-auto'>Demande services sitter </h1>
@@ -136,10 +137,10 @@ class ProfilDemandePettSitter extends Component {
 
                         </div>
                         <div className='float-right m-2 w-25 p-3'>
-                            <p><strong>{PrixAvantTaxes(service)}</strong></p>
-                            <p>{TPS(service)}</p>
-                            <p>{TVQ(service)}</p>
-                            <p><strong>{PrixAvecTaxes(service)}</strong></p>
+                            <p><strong>{PrixAvantTaxes(sitter.services)}</strong></p>
+                            <p>{TPS(sitter.services)}</p>
+                            <p>{TVQ(sitter.services)}</p>
+                            <p><strong>{PrixAvecTaxes(sitter.services)}</strong></p>
                             <input type='button' value='Envoyer Demande' className='btn btn-success' />
                         </div>
 
