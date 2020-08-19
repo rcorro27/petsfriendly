@@ -142,11 +142,11 @@ public class BottomNavigationBar extends FragmentActivity {
                             selectedFragment = new RechercheFragment();
                             break;
                         case R.id.nav_demandes:
-<<<<<<< HEAD
-                            selectedFragment = new PlaningsFragment();
-=======
-                            selectedFragment = new ReservationFragment();
->>>>>>> 9c65e208265a2502be4e271c2af429c4105a0e69
+
+                            //selectedFragment = new PlaningsFragment();
+
+                           selectedFragment = new ReservationFragment();
+
                             break;
                         case R.id.nav_favoris:
                             selectedFragment = new FavorisFragment();
