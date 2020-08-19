@@ -1,9 +1,11 @@
+const bd = require('../servers/bd')
+
 //la fonction appelee par la route ajout de favoris
 function favorisAjout(req, res) {
 
     let sql = "INSERT INTO favoris (id_petsitter, id_proprietaire) VALUES ($1,$2)"
 
-    bd.excuterRequete(sql, [req.body.id, req.body.id_petsitter, req.body.id_proprietaire])
+    bd.excuterRequete(sql, [req.body.favoris.id_petsitter, req.body.favoris.id_proprietaire])
         .then(resultatRequete => {
             res.setHeader('Content-Type', 'application/json')
             res.end(JSON.stringify(resultatRequete.rows))
@@ -20,7 +22,7 @@ function favorisModification(req, res) {
 
     let sql = "UPDATE favoris SET id_petsitter=$1, id_proprietaire=$2 WHERE id=$3"
 
-    bd.excuterRequete(sql, [req.body.id_petsitter, req.body.id_proprietaire])
+    bd.excuterRequete(sql, [req.body.favoris.id_petsitter, req.body.favoris.id_proprietaire, req.params.id])
         .then(resultatRequete => {
             res.setHeader('Content-Type', 'application/json')
             res.end(JSON.stringify(resultatRequete.rows))
@@ -37,7 +39,7 @@ function favorisRecuperationByIdUtilisateur(req, res) {
 
     let sql = "SELECT * FROM favoris WHERE id=$1"
 
-    bd.excuterRequete(sql, [])
+    bd.excuterRequete(sql, [req.params.id])
         .then(resultatRequete => {
             res.setHeader('Content-Type', 'application/json')
             res.end(JSON.stringify(resultatRequete.rows))

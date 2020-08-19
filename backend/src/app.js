@@ -12,6 +12,9 @@ let animalRouter = require('./routes/animalRoutes')
 let serviceRouter = require('./routes/serviceRoutes')
 let promotionRouter = require('./routes/promotionRoutes')
 let contratRouter = require('./routes/contratRoutes')
+let favorisRouter = require('./routes/favorisRoutes')
+
+
 
 
 //instancier le serveur
@@ -27,18 +30,19 @@ app.use(cors())
 //les routes du serveur
 app.use('/', indexRouter)
 app.use('/utilisateurs', utilisateurRouter)
-app.use('/animaux',  animalRouter)
-app.use('/services',  serviceRouter)
-app.use('/promotions',  promotionRouter)
+app.use('/animaux', animalRouter)
+app.use('/services', serviceRouter)
+app.use('/promotions', promotionRouter)
 app.use('/contrats', contratRouter)
+app.use('/favoris', favorisRouter)
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404))
 })
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message
   res.locals.error = req.app.get('env') === 'development' ? err : {}
