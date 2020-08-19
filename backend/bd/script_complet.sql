@@ -154,6 +154,8 @@ create table if not exists infos_bd
  version_images integer NOT NULL DEFAULT 110);
  
  
+ALTER TABLE feedback ADD COLUMN date_creation date NOT NULL DEFAULT NOW()
+ 
 INSERT INTO role_utilisateur (type_role, definition) VALUES ('administrateur', 'le administrateur qui gere les donnes par une interface web');
 INSERT INTO role_utilisateur (type_role, definition) VALUES ('proprietaire', 'le client chez notre compagnie');
 INSERT INTO role_utilisateur (type_role, definition) VALUES ('petsitter', 'le petsitter qui travaille chez notre compagnie');

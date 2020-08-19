@@ -2,14 +2,13 @@ import React, { Component } from 'react'
 
 import InputComponent from '../component/input-component'
 
-class InscriptionContainer extends Component {
+class InscriptionAdressContainer extends Component {
     constructor (props) {
         super(props)
 
         this.state = {
             inputs: []
         }
-        this.continue = this.continue.bind(this)
     }
 
     continue (e) {
@@ -17,8 +16,13 @@ class InscriptionContainer extends Component {
         this.props.nextStep()
     }
 
+    back (e) {
+        e.preventDefault()
+        this.props.prevStep()
+    }
+
     componentDidMount () {
-        fetch('inputs.json', { method: 'GET' })
+        fetch('adress.json', { method: 'GET' })
             .then(response => response.json())
             .then(response => {
                 this.setState({ inputs: response })
@@ -34,15 +38,21 @@ class InscriptionContainer extends Component {
                     {this.state.inputs.map((input, index) => <InputComponent classCss={input.classCss} classIcon={input.classIcon} classInput={input.classInput} type={input.type} id={input.id} name={input.name} min={input.min} onchange={this.props.change} textLabel={input.textLabel} key={index} />)}
                 </div>
 
-                <ul className='pager'>
+                <ul className='pagination'>
+                    <li className='page-item'>
+                        <a href='#' onClick={this.props.back}>Previous
+                        </a>
 
-                    <li className='next'>
-                        <a href='#' onClick={this.props.click}>Next
+                    </li>
+                    <li className='page-item'>
+                        <a href='#' onClick={this.props.next}>Next
                         </a>
                     </li>
                 </ul>
+
             </>
+
         )
     }
 }
-export default InscriptionContainer
+export default InscriptionAdressContainer

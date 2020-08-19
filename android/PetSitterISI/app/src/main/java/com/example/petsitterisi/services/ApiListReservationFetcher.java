@@ -150,13 +150,10 @@ public class ApiListReservationFetcher extends AsyncTask<String, Nullable, Strin
                     public void onClick(View v) {
                             afficherAlertDialogReservation();
 
-<<<<<<< HEAD
-=======
                     }
                 });
                 ll.addView(cardReservationParam);
 
->>>>>>> 761c72b2f4b4632ee3ab588305144940bc9cadf2
             }
 
 

@@ -1,4 +1,5 @@
 const bd = require('../servers/bd')
+const mail = require('../servers/mail')
 const { Utilisateur } = require('../models/utilisateur')
 const { v4: uuidv4 } = require('uuid')
 
@@ -78,7 +79,9 @@ function utilisateurCreation(req, res) {
 
                         // l'adresse est ajoute a la bd
                         if (resultatRequeteSqlAdresse.rowCount >= 1) {
+
                             // ***************  requete de creation utilisateur si l'adresse est cree ****************
+                            
                             let uuidActivationUtilisateur = uuidv4() //generer un id aleatoire en utilisant la biblio uuid
 
                             let sqlUtilisateur = "INSERT INTO utilisateur (id_role, nom, prenom, age, email, mot_de_passe, sexe, id_adresse, telephone, id_activation) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)"
@@ -88,6 +91,27 @@ function utilisateurCreation(req, res) {
                                 .then(resultatRequeteSqlUtilisateur => {
 
                                     if (resultatRequeteSqlUtilisateur.rowCount >= 1) {
+
+                                        //envoyer un mail d'activation
+                                        let mailOptions = {
+                                            from: 'etudiant.isi.java2@gmail.com',
+                                            to: req.body.utilisateur.email,
+                                            subject: 'Activation Compte PetsFriendly',
+                                            html: ""
+                                        };
+
+                                        if (req.body.id_role === 2) 
+                                        {
+                                            const lienActivation = "https://pets-friendly.herokuapp.com/activation/proprietaire/" +  req.body.utilisateur.email + "/" + resultatRequeteSqlUtilisateur.rows[0].id_activation
+                                            mailOptions.html = "<a href=\"" + lienActivation + "\">cliquez-ici</a>"
+                                            mail.envoyerMailAuProprietaire(mailOptions)
+                                        } else if (req.body.id_role === 3)
+                                        {
+                                            const lienActivation = "https://pets-friendly.herokuapp.com/activation/petsitter/" +  req.body.utilisateur.email + "/" + resultatRequeteSqlUtilisateur.rows[0].id_activation
+                                            mailOptions.html = "<a href=\"" + lienActivation + "\">cliquez-ici</a>"
+                                            mail.envoyerMailAuPetsitter(mailOptions)
+                                        }
+
                                         res.setHeader('Content-Type', 'application/json');
                                         res.end(JSON.stringify({}))
 
@@ -300,6 +324,118 @@ function utilisateurSuppression(req, res) {
 
 //-----------------------------------------------------------------------------------------------------------------------------
 
+//la fonction appelee par la route de recuperation de petsitters
+function petsittersRecuperation(req, res) {
+    let resultatRequeteHttp = []
+
+    let sql = "SELECT * FROM utilisateur WHERE id_role=3"
+
+    //requete sql pour utilisateur
+    bd.excuterRequete(sql, [])
+        .then(resultatRequeteSqlUtilisateur => {
+            //pour ajoute les info importante de chaque petsitter dans un obj a l'interieur du tableau
+            resultatRequeteSqlUtilisateur.rows.map((petsitter, index) => {
+                let infoSitter = {"id": petsitter.id, "nom": petsitter.nom, "prenom": petsitter.prenom, "email": petsitter.email, "est_valide": petsitter.est_valide}
+                resultatRequeteHttp.push(infoSitter)
+            })
+
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify(resultatRequeteHttp))
+        })
+        .catch(erreur => {
+            console.error(erreur.stack)
+
+            res.setHeader('Content-Type', 'text/html');
+            res.end(erreur.stack)
+
+            return undefined
+        })
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+
+//la fonction appelee par la route d'activation de petsitter
+function petsitterValidation(req, res) {
+
+    let sql = "UPDATE utilisateur SET est_valide = NOT est_valide WHERE id=$1"
+
+    //requete sql pour utilisateur
+    bd.excuterRequete(sql, [req.params.id])
+        .then(resultatRequeteSqlUtilisateur => {
+           
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify({}))
+        })
+        .catch(erreur => {
+            console.error(erreur.stack)
+
+            res.setHeader('Content-Type', 'text/html');
+            res.end(erreur.stack)
+
+            return undefined
+        })
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+
+//la fonction appelee par la route d'activation de petsitter
+function petsitterActivation(req, res) {
+
+    let sql = "UPDATE utilisateur SET est_active=true WHERE email=$1 AND id_activation=$2"
+
+    bd.excuterRequete(sql, [req.params.email, req.params.idactivation])
+        .then(resultatRequeteSqlUtilisateur => {
+            if (resultatRequeteSqlUtilisateur.rowCount >= 1)
+            {
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({}))
+            } else 
+            {
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({"erreur": 400}))
+            }
+        })
+        .catch(erreur => {
+            console.error(erreur.stack)
+
+            res.setHeader('Content-Type', 'text/html');
+            res.end(erreur.stack)
+
+            return undefined
+        })
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+
+//la fonction appelee par la route d'activation de petsitter
+function proprietaireActivation(req, res) {
+
+    let sql = "UPDATE utilisateur SET est_active=true, est_valide=true WHERE email=$1 AND id_activation=$2"
+
+    bd.excuterRequete(sql, [req.params.email, req.params.idactivation])
+        .then(resultatRequeteSqlUtilisateur => {
+            if (resultatRequeteSqlUtilisateur.rowCount >= 1)
+            {
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({}))
+            } else 
+            {
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({"erreur": 400}))
+            }
+        })
+        .catch(erreur => {
+            console.error(erreur.stack)
+
+            res.setHeader('Content-Type', 'text/html');
+            res.end(erreur.stack)
+
+            return undefined
+        })
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+
 // la fonction pour la recuperation d'adresse d'utilisateur
 function recupererAdresseUtilisateur(id_adresse) {
     return new Promise((resolve, reject) => {
@@ -322,5 +458,10 @@ module.exports = {
     utilisateurCreation,
     utilisateurConfiguration,
     utilisateurRecuperation,
-    utilisateurSuppression
+    utilisateurSuppression,
+    petsittersRecuperation,
+    petsitterValidation,
+    petsitterActivation,
+    proprietaireActivation,
+    recupererAdresseUtilisateur
 }

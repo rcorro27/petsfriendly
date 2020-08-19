@@ -24,7 +24,9 @@ import androidx.annotation.Nullable;
 
 import com.example.petsitterisi.BottomNavigationBar;
 import com.example.petsitterisi.R;
+import com.example.petsitterisi.entitees.Utilisateur;
 import com.example.petsitterisi.managers.UtilisateurManager;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -67,108 +69,68 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
     @Override
     protected String doInBackground(String... urls) {
 
+        String result = "";
 
-//        try {
-//
-//            JSONObject obj = new JSONObject(s);
-//            JSONArray jsonArray = new JSONArray();
-//            jsonArray.put(obj);
-//
-//            for(int i = 0; i < jsonArray.length(); i++){
-//                JSONObject jsonObject = (JSONObject) jsonArray.get(i);
-//                Iterator<String> itr = jsonObject.keys();
-//
-//                while(itr.hasNext()){
-//                    String key = itr.next();
-//                    JSONArray newJsonArray = jsonObject.getJSONArray(key);
-//                    for(int j = 0; j < newJsonArray.length(); j++) {
-//
-//                        JSONObject jsObject = newJsonArray.getJSONObject(j);
-//
-//                        View cardPetSitterParam = View.inflate(context , R.layout.card_pet_sitter,null);
-//                        TextView petSitterName = cardPetSitterParam.findViewById(R.id.name);
-//                        final String petSitterId = jsObject.getString("id");
-//                        petSitterName.setText(jsObject.getString("nom"));
-//                        button_profil = cardPetSitterParam.findViewById(R.id.button_profil);
-//                        reservervation_liste_pet_sitter = cardPetSitterParam.findViewById(R.id.reservervation_liste_pet_sitter);
-//
-//                        button_profil.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View v) {
-//
-//                                Intent intent = new Intent(context, BottomNavigationBar.class);
-//                                intent.putExtra("Profil", "true");
-//                                intent.putExtra("petSitterId", petSitterId);
-//                                context.startActivity(intent);
-//
-//                            }
-//                        });
-//
-//
-//                        reservervation_liste_pet_sitter.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View v) {
-//                                try {
-//                                    afficherAlertDialogReservation();
-//                                } catch (JSONException e) {
-//                                    e.printStackTrace();
-//                                }
-//                            }
-//                        });
-//
-//                        JSONArray petSitterServiceStringArray = jsObject.getJSONArray("services");
-//
-//                        for(int k = 0; k <  petSitterServiceStringArray.length(); k++){
-//                            String idService = petSitterServiceStringArray.getString(k);
-//
-//                            String descriptionService = sharedpreferences.getString("description_service_"+idService, null);
-//                            String prixService = sharedpreferences.getString("prix_service_"+idService, null);
-//
-//                            View serviceView = View.inflate(context , R.layout.service,null);
-//                            ImageView serviceImage = serviceView.findViewById(R.id.service_image);
-//
-//                            LinearLayout pet_sitter_services_container = cardPetSitterParam.findViewById(R.id.pet_sitter_services_container);
-//
-//                            try {
-//                                if (descriptionService.equals("Promenade")) {
-//                                    serviceImage.setImageResource(R.drawable.image_16);
-//                                } else if (descriptionService.equals("Garder chez vous")) {
-//                                    serviceImage.setImageResource(R.drawable.image_icon_2);
-//                                } else if (descriptionService.equals("Garder chez le Pet Sitter")) {
-//                                    serviceImage.setImageResource(R.drawable.image_icon_1);
-//                                }
-//
-//                                TextView servicePrix = serviceView.findViewById(R.id.service_prix);
-//                                servicePrix.setText(prixService + "$");
-//
-//                                TextView serviceName = serviceView.findViewById(R.id.service_name);
-//                                serviceName.setText(descriptionService);
-//
-//
-//                                pet_sitter_services_container.addView(serviceView);
-//                            }catch(Exception e){
-//                                e.printStackTrace();
-//                            }
-//
-//                        }
-//
-//                        ll.addView(cardPetSitterParam);
-//
-//
-//
-//
-//
-//                    }
-//
-//
-//
-//                } catch (JSONException e) {
-//                    // Handle exceptions here
-//
-//                }
+        try {
+            URL url = new URL(urls[0]);
 
-return "";
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setDoOutput(true);
+            urlConnection.setDoInput(true);
+            urlConnection.setRequestMethod("POST");
+            urlConnection.setRequestProperty("Content-Type", "application/json");
+            urlConnection.connect();
 
+
+            String[] stringArray;
+            stringArray = new String[2];
+
+            stringArray[0] = "4";
+
+            JSONObject adresseJsonObject = new JSONObject();
+
+            String numero_rue = UtilisateurManager.getAdresseInfos(context, "numero_rue");
+            adresseJsonObject.put("numero_rue", numero_rue);
+
+            String nom_rue = UtilisateurManager.getAdresseInfos(context, "nom_rue");
+            adresseJsonObject.put("nom_rue", nom_rue);
+
+            String code_postal = UtilisateurManager.getAdresseInfos(context, "code_postal");
+            adresseJsonObject.put("code_postal", code_postal);
+
+            String ville = UtilisateurManager.getAdresseInfos(context, "ville");
+            adresseJsonObject.put("ville", ville);
+
+            String pays = UtilisateurManager.getAdresseInfos(context, "cpays");
+            adresseJsonObject.put("ville", pays);
+
+            JSONObject grandJsonObject = new JSONObject();
+            grandJsonObject.put("services", stringArray);
+            grandJsonObject.put("adresse", adresseJsonObject);
+
+
+            DataOutputStream wr = new DataOutputStream(urlConnection.getOutputStream());
+            wr.writeBytes(grandJsonObject.toString());
+            wr.flush();
+            wr.close();
+
+            int codeRetour = urlConnection.getResponseCode();
+
+            if (codeRetour == HttpURLConnection.HTTP_OK) {
+
+                BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+
+                String line = "";
+                while ((line = in.readLine()) != null)
+                    result += line;
+
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return result;
     }
 
     @Override
@@ -180,17 +142,10 @@ return "";
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        String tContents = "";
-        String concat = "";
         try {
-            InputStream stream = context.getAssets().open("resultat-recherche.json");
-            int size = stream.available();
-            byte[] buffer = new byte[size];
-            stream.read(buffer);
-            stream.close();
-            tContents = new String(buffer);
 
-            JSONArray jsonArray = new JSONArray(tContents);
+
+            JSONArray jsonArray = new JSONArray(s);
 
             for(int i = 0; i < jsonArray.length(); i++){
                 JSONObject jsObject = (JSONObject) jsonArray.get(i);
@@ -240,7 +195,7 @@ return "";
 
                             LinearLayout pet_sitter_services_container = cardPetSitterParam.findViewById(R.id.pet_sitter_services_container);
                             ImageView ratingView = cardPetSitterParam.findViewById(R.id.rating);
-                            ratingView.setImageResource(R.);
+                      //      ratingView.setImageResource(R.);
 
                             try {
                                 if (descriptionService.equals("Promenade")) {
@@ -272,7 +227,7 @@ return "";
 
 
 
-        } catch (IOException | JSONException e) {
+        } catch (JSONException e) {
             // Handle exceptions here
 
         }
