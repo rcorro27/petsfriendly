@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import ToolbarComponent from 'component/toolbar-component'
+import AdminContainer from 'container/admin-container.js'
 import FormContainer from './form-container'
 import RecherchePetsitter from 'container/recherchepetsitter-container'
 import ProfilProprietaireBord from 'container/profil-demande-pettsitter'
@@ -9,6 +9,23 @@ import Navbar from '../container/navbar-container'
 import Footer from '../component/Footer/Footer'
 
 class PagePrincipal extends Component {
+    constructor (props) {
+        super(props)
+        this.setupBeforeUnloadListener = this.setupBeforeUnloadListener.bind(this)
+    }
+
+    setupBeforeUnloadListener () {
+        window.addEventListener('beforeunload', (ev) => {
+            ev.preventDefault()
+            localStorage.removeItem('usertoken')
+        })
+    };
+
+    componentDidMount () {
+        // Activate the event listener
+        this.setupBeforeUnloadListener()
+    }
+
     render () {
         return (
             <Router>
@@ -17,7 +34,8 @@ class PagePrincipal extends Component {
                 <Switch>
 
                     <Route exact path='/search' component={RecherchePetsitter} />
-                    <Route path='/' component={FormContainer} />
+                    <Route exact path='/admin' component={AdminContainer} />
+                    <Route exact path='/' component={FormContainer} />
                     <Route path='/profil' component={ProfilProprietaireBord} />
 
                 </Switch>
