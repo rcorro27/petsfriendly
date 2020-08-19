@@ -4,17 +4,19 @@ package com.example.petsitterisi.services;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.example.petsitterisi.BottomNavigationBar;
 import com.example.petsitterisi.R;
+import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,25 +28,18 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.DecimalFormat;
-import java.util.Iterator;
-
-public class ApiListPlanningsFetcher extends AsyncTask<String, Nullable, String> {
+public class ApiListReservationFetcher extends AsyncTask<String, Nullable, String> {
 
     private Context  context;
     LinearLayout ll;
     SharedPreferences sharedpreferences;
-    Button  reservervation_liste_pet_sitter;
+    Button button_commentaire;
+    Button button_envoyer_commentaire;
+    TextInputEditText commentaire_envoyer;
     Dialog dialog_reservation;
-    TextView prix_ht_facture;
-    TextView taxe_tps;
-    TextView taxe_tvq;
-    TextView prix_ttc_facture;
-    Button appliquer_code_promo;
-    Button reservation_final;
 
 
-    public ApiListPlanningsFetcher(Context  context, LinearLayout llParam) {
+    public ApiListReservationFetcher(Context  context, LinearLayout llParam) {
         this.context = context;
         this.ll = llParam;
         sharedpreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
@@ -71,7 +66,6 @@ public class ApiListPlanningsFetcher extends AsyncTask<String, Nullable, String>
 
 
             if (codeRetour == HttpURLConnection.HTTP_OK) {
-
 
                 BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 
@@ -103,28 +97,11 @@ public class ApiListPlanningsFetcher extends AsyncTask<String, Nullable, String>
             JSONArray jsonArray = new JSONArray(s);
 
             for(int i = 0; i < jsonArray.length(); i++){
-                View cardPlanningPetSitter = View.inflate(context , R.layout.card_planning_pet_sitter,null);
-                TextView dateDebutContratDemandeSitter = cardPlanningPetSitter.findViewById(R.id.date_debut_contrat_demande_sitter);
-                TextView dateFinContratDemandeSitter = cardPlanningPetSitter.findViewById(R.id.date_fin_contrat_demande_sitter);
-                TextView dateReservationDemandeSitter = cardPlanningPetSitter.findViewById(R.id.date_reservation_demande_sitter);
                 JSONObject planningJsonObject = jsonArray.getJSONObject(i);
-                String idPetSitter = planningJsonObject.getString("id_petsitter");
-                String idProprietaire = planningJsonObject.getString("id_proprietaire");
-                String dateDebut = planningJsonObject.getString("date_debut");
-                String dateFin = planningJsonObject.getString("date_fin");
-                String dateReservation = planningJsonObject.getString("date_creation");
-                dateReservationDemandeSitter.setText(dateReservation);
-
-                dateDebutContratDemandeSitter.setText(dateDebut);
-                dateFinContratDemandeSitter.setText(dateFin);
-
-                ll.addView(cardPlanningPetSitter);
+                String idPetSitter = planningJsonObject.getString("id_proprietaire");
 
 
-
-
-
-
+                
 
             }
 
@@ -132,8 +109,51 @@ public class ApiListPlanningsFetcher extends AsyncTask<String, Nullable, String>
             e.printStackTrace();
         }
 
+        View cardReservationParam = View.inflate(context , R.layout.card_reservation_proprietaire,null);
+
+        button_commentaire = cardReservationParam.findViewById(R.id.button_commentaire);
+
+        button_commentaire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    afficherAlertDialogReservation();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        ll.addView(cardReservationParam);
+
 
     }
+
+
+    private void afficherAlertDialogReservation() {
+
+        dialog_reservation.setContentView(R.layout.alert_dialog_commentaire);
+
+        commentaire_envoyer = dialog_reservation.findViewById(R.id.commentaire_envoyer);
+        commentaire_envoyer.getText().toString();
+
+        button_envoyer_commentaire = (Button) dialog_reservation.findViewById(R.id.button_envoyer_message);
+
+        button_envoyer_commentaire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(context, BottomNavigationBar.class);
+                intent.putExtra("FeedBack", "true");
+                context.startActivity(intent);
+
+            }
+        });
+
+        dialog_reservation.show();
+
+
+    }
+
 
     private String inputStreamToString(InputStream is) {
         String rLine = "";

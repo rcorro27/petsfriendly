@@ -57,9 +57,9 @@ public class ProfilPetSitter extends Fragment {
                 }
             }
         });
-
+        getJson(leProfilPetSitter);
         return leProfilPetSitter;
-        //getJson();
+
 
 
 
@@ -71,7 +71,7 @@ public class ProfilPetSitter extends Fragment {
         button_envoyer_message = dialog_contacter_sitter.findViewById(R.id.button_envoyer_message);
 
         message_envoyer = dialog_contacter_sitter.findViewById(R.id.message_envoyer);
-        message_envoyer.getText();
+        message_envoyer.getText().toString();
 
         button_envoyer_message.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,53 +83,52 @@ public class ProfilPetSitter extends Fragment {
 
             }
         });
-        
 
 
         dialog_contacter_sitter.show();
     }
-//    public void getJson () {
-//        String tContents = "";
-//        String concat = "";
-//        try {
-//            InputStream stream = getAssets().open("resultat-recuperer-utilisateur.json");
-//            int size = stream.available();
-//            byte[] buffer = new byte[size];
-//            stream.read(buffer);
-//            stream.close();
-//            tContents = new String(buffer);
-//
-//            JSONObject obj = new JSONObject(tContents);
-//
-//            Iterator<String> itr = obj.keys();
-//
-//            while (itr.hasNext()){
-//
-//                String key = itr.next();
-//
-//                JSONObject unUtilisateurJson = obj.getJSONObject(key);
-//                if(key.equals("utilisateur")){
-//
-//                    TextView prenomPetSitterParam = findViewById(R.id.prenom_pet_sitter);
-//                    prenomPetSitterParam.setText(unUtilisateurJson.getString("prenom"));
-//
-//                }
-//                else{
-//
-//                    TextView villePetSitter = findViewById(R.id.ville_pet_sitter);
-//                    villePetSitter.setText(unUtilisateurJson.getString("ville"));
-//
-//                }
-//
-//            }
-//
-//            //Toast.makeText(getApplicationContext(), tContents, Toast.LENGTH_LONG).show();
-//
-//        } catch (IOException | JSONException e) {
-//            // Handle exceptions here
-//
-//        }
-//    }
+    public void getJson (View leProfilPetSitter) {
+        String tContents = "";
+        String concat = "";
+        try {
+            InputStream stream = ctx.getAssets().open("resultat-recuperer-utilisateur.json");
+            int size = stream.available();
+            byte[] buffer = new byte[size];
+            stream.read(buffer);
+            stream.close();
+            tContents = new String(buffer);
+
+            JSONObject obj = new JSONObject(tContents);
+
+            Iterator<String> itr = obj.keys();
+
+            while (itr.hasNext()){
+
+                String key = itr.next();
+
+                JSONObject unUtilisateurJson = obj.getJSONObject(key);
+                if(key.equals("utilisateur")){
+
+                    TextView prenomPetSitterParam = leProfilPetSitter.findViewById(R.id.prenom_pet_sitter);
+                    prenomPetSitterParam.setText(unUtilisateurJson.getString("prenom"));
+
+                }
+                else{
+
+                    TextView villePetSitter = leProfilPetSitter.findViewById(R.id.ville_pet_sitter);
+                    villePetSitter.setText(unUtilisateurJson.getString("ville"));
+
+                }
+
+            }
+
+            //Toast.makeText(getApplicationContext(), tContents, Toast.LENGTH_LONG).show();
+
+        } catch (IOException | JSONException e) {
+            // Handle exceptions here
+
+        }
+    }
 
 
 

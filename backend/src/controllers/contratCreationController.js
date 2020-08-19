@@ -5,9 +5,6 @@ const {Service} = require('../models/service')
 
 //la fonction appelee par la route ajout de contrat
 function contratCreation(req, res) {
-            // ***************  ajout de la facture  ****************
-    //ajoutFacture(req)
-    //.then(resultatRequeteFacture => {
 
                     // ***************  ajout du contrat  ****************
             ajoutContrat(req)
@@ -53,26 +50,39 @@ function contratCreation(req, res) {
                 res.setHeader('Content-Type', 'text/html')
                 res.end(erreur.stack)
             })
-
-   // })
-   // .catch(erreur => {
-      //  console.error(erreur.stack)
-     //   res.setHeader('Content-Type', 'text/html')
-      //  res.end(erreur.stack)
-    //})
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
-
 
 function contratAcceptation(req, res) 
 {                               
                  // ***************  ajout du planning  ****************
         ajoutPlanning(req)
         .then(resultatRequetePlanning => {
-                
-            res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify({}))
+
+                         // ***************  desactivation du contrat pour les autres petsitters  ****************
+                    contratDesactivation(req)
+                    .then(resultatRequeteContrat => {
+                        
+                                         // ***************  activation du contrat pour  ce petsitter ****************
+                                    contratActivation(req)
+                                    .then(contratActivation => {
+                                        res.setHeader('Content-Type', 'application/json');
+                                        res.end(JSON.stringify({}))
+                                    })
+                                    .catch(erreur => {
+                                        console.error(erreur.stack)
+                                        res.setHeader('Content-Type', 'text/html')
+                                        res.end(erreur.stack)
+                                    })
+
+                    })
+                    .catch(erreur => {
+                            console.error(erreur.stack)
+                            res.setHeader('Content-Type', 'text/html')
+                            res.end(erreur.stack)
+                    })
+
         })
        .catch(erreur => {
        console.error(erreur.stack)
@@ -81,6 +91,47 @@ function contratAcceptation(req, res)
          })
 }
 
+//----------------------------------------------------------------------------------------------------------------------------
+
+function contratDesactivation(req)
+{
+    return new Promise((resolve, reject) => {
+        let sql = "UPDATE contrat SET est_accepte=false, est_lu_proprietaire=false, est_lu_petsitter=false, encore_disponible=false" 
+                 + "FROM contrat c INNER JOIN contrat_utilisateur t ON c.id=t.id_contrat"
+                 +" WHERE t.id_proprietaire=$1 AND t.id_petsitter!=$4 AND c.date_debut=$2 AND c.date_fin=$3 RETURNING *"
+
+        bd.excuterRequete(sql, [req.body.utilisateur.id_proprietaire, req.body.utilisateur.id_petsitter, req.body.contrat.date_debut, req.body.contrat.date_fin])
+            .then(resultatRequeteContrat => {
+                if (resultatRequeteContrat.rowCount >= 1) {
+                    resolve(resultatRequeteContrat)
+                } else {
+                    reject ({"erreur" : 400})
+                }
+            })
+            .catch(erreur => {
+                reject(erreur)
+            })
+        })
+}
+function contratActivation(req)
+{
+    return new Promise((resolve, reject) => {
+        let sql = "UPDATE contrat SET est_accepte=true, est_lu_proprietaire=false, est_lu_petsitter=false, encore_disponible=false" 
+                 +" WHERE id=$1"
+
+        bd.excuterRequete(sql, [req.body.contrat.id_contrat])
+            .then(resultatRequeteContrat => {
+                if (resultatRequeteContrat.rowCount >= 1) {
+                    resolve(resultatRequeteContrat)
+                } else {
+                    reject ({"erreur" : 400})
+                }
+            })
+            .catch(erreur => {
+                reject(erreur)
+            })
+        })
+}
 
 //-----------------------------------------------------------------------------------------------------------------------------
 
@@ -107,7 +158,7 @@ function ajoutContrat(req)
 {
     return new Promise((resolve, reject) => {
     
-        let sql = "INSERT INTO contrat (date_debut, date_fin) VALUES ($1,$2,$3) RETURNING *"
+        let sql = "INSERT INTO contrat (date_debut, date_fin) VALUES ($1,$2) RETURNING *"
 
         bd.excuterRequete(sql, [req.body.contrat.date_debut, req.body.contrat.date_fin])
             .then(resultatRequeteContrat => {
@@ -115,7 +166,8 @@ function ajoutContrat(req)
                     resolve(resultatRequeteContrat)
                 } else {
                     reject ({"erreur" : 400})
-                }        })
+                }      
+            })
             .catch(erreur => {
                 reject(erreur)
             })
@@ -220,5 +272,6 @@ function ajoutServiceContrat(req, id_contrat)
 module.exports = {
     contratCreation,
     contratAcceptation,
+    contratDesactivation,
     ajoutFacture
 }
