@@ -24,12 +24,14 @@ import androidx.annotation.Nullable;
 
 import com.example.petsitterisi.BottomNavigationBar;
 import com.example.petsitterisi.R;
+import com.example.petsitterisi.managers.UtilisateurManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -65,7 +67,108 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
     @Override
     protected String doInBackground(String... urls) {
 
-        return "";
+
+//        try {
+//
+//            JSONObject obj = new JSONObject(s);
+//            JSONArray jsonArray = new JSONArray();
+//            jsonArray.put(obj);
+//
+//            for(int i = 0; i < jsonArray.length(); i++){
+//                JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+//                Iterator<String> itr = jsonObject.keys();
+//
+//                while(itr.hasNext()){
+//                    String key = itr.next();
+//                    JSONArray newJsonArray = jsonObject.getJSONArray(key);
+//                    for(int j = 0; j < newJsonArray.length(); j++) {
+//
+//                        JSONObject jsObject = newJsonArray.getJSONObject(j);
+//
+//                        View cardPetSitterParam = View.inflate(context , R.layout.card_pet_sitter,null);
+//                        TextView petSitterName = cardPetSitterParam.findViewById(R.id.name);
+//                        final String petSitterId = jsObject.getString("id");
+//                        petSitterName.setText(jsObject.getString("nom"));
+//                        button_profil = cardPetSitterParam.findViewById(R.id.button_profil);
+//                        reservervation_liste_pet_sitter = cardPetSitterParam.findViewById(R.id.reservervation_liste_pet_sitter);
+//
+//                        button_profil.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//
+//                                Intent intent = new Intent(context, BottomNavigationBar.class);
+//                                intent.putExtra("Profil", "true");
+//                                intent.putExtra("petSitterId", petSitterId);
+//                                context.startActivity(intent);
+//
+//                            }
+//                        });
+//
+//
+//                        reservervation_liste_pet_sitter.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//                                try {
+//                                    afficherAlertDialogReservation();
+//                                } catch (JSONException e) {
+//                                    e.printStackTrace();
+//                                }
+//                            }
+//                        });
+//
+//                        JSONArray petSitterServiceStringArray = jsObject.getJSONArray("services");
+//
+//                        for(int k = 0; k <  petSitterServiceStringArray.length(); k++){
+//                            String idService = petSitterServiceStringArray.getString(k);
+//
+//                            String descriptionService = sharedpreferences.getString("description_service_"+idService, null);
+//                            String prixService = sharedpreferences.getString("prix_service_"+idService, null);
+//
+//                            View serviceView = View.inflate(context , R.layout.service,null);
+//                            ImageView serviceImage = serviceView.findViewById(R.id.service_image);
+//
+//                            LinearLayout pet_sitter_services_container = cardPetSitterParam.findViewById(R.id.pet_sitter_services_container);
+//
+//                            try {
+//                                if (descriptionService.equals("Promenade")) {
+//                                    serviceImage.setImageResource(R.drawable.image_16);
+//                                } else if (descriptionService.equals("Garder chez vous")) {
+//                                    serviceImage.setImageResource(R.drawable.image_icon_2);
+//                                } else if (descriptionService.equals("Garder chez le Pet Sitter")) {
+//                                    serviceImage.setImageResource(R.drawable.image_icon_1);
+//                                }
+//
+//                                TextView servicePrix = serviceView.findViewById(R.id.service_prix);
+//                                servicePrix.setText(prixService + "$");
+//
+//                                TextView serviceName = serviceView.findViewById(R.id.service_name);
+//                                serviceName.setText(descriptionService);
+//
+//
+//                                pet_sitter_services_container.addView(serviceView);
+//                            }catch(Exception e){
+//                                e.printStackTrace();
+//                            }
+//
+//                        }
+//
+//                        ll.addView(cardPetSitterParam);
+//
+//
+//
+//
+//
+//                    }
+//
+//
+//
+//                } catch (JSONException e) {
+//                    // Handle exceptions here
+//
+//                }
+
+return "";
+
     }
 
     @Override
@@ -87,24 +190,15 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
             stream.close();
             tContents = new String(buffer);
 
-            JSONObject obj = new JSONObject(tContents);
-            JSONArray jsonArray = new JSONArray();
-            jsonArray.put(obj);
+            JSONArray jsonArray = new JSONArray(tContents);
 
             for(int i = 0; i < jsonArray.length(); i++){
-                JSONObject jsonObject = (JSONObject) jsonArray.get(i);
-                Iterator<String> itr = jsonObject.keys();
-
-                while(itr.hasNext()){
-                    String key = itr.next();
-                    JSONArray newJsonArray = jsonObject.getJSONArray(key);
-                    for(int j = 0; j < newJsonArray.length(); j++) {
-
-                        JSONObject jsObject = newJsonArray.getJSONObject(j);
+                JSONObject jsObject = (JSONObject) jsonArray.get(i);
 
                         View cardPetSitterParam = View.inflate(context , R.layout.card_pet_sitter,null);
                         TextView petSitterName = cardPetSitterParam.findViewById(R.id.name);
                         final String petSitterId = jsObject.getString("id");
+                        String rating = jsObject.getString("rating");
                         petSitterName.setText(jsObject.getString("nom"));
                         button_profil = cardPetSitterParam.findViewById(R.id.button_profil);
                         reservervation_liste_pet_sitter = cardPetSitterParam.findViewById(R.id.reservervation_liste_pet_sitter);
@@ -145,6 +239,8 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
                             ImageView serviceImage = serviceView.findViewById(R.id.service_image);
 
                             LinearLayout pet_sitter_services_container = cardPetSitterParam.findViewById(R.id.pet_sitter_services_container);
+                            ImageView ratingView = cardPetSitterParam.findViewById(R.id.rating);
+                            ratingView.setImageResource(R.);
 
                             try {
                                 if (descriptionService.equals("Promenade")) {
@@ -171,12 +267,6 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
 
                         ll.addView(cardPetSitterParam);
 
-
-
-
-                    }
-
-                }
 
             }
 

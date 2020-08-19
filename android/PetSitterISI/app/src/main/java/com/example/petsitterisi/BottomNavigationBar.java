@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.example.petsitterisi.managers.UtilisateurManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class BottomNavigationBar extends FragmentActivity {
         BottomNavigationView bottomNav;
@@ -142,11 +143,15 @@ public class BottomNavigationBar extends FragmentActivity {
                             selectedFragment = new RechercheFragment();
                             break;
                         case R.id.nav_demandes:
-<<<<<<< HEAD
-                            selectedFragment = new PlaningsFragment();
-=======
-                            selectedFragment = new ReservationFragment();
->>>>>>> 9c65e208265a2502be4e271c2af429c4105a0e69
+
+                            int id_role = UtilisateurManager.getIdUtilisateurRole(ctx);
+
+                            if(id_role == 2){
+                                selectedFragment = new ReservationFragment();
+                            }else if(id_role == 3){
+                                selectedFragment = new PlaningsFragment();
+                            }
+
                             break;
                         case R.id.nav_favoris:
                             selectedFragment = new FavorisFragment();

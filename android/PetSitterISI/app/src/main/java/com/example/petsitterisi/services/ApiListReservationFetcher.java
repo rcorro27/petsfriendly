@@ -101,8 +101,6 @@ public class ApiListReservationFetcher extends AsyncTask<String, Nullable, Strin
                 String idPetSitter = planningJsonObject.getString("id_proprietaire");
 
 
-                
-
             }
 
         } catch (JSONException e) {

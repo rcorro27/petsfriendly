@@ -57,7 +57,7 @@ public class ListePetSitter extends Fragment {
         //button_profil = monFragmentRecherche.findViewById(R.id.button_profil);
         ll = monFragmentRecherche.findViewById(R.id.card_container);
         ApiListPetSitterFetcher apiListPetsitter = new ApiListPetSitterFetcher(ctx, ll);
-        apiListPetsitter.execute("");
+        apiListPetsitter.execute("https://pets-friendly.herokuapp.com/recherche");
 
 
         filtre.setOnClickListener(new View.OnClickListener() {
