@@ -17,4 +17,4 @@ router.get("/recuperation/proprietaire/:id", contratFinController.contratRecuper
 // route pour recuperer les contrats du petsitter avec son id
 router.get("/recuperation/petsitter/:id", contratFinController.contratRecuperationByIdPetsitter)
 
-module.exports = router
+module.exports = router 
