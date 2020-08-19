@@ -131,6 +131,10 @@ public class ApiListPlanningsFetcher extends AsyncTask<String, Nullable, String>
 
                 ll.addView(cardPlanningPetSitter);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 761c72b2f4b4632ee3ab588305144940bc9cadf2
             }
 
         } catch (JSONException e) {

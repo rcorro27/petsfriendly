@@ -91,11 +91,33 @@
                     android:orientation="horizontal"
                     android:layout_weight="1"
                     android:layout_marginTop="10dp">
+<<<<<<< HEAD
                 <ImageView
                     android:id="@+id/rating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/image_31"/>
+=======
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/black"
+                        android:src="@drawable/icones_excellent" />
+
+
+                    <TextView
+                        android:id="@+id/description_niveau_pet_sitter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:text="Expert Sitter"
+                        android:textColor="#FF6E40"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+>>>>>>> 761c72b2f4b4632ee3ab588305144940bc9cadf2
 
                 </LinearLayout>
 
@@ -129,7 +151,7 @@
                         android:backgroundTint="@color/green"
                         android:textSize="11.5dp"
                         android:layout_marginLeft="5dp"
-                        android:layout_weight="2"
+                        android:layout_weight="1"
                         android:minWidth="0dp"
                         android:contentDescription="@string/reservation"
                         android:text="@string/reservation"

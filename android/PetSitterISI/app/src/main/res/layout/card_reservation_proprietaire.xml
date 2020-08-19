@@ -83,19 +83,7 @@
                     android:minHeight="55dp">
 
                     // image badge
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_weight="3"
-                        android:layout_marginTop="10dp">
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="3"
-                            android:src="@drawable/image_31"/>
 
-                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"

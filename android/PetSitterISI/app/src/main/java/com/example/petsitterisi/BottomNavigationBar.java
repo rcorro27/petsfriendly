@@ -144,6 +144,7 @@ public class BottomNavigationBar extends FragmentActivity {
                             break;
                         case R.id.nav_demandes:
 
+<<<<<<< HEAD
                             int id_role = UtilisateurManager.getIdUtilisateurRole(ctx);
 
                             if(id_role == 2){
@@ -151,6 +152,11 @@ public class BottomNavigationBar extends FragmentActivity {
                             }else if(id_role == 3){
                                 selectedFragment = new PlaningsFragment();
                             }
+=======
+                            //selectedFragment = new PlaningsFragment();
+
+                           selectedFragment = new ReservationFragment();
+>>>>>>> 761c72b2f4b4632ee3ab588305144940bc9cadf2
 
                             break;
                         case R.id.nav_favoris:

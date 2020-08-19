@@ -74,7 +74,6 @@ public class ListePetSitter extends Fragment {
 
 
 
-
         return monFragmentRecherche;
 
     }
