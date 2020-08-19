@@ -11,6 +11,7 @@ const InputComponent = ({ classCss, classIcon, classInput, type, id, name, value
             name={name}
             value={value}
             min={min}
+
             onChange={onChange}
         />
         <label className={labelClass} data-error='wrong' data-success='right' htmlFor={id}>{textLabel}</label>
