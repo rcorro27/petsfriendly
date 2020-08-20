@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -13,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import com.example.petsitterisi.R;
 
@@ -27,7 +29,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
+import java.util.Locale;
 
 public class ApiListPlanningsFetcher extends AsyncTask<String, Nullable, String> {
 
@@ -93,6 +98,7 @@ public class ApiListPlanningsFetcher extends AsyncTask<String, Nullable, String>
         super.onPreExecute();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @SuppressLint({"ResourceAsColor", "SetTextI18n"})
     @Override
     protected void onPostExecute(String s) {
@@ -112,20 +118,18 @@ public class ApiListPlanningsFetcher extends AsyncTask<String, Nullable, String>
                 String idProprietaire = planningJsonObject.getString("id_proprietaire");
                 String dateDebut = planningJsonObject.getString("date_debut");
                 String dateFin = planningJsonObject.getString("date_fin");
+
+                dateDebut = DateConvertisseur(dateDebut);
+                dateFin = DateConvertisseur(dateFin);
                 String dateReservation = planningJsonObject.getString("date_creation");
-                dateReservationDemandeSitter.setText(dateReservation);
+                dateReservation = DateConvertisseur(dateReservation);
+                dateReservationDemandeSitter.setText("Reservation faite le "+dateReservation);
+
 
                 dateDebutContratDemandeSitter.setText(dateDebut);
                 dateFinContratDemandeSitter.setText(dateFin);
 
                 ll.addView(cardPlanningPetSitter);
-
-
-
-
-
-
-
             }
 
         } catch (JSONException e) {
@@ -133,6 +137,15 @@ public class ApiListPlanningsFetcher extends AsyncTask<String, Nullable, String>
         }
 
 
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private String DateConvertisseur(String timestampWithTimeZone){
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyy", Locale.ENGLISH);
+        LocalDate date = LocalDate.parse(timestampWithTimeZone, inputFormatter);
+        String formattedDate = outputFormatter.format(date);
+       return formattedDate;
     }
 
     private String inputStreamToString(InputStream is) {

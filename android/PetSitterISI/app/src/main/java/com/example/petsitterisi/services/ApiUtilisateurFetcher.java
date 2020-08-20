@@ -102,11 +102,16 @@ public class ApiUtilisateurFetcher extends AsyncTask<String, Nullable, String> {
             while(itr.hasNext()) {
                 String key = itr.next();
 
+                JSONObject utilisateurJson = jsonObjectDuServeur.getJSONObject(key);
+
                 if(key.equals("utilisateur")){
 
-                    JSONObject utilisateurJson = jsonObjectDuServeur.getJSONObject(key);
                     String id = utilisateurJson.getString("id");
                     UtilisateurManager.addIdUtilisateur(context, Integer.parseInt(id));
+
+                    String id_role = utilisateurJson.getString("id_role");
+                    UtilisateurManager.addIdUtilisateurRole(context, Integer.parseInt(id_role));
+
 
                     //Recuperation de tous les service depuis la base de donnee
                     ApiServicesFetcher apiServicesFetcher  = new ApiServicesFetcher(context);
@@ -114,6 +119,22 @@ public class ApiUtilisateurFetcher extends AsyncTask<String, Nullable, String> {
 
                     Intent intent = new Intent(context, BottomNavigationBar.class);
                     context.startActivity(intent);
+
+                }else if(key.equals("adresse")){
+
+                    String numero_rue = utilisateurJson.getString("numero_rue");
+                    UtilisateurManager.addAdresseInfos(context, "numero_rue", numero_rue);
+                    String nom_rue = utilisateurJson.getString("nom_rue");
+                    UtilisateurManager.addAdresseInfos(context, "nom_rue", nom_rue);
+                    String code_postal = utilisateurJson.getString("code_postal");
+                    UtilisateurManager.addAdresseInfos(context, "code_postal", code_postal);
+                    String ville = utilisateurJson.getString("ville");
+                    UtilisateurManager.addAdresseInfos(context, "ville", ville);
+                    String pays = utilisateurJson.getString("pays");
+                    UtilisateurManager.addAdresseInfos(context, "pays", pays);
+
+
+
 
                 }else if(key.equals("erreur")){
                     error.setText("Erreur d'email et de mot passe");
