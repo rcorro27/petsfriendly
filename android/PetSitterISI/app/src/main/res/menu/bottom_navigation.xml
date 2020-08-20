@@ -12,7 +12,7 @@
     <item
         android:id="@+id/nav_demandes"
         android:icon="@drawable/icone_demande_24"
-        android:title="Demandes" />
+        android:title="Reservation" />
     <item
         android:id="@+id/nav_favoris"
         android:icon="@drawable/icone_favoris_24"

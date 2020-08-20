@@ -9,13 +9,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
 
-import com.example.petsitterisi.managers.ConnexionManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class BottomNavigationBar extends FragmentActivity {
         BottomNavigationView bottomNav;
@@ -37,11 +36,43 @@ public class BottomNavigationBar extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         ctx = this;
         String valeurNavigation =  "false";
+        String valeurNavigationFiltre =  "false";
+        String valeurNavigationProfilSitter =  "false";
+        String valeurNavigationChat =  "false";
+        String valeurNavigationDemande =  "false";
+        String valeurNavigationFeedBack =  "false";
+
         Intent intentValeur = getIntent();
         String extraValue = intentValeur.getStringExtra("list_pet_sitter");
         if(extraValue != null){
             valeurNavigation = extraValue;
         }
+
+        String extraValue2 = intentValeur.getStringExtra("Filtres");
+        if(extraValue2 != null){
+            valeurNavigationFiltre = extraValue2;
+        }
+
+        String extraValue3 = intentValeur.getStringExtra("Profil");
+        if(extraValue3 != null){
+            valeurNavigationProfilSitter = extraValue3;
+        }
+
+        String extraValue4 = intentValeur.getStringExtra("Chat");
+        if(extraValue4 != null){
+            valeurNavigationChat = extraValue4;
+        }
+
+        String extraValue5 = intentValeur.getStringExtra("Demande");
+        if(extraValue5 != null){
+            valeurNavigationDemande = extraValue5;
+        }
+
+        String extraValue6 = intentValeur.getStringExtra("FeedBack");
+        if(extraValue6 != null){
+            valeurNavigationFeedBack = extraValue6;
+        }
+
 
         super.onCreate(savedInstanceState);
         //cacher temporairement  la bare d'etat du haut
@@ -51,12 +82,39 @@ public class BottomNavigationBar extends FragmentActivity {
         bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        //prendre le fragment selectionner quand le tel est en rotation
         if(valeurNavigation.equals("true")){
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new ListePetSitter()).commit();
-        }else {
+
+
+        }
+        else if (valeurNavigationFiltre.equals("true")){
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new Filtres()).commit();
+        }
+        else if (valeurNavigationProfilSitter.equals("true")){
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new ProfilPetSitter()).commit();
+        }
+        else if (valeurNavigationChat.equals("true")){
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new ChatFragment()).commit();
+        }
+        else if (valeurNavigationDemande.equals("true")){
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new ReservationFragment()).commit();
+        }
+        else if (valeurNavigationFeedBack.equals("true")){
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new RechercheFragment()).commit();
+        }
+        else {
 
             if (savedInstanceState == null) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -64,13 +122,18 @@ public class BottomNavigationBar extends FragmentActivity {
             }
         }
 
+
     }
+
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
                     Fragment selectedFragment = new Fragment();
+
                     switch (item.getItemId()) {
                         case R.id.nav_chat:
                             selectedFragment = new ChatFragment();
@@ -79,7 +142,11 @@ public class BottomNavigationBar extends FragmentActivity {
                             selectedFragment = new RechercheFragment();
                             break;
                         case R.id.nav_demandes:
-                            selectedFragment = new DemandesFragment();
+<<<<<<< HEAD
+                            selectedFragment = new PlaningsFragment();
+=======
+                            selectedFragment = new ReservationFragment();
+>>>>>>> 9c65e208265a2502be4e271c2af429c4105a0e69
                             break;
                         case R.id.nav_favoris:
                             selectedFragment = new FavorisFragment();

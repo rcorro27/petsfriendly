@@ -9,6 +9,12 @@ class InscriptionContainer extends Component {
         this.state = {
             inputs: []
         }
+        this.continue = this.continue.bind(this)
+    }
+
+    continue (e) {
+        e.preventDefault()
+        this.props.nextStep()
     }
 
     componentDidMount () {
@@ -21,13 +27,21 @@ class InscriptionContainer extends Component {
 
     render () {
         return (
-            <form id='boutton-inscription '>
+            <>
+
                 <div className='modal-body mx-3'>
 
-                    {this.state.inputs.map((input, index) => <InputComponent classCss={input.classCss} classIcon={input.classIcon} classInput={input.classInput} type={input.type} id={input.id} name={input.name} min={input.min} onchange={input.onchange} textLabel={input.textLabel} key={index} />)}
+                    {this.state.inputs.map((input, index) => <InputComponent classCss={input.classCss} classIcon={input.classIcon} classInput={input.classInput} type={input.type} id={input.id} name={input.name} min={input.min} onchange={this.props.change} textLabel={input.textLabel} key={index} />)}
                 </div>
-            </form>
 
+                <ul className='pager'>
+
+                    <li className='next'>
+                        <a href='#' onClick={this.props.click}>Next
+                        </a>
+                    </li>
+                </ul>
+            </>
         )
     }
 }

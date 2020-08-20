@@ -1,13 +1,18 @@
 package com.example.petsitterisi.services;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.example.petsitterisi.BottomNavigationBar;
 import com.example.petsitterisi.R;
+import com.example.petsitterisi.managers.UtilisateurManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,11 +29,11 @@ public class ApiRecupererUtilisateurFetcher extends AsyncTask<String, Nullable, 
 
     private Context  context;
 
-    String js = "";
-    TextView error;
+    LinearLayout favorisContainer;
 
-    public ApiRecupererUtilisateurFetcher(Context  context) {
+    public ApiRecupererUtilisateurFetcher(Context  context, LinearLayout favorisContainer) {
         this.context = context;
+        this.favorisContainer = favorisContainer;
     }
 
     @Override
@@ -42,7 +47,7 @@ public class ApiRecupererUtilisateurFetcher extends AsyncTask<String, Nullable, 
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setDoOutput(false);
             urlConnection.setDoInput(true);
-            urlConnection.setRequestMethod("POST");
+            urlConnection.setRequestMethod("GET");
             urlConnection.setRequestProperty("Content-Type", "application/json; utf-8");
             urlConnection.connect();
 
@@ -76,34 +81,40 @@ public class ApiRecupererUtilisateurFetcher extends AsyncTask<String, Nullable, 
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
 
-        //error.setText(String.valueOf(s));
+        try {
 
-//        try {
-//
-//            JSONObject objJsonReponse = new JSONObject(s);
-//
-//            Iterator<String> itr = objJsonReponse.keys();
-//
-//            while (itr.hasNext()){
-//
-//                String key = itr.next();
-//
-//                JSONObject unUtilisateurJson = objJsonReponse.getJSONObject(key);
-//                if(key.equals("utilisateur")){
-//
-//                    String prenomPetSitter = unUtilisateurJson.getString("prenom");
-//
-//                }
-//                else{
-//
-//                    String villePetSitter = unUtilisateurJson.getString("ville");
-//                }
-//
-//            }
-//
-//        } catch (JSONException e) {
-//            // Handle exceptions here
-//        }
+            View favorisCardPetSitterParam = View.inflate(context , R.layout.favoris_card_pet_sitter,null);
+            JSONObject jsonObjectDuServeur = new JSONObject(s);
+
+            //Recuperateion des nom des enfants JsonObject
+            Iterator<String> itr = jsonObjectDuServeur.keys();
+            while(itr.hasNext()) {
+                String key = itr.next();
+
+                JSONObject utilisateurJson = jsonObjectDuServeur.getJSONObject(key);
+
+
+                if(key.equals("utilisateur")){
+
+                    TextView petSitterName = favorisCardPetSitterParam.findViewById(R.id.name);
+                    petSitterName.setText(utilisateurJson.getString("nom"));
+
+                }else if(key.equals("adresse")){
+
+                    TextView petSitterAdresse = favorisCardPetSitterParam.findViewById(R.id.adresse);
+                    petSitterAdresse.setText("Modneue ,doeuee,do0e fjee");
+                    petSitterAdresse.setText(utilisateurJson.getString("ville")+", "+utilisateurJson.getString("province")+", "+utilisateurJson.getString("code_postal"));
+
+                }
+
+            }
+
+            favorisContainer.addView(favorisCardPetSitterParam);
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
 

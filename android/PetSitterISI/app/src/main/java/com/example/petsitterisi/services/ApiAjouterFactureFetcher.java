@@ -18,7 +18,7 @@ public class ApiAjouterFactureFetcher extends AsyncTask<String, Nullable, String
 
     //TextView error;
 
-    public ApiAjouterFactureFetcher(Context  context) {
+    public ApiAjouterFactureFetcher(Context  context , Float prixTotal ) {
         this.context = context;
         //this.error = error;
     }
@@ -29,7 +29,6 @@ public class ApiAjouterFactureFetcher extends AsyncTask<String, Nullable, String
 
         try {
             URL url = new URL(urls[0]);
-
 
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setDoOutput(true);
@@ -42,7 +41,6 @@ public class ApiAjouterFactureFetcher extends AsyncTask<String, Nullable, String
             os.write(urls[1].getBytes("UTF-8"));
 
             int codeRetour = urlConnection.getResponseCode();
-
 
 
             if (codeRetour == HttpURLConnection.HTTP_OK) {

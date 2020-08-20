@@ -10,7 +10,7 @@ const VignetteComponent = ({ urlPhoto, className, nom, rating, onClickProfil, cl
             {/* ul  a sortir dans une autre function */}
             {servicesSitter.map((infos, index) => {
                 // infos - 1 est egal a lindex ou ca se trouve dans la constante services
-                return <li key={index} className='list-group-item list-group-item-danger'>{servicesTotal[infos - 1].description} {servicesTotal[infos - 1].prix_service}<i className='fas fa-dollar-sign' /></li>
+                return <li key={index} className='list-group-item list-group-item-danger'>{servicesTotal[infos - 1].description_service} {servicesTotal[infos - 1].prix_service}<i className='fas fa-dollar-sign' /></li>
             })}
 
         </ul>

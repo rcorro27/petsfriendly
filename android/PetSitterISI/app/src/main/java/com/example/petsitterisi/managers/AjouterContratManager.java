@@ -5,6 +5,7 @@ import com.example.petsitterisi.entitees.Service;
 import com.example.petsitterisi.services.ApiAjouterContratFetcher;
 import com.example.petsitterisi.services.ApiRechercheFetcher;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -12,30 +13,36 @@ import java.util.Date;
 public class AjouterContratManager {
 
 
-    public static void getContrat(Context context, int id_facture, String date_debut, String date_fin, boolean est_accepte, boolean est_termine,  boolean est_lu_proprietaire, boolean est_lu_pet_sitter, boolean est_lu_disponible, boolean encore_disponible, String date_creation) throws JSONException {
-
-        //creation du Json
-        JSONObject ajoutContrat = new JSONObject(); // Json principal qui contient 1 autre objet Json "contrat"
-        JSONObject unContrat = new JSONObject(); // objet1 Json contenant les services de base
-        ajoutContrat.put("contrat", unContrat);
-
-
+    public static void getContrat(Context context, String date_debut, String date_fin, int id_service1, int id_service2, int id_service3, String date_debut_promotion, String date_fin_promotion, double prix) throws JSONException {
         try {
 
-            unContrat.put("id_facture",id_facture);
-            unContrat.put("date_debut",date_debut);
-            unContrat.put("date_fin",date_fin);
-            unContrat.put("est_accepte",est_accepte);
-            unContrat.put("est_termine",est_termine);
-            unContrat.put("est_lu_proprietaire",est_lu_proprietaire);
-            unContrat.put("est_lu_pet_sitter",est_lu_pet_sitter);
-            unContrat.put("est_lu_disponible",est_lu_disponible);
-            unContrat.put("encore_disponible",encore_disponible);
-            unContrat.put("date_creation",date_creation);
+            //creation du Json
+            JSONObject creationContrat = new JSONObject(); // Json principal
+            JSONObject contrat = new JSONObject();
+            JSONArray service = new JSONArray();
+            JSONObject promotion  = new JSONObject();
+            JSONObject facture = new JSONObject();
+
+            contrat.put("date_debut",date_debut);
+            contrat.put("date_fin",date_fin);
+
+            service.put(Integer.parseInt("id_service1"),id_service1);
+            service.put(Integer.parseInt("id_service2"),id_service2);
+            service.put(Integer.parseInt("id_service3"),id_service3);
+
+            promotion.put("date_debut",date_debut_promotion);
+            promotion.put("date_fin",date_fin_promotion);
+
+            facture.put("prix",prix);
+
+            creationContrat.put("contrat", contrat);
+            creationContrat.put("service", service);
+            creationContrat.put("promotion", promotion);
+            creationContrat.put("facture", facture);
 
             //connexion a l'Api
             ApiAjouterContratFetcher apiFetcher = new ApiAjouterContratFetcher(context);
-            apiFetcher.execute("https://pets-friendly.herokuapp.com/contrats/ajout", ajoutContrat.toString());
+            apiFetcher.execute("https://pets-friendly.herokuapp.com/contrats/creation", creationContrat.toString());
 
         }catch (JSONException e) {
             e.printStackTrace();
