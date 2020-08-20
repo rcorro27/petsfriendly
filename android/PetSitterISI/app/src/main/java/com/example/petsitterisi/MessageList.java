@@ -3,23 +3,32 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.petsitterisi.managers.UtilisateurManager;
 import com.example.petsitterisi.services.ApiListChatDiscussionFetcher;
 import com.example.petsitterisi.services.ApiListChatFetcher;
 import com.example.petsitterisi.services.ApiListReservationFetcher;
+
+
+import java.util.List;
 public class MessageList extends Fragment {
     Context ctx;
-    RecyclerView chat_message_container;
+    LinearLayout chat_message_container;
+//    LinearLayout icone_retour;
+
 
     @Nullable
     @Override
@@ -28,7 +37,21 @@ public class MessageList extends Fragment {
 
         ctx = chatMessages.getContext();
 
-        chat_message_container = chatMessages.findViewById(R.id.recyclerview_message_list);
+//        icone_retour = icone_retour.findViewById(R.id.ll_icone_retour);
+//
+//        icone_retour.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(ctx, BottomNavigationBar.class);
+//                intent.putExtra("Chat", "true");
+//                ctx.startActivity(intent);
+//            }
+//        });
+
+        chat_message_container = chatMessages.findViewById(R.id.container_message_list);
+
+
+
 
         int utilisateurId = UtilisateurManager.getIdUtilisateur(ctx);
         try {
@@ -42,4 +65,5 @@ public class MessageList extends Fragment {
         return chatMessages;
 
     }
+
 }

@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.petsitterisi.BottomNavigationBar;
@@ -29,14 +30,13 @@ import java.io.InputStreamReader;
 public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, String> {
 
     private Context  context;
-    RecyclerView ll;
+    LinearLayout ll;
     SharedPreferences sharedpreferences;
-    LinearLayout card_chat_select;
+    TextView item_message_recu;
+    TextView item_message_envoye;
 
 
-
-
-    public ApiListChatDiscussionFetcher(Context  context, RecyclerView llParam) {
+    public ApiListChatDiscussionFetcher(Context  context, LinearLayout llParam) {
         this.context = context;
         this.ll = llParam;
         sharedpreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
@@ -87,7 +87,7 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    @SuppressLint({"ResourceAsColor", "SetTextI18n"})
+    @SuppressLint({"ResourceAsColor", "SetTextI18n", "WrongViewCast"})
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
@@ -97,7 +97,7 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
             String tContents = "";
             String concat = "";
             try {
-                InputStream stream = context.getAssets().open("resultat_chat.json");
+                InputStream stream = context.getAssets().open("");
                 int size = stream.available();
                 byte[] buffer = new byte[size];
                 stream.read(buffer);
@@ -134,6 +134,8 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
 //
 //                ll.addView(cardChatParam);
 
+
+
             }
 
 
@@ -148,8 +150,15 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
         }
 
 
+        View cardMessageRecuParam =  View.inflate(context , R.layout.activity_item_message_recus,null);
+        View cardMessageEnvoyerParam = View.inflate(context , R.layout.activity_item_message_envoyer,null);
+
+        item_message_recu =  cardMessageRecuParam.findViewById(R.id.text_message_body_recu);
+        item_message_envoye = cardMessageEnvoyerParam.findViewById(R.id.text_message_body_envoyer);
 
 
+        ll.addView(cardMessageRecuParam);
+        ll.addView(cardMessageEnvoyerParam);
     }
 
 

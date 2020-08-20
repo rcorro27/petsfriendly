@@ -15,8 +15,8 @@
         android:layout_height="80dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:background="@drawable/rounded_corner_blue_transparence"
-        android:layout_marginTop="15dp"
+        android:background="#AFAFAF"
+        android:layout_marginTop="10dp"
         android:orientation="vertical">
 
     <LinearLayout
@@ -30,7 +30,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/rectangle_66"/>
+            android:src="@drawable/rectangle_66" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -54,10 +54,11 @@
     </LinearLayout>
 
     <View
-        android:layout_width="fill_parent"
+        android:layout_width="380dp"
         android:layout_height="2px"
+        android:layout_gravity="center_horizontal"
         android:background="@color/greyTransparence"
-        android:layout_marginTop="15dp"/>
+        android:layout_marginTop="10dp"/>
 
 
 
