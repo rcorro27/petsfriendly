@@ -52,7 +52,6 @@ public class MessageList extends Fragment {
 
 
 
-
         int utilisateurId = UtilisateurManager.getIdUtilisateur(ctx);
         try {
             ApiListChatDiscussionFetcher apiListChatFetcher = new ApiListChatDiscussionFetcher(ctx, chat_message_container);
