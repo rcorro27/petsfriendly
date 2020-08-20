@@ -4,7 +4,7 @@ const { Animal } = require('../models/animal')
 //la fonction appelee par la route ajout d'animal   
 function animalAjout(req, res) {
 
-    let sql = "INSERT INTO animal (race, type_animal, poids_animal, sexe_animal, nom_animal, age_animal, url_photo_animal) VALUES($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *"
+    let sql = "INSERT INTO animal (race, type_animal, poids_animal, sexe_animal, nom_animal, age_animal, url_photo_animal) VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING *"
 
     //execution de la requete
     bd.excuterRequete(sql, [req.body.animal.race, req.body.animal.type_animal, req.body.animal.poids_animal, req.body.animal.sexe_animal, req.body.nom_animal, req.body.age_animal, req.body.url_photo_animal])//reqccuperer req.body

@@ -14,6 +14,19 @@ function contratFin(req, res) {
 
             bd.excuterRequete(sqlContrat, [resultatRequete1.rows[0].id_facture])
                 .then(resultatRequete2 => {
+
+                    let sqlFeedback = "INSERT INTO feedback (id_contrat, commentaire, etoile) VALUES ($1,$2,$3)"
+
+                    bd.excuterRequete(sqlFeedback, [resultatRequete1.rows[0].id_contrat, req.body.commentaire, req.body.etoile])
+                        .then(resultatRequete3 => {
+                            res.setHeader('Content-Type', 'application/json')
+                            res.end(JSON.stringify(resultatRequete3.rows))
+                        })
+                        .catch(erreur => {
+                            console.error(erreur.stack)
+                            res.setHeader('Content-Type', 'application/json')
+                            res.end(erreur.stack)
+                        })
                     res.setHeader('Content-Type', 'application/json')
                     res.end(JSON.stringify(resultatRequete2.rows))
                 })
