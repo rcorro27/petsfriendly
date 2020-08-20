@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import ConnectionPopUp from '../container/connection-container'
 import { login } from '../fonctions/UserFunctions'
+import { Link, withRouter } from 'react-router-dom'
 
 class ModalCnxContainer extends Component {
     constructor (props) {
@@ -10,7 +11,10 @@ class ModalCnxContainer extends Component {
         this.state = {
             //  inputs: [],
             isPasswordShown: false,
-            show: false
+            show: false,
+            email: '',
+            mot_de_passe: '',
+            users: []
 
         }
         this.handletogglePasswordVisiblity = this.handletogglePasswordVisiblity.bind(this)
@@ -57,7 +61,7 @@ class ModalCnxContainer extends Component {
                     this.setState({
                         users: res
                     })
-                    if (res.utilisateur.id_role === 3) {
+                    if (res.utilisateur.id_role === 1) {
                         //  <Redirect to='/admin' />
                         // history.push('/admin')
                         this.props.history.push('/admin')
@@ -83,7 +87,6 @@ class ModalCnxContainer extends Component {
     }
 
     onSubmit (e) {
-        console.log('email', this.state.utilisateur)
         // if (e.key === 'Enter') {
         e.preventDefault()
 
@@ -93,10 +96,17 @@ class ModalCnxContainer extends Component {
         }
         login(user).then(res => {
             if (res) {
-                console.log('Email')
+                console.log('email', res.utilisateur.id_role)
                 this.setState({
                     users: res
                 })
+                //  this.props.history.push('/admin')
+
+                if (res.utilisateur.id_role === 1) {
+                    //  <Redirect to='/admin' />
+                    // history.push('/admin')
+                    this.props.history.push('/admin')
+                }
                 this.props.onHandleClose()
 
                 console.log('test', this.state.users.utilisateur.nom)
@@ -128,4 +138,4 @@ class ModalCnxContainer extends Component {
         )
     }
 }
-export default ModalCnxContainer
+export default withRouter(ModalCnxContainer)
