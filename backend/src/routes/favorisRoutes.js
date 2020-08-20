@@ -5,7 +5,7 @@ const router = express.Router()
 const favorisController = require('../controllers/favorisController')
 
 //route pour requete post d'ajout
-router.post('/creation', animalController.animalAjout, favorisController.favorisAjout)
+router.post('/ajout', favorisController.favorisAjout)
 
 //reccuperation proprietaire
 router.get('/reccuperation/:id', favorisController.favorisRecuperationByIdUtilisateur)

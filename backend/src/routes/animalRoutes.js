@@ -5,7 +5,7 @@ const router = express.Router()
 const animalController = require('../controllers/animalController')
 
 //route pour requete post d'ajout
-router.post('/creation', animalController.animalAjout)
+router.post('/ajout', animalController.animalAjout)
 
 //route pour requete get de recuperation animal by id
 router.get('/recuperation/:id', animalController.AnimalRecuperationByIdAnimal)

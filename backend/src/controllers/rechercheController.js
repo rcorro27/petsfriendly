@@ -8,6 +8,9 @@ distance.key('AIzaSyDJhlulgLB-bGuLctWHRn7DoWdKcq2gJiQ');
 //-----------------------------------------------------------------------------------------------------------------------------
 
 //la fonction appelee par la route recherche de petsitters
+<<<<<<< HEAD
+function recherchePetsitters(req, res) {
+=======
 function recherchePetsitters(req, res)
 {   
     let servicesChecker = (arr, target) => target.every(v => arr.includes(v));
@@ -122,12 +125,15 @@ function trouverServicesPetsitter(id_petsitter)
         })
         .catch(erreur => {
             console.error(erreur.stack)
+>>>>>>> master
 
             reject(erreur)
         })
     })
 }
 
+<<<<<<< HEAD
+=======
 //-----------------------------------------------------------------------------------------------------------------------------
 
 function verifierSecteurActionPetsitter(req, petsitter)
@@ -192,6 +198,7 @@ function recupererRatingPetsitter(petsitter)
 }
 
 
+>>>>>>> master
 module.exports = {
     recherchePetsitters,
 }
