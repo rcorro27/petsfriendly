@@ -140,13 +140,11 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
                 nomInterlocuteur.setText(nomUtilisateur);
 
 
-                if (idUtlisateur.equals("1")  ) // envoyer michel
+                if (idUtlisateur.equals("1")  ) // message envoyer de michel
                 {
                      View cardMessageEnvoyerParam = View.inflate(context , R.layout.activity_item_message_envoyer,null);
 
 
-//                  EditText editTextConversation = footer_discussion.findViewById(R.id.edittext_chatbox);
-//                  Button btn_envoyer_discussion = footer_discussion.findViewById(R.id.button_chatbox_send);
                     TextView heureMessageEnvoyer = cardMessageEnvoyerParam.findViewById(R.id.text_message_time_envoyer);
                     TextView messageEnvoyer = cardMessageEnvoyerParam.findViewById(R.id.text_message_body_envoyer);
 //                    ImageView messageLu = cardMessageEnvoyerParam.findViewById(R.id.image_message_lu);
@@ -171,14 +169,7 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
 
 
 
-
                     ll.addView(cardMessageEnvoyerParam);
-
-
-
-
-
-
 
 
 
@@ -188,8 +179,7 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
 
 
                 }
-                else if(idUtlisateur.equals("2")){ // recus kamel
-
+                else if(idUtlisateur.equals("2")){ //  message recus de kamel
 
                     View cardMessageRecuParam =  View.inflate(context , R.layout.activity_item_message_recus,null);
 
@@ -226,7 +216,6 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
                     ll.addView(cardMessageRecuParam);
 
                 }
-
 
 
 
