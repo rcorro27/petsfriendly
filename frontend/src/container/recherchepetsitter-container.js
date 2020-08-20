@@ -156,8 +156,6 @@ class RecherchePetsitter extends Component {
             .catch(err => {
                 console.log('erreur recherche:', err)
             }) */
-                })
-        }
     }
 
     handleAddOnClick () {
@@ -178,7 +176,6 @@ class RecherchePetsitter extends Component {
     }
 
     handleEnvoyerDemandeOnClick (event) {
-
         localStorage.setItem('sitter', JSON.stringify(this.state.resultat[event.target.name]))
     }
 
