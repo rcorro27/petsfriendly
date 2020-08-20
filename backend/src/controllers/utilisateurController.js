@@ -7,7 +7,7 @@ const { v4: uuidv4 } = require('uuid')
 
 //la fonction appelee par la route connexion d'utilisateur
 function utilisateurConnexion(req, res) {
-    let sql = "SELECT * FROM utilisateur WHERE email=$1 and mot_de_passe=$2" //la req sql  executer
+    let sql = "SELECT * FROM utilisateur WHERE email=$1 and mot_de_passe=$2 and est_valide=true and est_active=true" //la req sql  executer
 
     bd.excuterRequete(sql, [req.body.email, req.body.mot_de_passe]) //executer la req sql
         .then(resultatRequeteSqlUtilisateur => {
@@ -114,10 +114,8 @@ function utilisateurCreation(req, res) {
                                             mail.envoyerMailAuPetsitter(mailOptions)
                                         }
 
-                                        console.log(mailOptions)
 
-                                        res.setHeader('Content-Type', 'application/json');
-                                        res.end(JSON.stringify({}))
+                                        res.redirect('/');
 
                                         return undefined
                                     } else {
@@ -352,21 +350,15 @@ function utilisateurSuppression(req, res) {
 
 //la fonction appelee par la route de recuperation de petsitters
 function petsittersRecuperation(req, res) {
-    let resultatRequeteHttp = []
 
-    let sql = "SELECT * FROM utilisateur WHERE id_role=3"
+    let sql = "SELECT id, nom, prenom, email, est_valide, remuneration_petsitter FROM utilisateur WHERE id_role=3"
 
     //requete sql pour utilisateur
     bd.excuterRequete(sql, [])
         .then(resultatRequeteSqlUtilisateur => {
-            //pour ajoute les info importante de chaque petsitter dans un obj a l'interieur du tableau
-            resultatRequeteSqlUtilisateur.rows.map((petsitter, index) => {
-                let infoSitter = {"id": petsitter.id, "nom": petsitter.nom, "prenom": petsitter.prenom, "email": petsitter.email, "est_valide": petsitter.est_valide}
-                resultatRequeteHttp.push(infoSitter)
-            })
 
             res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify(resultatRequeteHttp))
+            res.end(JSON.stringify(resultatRequeteSqlUtilisateur.rows))
         })
         .catch(erreur => {
             console.error(erreur.stack)
@@ -413,8 +405,7 @@ function petsitterActivation(req, res) {
         .then(resultatRequeteSqlUtilisateur => {
             if (resultatRequeteSqlUtilisateur.rowCount >= 1)
             {
-                res.setHeader('Content-Type', 'application/json');
-                res.end(JSON.stringify({}))
+                res.redirect('/');
             } else 
             {
                 res.setHeader('Content-Type', 'application/json');
@@ -442,8 +433,7 @@ function proprietaireActivation(req, res) {
         .then(resultatRequeteSqlUtilisateur => {
             if (resultatRequeteSqlUtilisateur.rowCount >= 1)
             {
-                res.setHeader('Content-Type', 'application/json');
-                res.end(JSON.stringify({}))
+                res.redirect('/');
             } else 
             {
                 res.setHeader('Content-Type', 'application/json');

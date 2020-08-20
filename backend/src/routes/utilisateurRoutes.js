@@ -29,7 +29,7 @@ router.delete('/suppression/:id', utilisateurController.utilisateurSuppression)
 router.put('/validation/petsitter/:id', utilisateurController.petsitterValidation)
 
 //route pour activation du petsitter
-router.get('/activation/petsitter/:email/:idactivation', utilisateurController.petsitterValidation)
+router.get('/activation/petsitter/:email/:idactivation', utilisateurController.petsitterActivation)
 
 //route pour activation du proprietaire
 router.get('/activation/proprietaire/:email/:idactivation', utilisateurController.proprietaireActivation)
