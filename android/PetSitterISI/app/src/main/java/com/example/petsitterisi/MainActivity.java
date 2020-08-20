@@ -64,8 +64,12 @@ public class MainActivity extends Activity {
         if(idUtilisateur > 0){
             //Utilisateur s'est deja loger tanto
 
-            Intent intent = new Intent(ctx, BottomNavigationBar.class);
-            startActivity(intent);
+            try {
+                Intent intent = new Intent(ctx, BottomNavigationBar.class);
+                startActivity(intent);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
 
 
         }else {

@@ -25,15 +25,15 @@ public class ChatFragment extends Fragment {
         ctx = listeChatView.getContext();
 
         chat_liste_container = listeChatView.findViewById(R.id.liste_chat_container);
-
-        int utilisateurId = UtilisateurManager.getIdUtilisateur(ctx);
-        try {
-            ApiListChatFetcher apiListChatFetcher = new ApiListChatFetcher(ctx, chat_liste_container);
-            apiListChatFetcher.execute("https://pets-friendly.herokuapp.com/" + utilisateurId);
-        }catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+//
+//        int utilisateurId = UtilisateurManager.getIdUtilisateur(ctx);
+//        try {
+//            ApiListChatFetcher apiListChatFetcher = new ApiListChatFetcher(ctx, chat_liste_container);
+//            apiListChatFetcher.execute("https://pets-friendly.herokuapp.com/" + utilisateurId);
+//        }catch (Exception e)
+//        {
+//            e.printStackTrace();
+//        }
 
         return listeChatView;
 

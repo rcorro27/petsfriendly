@@ -91,13 +91,8 @@
                     android:layout_weight="1"
                     android:layout_marginTop="10dp">
 
-                <ImageView
-                    android:id="@+id/rating"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/image_31"/>
-
                     <ImageView
+                        android:id="@+id/rate_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -116,7 +111,6 @@
                         android:textColor="#FF6E40"
                         android:textSize="15sp"
                         android:textStyle="bold" />
->>>>>>> 761c72b2f4b4632ee3ab588305144940bc9cadf2
 
                 </LinearLayout>
 

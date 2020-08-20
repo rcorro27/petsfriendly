@@ -103,7 +103,7 @@ public class BottomNavigationBar extends FragmentActivity {
         else if (valeurNavigationChat.equals("true")){
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new ChatFragment()).commit();
+                   new ChatFragment()).commit();
         }
         else if (valeurNavigationDemande.equals("true")){
 
@@ -151,7 +151,6 @@ public class BottomNavigationBar extends FragmentActivity {
                             }else if(id_role == 3){
                                 selectedFragment = new PlaningsFragment();
                             }
-                            //selectedFragment = new PlaningsFragment();
 
                            selectedFragment = new ReservationFragment();
 

@@ -12,6 +12,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +58,7 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
     Button appliquer_code_promo;
     Button reservation_final;
     Button button_profil;
+    private int Drawable;
 
 
     public ApiListPetSitterFetcher(Context  context, LinearLayout llParam) {
@@ -82,10 +84,8 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
             urlConnection.connect();
 
 
-            String[] stringArray;
-            stringArray = new String[2];
-
-            stringArray[0] = "4";
+            JSONArray adressJsonArray = new JSONArray();
+            adressJsonArray.put(4);
 
             JSONObject adresseJsonObject = new JSONObject();
 
@@ -101,11 +101,11 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
             String ville = UtilisateurManager.getAdresseInfos(context, "ville");
             adresseJsonObject.put("ville", ville);
 
-            String pays = UtilisateurManager.getAdresseInfos(context, "cpays");
-            adresseJsonObject.put("ville", pays);
+            String pays = UtilisateurManager.getAdresseInfos(context, "pays");
+            adresseJsonObject.put("pays", pays);
 
             JSONObject grandJsonObject = new JSONObject();
-            grandJsonObject.put("services", stringArray);
+            grandJsonObject.put("services", adressJsonArray);
             grandJsonObject.put("adresse", adresseJsonObject);
 
 
@@ -154,9 +154,39 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
                         TextView petSitterName = cardPetSitterParam.findViewById(R.id.name);
                         final String petSitterId = jsObject.getString("id");
                         String rating = jsObject.getString("rating");
+                        String url_photo = jsObject.getString("url_photo");
+
+                        //LoadImageFromWebOperations(String url)
+
                         petSitterName.setText(jsObject.getString("nom"));
                         button_profil = cardPetSitterParam.findViewById(R.id.button_profil);
                         reservervation_liste_pet_sitter = cardPetSitterParam.findViewById(R.id.reservervation_liste_pet_sitter);
+
+                        int ratingInteger = Integer.parseInt(rating);
+
+                        Drawable = 0;
+                        String rateDescription = "";
+
+                        if(ratingInteger == 1){
+                            Drawable  = R.drawable.icones_pas_satisfaisant;
+                            rateDescription = "Debutant";
+                        }else if(ratingInteger == 2){
+                            Drawable  = R.drawable.icones_moyen;
+                            rateDescription = "Intermediare";
+                        }else if(ratingInteger == 3){
+                            Drawable  = R.drawable.icones_bien;
+                            rateDescription = "Avance";
+                        }else if(ratingInteger == 4){
+                            Drawable  = R.drawable.icones_tres_bien;
+                            rateDescription = "Expert";
+                        }else if(ratingInteger >= 5){
+                            Drawable  = R.drawable.icones_excellent;
+                            rateDescription = "Genie";
+                        }
+                        ImageView rateIcon = cardPetSitterParam.findViewById(R.id.rate_icon);
+                        TextView description_niveau_pet_sitter = cardPetSitterParam.findViewById(R.id.description_niveau_pet_sitter);
+                description_niveau_pet_sitter.setText(rateDescription);
+                        rateIcon.setImageResource(Drawable);
 
                         button_profil.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -192,10 +222,7 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
 
                             View serviceView = View.inflate(context , R.layout.service,null);
                             ImageView serviceImage = serviceView.findViewById(R.id.service_image);
-
                             LinearLayout pet_sitter_services_container = cardPetSitterParam.findViewById(R.id.pet_sitter_services_container);
-                            ImageView ratingView = cardPetSitterParam.findViewById(R.id.rating);
-                      //      ratingView.setImageResource(R.);
 
                             try {
                                 if (descriptionService.equals("Promenade")) {
@@ -235,7 +262,15 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
     }
 
 
-
+    public static Drawable LoadImageFromWebOperations(String url) {
+        try {
+            InputStream is = (InputStream) new URL(url).getContent();
+            Drawable d = android.graphics.drawable.Drawable.createFromStream(is, "michel_iamge");
+            return d;
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
 
     private void afficherAlertDialogReservation() throws JSONException {
