@@ -5,13 +5,19 @@ function factureRecuperationByIdUtilisateur(req, res) {
 
     bd.excuterRequete(sql, [req.params.id, req.params.id_promotion, req.params.prix])
         .then(resultatRequete => {
-            res.setHeader('Content-Type', 'application/json')
-            res.end(JSON.stringify(resultatRequete.rows))
+            if (resultatRequete.rowCount >= 1) {
+                res.setHeader('Content-Type', 'application/json')
+                res.end(JSON.stringify(resultatRequete.rows))
+            }
+            else {
+                res.setHeader('Content-Type', 'text/html')
+                res.end(erreur.stack)
+            }
         })
         .catch(erreur => {
             console.error(erreur.stack)
             res.setHeader('Content-Type', 'text/html')
-            res.end(erreur.stack)
+            res.end(JSON.stringify({}))
         })
 }
 function factureSuppression(req, res) {

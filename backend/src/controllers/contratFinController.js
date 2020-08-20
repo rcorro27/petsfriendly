@@ -11,8 +11,8 @@ function contratFin(req, res) {
     bd.excuterRequete(sqlFacture, [req.body.contrat.id_contrat, req.body.promotion.id_promotion, req.body.facture.prix])
         .then(resultatRequete1 => {
             let sqlContrat = "UPDATE contrat SET id_facture=$1,est_termine=true where id=$2"
-            //manque id
-            bd.excuterRequete(sqlContrat, [resultatRequete1.rows[0].id_facture])
+
+            bd.excuterRequete(sqlContrat, [resultatRequete1.rows[0].id_facture, resultatRequete1.rows[0].contrat.id_contrat])
                 .then(resultatRequete2 => {
 
                     let sqlFeedback = "INSERT INTO feedback (id_contrat, commentaire, etoile) VALUES ($1,$2,$3)"
@@ -21,7 +21,7 @@ function contratFin(req, res) {
                         .then(resultatRequete3 => {
 
                             let sqlGainPetsitter = "UPDATE utilisateur SET remuneration_petsitter = remuneration_petsitter + $1 WHERE id = "
-                            //manque id
+
                             bd.excuterRequete(sqlGainPetsitter, [])
                                 .then(resultatRequete4 => {
                                     res.setHeader('Content-Type', 'application/json')
