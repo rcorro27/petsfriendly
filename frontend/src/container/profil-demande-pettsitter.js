@@ -23,7 +23,7 @@ class ProfilDemandePettSitter extends Component {
         alert('Demande Envoyee')
         this.props.history.push('/')
         // .then(response => console.log(response.data))
-            .then(response => {
+        /* .then(response => {
                 const service = []
                 response.data.map((info, index) => service.push(info))
                 console.log(service)
@@ -32,7 +32,7 @@ class ProfilDemandePettSitter extends Component {
             })
             .catch(err => {
                 console.log('erreur recherche:', err)
-            })
+            }) */
     }
 
     handleSubmit () {

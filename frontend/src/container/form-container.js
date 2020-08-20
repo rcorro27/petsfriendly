@@ -7,6 +7,7 @@ import SpanComponent from '../component/span-composant'
 import Navbar from '../container/navbar-container'
 import DivBoutons from '../component/div-boutons'
 import ImageTitreComposant from '../container/image-titre-container'
+import InputComponent from '../component/input-component'
 
 class FormContainer extends Component {
     constructor (props) {
@@ -51,6 +52,14 @@ class FormContainer extends Component {
                     </div>
 
                     <ImageTitreComposant />
+                    <div className='infolettreDiv mt-3'>
+                        <h1 className='h1'>Laisse nous vous prevenir des nouveautes</h1>
+                        <h6 className='h6'>Reste informe</h6>
+                        <form>
+                            <InputComponent classCss='form-group' classInput='form-control' textLabel='Entrez votre email' type='email' id='infolettre' name='infolettre' onChange={this.handleChange} />
+                            <InputComponent classInput='btn btn-outline-danger' type='submit' id='infolettreButton' name='Envoyer ' value='Envoyer' />
+                        </form>
+                    </div>
 
                 </div>
             </div>
