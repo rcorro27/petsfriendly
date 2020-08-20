@@ -11,7 +11,7 @@ function contratFin(req, res) {
     bd.excuterRequete(sqlFacture, [req.body.contrat.id_contrat, req.body.promotion.id_promotion, req.body.facture.prix])
         .then(resultatRequete1 => {
             let sqlContrat = "UPDATE contrat SET id_facture=$1,est_termine=true where id=$2"
-
+            //manque id
             bd.excuterRequete(sqlContrat, [resultatRequete1.rows[0].id_facture])
                 .then(resultatRequete2 => {
 
@@ -19,16 +19,25 @@ function contratFin(req, res) {
 
                     bd.excuterRequete(sqlFeedback, [resultatRequete1.rows[0].id_contrat, req.body.commentaire, req.body.etoile])
                         .then(resultatRequete3 => {
-                            res.setHeader('Content-Type', 'application/json')
-                            res.end(JSON.stringify(resultatRequete3.rows))
+
+                            let sqlGainPetsitter = "UPDATE utilisateur SET remuneration_petsitter = remuneration_petsitter + $1 WHERE id = "
+                            //manque id
+                            bd.excuterRequete(sqlGainPetsitter, [])
+                                .then(resultatRequete4 => {
+                                    res.setHeader('Content-Type', 'application/json')
+                                    res.end(JSON.stringify({}))
+                                })
+                                .catch(erreur => {
+                                    console.error(erreur.stack)
+                                    res.setHeader('Content-Type', 'application/json')
+                                    res.end(erreur)
+                                })
                         })
                         .catch(erreur => {
                             console.error(erreur.stack)
                             res.setHeader('Content-Type', 'application/json')
                             res.end(erreur.stack)
                         })
-                    res.setHeader('Content-Type', 'application/json')
-                    res.end(JSON.stringify(resultatRequete2.rows))
                 })
                 .catch(erreur => {
                     console.error(erreur.stack)

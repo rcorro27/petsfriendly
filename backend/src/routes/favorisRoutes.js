@@ -8,7 +8,7 @@ const favorisController = require('../controllers/favorisController')
 router.post('/ajout', favorisController.favorisAjout)
 
 //reccuperation proprietaire
-router.get('/reccuperation/:id', favorisController.favorisRecuperationByIdUtilisateur)
+router.get('/recuperation/:id', favorisController.favorisRecuperationByIdUtilisateur)
 
 //modification
 router.put('/modification/:id', favorisController.favorisModification)

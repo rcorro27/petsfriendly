@@ -8,7 +8,7 @@ const feedbackController = require('../controllers/feedbackController')
 router.post('/ajout',)
 
 //reccuperation proprietaire
-router.get('/reccuperation/:id',)
+router.get('/recuperation/:id',)
 
 //modification
 router.put('/modification/:id',)
