@@ -84,7 +84,7 @@ function utilisateurCreation(req, res) {
                             
                             let uuidActivationUtilisateur = uuidv4() //generer un id aleatoire en utilisant la biblio uuid
 
-                            let sqlUtilisateur = "INSERT INTO utilisateur (id_role, nom, prenom, age, email, mot_de_passe, sexe, id_adresse, telephone, id_activation) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)"
+                            let sqlUtilisateur = "INSERT INTO utilisateur (id_role, nom, prenom, age, email, mot_de_passe, sexe, id_adresse, telephone, id_activation) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *"
 
                             //requete sql pour utilisateur
                             bd.excuterRequete(sqlUtilisateur, [req.body.utilisateur.id_role, req.body.utilisateur.nom, req.body.utilisateur.prenom, req.body.utilisateur.age, req.body.utilisateur.email, req.body.utilisateur.mot_de_passe, req.body.utilisateur.sexe, resultatRequeteSqlAdresse.rows[0].id, req.body.utilisateur.telephone, uuidActivationUtilisateur])
@@ -96,21 +96,25 @@ function utilisateurCreation(req, res) {
                                         let mailOptions = {
                                             from: 'etudiant.isi.java2@gmail.com',
                                             to: req.body.utilisateur.email,
-                                            subject: 'Activation Compte PetsFriendly',
-                                            html: ""
+                                            subject: "Activation Compte PetsFriendly",
+                                            text: "Activation Compte PetsFriendly",
+                                            html: "lien activation"
                                         };
 
-                                        if (req.body.id_role === 2) 
+                                        
+                                        if (req.body.utilisateur.id_role === 2) 
                                         {
-                                            const lienActivation = "https://pets-friendly.herokuapp.com/activation/proprietaire/" +  req.body.utilisateur.email + "/" + resultatRequeteSqlUtilisateur.rows[0].id_activation
-                                            mailOptions.html = "<a href=\"" + lienActivation + "\">cliquez-ici</a>"
+                                            const lienActivation = "https://pets-friendly.herokuapp.com/utilisateurs/activation/proprietaire/" +  req.body.utilisateur.email + "/" + resultatRequeteSqlUtilisateur.rows[0].id_activation
+                                            mailOptions.html = "pour activer votre compte petsFriendly veuillez <a href=\"" + lienActivation + "\">cliquez-ici</a>"
                                             mail.envoyerMailAuProprietaire(mailOptions)
-                                        } else if (req.body.id_role === 3)
+                                        } else if (req.body.utilisateur.id_role === 3)
                                         {
-                                            const lienActivation = "https://pets-friendly.herokuapp.com/activation/petsitter/" +  req.body.utilisateur.email + "/" + resultatRequeteSqlUtilisateur.rows[0].id_activation
-                                            mailOptions.html = "<a href=\"" + lienActivation + "\">cliquez-ici</a>"
+                                            const lienActivation = "https://pets-friendly.herokuapp.com/utilisateurs/activation/petsitter/" +  req.body.utilisateur.email + "/" + resultatRequeteSqlUtilisateur.rows[0].id_activation
+                                            mailOptions.html = "pour activer votre compte petsFriendly veuillez <a href=\"" + lienActivation + "\">cliquez-ici</a>"
                                             mail.envoyerMailAuPetsitter(mailOptions)
                                         }
+
+                                        console.log(mailOptions)
 
                                         res.setHeader('Content-Type', 'application/json');
                                         res.end(JSON.stringify({}))
@@ -296,6 +300,28 @@ function utilisateurRecuperation(req, res) {
 
 //-----------------------------------------------------------------------------------------------------------------------------
 
+//la fonction appelee par la route de recuperation de tout les utilisateurs
+function utilisateurRecuperationTout(req, res) {
+    let sql = "SELECT id, id_role, nom, prenom, age, email, telephone, sexe FROM utilisateur"
+
+    //requete sql pour utilisateur
+    bd.excuterRequete(sql, [])
+        .then(resultatRequeteSqlUtilisateur => {
+
+            console.log(resultatRequeteSqlUtilisateur.rowCount)
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify(resultatRequeteSqlUtilisateur.rows))
+        })
+        .catch(erreur => {
+            console.error(erreur.stack)
+
+            res.setHeader('Content-Type', 'text/html');
+            res.end(erreur.stack)
+        })
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+
 //la fonction appelee par la route de suppression d'utilisateur
 function utilisateurSuppression(req, res) {
     let sql = "DELETE FROM utilisateur WHERE id=$1"
@@ -458,6 +484,7 @@ module.exports = {
     utilisateurCreation,
     utilisateurConfiguration,
     utilisateurRecuperation,
+    utilisateurRecuperationTout,
     utilisateurSuppression,
     petsittersRecuperation,
     petsitterValidation,

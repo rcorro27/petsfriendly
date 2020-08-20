@@ -8,16 +8,16 @@ distance.key('AIzaSyDJhlulgLB-bGuLctWHRn7DoWdKcq2gJiQ');
 //-----------------------------------------------------------------------------------------------------------------------------
 
 //la fonction appelee par la route recherche de petsitters
-async function recherchePetsitters(req, res)
+function recherchePetsitters(req, res)
 {   
     let servicesChecker = (arr, target) => target.every(v => arr.includes(v));
 
     let reponseRequeteHttp = []
 
-    let sql = "SELECT * FROM utilisateur WHERE id_role=$1 AND est_disponible=true" 
+    let sql = "SELECT * FROM utilisateur WHERE id_role=3 AND est_disponible=true" 
 
     //requete sql pour recuperer tout les petsitters
-    bd.excuterRequete(sql, [3]) 
+    bd.excuterRequete(sql, []) 
     .then(resultatRequeteSqlUtilisateur => { 
 
         //pour chaque petsitter on fais une requete pour trouver ces services
@@ -61,13 +61,6 @@ async function recherchePetsitters(req, res)
                                 //on push le petsitter dans la reponse
                                 reponseRequeteHttp.push(petsitterObj)
 
-                                if ((index + 1) === resultatRequeteSqlUtilisateur.rows.length) {
-                                    // si on arrive ici donc envoie la reponse avec le tableau de tout les petsitter
-                                    res.setHeader('Content-Type', 'application/json');
-                                    res.end(JSON.stringify(reponseRequeteHttp))
-
-                                    return undefined
-                                }
                             })
                             .catch(erreur => {
                                 throw erreur
@@ -94,6 +87,14 @@ async function recherchePetsitters(req, res)
                 return undefined
             })
 
+
+            // si tout les petsitter sont verifies on envoie la reponse
+            if ((index + 1) === resultatRequeteSqlUtilisateur.rows.length) {
+                // si on arrive ici donc envoie la reponse avec le tableau de tout les petsitter
+                res.setHeader('Content-Type', 'application/json');
+                console.log(reponseRequeteHttp)
+                res.end(JSON.stringify(reponseRequeteHttp))
+            }
         })
         
     })
