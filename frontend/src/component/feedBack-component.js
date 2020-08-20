@@ -20,8 +20,9 @@ const VignetteFeedBack = ({ type, id, values, name, urlPhoto, className, nom, ra
         <p className=' w-25 p-3 mx-auto'>{rating}</p>
 
         {values.map((v, i) => <RadioFeedback type='radio' valeur={v} niveau={i} name={name} key={i} onChoix={onChangeEtat} />)}
-        <button type={type} id={id} onClick={onClickEnvoyer} className={classInput2}>envoyer{textBoutonEnvoyer}</button>
         <InputComponent type='textarea' id='commentaire' onChange={onChangeTextArea} cols='6' rows='7'>Votre commentaire SVP</InputComponent>
+
+        <button type={type} id={id} onClick={onClickEnvoyer} className={classInput2}>envoyer{textBoutonEnvoyer}</button>
 
     </div>
 
