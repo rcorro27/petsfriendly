@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
-
+import axios from 'axios'
 import InputComponent from 'component/input-component'
 import SelectComponent from 'component/select-component'
 import ListItemComponent from 'component/list-item-component'
-// import ResultatRecherchePetsitter from 'container/resultat-recherche-pett-sitter-container'
-// import Navbar from '../container/navbar-container'
-import Footer from '../component/Footer/Footer'
 import VignetteComponent from 'component/vignette-component'
+import ConnectionPopUp from '../container/connection-container'
 
 import '../css/test.css'
 import ProfilDemandePettSitter from './profil-demande-pettsitter'
@@ -16,24 +14,28 @@ class RecherchePetsitter extends Component {
         super(props)
         // question a poser a nassim voir les criteres comme il sont dans le request ????
         this.state = {
-
-            garderChezPetsitter: false,
-            garderChezVous: false,
-            promenade: false,
-            numeroRue: '',
-            nomRue: 'toto',
-            secteurAction: '',
+            garderChezPetsitter: 0,
+            garderChezVous: 0,
+            promenade: 0,
+            numero_rue: '',
+            nom_rue: '',
+            code_postal: '',
+            ville: 'toto',
+            pays: '',
             dateDebut: '',
             dateFin: '',
             typeAnimal: '',
             infolettre: '',
+
             resultatRecherche: false,
             rechercher: false,
             infosRecherche: [],
             username: '',
             recherche: false,
             resultat: [],
-            idUser: false
+            province: '',
+            servicesTotal: []
+            // idUser: false
         }
 
         this.handleAddOnClick = this.handleAddOnClick.bind(this)
@@ -47,13 +49,19 @@ class RecherchePetsitter extends Component {
     }
 
     componentDidMount () {
-        fetch('resultat-recherche.json', { method: 'GET' })
-            .then(response => response.json())
+        return axios
+            .get('https://pets-friendly.herokuapp.com/services/recuperation/tout')
+        // .then(response => console.log(response.data))
             .then(response => {
-                const arrayTest = []
-                response.resultatRecherche.map((info, index) => arrayTest.push(info))
-
-                this.setState({ resultat: arrayTest })
+                const service = []
+                response.data.map((info, index) => service.push(info))
+                console.log('services', service)
+                localStorage.setItem('servicestotal', JSON.stringify(service))
+                this.setState({ servicesTotal: service })
+            // event.preventDefault()
+            })
+            .catch(err => {
+                console.log('erreur recherche:', err)
             })
     }
 
@@ -64,10 +72,12 @@ class RecherchePetsitter extends Component {
     handleChange (event) {
         switch (event.target.id) {
         case 'garderChezPetsitter':
-            this.setState({ garderChezPetsitter: true })
+
+            this.setState({ garderChezPetsitter: 1 })
             break
         case 'garderChezVous':
-            this.setState({ garderChezVous: true })
+
+            this.setState({ garderChezVous: 2 })
             break
         case 'dateDebut':
             this.setState({ dateDebut: event.target.value })
@@ -76,16 +86,25 @@ class RecherchePetsitter extends Component {
             this.setState({ dateFin: event.target.value })
             break
         case 'promenade':
-            this.setState({ promenade: true })
+            this.setState({ promenade: 3 })
             break
         case 'numeroRue':
-            this.setState({ numeroRue: event.target.value })
+            this.setState({ numero_rue: event.target.value })
             break
         case 'nomRue':
-            this.setState({ nomRue: event.target.value })
+            this.setState({ nom_rue: event.target.value })
             break
         case 'secteurAction':
-            this.setState({ codePostal: event.target.value })
+            this.setState({ code_postal: event.target.value })
+            break
+        case 'province':
+            this.setState({ province: event.target.value })
+            break
+        case 'ville':
+            this.setState({ ville: event.target.value })
+            break
+        case 'pays':
+            this.setState({ pays: event.target.value })
             break
         case 'infolettre':
             this.setState({ infolettre: event.target.value })
@@ -93,9 +112,35 @@ class RecherchePetsitter extends Component {
     }
 
     handleSubmit (event) {
-        this.setState({ resultatRecherche: true })
+        if (localStorage.getItem('usertoken').nom != null) {
+            alert('recherche en cours')
+            return axios
+                .post('https://pets-friendly.herokuapp.com/recherche', {
 
-        event.preventDefault()
+                    services: [
+                        4
+                    ],
+                    adresse: {
+                        numero_rue: 1890,
+                        nom_rue: 'parthenais',
+                        code_postal: 'H2K 3S3',
+                        ville: 'montreal',
+                        pays: 'canada'
+                    }
+
+                })
+                .then(response => {
+                    const arrayTest = []
+                    response.data.map((info, index) => arrayTest.push(info))
+                    console.log(arrayTest)
+                    this.setState({ resultat: arrayTest })
+                })
+                .catch(err => {
+                    console.log('erreur recherche:', err)
+                })
+        } else {
+            <ConnectionPopUp />
+        }
     }
 
     handleAddOnClick () {
@@ -107,16 +152,15 @@ class RecherchePetsitter extends Component {
     }
 
     handleAfficherSitterOnClick (event) {
-        // alert('demande envoyer' + event.target.name)
-        this.setState({ idUser: event.target.name })
-        // this.setState({ idUser: event.target.name })
+        console.log(this.state.resultat[event.target.name])
+        localStorage.setItem('sitter', JSON.stringify(this.state.resultat[event.target.name]))
+        // localStorage.removeItem('sitter')
 
-        // alert('Profil sitter a afficher ' + event.target.name)
-        // console.log('evenement declencher', event.target.name)
+        // console.log('local Storage:', JSON.parse(localStorage.getItem('sitter')))
     }
 
     handleEnvoyerDemandeOnClick (event) {
-        alert('demande envoyer' + event.target.name)
+
     }
 
     render () {
@@ -131,24 +175,7 @@ class RecherchePetsitter extends Component {
                 label: 'Autre',
                 value: 'Autre'
             }]
-        const service = [
-            {
-                id: 1,
-                description: 'Promenade',
-                prix_service: 20
-            },
-            {
-                id: 2,
-                description: 'Garder Chez Vous',
-                prix_service: 15
-            },
-            {
-                id: 3,
-                description: 'Garder Chez Pet Sitter',
-                prix_service: 20
-            }
 
-        ]
         function niveauPetSitter (niveau) {
             let niveauSitter = ''
             if (niveau > 0 && niveau < 50) {
@@ -164,10 +191,11 @@ class RecherchePetsitter extends Component {
             }
             return niveauSitter
         }
-        console.log(this.state.idUser)
+        console.log('recherche info : ', this.state.servicesTotal)
+        console.log('state :', this.state.resultat)
+
         // voir les dates dans le formulaire a chaque fois il y a des erreus dans la console qui pointe le fait de ne pas avoir la bonne valeur date.now??
         return (
-
             <div>
 
                 <div id='divPublicite'>
@@ -177,26 +205,24 @@ class RecherchePetsitter extends Component {
                 </div>
                 <h1 className='w-25 p-3 mx-auto'>Recherche Petsitter</h1>
                 <div className='w-50 p-3 mx-auto img-fluid img-thumbnail'>
-                    <form id='form-test' onSubmit={this.handleSubmit}>
-                        <InputComponent classCss='form-check' classInput='form-form-check-input' labelClass='form-check-label' type='radio' textLabel='Garder Chez le PettSitter' id='garderChezPetsitter' name='gardeMaison' value={this.state.garderChezPetsitter} onChange={this.handleChange} />
-                        <InputComponent classCss='form-check' classInput='form-form-check-input' labelClass='form-check-label' type='radio' textLabel='Garder chez vous' id='garderChezVous' name='gardeMaison' value={this.state.garderChezVous} onChange={this.handleChange} />
-                        <InputComponent classCss='form-check' classInput='form-form-check-input' labelClass='form-check-label' type='checkbox' textLabel='Promenade' id='promenade' name='Promenade' value={this.state.promenade} onChange={this.handleChange} />
-                        <InputComponent classCss='form-group' classInput='form-control' textLabel='Date de debut' type='date' id='dateDebut' name='dateDebut' onChange={this.handleChange} />
-                        <InputComponent classCss='form-group' classInput='form-control' textLabel='Date de fin' type='date' id='dateFin' name='dateFin' onChange={this.handleChange} />
-                        <InputComponent classCss='form-group' classInput='form-control' textLabel='Numero' type='number' id='numeroRue' name='numero' min={0} onChange={this.handleChange} />
-                        <InputComponent classCss='form-group' classInput='form-control' textLabel='Nom de la rue' type='text' id='nomRue' name='nom de la rue' onChange={this.handleChange} />
-                        <InputComponent classCss='form-group' classInput='form-control' textLabel='Code postal' type='text' id='secteurAction' name='secteurAction' onChange={this.handleChange} />
-                        <SelectComponent classCss='form-group' classInput='form-control' textLabel='Ville:' id='province' name='province' options={TYPEANIMAL} onChange={this.handleChangeSelect} value={this.state.typeAnimal} />
-                        <SelectComponent classCss='form-group' classInput='form-control' textLabel='Province:' id='ville' name='ville' options={TYPEANIMAL} onChange={this.handleChangeSelect} value={this.state.typeAnimal} />
-                        <SelectComponent classCss='form-group' classInput='form-control' textLabel='Pays:' id='pays' name='pays' options={TYPEANIMAL} onChange={this.handleChangeSelect} value={this.state.typeAnimal} />
-                        <SelectComponent classCss='form-group' classInput='form-control' textLabel='Type de animal:' id='typeAnimal' name='TypeAnimal' options={TYPEANIMAL} onChange={this.handleChangeSelect} value={this.state.typeAnimal} />
-                        <InputComponent classInput='btn btn-outline-success' type='submit' id='rechercher' name='Rechercher ' value='rechercher' />
-                    </form>
+
+                    <InputComponent classCss='form-check' classInput='form-form-check-input' labelClass='form-check-label' type='radio' textLabel='Garder Chez le PettSitter' id='garderChezPetsitter' name='gardeMaison' value={this.state.garderChezPetsitter} onChange={this.handleChange} />
+                    <InputComponent classCss='form-check' classInput='form-form-check-input' labelClass='form-check-label' type='radio' textLabel='Garder chez vous' id='garderChezVous' name='gardeMaison' value={this.state.garderChezVous} onChange={this.handleChange} />
+                    <InputComponent classCss='form-check' classInput='form-form-check-input' labelClass='form-check-label' type='checkbox' textLabel='Promenade' id='promenade' name='Promenade' value={this.state.promenade} onChange={this.handleChange} />
+                    <InputComponent classCss='form-group' classInput='form-control' textLabel='Date de debut' type='date' id='dateDebut' name='dateDebut' onChange={this.handleChange} />
+                    <InputComponent classCss='form-group' classInput='form-control' textLabel='Date de fin' type='date' id='dateFin' name='dateFin' onChange={this.handleChange} />
+                    <InputComponent classCss='form-group' classInput='form-control' textLabel='Numero' type='number' id='numeroRue' name='numero' min={0} onChange={this.handleChange} />
+                    <InputComponent classCss='form-group' classInput='form-control' textLabel='Nom de la rue' type='text' id='nomRue' name='nom de la rue' onChange={this.handleChange} />
+                    <InputComponent classCss='form-group' classInput='form-control' textLabel='Code postal' type='text' id='secteurAction' name='secteurAction' onChange={this.handleChange} />
+                    <InputComponent classCss='form-group' classInput='form-control' textLabel='Ville' type='text' id='ville' name='ville' onChange={this.handleChange} />
+                    <InputComponent classCss='form-group' classInput='form-control' textLabel='pays' type='text' id='pays' name='pays' onChange={this.handleChange} />
+                    <SelectComponent classCss='form-group' classInput='form-control' textLabel='Type de animal:' id='typeAnimal' name='TypeAnimal' options={TYPEANIMAL} onChange={this.handleChangeSelect} value={this.state.typeAnimal} />
+                    <InputComponent classInput='btn btn-outline-success' type='submit' id='rechercher' name='Rechercher ' value='rechercher' onClick={this.handleSubmit} />
                 </div>
                 {this.state.idUser ? <ProfilDemandePettSitter idSitter={this.state.idUser} /> : ''}
                 <div className='row'>
-                    {this.state.resultatRecherche ? this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} rating={niveauPetSitter(resultat.rating)} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' servicesTotal={service} servicesSitter={resultat.services} id={resultat.id} />) : ''}
-                    <button onClick={this.handleSaveOnClick}>retour recherche</button>
+                    {this.state.resultat ? this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} rating={niveauPetSitter(resultat.rating)} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' servicesTotal={this.state.servicesTotal} servicesSitter={resultat.services} id={index} />) : ''}
+
                 </div>
 
                 <div id='divPlubicite2'>
@@ -223,9 +249,6 @@ class RecherchePetsitter extends Component {
                         <InputComponent classInput='btn btn-outline-danger' type='submit' id='infolettreButton' name='Envoyer ' value='Envoyer' />
                     </form>
                 </div>
-
-                <button onClick={this.props.onHandleSaveOnClickRichard}>retour a la page developement</button>
-
             </div>
         )
     }

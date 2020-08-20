@@ -15,6 +15,11 @@ class ProfilDemandePettSitter extends Component {
             services: []
 
         }
+        this.handleClick = this.handleClick.bind(this)
+    }
+
+    handleClick () {
+        alert('click accepter')
     }
 
     render () {
@@ -61,22 +66,22 @@ class ProfilDemandePettSitter extends Component {
             {
                 nameProprietaire: 'Carlos',
                 dateCommentaire: '21/05/2020',
-                commentaire: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged'
+                commentaire: 'Bonne sitter, excelent service je le recommende'
             },
             {
                 nameProprietaire: 'Maria',
                 dateCommentaire: '21/08/2019',
-                commentaire: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged'
+                commentaire: 'Bonne sitter, excelent service je le recommende, il a pris vraiment soins de notre chat '
             },
             {
                 nameProprietaire: 'Ricardo',
                 dateCommentaire: '21/04/2018',
-                commentaire: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged'
+                commentaire: 'Bonne sitter, excelent service , mauvais actitud '
             },
             {
                 nameProprietaire: 'Stefanie',
                 dateCommentaire: '21/05/2020',
-                commentaire: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged'
+                commentaire: 'Bonne sitter, excelent service , tres  bonne actitud , je le prendais encore une fois  '
             }
 
         ]
@@ -137,7 +142,7 @@ class ProfilDemandePettSitter extends Component {
                             <p>{TPS(service)}</p>
                             <p>{TVQ(service)}</p>
                             <p><strong>{PrixAvecTaxes(service)}</strong></p>
-                            <input type='button' value='Envoyer Demande' className='btn btn-success' />
+                            <input type='button' value='Envoyer Demande' className='btn btn-success' onClick={this.handleClick} />
                         </div>
 
                     </div>

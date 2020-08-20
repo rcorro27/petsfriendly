@@ -16,7 +16,7 @@ const VignetteComponent = ({ urlPhoto, className, nom, rating, onClickProfil, cl
         </ul>
         <p className=' w-25 p-3 mx-auto'>{rating}</p>
         <button type='button' name={id} onClick={onClickProfil} className={classInput}>{textBoutonProfil} </button>
-        <button type='button' name={id} onClick={onClickEnvoyer} className={classInput2}>{textBoutonEnvoyer}</button>
+        {/* <button type='button' name={id} onClick={onClickEnvoyer} className={classInput2}>{textBoutonEnvoyer}</button> */}
     </div>
 
 )
