@@ -16,6 +16,7 @@ class ProfilDemandePettSitter extends Component {
             servicesTotal: []
 
         }
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     componentDidMount () {
@@ -34,15 +35,28 @@ class ProfilDemandePettSitter extends Component {
             })
     }
 
+    handleSubmit () {
+
+    }
+
     render () {
+        function niveauPetSitter (niveau) {
+            let niveauSitter = ''
+            if (niveau > 0 && niveau < 50) {
+                niveauSitter = 'Debutant'
+            } else if (niveau >= 50 && niveau < 100) {
+                niveauSitter = 'Normal'
+            } else if (niveau >= 100 && niveau < 200) {
+                niveauSitter = 'Intermediare'
+            } else if (niveau >= 200 && niveau < 400) {
+                niveauSitter = 'Proffesionel'
+            } else if (niveau >= 400) {
+                niveauSitter = 'Expert'
+            }
+            return niveauSitter
+        }
         const sitter = JSON.parse(localStorage.getItem('sitter'))
-        // const priceTotal = 0
-        // const price = sitter.services.map((price, index) => priceTotal + service[price - 1].prix_service)
-        /* function name () {
-            const priceTotalSansTaxe = 0
-            sitter.services.map((info, index) => priceTotalSansTaxe + service[info - 1].prix_service)
-            return priceTotalSansTaxe
-        } */
+        const service = JSON.parse(localStorage.getItem('servicestotal'))
         function PrixAvantTaxes (prix) {
             let prixAvantTaxes = 0
             prix.map((infoPrix, index) => {
@@ -63,8 +77,6 @@ class ProfilDemandePettSitter extends Component {
             const prixTotal = Math.ceil(PrixAvantTaxes(prix) + TVQ(prix) + TPS(prix))
             return prixTotal
         }
-
-        const service = JSON.parse(localStorage.getItem('servicestotal'))
         const feedback = [
             {
                 nameProprietaire: 'Carlos',
@@ -108,7 +120,7 @@ class ProfilDemandePettSitter extends Component {
                     <div className='m-5'>
                         <h2 className='h2'>{sitter.nom}</h2>
                         <h3 className='h6'>{sitter.secteur_action}</h3>
-                        <h6 className='h6'>{sitter.rating}</h6>
+                        <h6 className='h6'>{niveauPetSitter(sitter.rating)}</h6>
                     </div>
                     <div className='m-5'>
                         <input type='button' value='Contacter' className='btn btn-success m-2' />
@@ -152,5 +164,5 @@ class ProfilDemandePettSitter extends Component {
         )
     }
 }
-// tu ne exporte pas la bon classe!!! tu dois exporter la classe container dans ce cas la : FormInscription!!
+
 export default ProfilDemandePettSitter

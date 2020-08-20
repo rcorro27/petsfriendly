@@ -73,7 +73,6 @@ class RecherchePetsitter extends Component {
         case 'garderChezPetsitter':
 
             this.setState({ garderChezPetsitter: 1 })
-            // this.setState({ garderChezPetsitter: true })
             break
         case 'garderChezVous':
 
@@ -112,33 +111,34 @@ class RecherchePetsitter extends Component {
     }
 
     handleSubmit (event) {
-        return axios
-            .post('https://pets-friendly.herokuapp.com/recherche', {
+        if (condition) {
 
-                services: [
-                    4
-                ],
-                adresse: {
-                    numero_rue: 1890,
-                    nom_rue: 'parthenais',
-                    code_postal: 'H2K 3S3',
-                    ville: 'montreal',
-                    pays: 'canada'
-                }
+        } else {
+            return axios
+                .post('https://pets-friendly.herokuapp.com/recherche', {
 
-            })
-        // .then(response => console.log(response.data))
-            .then(response => {
-                const arrayTest = []
-                response.data.map((info, index) => arrayTest.push(info))
-                console.log(arrayTest)
-                this.setState({ resultat: arrayTest })
-                // event.preventDefault()
-            })
-            .catch(err => {
-                console.log('erreur recherche:', err)
-            })
-        // this.setState({ resultatRecherche: true })
+                    services: [
+                        4
+                    ],
+                    adresse: {
+                        numero_rue: 1890,
+                        nom_rue: 'parthenais',
+                        code_postal: 'H2K 3S3',
+                        ville: 'montreal',
+                        pays: 'canada'
+                    }
+
+                })
+                .then(response => {
+                    const arrayTest = []
+                    response.data.map((info, index) => arrayTest.push(info))
+                    console.log(arrayTest)
+                    this.setState({ resultat: arrayTest })
+                })
+                .catch(err => {
+                    console.log('erreur recherche:', err)
+                })
+        }
     }
 
     handleAddOnClick () {
@@ -158,24 +158,9 @@ class RecherchePetsitter extends Component {
     handleEnvoyerDemandeOnClick (event) {
         console.log(this.state.resultat[event.target.name])
         localStorage.setItem('sitter', JSON.stringify(this.state.resultat[event.target.name]))
-        // alert('demande envoyer' + event.target.name)
     }
 
     render () {
-        const rechercheInfo = {
-            services: [
-                this.state.garderChezPetsitter,
-                this.state.garderChezVous,
-                this.state.promenade
-            ],
-            adresse: {
-                numero_rue: this.state.numero_rue,
-                nom_rue: this.state.nom_rue,
-                code_postal: this.state.code_postal,
-                ville: this.state.ville,
-                pays: this.state.pays
-            }
-        }
         const TYPEANIMAL = [
             {
                 label: 'Chien',
@@ -187,24 +172,7 @@ class RecherchePetsitter extends Component {
                 label: 'Autre',
                 value: 'Autre'
             }]
-        /* [
-            {
-                id: 1,
-                description: 'Promenade',
-                prix_service: 20
-            },
-            {
-                id: 2,
-                description: 'Garder Chez Vous',
-                prix_service: 15
-            },
-            {
-                id: 3,
-                description: 'Garder Chez Pet Sitter',
-                prix_service: 20
-            }
 
-        ] */
         function niveauPetSitter (niveau) {
             let niveauSitter = ''
             if (niveau > 0 && niveau < 50) {
