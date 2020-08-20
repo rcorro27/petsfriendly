@@ -4,7 +4,8 @@ import InputComponent from 'component/input-component'
 import SelectComponent from 'component/select-component'
 import ListItemComponent from 'component/list-item-component'
 import VignetteComponent from 'component/vignette-component'
-import ConnectionPopUp from '../container/connection-container'
+import ModalCnxContainer from '../container/modal-cnx-container'
+import { withRouter } from 'react-router-dom'
 
 import '../css/test.css'
 import ProfilDemandePettSitter from './profil-demande-pettsitter'
@@ -34,7 +35,9 @@ class RecherchePetsitter extends Component {
             recherche: false,
             resultat: [],
             province: '',
-            servicesTotal: []
+            servicesTotal: [],
+            show: false
+
             // idUser: false
         }
 
@@ -46,6 +49,13 @@ class RecherchePetsitter extends Component {
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleAfficherSitterOnClick = this.handleAfficherSitterOnClick.bind(this)
         this.handleEnvoyerDemandeOnClick = this.handleEnvoyerDemandeOnClick.bind(this)
+        this.onHandleClose = this.onHandleClose.bind(this)
+    }
+
+    onHandleClose () {
+        this.setState({
+            show: false
+        })
     }
 
     componentDidMount () {
@@ -112,35 +122,40 @@ class RecherchePetsitter extends Component {
     }
 
     handleSubmit (event) {
-        if (localStorage.getItem('usertoken').nom != null) {
-            alert('recherche en cours')
-            return axios
-                .post('https://pets-friendly.herokuapp.com/recherche', {
+        fetch('resultat-recherche.json', { method: 'GET' })
+            .then(response => response.json())
+            .then(response => {
+                const arrayTest = []
+                console.log(response.resultatRecherche)
+                response.resultatRecherche.map((info, index) => arrayTest.push(info))
+                console.log(arrayTest)
+                this.setState({ resultat: arrayTest })
+            })
+        /* return axios
+            .post('https://pets-friendly.herokuapp.com/recherche', {
 
-                    services: [
-                        4
-                    ],
-                    adresse: {
-                        numero_rue: 1890,
-                        nom_rue: 'parthenais',
-                        code_postal: 'H2K 3S3',
-                        ville: 'montreal',
-                        pays: 'canada'
-                    }
+                services: [
+                    4
+                ],
+                adresse: {
+                    numero_rue: 1890,
+                    nom_rue: 'parthenais',
+                    code_postal: 'H2K 3S3',
+                    ville: 'montreal',
+                    pays: 'canada'
+                }
 
-                })
-                .then(response => {
-                    const arrayTest = []
-                    response.data.map((info, index) => arrayTest.push(info))
-                    console.log(arrayTest)
-                    this.setState({ resultat: arrayTest })
-                })
-                .catch(err => {
-                    console.log('erreur recherche:', err)
-                })
-        } else {
-            <ConnectionPopUp />
-        }
+            })
+            .then(response => console.log(response))
+            .then(response => {
+                const arrayTest = []
+                response.data.map((info, index) => arrayTest.push(info))
+                console.log(arrayTest)
+                this.setState({ resultat: arrayTest })
+            })
+            .catch(err => {
+                console.log('erreur recherche:', err)
+            }) */
     }
 
     handleAddOnClick () {
@@ -154,6 +169,7 @@ class RecherchePetsitter extends Component {
     handleAfficherSitterOnClick (event) {
         console.log(this.state.resultat[event.target.name])
         localStorage.setItem('sitter', JSON.stringify(this.state.resultat[event.target.name]))
+        this.props.history.push('/demande')
         // localStorage.removeItem('sitter')
 
         // console.log('local Storage:', JSON.parse(localStorage.getItem('sitter')))
@@ -174,6 +190,21 @@ class RecherchePetsitter extends Component {
             }, {
                 label: 'Autre',
                 value: 'Autre'
+            }]
+
+        const servicesTotal = [
+            {
+                id: 1,
+                description: 'Promenade',
+                prix_service: 20
+            }, {
+                id: 2,
+                description: 'garder a la maison ',
+                prix_service: 45
+            }, {
+                id: 3,
+                description: 'gardez chez vous ',
+                prix_service: 15
             }]
 
         function niveauPetSitter (niveau) {
@@ -221,7 +252,7 @@ class RecherchePetsitter extends Component {
                 </div>
                 {this.state.idUser ? <ProfilDemandePettSitter idSitter={this.state.idUser} /> : ''}
                 <div className='row'>
-                    {this.state.resultat ? this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} rating={niveauPetSitter(resultat.rating)} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' servicesTotal={this.state.servicesTotal} servicesSitter={resultat.services} id={index} />) : ''}
+                    {this.state.resultat ? this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} rating={niveauPetSitter(resultat.rating)} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger w-100 p-3 mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' servicesTotal={servicesTotal} servicesSitter={resultat.services} id={index} />) : ''}
 
                 </div>
 
@@ -254,4 +285,4 @@ class RecherchePetsitter extends Component {
     }
 }
 
-export default RecherchePetsitter
+export default withRouter(RecherchePetsitter)

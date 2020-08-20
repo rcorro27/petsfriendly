@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ServiceDemandeComponent from '../component/services-demande-component'
 import FeedBackCommentaire from '../component/feedback-commentaire-component'
 import FactureDemandeComponent from '../component/facture-demande-component'
+import { withRouter } from 'react-router-dom'
 // import PetSitterInput from 'component/PetSitterInput'
 
 class ProfilDemandePettSitter extends Component {
@@ -19,7 +20,8 @@ class ProfilDemandePettSitter extends Component {
     }
 
     handleClick () {
-        alert('click accepter')
+        alert('Demande Envoyee')
+        this.props.history.push('/')
     }
 
     render () {
@@ -129,7 +131,7 @@ class ProfilDemandePettSitter extends Component {
                     </div>
                 </div>
 
-                <div className=' m-5 w-50 p-3 float-right border border-danger rounded bg-white  shadow'>
+                <div className=' w-100 p-5 float-right border border-danger rounded bg-white  shadow'>
 
                     <h2 className=' h2 w-25 p-3 mx-auto'>Prix des services</h2>
                     <div>
@@ -147,11 +149,9 @@ class ProfilDemandePettSitter extends Component {
 
                     </div>
                 </div>
-
-                <button onClick={this.props.onHandleSaveOnClickRichard}>retour a la page developement</button>
             </div>
         )
     }
 }
 // tu ne exporte pas la bon classe!!! tu dois exporter la classe container dans ce cas la : FormInscription!!
-export default ProfilDemandePettSitter
+export default withRouter(ProfilDemandePettSitter)
