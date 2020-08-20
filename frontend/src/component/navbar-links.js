@@ -86,10 +86,11 @@ class NavbarLinks extends Component {
                 this.setState({
                     users: res
                 })
-                this.onHandleClose()
 
                 console.log('test', this.state.users.utilisateur.nom)
                 this.setState({ userName: this.state.users.utilisateur.nom })
+                this.handleCloseInsc()
+                // commentaire
             }
         })
         // this.register(user)
