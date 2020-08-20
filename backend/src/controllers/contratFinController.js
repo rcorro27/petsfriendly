@@ -51,7 +51,6 @@ function contratFin(req, res) {
             res.end(erreur.stack)
         })
 }
-
 //-----------------------------------------------------------------------------------------------------------------------------
 
 //la fonction appelee par la route recuperation de contrat avec l'id du proprietaire
