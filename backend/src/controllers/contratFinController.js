@@ -75,9 +75,6 @@ function contratRecuperationByIdProprietaire(req, res) {
                     res.setHeader('Content-Type', 'text/html')
                     res.end(erreur.stack)
                 })
-
-            res.setHeader('Content-Type', 'application/json')
-            res.end(JSON.stringify(resultatRequete.rows))
         })
         .catch(erreur => {
             console.error(erreur.stack)
@@ -109,8 +106,6 @@ function contratRecuperationByIdPetsitter(req, res) {
                     res.end(erreur.stack)
                 })
 
-            res.setHeader('Content-Type', 'application/json')
-            res.end(JSON.stringify(resultatRequete.rows))
         })
         .catch(erreur => {
             console.error(erreur.stack)
