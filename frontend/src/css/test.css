@@ -170,6 +170,7 @@ body {
     margin-top: 2%
 }
 
+<<<<<<< HEAD
 button {
     border: none;
     padding: 15px 32px;
@@ -183,4 +184,8 @@ button {
 .star {
     cursor: pointer;
     transition: color 200ms;
+=======
+.boutton {
+    size: 50px;
+>>>>>>> modification-feedBack
 }
