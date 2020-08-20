@@ -2,7 +2,11 @@ import React, { Component } from 'react'
 import ServiceDemandeComponent from '../component/services-demande-component'
 import FeedBackCommentaire from '../component/feedback-commentaire-component'
 import FactureDemandeComponent from '../component/facture-demande-component'
+<<<<<<< HEAD
 import axios from 'axios'
+=======
+import { withRouter } from 'react-router-dom'
+>>>>>>> front_end
 // import PetSitterInput from 'component/PetSitterInput'
 
 class ProfilDemandePettSitter extends Component {
@@ -16,12 +20,12 @@ class ProfilDemandePettSitter extends Component {
             servicesTotal: []
 
         }
-<<<<<<< HEAD
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleClick = this.handleClick.bind(this)
     }
 
-    componentDidMount () {
-        return axios
+    handleClick () {
+<<<<<<< HEAD
+        alert('click accepter')
             .get('https://pets-friendly.herokuapp.com/services/recuperation/tout')
         // .then(response => console.log(response.data))
             .then(response => {
@@ -39,11 +43,8 @@ class ProfilDemandePettSitter extends Component {
     handleSubmit () {
 
 =======
-        this.handleClick = this.handleClick.bind(this)
-    }
-
-    handleClick () {
-        alert('click accepter')
+        alert('Demande Envoyee')
+        this.props.history.push('/')
 >>>>>>> front_end
     }
 
@@ -148,7 +149,7 @@ class ProfilDemandePettSitter extends Component {
                     </div>
                 </div>
 
-                <div className=' m-5 w-50 p-3 float-right border border-danger rounded bg-white  shadow'>
+                <div className=' w-100 p-5 float-right border border-danger rounded bg-white  shadow'>
 
                     <h2 className=' h2 w-25 p-3 mx-auto'>Prix des services</h2>
                     <div>
@@ -157,28 +158,23 @@ class ProfilDemandePettSitter extends Component {
 
                         </div>
                         <div className='float-right m-2 w-25 p-3'>
-<<<<<<< HEAD
                             <p><strong>{PrixAvantTaxes(sitter.services)}</strong></p>
                             <p>{TPS(sitter.services)}</p>
                             <p>{TVQ(sitter.services)}</p>
                             <p><strong>{PrixAvecTaxes(sitter.services)}</strong></p>
-                            <input type='button' value='Envoyer Demande' className='btn btn-success' />
-=======
-                            <p><strong>{PrixAvantTaxes(service)}</strong></p>
-                            <p>{TPS(service)}</p>
-                            <p>{TVQ(service)}</p>
-                            <p><strong>{PrixAvecTaxes(service)}</strong></p>
                             <input type='button' value='Envoyer Demande' className='btn btn-success' onClick={this.handleClick} />
->>>>>>> front_end
                         </div>
 
                     </div>
                 </div>
-
-                <button onClick={this.props.onHandleSaveOnClickRichard}>retour a la page developement</button>
             </div>
         )
     }
 }
+<<<<<<< HEAD
 
 export default ProfilDemandePettSitter
+=======
+// tu ne exporte pas la bon classe!!! tu dois exporter la classe container dans ce cas la : FormInscription!!
+export default withRouter(ProfilDemandePettSitter)
+>>>>>>> front_end
