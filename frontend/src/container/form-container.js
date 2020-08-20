@@ -30,7 +30,7 @@ class FormContainer extends Component {
             <div>
 
                 <div>
-                    <Navbar />
+
                     <main id='divContainer'>
                         <CarouselContainer />
 
@@ -46,14 +46,13 @@ class FormContainer extends Component {
 
                     <div className='row bg-dark'>
 
-                        {this.state.titres.map((text, index) => <DivBoutons classCss='col-lg-4 text-center ' titre={text.titreBtn} key={index} />)}
+                        {this.state.titres.map((text, index) => <DivBoutons classCss='h-100 p-3 col-lg-4 text-center ' titre={text.titreBtn} key={index} />)}
 
                     </div>
 
                     <ImageTitreComposant />
-                    <Footer />
+
                 </div>
-                <button onClick={this.props.onHandleSaveOnClickYahia}>retour a page</button>
             </div>
 
         )

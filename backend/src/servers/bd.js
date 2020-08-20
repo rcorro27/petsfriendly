@@ -11,11 +11,11 @@ function excuterRequete(requeteSQL, valeursConditions)
 
         // creer un nouveau client vers la bd
     pgClient = new pg.Client({
-      user: "dozjybzktpznaa",
-      password: "0f08776f321c709a86a7c995de09e6b48a2a9a5a5d044f99856d3b61be77bbaa",
-      database: "dsk6k1bd65nrt",
+      user: "eutrnirrbxtpvl",
+      password: "c86907c919017bf1cf09ed88a1da21cb7ce772215725b8db28c169798d9a8b00",
+      database: "ds2hr72h39mi3",
       port: 5432,
-      host: "ec2-52-22-216-69.compute-1.amazonaws.com",
+      host: "ec2-52-200-111-186.compute-1.amazonaws.com",
       ssl: { rejectUnauthorized: false }
     }); 
 

@@ -5,10 +5,10 @@
         "classInput": "form-check-input",
         "type": "radio",
         "id": "idProp",
-        "name": "role",
+        "name": "id_role",
         "min": "",
         "max": "",
-        "value": "option1",
+        "value": "2",
         "onChange": "getText",
         "textLabel": "proprietaire d un animal? "
     },
@@ -18,10 +18,10 @@
         "classInput": "form-check-input",
         "type": "radio",
         "id": "idPetSit",
-        "name": "role",
+        "name": "id_role",
         "min": "",
         "max": "",
-        "value": "",
+        "value": "3",
         "onChange": "getText",
         "textLabel": "PetSitter ?"
     },
@@ -31,10 +31,9 @@
         "classInput": "form-control validate",
         "type": "text",
         "id": "txtNom",
-        "name": "",
+        "name": "nom",
         "min": "",
         "max": "",
-        "value": "",
         "onChange": "getText",
         "textLabel": "Nom : "
     },
@@ -44,10 +43,9 @@
         "classInput": "form-control validate",
         "type": "text",
         "id": "txtPrenom",
-        "name": "",
+        "name": "prenom",
         "min": "",
         "max": "",
-        "value": "",
         "onChange": "getText",
         "textLabel": "Prenom : "
     },
@@ -57,10 +55,9 @@
         "classInput": "form-control validate",
         "type": "number",
         "id": "txtAge",
-        "name": "",
+        "name": "age",
         "min": "16",
         "max": "",
-        "value": "",
         "onChange": "getText",
         "textLabel": "Age : "
     },
@@ -70,10 +67,9 @@
         "classInput": "form-control validate",
         "type": "email",
         "id": "txtEmail",
-        "name": "",
+        "name": "email",
         "min": "",
         "max": "",
-        "value": "",
         "textLabel": "Email : "
     },
     {
@@ -82,10 +78,9 @@
         "classInput": "form-control validate",
         "type": "tel",
         "id": "txtTel",
-        "name": "",
+        "name": "telephone",
         "min": "",
         "max": "",
-        "value": "",
         "textLabel": "Telephone : "
     },
     {
@@ -97,7 +92,7 @@
         "name": "sexe",
         "min": "",
         "max": "",
-        "value": "option1",
+        "value": "masculin",
         "onChange": "getText",
         "textLabel": "Homme "
     },
@@ -110,7 +105,7 @@
         "name": "sexe",
         "min": "",
         "max": "",
-        "value": "option2",
+        "value": "feminin",
         "onChange": "getText",
         "textLabel": "Femme "
     },
@@ -123,7 +118,7 @@
         "name": "sexe",
         "min": "",
         "max": "",
-        "value": "option3",
+        "value": "autres",
         "onChange": "getText",
         "textLabel": "Autres "
     },
@@ -133,10 +128,9 @@
         "classInput": "form-control validate",
         "type": "password",
         "id": "motdepasse",
-        "name": "",
+        "name": "mot_de_passe",
         "min": "",
         "max": "",
-        "value": "",
         "onChange": "getText",
         "textLabel": "Mot de passe : "
     }

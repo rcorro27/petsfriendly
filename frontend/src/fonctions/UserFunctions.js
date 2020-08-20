@@ -19,18 +19,29 @@ export const login = user => {
 }
 export const register = newUser => {
     return axios
-        .post('users/register', {
-            id_role: newUser.id_role,
-            nom: newUser.nom,
-            prenom: newUser.prenom,
-            age: newUser.age,
-            email: newUser.email,
-            mot_de_passe: newUser.mot_de_passe,
-            sexe: newUser.sexe,
-            telephone: newUser.telephone
+        .post('https://pets-friendly.herokuapp.com/utilisateurs/creation', {
+            utilisateur: {
+                id_role: newUser.id_role,
+                nom: newUser.nom,
+                prenom: newUser.prenom,
+                age: newUser.age,
+                email: newUser.email,
+                mot_de_passe: newUser.mot_de_passe,
+                sexe: newUser.sexe,
+                telephone: newUser.telephone
+            },
+            adresse: {
+                numero_rue: newUser.numero_rue,
+                nom_rue: newUser.nom_rue,
+                code_postal: newUser.code_postal,
+                ville: newUser.ville,
+                province: newUser.province,
+                pays: newUser.pays,
+                numero_appt: newUser.numero_appt
+            }
 
         })
         .then(response => {
-            console.log('Registered')
+            console.log('Registered', response)
         })
 }

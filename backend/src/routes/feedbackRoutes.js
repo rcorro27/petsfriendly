@@ -4,10 +4,17 @@ const router = express.Router()
 //les fonction de callback 
 const feedbackController = require('../controllers/feedbackController')
 
-//route pour requete post de connexion
-router.post('/connexion', utilisateurController.utilisateurConnexion)
+//route pour requete post d'ajout
+router.post('/ajout',)
 
-//route pour requete get de recuperation utilisateur by id
-router.get('/recuperation/:id', utilisateurController.utilisateurRecuperation)
+//reccuperation proprietaire
+router.get('/reccuperation/:id',)
+
+//modification
+router.put('/modification/:id',)
+
+//supression
+router.delete('/supression/:id',)
+
 
 module.exports = router

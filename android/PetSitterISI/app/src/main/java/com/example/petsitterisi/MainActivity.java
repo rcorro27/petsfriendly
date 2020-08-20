@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -23,6 +24,7 @@ import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import com.example.petsitterisi.managers.UtilisateurManager;
 import com.example.petsitterisi.services.ConnexionBd;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -47,49 +49,68 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ctx = this;
         super.onCreate(savedInstanceState);
+
         //cacher temporairement  la bare d'etat du haut
         requestWindowFeature(Window.FEATURE_NO_TITLE); getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_bottom_navigation_bar);
 
-        ctx = this;
-        setContentView(R.layout.activity_main);
         ConnexionBd.copyBdFromAssets(this);
-        top_textView = findViewById(R.id.top_textView);
-        connexion_button = findViewById(R.id.connexion_button);
-        connexion_button.setBackgroundColor(getResources().getColor(R.color.black));
-        connexion_button.setTextColor(getResources().getColor(R.color.white));
-        VideoView videoView =(VideoView)findViewById(R.id.videoView1);
-        MediaController mediaController = new MediaController(this);
-        mediaController.setAnchorView(videoView);
-        Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath()+"/media/1.mp4");
-        String path = "android.resource://" + getPackageName() + "/" + R.raw.chien;
-        videoView.setMediaController(mediaController);
-        videoView.setVideoPath(path);
-        videoView.requestFocus();
-        mediaController.setVisibility(View.GONE);
-        videoView.setMediaController(mediaController);
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                mp.setVolume(0f, 0f);
-                mp.setLooping(true);
-            }
-        });
-        videoView.start();
+
+        int idUtilisateur = UtilisateurManager.getIdUtilisateur(ctx);
 
 
+        if(idUtilisateur > 0){
+            //Utilisateur s'est deja loger tanto
 
-
-        //ouvrir l'activite connexion
-
-        connexion_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ctx, Connexion.class);
+            try {
+                Intent intent = new Intent(ctx, BottomNavigationBar.class);
                 startActivity(intent);
+            }catch(Exception e){
+                e.printStackTrace();
             }
-        });
+
+
+        }else {
+            //C'est la premiere fois qu;il ouvre l'application
+
+            setContentView(R.layout.activity_main);
+            ConnexionBd.copyBdFromAssets(this);
+            top_textView = findViewById(R.id.top_textView);
+            connexion_button = findViewById(R.id.connexion_button);
+            connexion_button.setBackgroundColor(getResources().getColor(R.color.black));
+            connexion_button.setTextColor(getResources().getColor(R.color.white));
+            VideoView videoView =(VideoView)findViewById(R.id.videoView1);
+            MediaController mediaController = new MediaController(this);
+            mediaController.setAnchorView(videoView);
+            String path = "android.resource://" + getPackageName() + "/" + R.raw.video_accueil;
+            videoView.setMediaController(mediaController);
+            videoView.setVideoPath(path);
+            videoView.requestFocus();
+            mediaController.setVisibility(View.GONE);
+            videoView.setMediaController(mediaController);
+            videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    mp.setVolume(0f, 0f);
+                    mp.setLooping(true);
+                }
+            });
+            videoView.start();
+
+
+            //ouvrir l'activite connexion
+
+            connexion_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(ctx, Connexion.class);
+                    startActivity(intent);
+                }
+            });
+
+        }
 
 
 

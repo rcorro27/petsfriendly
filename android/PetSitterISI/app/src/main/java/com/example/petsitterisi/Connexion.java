@@ -21,6 +21,7 @@ public class Connexion extends Activity {
     EditText e_mail;
     EditText mot_de_passe;
     BottomNavigationBar bottomNavigationBar = null;
+    TextView error;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,16 +37,25 @@ public class Connexion extends Activity {
         connexion_button.setBackgroundColor(getResources().getColor(R.color.black));
         connexion_button.setTextColor(getResources().getColor(R.color.white));
         e_mail = findViewById(R.id.e_mail);
+        error = findViewById(R.id.error);
         mot_de_passe = findViewById(R.id.mot_de_passe);
 
         connexion_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Intent intent = new Intent(ctx, BottomNavigationBar.class);
-                intent.putExtra("email", e_mail.getText().toString());
-                intent.putExtra("mot_de_passe", mot_de_passe.getText().toString());
-               startActivity(intent);
 
+
+                if(!e_mail.getText().toString().equals("") && !mot_de_passe.getText().toString().equals("")) {
+
+                    Toast.makeText(ctx, "Loading...", Toast.LENGTH_SHORT).show();
+                    String email = e_mail.getText().toString();
+                    String motDePasse = mot_de_passe.getText().toString();
+
+                    ConnexionManager.getUtilisateur(ctx, error, email, motDePasse);
+
+                }else{
+                    Toast.makeText(ctx, "Veuillez remplire les champ", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });

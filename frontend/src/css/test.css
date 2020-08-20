@@ -74,6 +74,10 @@
     display: flex;
 }
 
+.spacer {
+    padding-left: 50px;
+}
+
 /**********************************page Recherche*************************************************/
 
 .formRechercheContainer {
@@ -135,7 +139,7 @@ h1 {
 }
 
 h2, p {
-    width: 20%;
+    /* width: 20%;*/
     cursor: pointer;
 }
 

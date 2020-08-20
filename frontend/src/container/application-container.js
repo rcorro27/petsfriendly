@@ -2,10 +2,16 @@ import React, { Component } from 'react'
 
 import ToolbarComponent from 'component/toolbar-component'
 import FormContainer from 'container/form-container'
-import RecherchePetsitter from 'container/recherchepetsitter-container'
+// import RecherchePetsitter from 'container/recherchepetsitter-container'
+import ProfilDemandePettSitter from 'container/profil-demande-pettsitter'
 /* import FormInscription from 'container/form-inscription' */
 /* import ProfilProprietaireBord from 'container/profil-proprietair-containaire' */
+<<<<<<< HEAD
 import FormFeedBack from './feed-back'
+=======
+import FormFeedBack from './feed_back'
+import RecherchePetsitter from './recherchepetsitter-container'
+>>>>>>> da238d165cf88161bdaa3f045893c93a02313bad
 class ApplicationContainer extends Component {
     constructor (props) {
         super(props)
@@ -13,15 +19,18 @@ class ApplicationContainer extends Component {
         this.state = {
             isFormOpenYahia: false,
             isFormOpenRichard: false,
-            isFormOpenAhmed: false
+            isFormOpenAhmed: false,
+            isFormOpenRichard2: false
         }
 
         this.handleAddOnClickYahia = this.handleAddOnClickYahia.bind(this)
         this.handleAddOnClickRichard = this.handleAddOnClickRichard.bind(this)
+        this.handleAddOnClickRichard2 = this.handleAddOnClickRichard2.bind(this)
         this.handleAddOnClickAhmed = this.handleAddOnClickAhmed.bind(this)
         this.handleSaveOnClickYahia = this.handleSaveOnClickYahia.bind(this)
         this.handleSaveOnClickAhmed = this.handleSaveOnClickAhmed.bind(this)
         this.handleSaveOnClickRichard = this.handleSaveOnClickRichard.bind(this)
+        this.handleSaveOnClickRichard2 = this.handleSaveOnClickRichard2.bind(this)
     }
 
     handleAddOnClickYahia () {
@@ -30,6 +39,10 @@ class ApplicationContainer extends Component {
 
     handleAddOnClickRichard () {
         this.setState({ isFormOpenRichard: true })
+    }
+
+    handleAddOnClickRichard2 () {
+        this.setState({ isFormOpenRichard2: true })
     }
 
     handleAddOnClickAhmed () {
@@ -48,6 +61,10 @@ class ApplicationContainer extends Component {
         this.setState({ isFormOpenRichard: false })
     }
 
+    handleSaveOnClickRichard2 () {
+        this.setState({ isFormOpenRichard2: false })
+    }
+
     render () {
         const BUTTONSYAHIA = [{
             label: 'Yahia',
@@ -61,6 +78,10 @@ class ApplicationContainer extends Component {
             label: 'Ahmed',
             handleOnClick: this.handleAddOnClickAhmed
         }]
+        const BUTTONSRICHARD2 = [{
+            label: 'Richard Demande',
+            handleOnClick: this.handleAddOnClickRichard2
+        }]
 
         return (
             <div>
@@ -68,10 +89,12 @@ class ApplicationContainer extends Component {
                 <ToolbarComponent buttons={BUTTONSYAHIA} />
                 <ToolbarComponent buttons={BUTTONSRICHARD} />
                 <ToolbarComponent buttons={BUTTONSAHMED} />
+                <ToolbarComponent buttons={BUTTONSRICHARD2} />
                 <div>
                     {this.state.isFormOpenYahia ? <FormContainer onHandleSaveOnClickYahia={this.handleSaveOnClickYahia} /> : ''}
                     {this.state.isFormOpenAhmed ? <FormFeedBack onHandleSaveOnClickAhmed={this.handleSaveOnClickAhmed} /> : ''}
                     {this.state.isFormOpenRichard ? <RecherchePetsitter onHandleSaveOnClickRichard={this.handleSaveOnClickRichard} /> : ''}
+                    {this.state.isFormOpenRichard2 ? <ProfilDemandePettSitter onHandleSaveOnClickRichard={this.handleSaveOnClickRichard} /> : ''}
 
                 </div>
             </div>

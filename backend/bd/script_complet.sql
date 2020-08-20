@@ -1,4 +1,6 @@
-DROP TABLE IF EXISTS role_utilisateur,adresse,promotion,facture,contrat,feedback,utilisateur,animal,animal_utilisateur,favoris,planning,service,contrat_utilisateur,promotion_utilisateur,infos_bd;
+DROP TABLE IF EXISTS role_utilisateur,adresse,promotion,facture,contrat,feedback,utilisateur,animal,animal_utilisateur,favoris,planning,service,service_utilisateur,service_contrat,contrat_utilisateur,promotion_utilisateur,infos_bd;
+
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO vyimtahkffwmmm;
 
 Create table if not exists role_utilisateur
 (id SERIAL PRIMARY KEY NOT NULL,
@@ -116,6 +118,18 @@ create table if not exists service
  description_service varchar(200) NOT NULL,
  prix_service DOUBLE PRECISION NOT NULL);
  
+create table if not exists service_utilisateur
+(id SERIAL PRIMARY KEY NOT NULL,
+ id_petsitter int NOT NULL,
+ id_service varchar(200) NOT NULL 
+);
+ 
+Create table if not exists service_contrat
+(id SERIAL PRIMARY KEY NOT NULL,
+ id_contrat int NOT NULL,
+ id_service varchar(200) NOT NULL 
+);
+
 create table if not exists contrat_utilisateur
 (id SERIAL PRIMARY KEY NOT NULL,
  id_contrat int NOT NULL,
@@ -139,6 +153,8 @@ create table if not exists infos_bd
  version_infos integer NOT NULL DEFAULT 100,
  version_images integer NOT NULL DEFAULT 110);
  
+ 
+ALTER TABLE feedback ADD COLUMN date_creation date NOT NULL DEFAULT NOW()
  
 INSERT INTO role_utilisateur (type_role, definition) VALUES ('administrateur', 'le administrateur qui gere les donnes par une interface web');
 INSERT INTO role_utilisateur (type_role, definition) VALUES ('proprietaire', 'le client chez notre compagnie');

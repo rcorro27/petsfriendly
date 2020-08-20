@@ -2,31 +2,28 @@ import React from 'react'
 
 // place holder a ajouter ???
 <<<<<<< HEAD
-const InputComponent = ({ text, type, id, name, value, min, onChange, className, classNameLabel }) => (
-    <div>
-        <label htmlFor={id} className={classNameLabel}>{text}</label>
+const InputComponent = ({ classCss, onChangeRadio, classIcon, classInput, type, id, name, value, min, onChange, textLabel, labelClass, placeHolder, onClick }) => (
 =======
-const InputComponent = ({ classCss, classIcon, classInput, type, id, name, value, min, onchange, textLabel }) => (
-    <div className={classCss}>
-        <i className={classIcon} />
-
+const InputComponent = ({ classCss, onChangeRadio, classIcon, classInput, type, id, name, value, min, onchange, textLabel, labelClass, placeHolder, onClick }) => (
 >>>>>>> front_end
+    <div className={classCss} onChange={onChangeRadio}>
+        <i className={classIcon} />
         <input
+            placeholder={placeHolder}
             className={classInput}
             type={type}
-
             id={id}
             name={name}
             value={value}
             min={min}
 <<<<<<< HEAD
             onChange={onChange}
-            className={className}
 =======
             onChange={onchange}
 >>>>>>> front_end
+            onClick={onClick}
         />
-        <label data-error='wrong' data-success='right' htmlFor={id}>{textLabel}</label>
+        <label className={labelClass} data-error='wrong' data-success='right' htmlFor={id}>{textLabel}</label>
     </div>
 
 )

@@ -1,28 +1,9 @@
-
-
-//la fonction appelee par la route ajout de facture
-function factureAjout(req, res) {
-
-    let sql = "insert into facture (id, id_promotion,prix) values ($1,$2,$3)"
-
-    bd.excuterRequete(sql, [req.body.id, req.body.id_promotion, req.body.prix])
-        .then(resultatRequete => {
-            res.setHeader('Content-Type', 'application/json')
-            res.end(JSON.stringify(resultatRequete.rows))
-        })
-        .catch(erreur => {
-            console.error(erreur.stack)
-            res.setHeader('Content-Type', 'text/html')
-            res.end(erreur.stack)
-        })
-}
-
 //la fonction appelee par la route recupration de facture avec l'id d'utilisateur
 function factureRecuperationByIdUtilisateur(req, res) {
 
-    let sql = ""
+    let sql = "SELECT * FROM facture WHERE id=$1"
 
-    bd.excuterRequete(sql, [])
+    bd.excuterRequete(sql, [req.params.id, req.params.id_promotion, req.params.prix])
         .then(resultatRequete => {
             res.setHeader('Content-Type', 'application/json')
             res.end(JSON.stringify(resultatRequete.rows))
@@ -33,9 +14,28 @@ function factureRecuperationByIdUtilisateur(req, res) {
             res.end(erreur.stack)
         })
 }
+function factureSuppression(req, res) {
 
+    let sql = "DELETE FROM facture where id=$1"
+    bd.excuterRequete(sql, [req.body.id])
+        .then(resultatRequete => {
+            if (resultatRequete.rowCount >= 1) {
+                res.setHeader('Content-Type', 'application/json')
+                res.end(JSON.stringify({}))
+            }
+            else {
+                res.setHeader('Content-Type', 'application/json')
+                res.end(JSON.stringify({ "erreur": 400 }))
+            }
+        })
+        .catch(erreur => {
+            console.error(erreur.stack)
+            res.setHeader('Content-Type', 'text/html')
+            res.end(erreur.stack)
+        })
+}
 
 module.exports = {
-    factureAjout,
     factureRecuperationByIdUtilisateur,
+    factureSuppression
 }
