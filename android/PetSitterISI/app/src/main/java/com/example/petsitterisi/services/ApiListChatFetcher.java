@@ -85,6 +85,8 @@ public class ApiListChatFetcher extends AsyncTask<String, Nullable, String> {
               return "";
     }
 
+
+
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -101,7 +103,7 @@ public class ApiListChatFetcher extends AsyncTask<String, Nullable, String> {
             String tContents = "";
             String concat = "";
             try {
-                InputStream stream = context.getAssets().open("resultat_chat.json.");
+                InputStream stream = context.getAssets().open("resultat_chat.json");
                 int size = stream.available();
                 byte[] buffer = new byte[size];
                 stream.read(buffer);
@@ -114,10 +116,29 @@ public class ApiListChatFetcher extends AsyncTask<String, Nullable, String> {
 
                 JSONObject chatJsonObject = jsonArray.getJSONObject(i);
 
+                String nom_proprietaire = chatJsonObject.getString("nom");
+
+                View cardChatParam = View.inflate(context , R.layout.card_chat,null);
+
+                TextView prenom_chat = cardChatParam.findViewById(R.id.prenom_chat);
+
+                prenom_chat.setText(nom_proprietaire);
+
+                card_chat_select = cardChatParam.findViewById(R.id.car_chat_selectionner);
+
+                card_chat_select.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent intent = new Intent(context, BottomNavigationBar.class);
+                        intent.putExtra("ChatDiscussion", "true");
+                        context.startActivity(intent);
+
+                    }
+                });
 
 
-
-
+                ll.addView(cardChatParam);
 
             }
 
@@ -127,31 +148,13 @@ public class ApiListChatFetcher extends AsyncTask<String, Nullable, String> {
         }
 
 
-
-
     }catch (Exception e)
         {
             e.printStackTrace();
         }
 
 
-        View cardChatParam = View.inflate(context , R.layout.card_chat,null);
 
-        card_chat_select = cardChatParam.findViewById(R.id.car_chat_selectionner);
-
-        card_chat_select.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(context, BottomNavigationBar.class);
-                intent.putExtra("FeedBack", "true");
-                context.startActivity(intent);
-
-            }
-        });
-
-
-        ll.addView(cardChatParam);
 
     }
 

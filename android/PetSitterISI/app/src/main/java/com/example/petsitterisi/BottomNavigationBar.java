@@ -42,6 +42,7 @@ public class BottomNavigationBar extends FragmentActivity {
         String valeurNavigationChat =  "false";
         String valeurNavigationDemande =  "false";
         String valeurNavigationFeedBack =  "false";
+        String valeurNavigationChatDiscussion =  "false";
 
         Intent intentValeur = getIntent();
         String extraValue = intentValeur.getStringExtra("list_pet_sitter");
@@ -73,6 +74,12 @@ public class BottomNavigationBar extends FragmentActivity {
         if(extraValue6 != null){
             valeurNavigationFeedBack = extraValue6;
         }
+
+        String extraValue7 = intentValeur.getStringExtra("ChatDiscussion");
+        if(extraValue7 != null){
+            valeurNavigationChatDiscussion = extraValue7;
+        }
+
 
 
         super.onCreate(savedInstanceState);
@@ -114,6 +121,11 @@ public class BottomNavigationBar extends FragmentActivity {
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new RechercheFragment()).commit();
+        }
+        else if (valeurNavigationChatDiscussion.equals("true")){
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new MessageList()).commit();
         }
         else {
 
