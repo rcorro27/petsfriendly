@@ -60,7 +60,7 @@ function contratRecuperationByIdProprietaire(req, res) {
     let sqlReccupererContratParIdProprietaire = "SELECT * FROM contrat_utilisateur WHERE id = $1 RETURNING *"
 
     //execution de la requete
-    bd.excuterRequete(sqlReccupererContratParIdProprietaire, [req.body.id])
+    bd.excuterRequete(sqlReccupererContratParIdProprietaire, [req.params.id])
         .then(resultatRequete => {
 
             let requeteSQLFinContratPetsitter = "SELECT * FROM contrat WHERE id_petsitter = $1"
@@ -90,7 +90,7 @@ function contratRecuperationByIdPetsitter(req, res) {
 
     let sqlReccupererContratParIdPetsitter = "SELECT * FROM contrat_utilisateur WHERE id = $1 RETURNING *"
 
-    bd.excuterRequete(sqlReccupererContratParIdPetsitter, [req.body.id_contrat])
+    bd.excuterRequete(sqlReccupererContratParIdPetsitter, [req.params.id_contrat])
         .then(resultatRequete => {
 
             let requeteSQLFinContratPetsitter = "SELECT * FROM contrat WHERE id_petsitter = $1"
