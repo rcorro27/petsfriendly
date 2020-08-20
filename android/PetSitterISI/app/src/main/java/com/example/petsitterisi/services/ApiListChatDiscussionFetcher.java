@@ -3,25 +3,17 @@ package com.example.petsitterisi.services;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.text.Editable;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.petsitterisi.BottomNavigationBar;
 import com.example.petsitterisi.R;
 
 import org.json.JSONArray;
@@ -35,7 +27,6 @@ import java.io.InputStreamReader;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
-import java.util.TimeZone;
 public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, String> {
 
     private Context  context;
@@ -106,7 +97,7 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
             String tContents = "";
             String concat = "";
             try {
-                InputStream stream = context.getAssets().open("chat_discussion.json");
+                InputStream stream = context.getAssets().open("chat_discussions.json");
                 int size = stream.available();
                 byte[] buffer = new byte[size];
                 stream.read(buffer);
@@ -263,7 +254,7 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
 
 
 
-        
+
         try {
             while ((rLine = rd.readLine()) != null) {
                 answer.append(rLine);
