@@ -16,19 +16,22 @@ router.put('/configuration', utilisateurController.utilisateurConfiguration)
 //route pour requete get de recuperation utilisateur by id
 router.get('/recuperation/:id', utilisateurController.utilisateurRecuperation)
 
-//route pour requete get de suppression utilisateur by id
-router.delete('/suppression/:id', utilisateurController.utilisateurRecuperation)
+//route pour requete get de recuperation de tout les utilisateur
+router.get('/tout', utilisateurController.utilisateurRecuperationTout)
 
 //route pour requete get pour recuperer les petsitter
 router.get('/recuperation/petsitters/tout', utilisateurController.petsittersRecuperation)
+
+//route pour requete get de suppression utilisateur by id
+router.delete('/suppression/:id', utilisateurController.utilisateurSuppression)
 
 //route pour requete put pour valider les petsitter
 router.put('/validation/petsitter/:id', utilisateurController.petsitterValidation)
 
 //route pour activation du petsitter
-router.put('/activation/petsitter/:email/:idactivation', utilisateurController.petsitterValidation)
+router.get('/activation/petsitter/:email/:idactivation', utilisateurController.petsitterValidation)
 
 //route pour activation du proprietaire
-router.put('/activation/proprietaire/:email/:idactivation', utilisateurController.proprietaireActivation)
+router.get('/activation/proprietaire/:email/:idactivation', utilisateurController.proprietaireActivation)
 
 module.exports = router

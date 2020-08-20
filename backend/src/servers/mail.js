@@ -1,11 +1,11 @@
 let nodemailer = require('nodemailer');
 
 let transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: 'etudiant.isi.java2@gmail.com',
-      pass: 'z2mLt32AE'
-    }
+  service: 'gmail',
+  auth: {
+    user: 'etudiant.isi.java2@gmail.com',
+    pass: 'z2mLt32AE'
+  }
 });
 
 function envoyerMailAuPetsitter (mailOptions) {
