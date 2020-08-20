@@ -17,7 +17,7 @@ class AdminContainer extends Component {
     }
 
     componentWillMount () {
-        if (localStorage.getItem('usertoken') && JSON.parse(localStorage.getItem('usertoken')).utilisateur.id_role === 3) {
+        if (localStorage.getItem('usertoken') && JSON.parse(localStorage.getItem('usertoken')).utilisateur.id_role === 1) {
             axios.get('https://pets-friendly.herokuapp.com/utilisateurs/recuperation/petsitters/tout')
                 .then(response => {
                     console.log('res', response)

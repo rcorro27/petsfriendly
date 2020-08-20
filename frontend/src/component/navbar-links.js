@@ -300,15 +300,7 @@ class NavbarLinks extends Component {
         return (
             <div className='collapse navbar-collapse' id='navbarResponsive'>
                 {localStorage.usertoken ? userLink : loginRegLink}
-                <ModalCnxContainer
-                    show={this.state.show}
-                    handleClose={this.onHandleClose}
-                    onHandleChangeAndEnter={this.onHandleChangeAndEnter}
-                    onHandleChangePass={this.onHandleChangePass}
-                    onHandleChangeName={this.onHandleChangeName}
-                    onSubmit={this.onSubmit.bind(this)}
-
-                />
+                <ModalCnxContainer show={this.state.show} onHandleClose={this.onHandleClose} />
                 <Modal show={this.state.showInscription} onHide={this.handleCloseInsc}>
                     <Modal.Header closeButton>
                         <Modal.Title>Page Inscription</Modal.Title>
