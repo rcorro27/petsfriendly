@@ -117,6 +117,7 @@ class NavbarLinks extends Component {
         if (this.state.step === 1) {
             return (
                 <InscriptionContainer
+                    onChangeRadio={this.getValuesRadio}
                     change={this.getValues}
                     click={this.nextStep}
                 />
@@ -241,7 +242,7 @@ class NavbarLinks extends Component {
     }
 
     getValues (e) {
-        console.log('sexe', e.target.value)
+        //  console.log('sexe', e.target.value)
         this.setState({ [e.target.name]: e.target.value })
     }
 

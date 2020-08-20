@@ -38,6 +38,14 @@ class AdminContainer extends Component {
     handleChangeSinglePost (id) {
         // console.log('value>>>', value)
         console.log('id>>>', id)
+        return axios
+            .put(`https://pets-friendly.herokuapp.com/utilisateurs/validation/petsitter/${id}`)
+            .then(response => {
+                console.log('Bien Modifier')
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     render () {

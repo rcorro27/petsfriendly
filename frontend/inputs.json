@@ -8,7 +8,7 @@
         "name": "id_role",
         "min": "",
         "max": "",
-        "value": "option1",
+        "value": "2",
         "onChange": "getText",
         "textLabel": "proprietaire d un animal? "
     },
@@ -21,7 +21,7 @@
         "name": "id_role",
         "min": "",
         "max": "",
-        "value": "",
+        "value": "3",
         "onChange": "getText",
         "textLabel": "PetSitter ?"
     },
@@ -34,7 +34,6 @@
         "name": "nom",
         "min": "",
         "max": "",
-        "value": "",
         "onChange": "getText",
         "textLabel": "Nom : "
     },
@@ -47,7 +46,6 @@
         "name": "prenom",
         "min": "",
         "max": "",
-        "value": "",
         "onChange": "getText",
         "textLabel": "Prenom : "
     },
@@ -60,7 +58,6 @@
         "name": "age",
         "min": "16",
         "max": "",
-        "value": "",
         "onChange": "getText",
         "textLabel": "Age : "
     },
@@ -73,7 +70,6 @@
         "name": "email",
         "min": "",
         "max": "",
-        "value": "",
         "textLabel": "Email : "
     },
     {
@@ -85,7 +81,6 @@
         "name": "telephone",
         "min": "",
         "max": "",
-        "value": "",
         "textLabel": "Telephone : "
     },
     {
@@ -97,7 +92,7 @@
         "name": "sexe",
         "min": "",
         "max": "",
-        "value": "option1",
+        "value": "masculin",
         "onChange": "getText",
         "textLabel": "Homme "
     },
@@ -110,7 +105,7 @@
         "name": "sexe",
         "min": "",
         "max": "",
-        "value": "option2",
+        "value": "feminin",
         "onChange": "getText",
         "textLabel": "Femme "
     },
@@ -123,7 +118,7 @@
         "name": "sexe",
         "min": "",
         "max": "",
-        "value": "option3",
+        "value": "autres",
         "onChange": "getText",
         "textLabel": "Autres "
     },
@@ -136,7 +131,6 @@
         "name": "mot_de_passe",
         "min": "",
         "max": "",
-        "value": "",
         "onChange": "getText",
         "textLabel": "Mot de passe : "
     }
