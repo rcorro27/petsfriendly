@@ -9,9 +9,9 @@ import InscriptionAdressContainer from '../container/adress-inscription-containe
 import QuestionValidation from '../container/qst-validation'
 import ConnectionPopUp from '../container/connection-container'
 // import InscriptionContainer from '../container/inscription-container'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
-export default class NavbarLinks extends Component {
+class NavbarLinks extends Component {
     constructor (props) {
         super(props)
         this.state = {
@@ -117,6 +117,7 @@ export default class NavbarLinks extends Component {
         if (this.state.step === 1) {
             return (
                 <InscriptionContainer
+                    onChangeRadio={this.getValuesRadio}
                     change={this.getValues}
                     click={this.nextStep}
                 />
@@ -221,10 +222,15 @@ export default class NavbarLinks extends Component {
             }
             login(user).then(res => {
                 if (res) {
-                    // console.log('test', res)
+                    console.log('test', res.utilisateur.id_role)
                     this.setState({
                         users: res
                     })
+                    if (res.utilisateur.id_role === 3) {
+                        //  <Redirect to='/admin' />
+                        // history.push('/admin')
+                        this.props.history.push('/admin')
+                    }
                     this.onHandleClose()
 
                     // console.log('Object', JSON.parse(localStorage.getItem('usertoken')))
@@ -236,7 +242,7 @@ export default class NavbarLinks extends Component {
     }
 
     getValues (e) {
-        console.log('sexe', e.target.value)
+        //  console.log('sexe', e.target.value)
         this.setState({ [e.target.name]: e.target.value })
     }
 
@@ -333,3 +339,4 @@ export default class NavbarLinks extends Component {
         )
     }
 }
+export default withRouter(NavbarLinks)

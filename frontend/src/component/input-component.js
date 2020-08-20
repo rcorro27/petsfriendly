@@ -1,8 +1,8 @@
 import React from 'react'
 
 // place holder a ajouter ???
-const InputComponent = ({ classCss, classIcon, classInput, type, id, name, value, min, onChange, textLabel, labelClass, placeHolder, onClick }) => (
-    <div className={classCss}>
+const InputComponent = ({ classCss, onChangeRadio, classIcon, classInput, type, id, name, value, min, onchange, textLabel, labelClass, placeHolder }) => (
+    <div className={classCss} onChange={onChangeRadio}>
         <i className={classIcon} />
         <input
             placeholder={placeHolder}
