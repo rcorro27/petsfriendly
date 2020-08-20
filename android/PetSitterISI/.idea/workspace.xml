@@ -6,7 +6,7 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1d7366b5-7962-4749-be10-1d41fb3fa2bc" name="Default Changelist" comment="">
+    <list default="true" id="045a04c6-8cfb-428c-aee6-f6dbda5aaaca" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,11 +42,11 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/assets" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\dev\projet final\mypetsitter\android\PetSitterISI\app\src\main\assets" />
-    </key>
     <key name="android.template.741640851">
       <recent name="com.example.petsitterisi" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\dev\projet final\mypetsitter\android\PetSitterISI\app\src\main\assets" />
     </key>
   </component>
   <component name="RunManager">
