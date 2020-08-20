@@ -241,7 +241,7 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
     @RequiresApi(api = Build.VERSION_CODES.O)
     private String DateConvertisseur(String timestampWithTimeZone){
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);
-        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyy", Locale.ENGLISH);
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd-MM-yy", Locale.ENGLISH);
         LocalDate date = LocalDate.parse(timestampWithTimeZone, inputFormatter);
         String formattedDate = outputFormatter.format(date);
         return formattedDate;
@@ -258,6 +258,12 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
         String in = "";
 
 
+
+
+
+
+
+        
         try {
             while ((rLine = rd.readLine()) != null) {
                 answer.append(rLine);
