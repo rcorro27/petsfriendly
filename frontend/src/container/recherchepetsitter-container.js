@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+/*import React, { Component } from 'react'
 import axios from 'axios'
 import InputComponent from 'component/input-component'
 import SelectComponent from 'component/select-component'
@@ -238,7 +238,7 @@ class RecherchePetsitter extends Component {
                         </div>
                         <div className='col-lg-4 mx-auto border border-danger rounded'>
                             {/* METTRE UN ICONE DANS LAVANT DE LES LI POUR LA PUBLICITER */}
-                            <ListItemComponent text='Tout les nouveaux gardiens passent une verification des antecedents de base' className='fas fa-check' />
+                        /*    <ListItemComponent text='Tout les nouveaux gardiens passent une verification des antecedents de base' className='fas fa-check' />
                             <ListItemComponent text='Tout les gardiens fournissent un profil detaille et des informations personnel ' className='fas fa-check' />
                             <ListItemComponent text='tout les Pet Sitter sont agrees par notre equipe de specialistes chez Pets Friendly' className='fas fa-check' />
                         </div>
