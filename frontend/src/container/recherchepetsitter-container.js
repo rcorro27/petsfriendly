@@ -22,17 +22,15 @@ class RecherchePetsitter extends Component {
             numero_rue: '',
             nom_rue: '',
             code_postal: '',
-            ville: 'toto',
+            ville: '',
             pays: '',
             dateDebut: '',
             dateFin: '',
             typeAnimal: '',
             infolettre: '',
 
-            resultatRecherche: false,
-            rechercher: false,
+            resultatRecherche: true,
             infosRecherche: [],
-            username: '',
             recherche: false,
             resultat: [],
             province: '',
@@ -101,6 +99,7 @@ class RecherchePetsitter extends Component {
             // this.setState({ promenade: 3 })
             break
         case 'numeroRue':
+            console.log(event.target.value)
             this.setState({ numero_rue: event.target.value })
             break
         case 'nomRue':
@@ -148,12 +147,16 @@ class RecherchePetsitter extends Component {
                 }
 
             })
-        // .then(response => console.log('reponse avant la assignatiion', response.data))
+        //  .then(response => console.log('reponse avant la assignatiion', response.data))
             .then(response => {
-                const arrayResultat = []
+                if (response.data.length === 0) {
+                    this.setState({ resultatRecherche: false })
+                } else {
+                    this.setState({ resultat: response.data })
+                }
+                /*  const arrayResultat = []
                 response.data.map((info, index) => arrayResultat.push(info))
-                console.log(arrayResultat)
-                this.setState({ resultat: arrayResultat })
+                console.log(arrayResultat) */
             })
             .catch(err => {
                 console.log('erreur recherche:', err)
@@ -170,6 +173,10 @@ class RecherchePetsitter extends Component {
 
     handleAfficherSitterOnClick (event) {
         console.log(this.state.resultat[event.target.name])
+        console.log(this.state.dateDebut)
+        console.log(this.state.dateFin)
+        localStorage.setItem('dateDebut', JSON.stringify(this.state.dateDebut))
+        localStorage.setItem('dateFin', JSON.stringify(this.state.dateFin))
         localStorage.setItem('sitter', JSON.stringify(this.state.resultat[event.target.name]))
         this.props.history.push('/demande')
         // localStorage.removeItem('sitter')
@@ -222,9 +229,9 @@ class RecherchePetsitter extends Component {
             return niveauSitter
         }
         console.log('recherche info : ', this.state.servicesTotal)
-        console.log('state :', this.state.resultat)
+        console.log('state :', this.state)
         console.log('Services recherche', this.state.servicesRechercher)
-        // PARLER A NASSIM QUAND DES SITTER SANS SERVICES CELLE CI APPARAISENT
+
         return (
             <div>
 
@@ -251,7 +258,7 @@ class RecherchePetsitter extends Component {
                     <SelectComponent classCss='form-group' classInput='form-control' textLabel='Type de animal:' id='typeAnimal' name='TypeAnimal' options={TYPEANIMAL} onChange={this.handleChangeSelect} value={this.state.typeAnimal} />
                     <InputComponent classInput='btn btn-outline-success' type='submit' id='rechercher' name='Rechercher ' value='rechercher' onClick={this.handleSubmit} />
                 </div>
-                {this.state.idUser ? <ProfilDemandePettSitter idSitter={this.state.idUser} /> : ''}
+                {this.state.resultatRecherche ? '' : <h1 className='text-danger'>Aucun sitter a ete retrouver autour de votre zone dans votres criteres Veuillez nous contacter</h1>}
                 <div className='row'>
                     {this.state.resultat ? this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} rating={niveauPetSitter(resultat.rating)} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger w-100 p-3 mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' servicesTotal={this.state.servicesTotal} servicesSitter={resultat.services} id={index} />) : ''}
 
