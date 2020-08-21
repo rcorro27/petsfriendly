@@ -34,7 +34,7 @@ class InscriptionContainer extends Component {
                     {this.state.inputs.map((input, index) => <InputComponent
                         classCss={input.classCss} onChangeRadio={this.props.onChangeRadio} classIcon={input.classIcon} classInput={input.classInput}
                         type={input.type} id={input.id}
-                        name={input.name} min={input.min} onchange={this.props.change}
+                        name={input.name} min={input.min} onChange={this.props.change}
                         value={input.value} textLabel={input.textLabel}
                         key={index}
                     />)}

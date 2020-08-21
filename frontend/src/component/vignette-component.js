@@ -6,20 +6,19 @@ const VignetteComponent = ({ urlPhoto, className, nom, rating, onClickProfil, cl
     <div className={className}>
         <img className='img-fluid img-thumbnail' src={urlPhoto} alt={urlPhoto} />
         <h2 className=' w-25 p-3 mx-auto'>{nom}</h2>
-<<<<<<< HEAD
         <ul className='list-group'>
             {/* ul  a sortir dans une autre function */}
             {servicesSitter.map((infos, index) => {
                 // infos - 1 est egal a lindex ou ca se trouve dans la constante services
+                // SI API PLANTE CHANGER DESCRIPTION_SERVICE POUR DESCRIPTION, ET LE TABLEAU POUR UN LOCAL CHANGER SERVICES
                 return <li key={index} className='list-group-item list-group-item-danger'>{servicesTotal[infos - 1].description_service} {servicesTotal[infos - 1].prix_service}<i className='fas fa-dollar-sign' /></li>
             })}
-=======
-        <ul className='list-group' />
->>>>>>> modification-feedBack
 
-        <p className=' w-25 p-3 mx-auto'>{rating}</p>
-        <button type='button' name={id} onClick={onClickProfil} className={classInput}>{textBoutonProfil} </button>
-        {/* <button type='button' name={id} onClick={onClickEnvoyer} className={classInput2}>{textBoutonEnvoyer}</button> */}
+            <p className=' w-25 p-3 mx-auto'>{rating}</p>
+            <button type='button' name={id} onClick={onClickProfil} className={classInput}>{textBoutonProfil} </button>
+            {/* <button type='button' name={id} onClick={onClickEnvoyer} className={classInput2}>{textBoutonEnvoyer}</button> */}
+        </ul>
+
     </div>
 
 )

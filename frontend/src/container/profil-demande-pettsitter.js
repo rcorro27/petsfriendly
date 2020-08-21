@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ServiceDemandeComponent from '../component/services-demande-component'
 import FeedBackCommentaire from '../component/feedback-commentaire-component'
 import FactureDemandeComponent from '../component/facture-demande-component'
-import axios from 'axios'
+import { withRouter } from 'react-router-dom'
 // import PetSitterInput from 'component/PetSitterInput'
 
 class ProfilDemandePettSitter extends Component {
@@ -20,10 +20,10 @@ class ProfilDemandePettSitter extends Component {
     }
 
     handleClick () {
-        alert('click accepter')
-            .get('https://pets-friendly.herokuapp.com/services/recuperation/tout')
+        alert('Demande Envoyee')
+        this.props.history.push('/')
         // .then(response => console.log(response.data))
-            .then(response => {
+        /* .then(response => {
                 const service = []
                 response.data.map((info, index) => service.push(info))
                 console.log(service)
@@ -32,7 +32,7 @@ class ProfilDemandePettSitter extends Component {
             })
             .catch(err => {
                 console.log('erreur recherche:', err)
-            })
+            }) */
     }
 
     handleSubmit () {
@@ -113,10 +113,10 @@ class ProfilDemandePettSitter extends Component {
         return (
             <div>
                 <div>
-                    <h1 className='h1 w-25 p-3 mx-auto'>Demande services sitter </h1>
+                    <h1 className='h1 w-25 p-3 mx-auto'>Demande Service </h1>
                 </div>
                 <div className='row m-5 bg-white border border-danger rounded shadow'>
-                    <img src='../src/img/caroussel/image1.jpeg' alt='Carlos' className='img-fluid rounded-circle w-25 p-3' />
+                    <img src={sitter.url_photo} alt={sitter.nom} className='img-fluid rounded-circle w-25 p-3' />
                     <div className='m-5'>
                         <h2 className='h2'>{sitter.nom}</h2>
                         <h3 className='h6'>{sitter.secteur_action}</h3>
@@ -140,7 +140,7 @@ class ProfilDemandePettSitter extends Component {
                     </div>
                 </div>
 
-                <div className=' m-5 w-50 p-3 float-right border border-danger rounded bg-white  shadow'>
+                <div className=' w-100 p-5 float-right border border-danger rounded bg-white  shadow'>
 
                     <h2 className=' h2 w-25 p-3 mx-auto'>Prix des services</h2>
                     <div>
@@ -158,11 +158,9 @@ class ProfilDemandePettSitter extends Component {
 
                     </div>
                 </div>
-
-                <button onClick={this.props.onHandleSaveOnClickRichard}>retour a la page developement</button>
             </div>
         )
     }
 }
 
-export default ProfilDemandePettSitter
+export default withRouter(ProfilDemandePettSitter)

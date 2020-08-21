@@ -1,11 +1,10 @@
 import React from 'react'
 
 // place holder a ajouter ???
+const InputComponent = ({ classCss, onChangeRadio, classIcon, classInput, type, id, name, value, min, onchange, textLabel, labelClass, placeHolder, onClick }) => (
 <<<<<<< HEAD
 const InputComponent = ({ classCss, onChangeRadio, classIcon, classInput, type, id, name, value, min, onChange, textLabel, labelClass, placeHolder, onClick }) => (
-=======
 const InputComponent = ({ classCss, onChangeRadio, classIcon, classInput, type, id, name, value, min, onchange, textLabel, labelClass, placeHolder, onClick }) => (
->>>>>>> front_end
     <div className={classCss} onChange={onChangeRadio}>
         <i className={classIcon} />
         <input
@@ -17,12 +16,14 @@ const InputComponent = ({ classCss, onChangeRadio, classIcon, classInput, type, 
             value={value}
             min={min}
 <<<<<<< HEAD
-            onChange={onChange}
-=======
             onChange={onchange}
->>>>>>> front_end
             onClick={onClick}
+            onClick={onClick}
+
+            onChange={onChange}
+>>>>>>> modification-feedBack
         />
+        <label className={labelClass} data-error='wrong' data-success='right' htmlFor={id}>{textLabel}</label>
         <label className={labelClass} data-error='wrong' data-success='right' htmlFor={id}>{textLabel}</label>
     </div>
 

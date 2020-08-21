@@ -7,7 +7,7 @@ import React, { Component } from 'react'
 import InscriptionContainer from '../container/inscription-container'
 import InscriptionAdressContainer from '../container/adress-inscription-container'
 import QuestionValidation from '../container/qst-validation'
-import ConnectionPopUp from '../container/connection-container'
+import ModalCnxContainer from '../container/modal-cnx-container'
 // import InscriptionContainer from '../container/inscription-container'
 import { Link, withRouter } from 'react-router-dom'
 
@@ -59,6 +59,7 @@ class NavbarLinks extends Component {
     }
 
     onSubmitRegister (e) {
+        this.handleCloseInsc()
         console.log('new User', this.state)
         // if (e.key === 'Enter') {
         e.preventDefault()
@@ -86,10 +87,11 @@ class NavbarLinks extends Component {
                 this.setState({
                     users: res
                 })
-                this.onHandleClose()
 
                 console.log('test', this.state.users.utilisateur.nom)
                 this.setState({ userName: this.state.users.utilisateur.nom })
+                this.handleCloseInsc()
+                // commentaire
             }
         })
         // this.register(user)
@@ -279,7 +281,7 @@ class NavbarLinks extends Component {
                     </li>
 
                     <li className='nav-item active'>
-                        <Link to='/profil' className='nav-link'> {localStorage.usertoken ? "JSON.parse(localStorage.getItem('usertoken')).utilisateur.nom" : ''}</Link>
+                        <Link to='/profil' className='nav-link'> {localStorage.usertoken ? JSON.parse(localStorage.getItem('usertoken')).utilisateur.nom : ''}</Link>
 
                     </li>
                     <li className='nav-item active'>
@@ -300,24 +302,7 @@ class NavbarLinks extends Component {
         return (
             <div className='collapse navbar-collapse' id='navbarResponsive'>
                 {localStorage.usertoken ? userLink : loginRegLink}
-
-                <Modal show={this.state.show} onHide={this.handleClose}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Page Connexion</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <ConnectionPopUp FonctionEntrer={this.onHandleChangeAndEnter} getPass={this.onHandleChangePass} getEmail={this.onHandleChangeName} />
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant='secondary' onClick={this.handleClose}>
-                            Annuler
-                        </Button>
-                        <Button variant='primary' onClick={this.onSubmit.bind(this)}>
-                            Se connecter
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-
+                <ModalCnxContainer show={this.state.show} onHandleClose={this.onHandleClose} />
                 <Modal show={this.state.showInscription} onHide={this.handleCloseInsc}>
                     <Modal.Header closeButton>
                         <Modal.Title>Page Inscription</Modal.Title>
