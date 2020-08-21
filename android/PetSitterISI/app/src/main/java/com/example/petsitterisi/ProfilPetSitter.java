@@ -78,7 +78,7 @@ public class ProfilPetSitter extends Fragment {
             public void onClick(View v) {
 
                 Intent intent = new Intent(ctx, BottomNavigationBar.class);
-                intent.putExtra("Chat", "true");
+                intent.putExtra("ChatDiscussion", "true");
                 ctx.startActivity(intent);
 
             }

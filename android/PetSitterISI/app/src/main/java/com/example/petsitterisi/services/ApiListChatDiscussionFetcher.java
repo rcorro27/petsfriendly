@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import com.example.petsitterisi.R;
+import com.example.petsitterisi.managers.UtilisateurManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -81,7 +82,7 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
 
 
 
-    
+
 
     @Override
     protected void onPreExecute() {
@@ -113,7 +114,10 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
                 View headerChat = View.inflate(context , R.layout.header_footer_chat,null);
                 ll.addView(headerChat);
 
+                TextView nomInterlocuteur = headerChat.findViewById(R.id.nom_utilsateur_message_recus);
+                String non_chat_header = UtilisateurManager.getNomChat(context);
 
+                nomInterlocuteur.setText(non_chat_header);
 
             for(int i = 0; i < jsonArray.length(); i++){
 
@@ -128,9 +132,7 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
                 //String messageAEteLu = chatJsonObject.getString("a_lu");
 
 
-                TextView nomInterlocuteur = headerChat.findViewById(R.id.nom_utilsateur_message_recus);
 
-                nomInterlocuteur.setText(nomUtilisateur);
 
 
                 if (idUtlisateur.equals("1")  ) // message envoyer de michel
@@ -192,7 +194,7 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
 
                     messageRecu.setText(messageConversation);
 
-                    nomUtilisateurRecus.setText(nomUtilisateur);
+                    nomUtilisateurRecus.setText(non_chat_header);
 
                     UrlPhotoUtilisateurRecus.setImageResource(R.drawable.rectangle_66);
 
@@ -249,9 +251,6 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
         BufferedReader rd = new BufferedReader(isr);
 
         String in = "";
-
-
-
 
 
 

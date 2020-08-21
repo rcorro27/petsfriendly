@@ -18,6 +18,7 @@ import androidx.annotation.RequiresApi;
 
 import com.example.petsitterisi.BottomNavigationBar;
 import com.example.petsitterisi.R;
+import com.example.petsitterisi.managers.UtilisateurManager;
 import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONArray;
@@ -116,7 +117,7 @@ public class ApiListChatFetcher extends AsyncTask<String, Nullable, String> {
 
                 JSONObject chatJsonObject = jsonArray.getJSONObject(i);
 
-                String nom_proprietaire = chatJsonObject.getString("nom");
+                final String nom_proprietaire = chatJsonObject.getString("nom");
 
                 View cardChatParam = View.inflate(context , R.layout.card_chat,null);
 
@@ -132,6 +133,7 @@ public class ApiListChatFetcher extends AsyncTask<String, Nullable, String> {
 
                         Intent intent = new Intent(context, BottomNavigationBar.class);
                         intent.putExtra("ChatDiscussion", "true");
+                        UtilisateurManager.addNomMessage(context, "nom_chat", nom_proprietaire);
                         context.startActivity(intent);
 
                     }

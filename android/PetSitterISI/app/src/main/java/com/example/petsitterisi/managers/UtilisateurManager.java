@@ -27,6 +27,23 @@ public class UtilisateurManager {
 return Integer.parseInt(id_retour);
     }
 
+    public static final String getNomChat(Context ctx){
+
+        SharedPreferences sharedpreferences;
+        String nom_chat = "";
+        try {
+            sharedpreferences = ctx.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+            nom_chat = sharedpreferences.getString("nom_chat", null);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        if(nom_chat == null){
+            nom_chat = "";
+        }
+        return nom_chat;
+    }
+
     public static final int getIdUtilisateurRole(Context ctx){
 
         SharedPreferences sharedpreferences;
@@ -84,5 +101,14 @@ return Integer.parseInt(id_retour);
         editor.putString(nom, valeur);
         editor.commit();
     }
+
+    public static void addNomMessage(Context ctx, String nom, String valeur) {
+        SharedPreferences sharedpreferences;
+        sharedpreferences = ctx.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString(nom, valeur);
+        editor.commit();
+    }
+
 
 }

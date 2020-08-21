@@ -8,7 +8,17 @@
   <component name="ChangeListManager">
     <list default="true" id="045a04c6-8cfb-428c-aee6-f6dbda5aaaca" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/assets/chat_discussion.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/assets/chat_discussions.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/chat_discussions.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/assets/resultat-recherche.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/resultat-recherche.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/BottomNavigationBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/BottomNavigationBar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/ChatFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/ChatFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/ProfilPetSitter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/ProfilPetSitter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/managers/UtilisateurManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/managers/UtilisateurManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/services/ApiListChatDiscussionFetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/services/ApiListChatDiscussionFetcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/services/ApiListChatFetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/services/ApiListChatFetcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/services/ApiListPetSitterFetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/services/ApiListPetSitterFetcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/card_pet_sitter.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/card_pet_sitter.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +38,17 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="layoutResourceFile_vertical" />
+      </list>
+    </option>
+  </component>
+  <component name="GenerateSignedApkSettings">
+    <option name="BUILD_TARGET_KEY" value="apk" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
@@ -40,14 +61,14 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/assets" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/PROJET FINAL ANDROID COPIE/version sauvegarde/android/PetSitterISI" />
   </component>
   <component name="RecentsManager">
-    <key name="android.template.741640851">
-      <recent name="com.example.petsitterisi" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\dev\projet final\mypetsitter\android\PetSitterISI\app\src\main\assets" />
+    </key>
+    <key name="android.template.741640851">
+      <recent name="com.example.petsitterisi" />
     </key>
   </component>
   <component name="RunManager">
@@ -124,38 +145,54 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1877" height="2" key="GridCell.Tab.0.bottom" timestamp="1597930339195">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="740" y="295" key="FileChooserDialogImpl" timestamp="1597935755670">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="740" y="295" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1597935755670" />
+    <state width="1557" height="366" key="GridCell.Tab.0.bottom" timestamp="1598018182730">
+      <screen x="-1600" y="0" width="1600" height="900" />
     </state>
     <state width="1877" height="2" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1597930339195" />
-    <state width="1877" height="2" key="GridCell.Tab.0.center" timestamp="1597930339195">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1557" height="366" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598018182730" />
+    <state width="1877" height="366" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1597947953250" />
+    <state width="1557" height="366" key="GridCell.Tab.0.center" timestamp="1598018182727">
+      <screen x="-1600" y="0" width="1600" height="900" />
     </state>
     <state width="1877" height="2" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1597930339195" />
-    <state width="1877" height="2" key="GridCell.Tab.0.left" timestamp="1597930339194">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1557" height="366" key="GridCell.Tab.0.center/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598018182727" />
+    <state width="1877" height="366" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1597947953250" />
+    <state width="1557" height="366" key="GridCell.Tab.0.left" timestamp="1598018182727">
+      <screen x="-1600" y="0" width="1600" height="900" />
     </state>
     <state width="1877" height="2" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1597930339194" />
-    <state width="1877" height="2" key="GridCell.Tab.0.right" timestamp="1597930339195">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1557" height="366" key="GridCell.Tab.0.left/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598018182727" />
+    <state width="1877" height="366" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1597947953250" />
+    <state width="1557" height="366" key="GridCell.Tab.0.right" timestamp="1598018182729">
+      <screen x="-1600" y="0" width="1600" height="900" />
     </state>
     <state width="1877" height="2" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1597930339195" />
-    <state width="1877" height="2" key="GridCell.Tab.1.bottom" timestamp="1597930312477">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1557" height="366" key="GridCell.Tab.0.right/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598018182729" />
+    <state width="1877" height="366" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1597947953250" />
+    <state width="1877" height="285" key="GridCell.Tab.1.bottom" timestamp="1597940959631">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1877" height="2" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1597930312477" />
-    <state width="1877" height="2" key="GridCell.Tab.1.center" timestamp="1597930312476">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1877" height="285" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1597940959631" />
+    <state width="1877" height="285" key="GridCell.Tab.1.center" timestamp="1597940959630">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1877" height="2" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1597930312476" />
-    <state width="1877" height="2" key="GridCell.Tab.1.left" timestamp="1597930312476">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1877" height="285" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1597940959630" />
+    <state width="1877" height="285" key="GridCell.Tab.1.left" timestamp="1597940959630">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1877" height="2" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1597930312476" />
-    <state width="1877" height="2" key="GridCell.Tab.1.right" timestamp="1597930312476">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1877" height="285" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1597940959630" />
+    <state width="1877" height="285" key="GridCell.Tab.1.right" timestamp="1597940959631">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1877" height="2" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1597930312476" />
+    <state width="1877" height="285" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1597940959631" />
     <state x="655" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1597858343819">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -173,21 +210,6 @@
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/services/ApiUtilisateurFetcher.java</url>
           <line>106</line>
           <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/services/ApiListPetSitterFetcher.java</url>
-          <line>159</line>
-          <option name="timeStamp" value="46" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/services/ApiListPetSitterFetcher.java</url>
-          <line>156</line>
-          <option name="timeStamp" value="47" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/services/ApiListPetSitterFetcher.java</url>
-          <line>160</line>
-          <option name="timeStamp" value="48" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
