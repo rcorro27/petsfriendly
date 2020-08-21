@@ -15,9 +15,10 @@ class RecherchePetsitter extends Component {
         super(props)
         // question a poser a nassim voir les criteres comme il sont dans le request ????
         this.state = {
-            garderChezPetsitter: 0,
-            garderChezVous: 0,
-            promenade: 0,
+            servicesRechercher: [],
+            // garderChezPetsitter: null,
+            // garderChezVous: null,
+            // promenade: null,
             numero_rue: '',
             nom_rue: '',
             code_postal: '',
@@ -68,7 +69,6 @@ class RecherchePetsitter extends Component {
                 console.log('services', service)
                 localStorage.setItem('servicestotal', JSON.stringify(service))
                 this.setState({ servicesTotal: service })
-            // event.preventDefault()
             })
             .catch(err => {
                 console.log('erreur recherche:', err)
@@ -82,12 +82,10 @@ class RecherchePetsitter extends Component {
     handleChange (event) {
         switch (event.target.id) {
         case 'garderChezPetsitter':
-
-            this.setState({ garderChezPetsitter: 1 })
+            this.state.servicesRechercher[0] = 1
             break
         case 'garderChezVous':
-
-            this.setState({ garderChezVous: 2 })
+            this.state.servicesRechercher[0] = 2
             break
         case 'dateDebut':
             this.setState({ dateDebut: event.target.value })
@@ -96,7 +94,11 @@ class RecherchePetsitter extends Component {
             this.setState({ dateFin: event.target.value })
             break
         case 'promenade':
-            this.setState({ promenade: 3 })
+            if (this.state.servicesRechercher[1] === 3) {
+                this.state.servicesRechercher.splice(1, 1)
+            } else { this.state.servicesRechercher[1] = 3 }
+
+            // this.setState({ promenade: 3 })
             break
         case 'numeroRue':
             this.setState({ numero_rue: event.target.value })
@@ -122,7 +124,7 @@ class RecherchePetsitter extends Component {
     }
 
     handleSubmit (event) {
-        fetch('resultat-recherche.json', { method: 'GET' })
+        /* fetch('resultat-recherche.json', { method: 'GET' })
             .then(response => response.json())
             .then(response => {
                 const arrayTest = []
@@ -131,31 +133,31 @@ class RecherchePetsitter extends Component {
                 console.log(arrayTest)
                 this.setState({ resultat: arrayTest })
             })
-        /* return axios
+            */
+        return axios
             .post('https://pets-friendly.herokuapp.com/recherche', {
 
-                services: [
-                    4
-                ],
+                services: this.state.servicesRechercher,
                 adresse: {
-                    numero_rue: 1890,
-                    nom_rue: 'parthenais',
-                    code_postal: 'H2K 3S3',
-                    ville: 'montreal',
-                    pays: 'canada'
+                    numero_rue: this.state.nom_rue,
+                    nom_rue: this.state.nom_rue,
+                    code_postal: this.state.code_postal,
+                    ville: this.state.ville,
+                    province: this.state.province,
+                    pays: this.state.pays
                 }
 
             })
-            .then(response => console.log(response))
+        // .then(response => console.log('reponse avant la assignatiion', response.data))
             .then(response => {
-                const arrayTest = []
-                response.data.map((info, index) => arrayTest.push(info))
-                console.log(arrayTest)
-                this.setState({ resultat: arrayTest })
+                const arrayResultat = []
+                response.data.map((info, index) => arrayResultat.push(info))
+                console.log(arrayResultat)
+                this.setState({ resultat: arrayResultat })
             })
             .catch(err => {
                 console.log('erreur recherche:', err)
-            }) */
+            })
     }
 
     handleAddOnClick () {
@@ -187,12 +189,9 @@ class RecherchePetsitter extends Component {
             }, {
                 label: 'Chat',
                 value: 'Chat'
-            }, {
-                label: 'Autre',
-                value: 'Autre'
             }]
 
-        const servicesTotal = [
+        /* const servicesTotal = [
             {
                 id: 1,
                 description: 'Promenade',
@@ -205,7 +204,7 @@ class RecherchePetsitter extends Component {
                 id: 3,
                 description: 'gardez chez vous ',
                 prix_service: 15
-            }]
+            }] */
 
         function niveauPetSitter (niveau) {
             let niveauSitter = ''
@@ -224,8 +223,8 @@ class RecherchePetsitter extends Component {
         }
         console.log('recherche info : ', this.state.servicesTotal)
         console.log('state :', this.state.resultat)
-
-        // voir les dates dans le formulaire a chaque fois il y a des erreus dans la console qui pointe le fait de ne pas avoir la bonne valeur date.now??
+        console.log('Services recherche', this.state.servicesRechercher)
+        // PARLER A NASSIM QUAND DES SITTER SANS SERVICES CELLE CI APPARAISENT
         return (
             <div>
 
@@ -246,13 +245,15 @@ class RecherchePetsitter extends Component {
                     <InputComponent classCss='form-group' classInput='form-control' textLabel='Nom de la rue' type='text' id='nomRue' name='nom de la rue' onChange={this.handleChange} />
                     <InputComponent classCss='form-group' classInput='form-control' textLabel='Code postal' type='text' id='secteurAction' name='secteurAction' onChange={this.handleChange} />
                     <InputComponent classCss='form-group' classInput='form-control' textLabel='Ville' type='text' id='ville' name='ville' onChange={this.handleChange} />
+                    <InputComponent classCss='form-group' classInput='form-control' textLabel='Province' type='text' id='province' name='province' onChange={this.handleChange} />
+
                     <InputComponent classCss='form-group' classInput='form-control' textLabel='pays' type='text' id='pays' name='pays' onChange={this.handleChange} />
                     <SelectComponent classCss='form-group' classInput='form-control' textLabel='Type de animal:' id='typeAnimal' name='TypeAnimal' options={TYPEANIMAL} onChange={this.handleChangeSelect} value={this.state.typeAnimal} />
                     <InputComponent classInput='btn btn-outline-success' type='submit' id='rechercher' name='Rechercher ' value='rechercher' onClick={this.handleSubmit} />
                 </div>
                 {this.state.idUser ? <ProfilDemandePettSitter idSitter={this.state.idUser} /> : ''}
                 <div className='row'>
-                    {this.state.resultat ? this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} rating={niveauPetSitter(resultat.rating)} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger w-100 p-3 mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' servicesTotal={servicesTotal} servicesSitter={resultat.services} id={index} />) : ''}
+                    {this.state.resultat ? this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} rating={niveauPetSitter(resultat.rating)} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger w-100 p-3 mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' servicesTotal={this.state.servicesTotal} servicesSitter={resultat.services} id={index} />) : ''}
 
                 </div>
 

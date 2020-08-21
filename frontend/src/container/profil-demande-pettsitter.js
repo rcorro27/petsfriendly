@@ -113,10 +113,10 @@ class ProfilDemandePettSitter extends Component {
         return (
             <div>
                 <div>
-                    <h1 className='h1 w-25 p-3 mx-auto'>Demande services sitter </h1>
+                    <h1 className='h1 w-25 p-3 mx-auto'>Demande Service </h1>
                 </div>
                 <div className='row m-5 bg-white border border-danger rounded shadow'>
-                    <img src='../src/img/caroussel/image1.jpeg' alt='Carlos' className='img-fluid rounded-circle w-25 p-3' />
+                    <img src={sitter.url_photo} alt={sitter.nom} className='img-fluid rounded-circle w-25 p-3' />
                     <div className='m-5'>
                         <h2 className='h2'>{sitter.nom}</h2>
                         <h3 className='h6'>{sitter.secteur_action}</h3>

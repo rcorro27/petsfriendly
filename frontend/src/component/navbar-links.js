@@ -59,6 +59,7 @@ class NavbarLinks extends Component {
     }
 
     onSubmitRegister (e) {
+        this.handleCloseInsc()
         console.log('new User', this.state)
         // if (e.key === 'Enter') {
         e.preventDefault()
