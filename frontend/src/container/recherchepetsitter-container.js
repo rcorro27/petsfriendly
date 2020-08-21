@@ -228,10 +228,7 @@ class RecherchePetsitter extends Component {
             }
             return niveauSitter
         }
-        console.log('recherche info : ', this.state.servicesTotal)
         console.log('state :', this.state)
-        console.log('Services recherche', this.state.servicesRechercher)
-
         return (
             <div>
 

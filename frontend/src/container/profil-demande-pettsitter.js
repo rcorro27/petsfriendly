@@ -3,6 +3,7 @@ import ServiceDemandeComponent from '../component/services-demande-component'
 import FeedBackCommentaire from '../component/feedback-commentaire-component'
 import FactureDemandeComponent from '../component/facture-demande-component'
 import { withRouter } from 'react-router-dom'
+import axios from 'axios'
 // import PetSitterInput from 'component/PetSitterInput'
 
 class ProfilDemandePettSitter extends Component {
@@ -20,8 +21,36 @@ class ProfilDemandePettSitter extends Component {
     }
 
     handleClick () {
-        alert('Demande Envoyee')
-        this.props.history.push('/')
+        return axios
+            .post('https://pets-friendly.herokuapp.com/contrats/creation', {
+
+                utilisateur: {
+                    id_proprietaire: ,
+                    id_petsitter: ''
+                },
+                contrat: {
+                    date_debut: '',
+                    date_fin: ''
+                },
+                service: [
+                    id_service1,
+                    id_service2,
+                    id_service3,
+                    id_service4
+                ],
+                promotion: {
+                    id_promotion: ''
+                }
+
+            })
+            .then(response => console.log('creation de contrat apres le envoie de la demande contrat', response))
+           /* .then(
+                alert('Demande Envoyee'),
+                this.props.history.push('/'))
+            .catch(err => {
+                console.log('erreur recherche:', err)
+            })*/
+
         // .then(response => console.log(response.data))
         /* .then(response => {
                 const service = []
@@ -57,6 +86,8 @@ class ProfilDemandePettSitter extends Component {
         }
         const sitter = JSON.parse(localStorage.getItem('sitter'))
         const service = JSON.parse(localStorage.getItem('servicestotal'))
+        const dateDebut = JSON.parse(localStorage.getItem('dateDebut'))
+        const dateFin = JSON.parse(localStorage.getItem('dateFin'))
         function PrixAvantTaxes (prix) {
             let prixAvantTaxes = 0
             prix.map((infoPrix, index) => {
@@ -110,6 +141,8 @@ class ProfilDemandePettSitter extends Component {
         console.log(sitter)
         console.log(this.state.servicesTotal)
         console.log('services total : ', JSON.parse(localStorage.getItem('servicestotal')))
+        console.log(dateDebut)
+        console.log(dateFin)
         return (
             <div>
                 <div>
