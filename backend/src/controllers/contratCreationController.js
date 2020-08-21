@@ -97,16 +97,12 @@ function contratDesactivation(req)
 {
     return new Promise((resolve, reject) => {
         let sql = "UPDATE contrat SET est_accepte=false, est_lu_proprietaire=false, est_lu_petsitter=false, encore_disponible=false" 
-                 + "FROM contrat c INNER JOIN contrat_utilisateur t ON c.id=t.id_contrat"
-                 +" WHERE t.id_proprietaire=$1 AND t.id_petsitter!=$4 AND c.date_debut=$2 AND c.date_fin=$3 RETURNING *"
+                 + " FROM contrat c INNER JOIN contrat_utilisateur t ON c.id=t.id_contrat"
+                 +" WHERE t.id_proprietaire=$1 AND t.id_petsitter!=$2 AND c.date_debut=$3 AND c.date_fin=$4 RETURNING *"
 
-        bd.excuterRequete(sql, [req.body.utilisateur.id_proprietaire, req.body.utilisateur.id_petsitter, req.body.contrat.date_debut, req.body.contrat.date_fin])
-            .then(resultatRequeteContrat => {
-                if (resultatRequeteContrat.rowCount >= 1) {
+                 bd.excuterRequete(sql, [req.body.utilisateur.id_proprietaire, req.body.utilisateur.id_petsitter, req.body.contrat.date_debut, req.body.contrat.date_fin])
+            .then(resultatRequeteContrat => {               
                     resolve(resultatRequeteContrat)
-                } else {
-                    reject ({"erreur" : 400})
-                }
             })
             .catch(erreur => {
                 reject(erreur)
