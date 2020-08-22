@@ -59,6 +59,7 @@ class NavbarLinks extends Component {
     }
 
     onSubmitRegister (e) {
+        this.handleCloseInsc()
         console.log('new User', this.state)
         // if (e.key === 'Enter') {
         e.preventDefault()
@@ -82,11 +83,12 @@ class NavbarLinks extends Component {
         }
         register(newUser).then(res => {
             if (res) {
+                alert(' Bien Ajouter')
                 console.log('test', res)
                 this.setState({
                     users: res
                 })
-                this.onHandleClose()
+                this.handleCloseInsc()
 
                 console.log('test', this.state.users.utilisateur.nom)
                 this.setState({ userName: this.state.users.utilisateur.nom })
