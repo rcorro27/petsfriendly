@@ -10,9 +10,11 @@
     android:paddingTop="8dp">
 
     <LinearLayout
+        android:id="@+id/bulle_message_envoyer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="right"
+
         android:orientation="horizontal">
 
 
@@ -30,7 +32,7 @@
                 android:layout_marginRight="2dp"
                 android:maxWidth="240dp"
                 android:padding="8dp"
-                android:text="hello, hello!"
+                android:text=""
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintRight_toRightOf="parent"

@@ -45,7 +45,8 @@ public class BottomNavigationBar extends FragmentActivity {
         String valeurNavigationChatDiscussion =  "false";
 
         Intent intentValeur = getIntent();
-        String extraValue = intentValeur.getStringExtra("list_pet_sitter");
+
+        String extraValue = intentValeur.getStringExtra("list_pet_sitter"); // recuperer la valeur voulut
         if(extraValue != null){
             valeurNavigation = extraValue;
         }

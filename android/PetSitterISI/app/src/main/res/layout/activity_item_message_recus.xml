@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="8dp"
     android:orientation="vertical"
+    android:padding="4dp"
     android:gravity="left"
     tools:context=".ItemMessageRecus">
 
@@ -14,6 +14,7 @@
         android:id="@+id/image_message_profile"
         android:layout_width="25dp"
         android:layout_height="25dp"
+
         android:layout_marginLeft="8dp"
          />
 
@@ -22,7 +23,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="4dp"
         android:text="John Doe"
         android:textSize="12sp"
         app:layout_constraintLeft_toRightOf="@+id/image_message_profile"
@@ -31,6 +31,7 @@
 
 
     <LinearLayout
+        android:id="@+id/bulle_message_recus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="left"

@@ -10,16 +10,20 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.petsitterisi.managers.UtilisateurManager;
 import com.example.petsitterisi.services.ApiAjouterContratFetcher;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.JsonObject;
@@ -31,13 +35,20 @@ import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.BreakIterator;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Objects;
 public class ProfilPetSitter extends Fragment {
     Context ctx;
     Button button_contacterSitter;
+    Button button_reservation_sitter;
     Dialog dialog_contacter_sitter;
-    TextInputEditText message_envoyer;
-    Button button_envoyer_message;
+    Dialog dialog_reserver_sitter;
+    LinearLayout ll;
+
+
+
 
     @Nullable
     @Override
@@ -45,7 +56,9 @@ public class ProfilPetSitter extends Fragment {
         final View leProfilPetSitter = inflater.inflate(R.layout.activity_profil_pet_sitter, container, false);
         ctx = leProfilPetSitter.getContext();
         button_contacterSitter = leProfilPetSitter.findViewById(R.id.button_contacter_profil_sitter);
+        button_reservation_sitter = leProfilPetSitter.findViewById(R.id.reservation_profil_sitter);
         dialog_contacter_sitter = new Dialog(ctx);
+        dialog_reserver_sitter = new Dialog(ctx);
 
         button_contacterSitter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,21 +70,52 @@ public class ProfilPetSitter extends Fragment {
                 }
             }
         });
+
+
+        button_reservation_sitter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    afficherAlertDialogReservationSitter();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
         getJson(leProfilPetSitter);
         return leProfilPetSitter;
 
 
-
-
     }
     private void afficherAlertDialogContacter() {
+        Button button_envoyer_message;
+        final TextInputEditText message_envoyer;
+        //final String text_message_envoyer;
+
+        final Editable textMsgEnvoyer ;
+
 
         dialog_contacter_sitter.setContentView(R.layout.alert_dialog_contacter_pet_sitter);
 
         button_envoyer_message = dialog_contacter_sitter.findViewById(R.id.button_envoyer_message);
 
-        message_envoyer = dialog_contacter_sitter.findViewById(R.id.message_envoyer);
-        message_envoyer.getText().toString();
+
+        //text_message_envoyer = Objects.requireNonNull(message_envoyer.getText()).toString();
+
+//
+//        View view;
+//        LayoutInflater inflater = (LayoutInflater)   requireContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        view = inflater.inflate(R.layout.activity_message_list, null);
+//
+//        final LinearLayout item = (LinearLayout) view.findViewById(R.id.container_message_list);
+
+        final View cardMessageEnvoyer = View.inflate(ctx , R.layout.activity_item_message_envoyer,null);
+        final TextView messageEnvoyer = cardMessageEnvoyer.findViewById(R.id.text_message_body_envoyer);
+        message_envoyer = dialog_contacter_sitter.findViewById(R.id.edit_text_message_envoyer_contacter_sitter);
+        textMsgEnvoyer = message_envoyer.getText();
+
 
         button_envoyer_message.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,14 +123,55 @@ public class ProfilPetSitter extends Fragment {
 
                 Intent intent = new Intent(ctx, BottomNavigationBar.class);
                 intent.putExtra("ChatDiscussion", "true");
+//                Intent intentte = new Intent();
+//                intentte.putExtra("textMsgEnvoyer", textMsgEnvoyer);
+
+
+                //messageEnvoyer.setText(textMsgEnvoyer);
+                //item.addView(cardMessageEnvoyer);
+                //ll.removeView(cardMessageEnvoyer);
+
+
+
+
+
+
+                if (!message_envoyer.getText().toString().equals("")){
+                    UtilisateurManager.addMessageContacterInsideDiscussion(ctx, "message_contacter", textMsgEnvoyer);
+                    ctx.startActivity(intent);
+                }
+
+                assert textMsgEnvoyer != null;
+                textMsgEnvoyer.clear();
+            }
+        });
+
+        dialog_contacter_sitter.show();
+    }
+
+
+    private void afficherAlertDialogReservationSitter() {
+        Button button_reserver_alert_dialog;
+
+        dialog_reserver_sitter.setContentView(R.layout.alert_dialog_reservation);
+
+        button_reserver_alert_dialog = dialog_reserver_sitter.findViewById(R.id.reservervation_final);
+
+        button_reserver_alert_dialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(ctx, BottomNavigationBar.class);
+                intent.putExtra("Demande", "true");
                 ctx.startActivity(intent);
 
             }
         });
 
-
-        dialog_contacter_sitter.show();
+        dialog_reserver_sitter.show();
     }
+
+
     public void getJson (View leProfilPetSitter) {
         String tContents = "";
         String concat = "";
@@ -129,7 +214,6 @@ public class ProfilPetSitter extends Fragment {
 
         }
     }
-
 
 
 
