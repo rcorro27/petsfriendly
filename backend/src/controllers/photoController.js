@@ -59,6 +59,7 @@ function photoProfileAjout(req, res)
             res.setHeader('Content-Type', 'text/html');
             res.end('Error uploading file.')
         } else {
+
             res.setHeader('Content-Type', 'application/json');
             res.end(JSON.stringify({"url_photo" : req.files[0].filename}))
         }
@@ -112,7 +113,6 @@ function sauvegarderUrlPhotoProfile(req, file)
         //requete sql pour service
         bd.excuterRequete(sqlUtilisateur, [req.params.id]) 
         .then(async resultatRequeteSqlUtilisateur => { 
-
             let urlPhoto = ""
             /* si le user ne possede de photo donc on cree un nouvel url sinon on prends l'ancien*/
             if (resultatRequeteSqlUtilisateur.rows[0].url_photo === null)

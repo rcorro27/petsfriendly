@@ -10,7 +10,7 @@ function contratCreation(req, res) {
             ajoutContrat(req)
             .then(resultatRequeteContrat => {
 
-                    // ***************  ajout du contrat_utilisateur  ****************
+                // ***************  ajout du contrat_utilisateur  ****************
                     ajoutContratUtilisateur(req, resultatRequeteContrat.rows[0].id)
                         .then(resultatRequeteContratUtilisateur => {
 
@@ -21,6 +21,7 @@ function contratCreation(req, res) {
                                              // ***************  ajout des service_contrat  ****************
                                    ajoutServiceContrat(req, resultatRequeteContrat.rows[0].id)
                                    .then(resultatRequeteServiceContrat => {
+                                    
                                          res.setHeader('Content-Type', 'application/json');
                                          res.end(JSON.stringify({}))
                                     })
