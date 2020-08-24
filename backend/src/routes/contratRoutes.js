@@ -6,7 +6,7 @@ const contratCreationController = require('../controllers/contratCreationControl
 const contratFinController = require('../controllers/contratFinController')
 
 // route pour creation du contrat et tout ce qui va avec
-router.post("/ajout", contratCreationController.contratCreation)
+router.post("/creation", contratCreationController.contratCreation)
 
 //route pour acceptation du contrat et tout ce qui va avec
 router.post("/acceptation", contratCreationController.contratAcceptation)

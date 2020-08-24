@@ -4,6 +4,7 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const cors = require('cors')
+const mongo = require("./servers/MongoDb")
 
 // les routes a utiliser
 let indexRouter = require('./routes/index')
@@ -15,7 +16,8 @@ let contratRouter = require('./routes/contratRoutes')
 let planningRouter = require('./routes/planningRoutes')
 let rechercheRouter = require('./routes/rechercheRoutes')
 let favorisRouter = require('./routes/favorisRoutes')
-let PhotoRouter = require('./routes/photoRoute')
+let photoRouter = require('./routes/photoRoute')
+let chatRouter = require('./routes/chatRoutes')
 
 //instancier le serveur
 let app = express()
@@ -37,7 +39,8 @@ app.use('/contrats', contratRouter)
 app.use('/favoris', favorisRouter)
 app.use('/plannings',  planningRouter)
 app.use('/recherche', rechercheRouter)
-app.use('/photos', PhotoRouter)
+app.use('/photos', photoRouter)
+app.use('/chats', chatRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -54,5 +57,29 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500)
   res.render('error')
 })
+
+//-----------------------------------------------------------------------------------------------------------------------------
+const io = require('socket.io')(app.http) // obj pour gerer le chat
+
+
+// gerer la connexion des sockets des utilisateurs
+io.on("join", function(data) {
+
+    io.join(data.id)
+})
+
+// gerer l'envoie des messages
+io.on("nouveau_message", function(data){
+
+    mongo.insererMessage(data)
+    .then(resultatMessages => {
+        io.in(data.idTo).emit("nouveau_message", data.message) // envoyer le msg au destinataire 
+    })
+    .catch(erreur => {
+        io.in(data.idFrom).emit("nouveau_message", erreur) // changer nouveau_message et parler avec les gars d'Android de ca
+    })
+})
+
+//-----------------------------------------------------------------------------------------------------------------------------
 
 module.exports = app
