@@ -26,7 +26,7 @@ function animalAjout(req, res) {
             res.setHeader('Content-Type', 'application/json')
             res.end(JSON.stringify(resultatRequete.rows))
         })
-        .catch(erreur => { // si erreur on affiche les details et et on l'envois --- developpement seulement
+        .catch(erreur => {
             console.error(erreur.stack)
             res.setHeader('Content-Type', 'text/html')
             res.end(erreur.stack)
