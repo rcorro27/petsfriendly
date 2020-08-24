@@ -183,6 +183,7 @@ class RecherchePetsitter extends Component {
         console.log(this.state.resultat[event.target.name])
         console.log(this.state.dateDebut)
         console.log(this.state.dateFin)
+        localStorage.setItem('serviceRecherche', JSON.stringify(this.state.servicesRechercher))
         localStorage.setItem('dateDebut', JSON.stringify(this.state.dateDebut))
         localStorage.setItem('dateFin', JSON.stringify(this.state.dateFin))
         localStorage.setItem('sitter', JSON.stringify(this.state.resultat[event.target.name]))

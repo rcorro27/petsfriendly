@@ -14,12 +14,12 @@ class ProfilDemandePettSitter extends Component {
             recherche: false,
             resultat: [],
             prixSitter: [],
+            service: JSON.parse(localStorage.getItem('serviceRecherche')),
             servicesTotal: JSON.parse(localStorage.getItem('servicestotal')),
             dateDebut: JSON.parse(localStorage.getItem('dateDebut')),
             dateFin: JSON.parse(localStorage.getItem('dateFin')),
             sitter: JSON.parse(localStorage.getItem('sitter')),
-            proprietaire: false,
-            infosContrat: []
+            proprietaire: JSON.parse(localStorage.getItem('usertoken'))
 
         }
         this.handleClick = this.handleClick.bind(this)
@@ -28,11 +28,11 @@ class ProfilDemandePettSitter extends Component {
     }
 
     setProprietaire () {
-        this.setState({ dateDebut: JSON.parse(localStorage.getItem('usertoken')) })
+        this.setState({ proprietaire: JSON.parse(localStorage.getItem('usertoken')) })
     }
 
     unsetProprietaire () {
-        this.setState({ dateDebut: false })
+        this.setState({ proprietaire: false })
     }
 
     handleClick () {
@@ -40,20 +40,19 @@ class ProfilDemandePettSitter extends Component {
             .post('https://pets-friendly.herokuapp.com/contrats/creation', {
 
                 utilisateur: {
-                    id_proprietaire: 11,
+                    id_proprietaire: this.state.proprietaire.utilisateur.id,
                     id_petsitter: this.state.sitter.id
                 },
                 contrat: {
                     date_debut: this.state.dateDebut,
                     date_fin: this.state.dateFin
                 },
-                service: this.state.sitter.services,
+                service: this.state.service,
                 promotion: {
                     id_promotion: 1
                 }
 
             })
-        // .then(response => console.log('creation de contrat apres le envoie de la demande contrat', response))
             .then(response => {
                 if (Object.keys(response.data).length === 0) {
                     alert('Demande Envoyee')
@@ -62,25 +61,9 @@ class ProfilDemandePettSitter extends Component {
                     console.log('demande pas envoyer')
                 }
             })
-        //   .then(response => console.log('creation de contrat apres le envoie de la demande contrat', response))
-        /* .then(
-                alert('Demande Envoyee'),
-                this.props.history.push('/'))
             .catch(err => {
                 console.log('erreur recherche:', err)
-            }) */
-
-        // .then(response => console.log(response.data))
-        /* .then(response => {
-                const service = []
-                response.data.map((info, index) => service.push(info))
-                console.log(service)
-                this.setState({ servicesTotal: service })
-            // event.preventDefault()
             })
-            .catch(err => {
-                console.log('erreur recherche:', err)
-            }) */
     }
 
     handleSubmit () {
@@ -105,10 +88,8 @@ class ProfilDemandePettSitter extends Component {
         }
         const sitter = JSON.parse(localStorage.getItem('sitter'))
         const service = JSON.parse(localStorage.getItem('servicestotal'))
-        /*   const dateDebutLocal = JSON.parse(localStorage.getItem('dateDebut'))
-        const dateFinLocal = JSON.parse(localStorage.getItem('dateFin'))
-     */
         const user = JSON.parse(localStorage.getItem('usertoken'))
+
         function PrixAvantTaxes (prix) {
             let prixAvantTaxes = 0
             prix.map((infoPrix, index) => {
@@ -159,11 +140,9 @@ class ProfilDemandePettSitter extends Component {
             'TOTAL avec taxes :'
 
         ]
-        console.log(this.state.sitter)
-        /* console.log('id sitter apres le render', this.state.idSitter.id)
-        console.log('date Debut', this.state.dateDebut)
-        console.log('services total', this.state.servicesTotal)
-       */
+        console.log('sitter', this.state)
+        console.log('service', JSON.parse(localStorage.getItem('serviceRecherche')))
+        console.log('user apres le render', this.state.proprietaire.utilisateur.id)
         return (
 
             <div>
@@ -187,7 +166,7 @@ class ProfilDemandePettSitter extends Component {
                     <div className='m-5 w-25 p3 float-left bg-white border border-danger rounded shadow '>
                         <h3 className='h3 w-25 p-3 mx-auto'><strong>Services</strong> </h3>
                         <ul className='list-group'>
-                            <ServiceDemandeComponent classNameLi='list-group-item' servicesTotal={this.state.servicesTotal} servicesSitter={sitter.services} classIcone='fas fa-dollar-sign' />
+                            <ServiceDemandeComponent classNameLi='list-group-item' servicesTotal={this.state.servicesTotal} servicesSitter={this.state.service} classIcone='fas fa-dollar-sign' />
                         </ul>
                     </div>
                     <div className=' m-5 w-50 p-3 float-right border border-danger rounded shadow'>
