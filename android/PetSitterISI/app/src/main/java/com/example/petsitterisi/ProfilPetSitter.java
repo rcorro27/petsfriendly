@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.LayoutInflater;
@@ -120,7 +121,7 @@ public class ProfilPetSitter extends Fragment {
             @Override
             public void onClick(View v) {
 
-
+                final MediaPlayer son_message_envoyer = MediaPlayer.create(ctx, R.raw.son_message_envoye);
                 final View cardMessageEnvoyer = View.inflate(ctx , R.layout.activity_item_message_envoyer,null);
                 String heureNowMsgEnvoyer = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
 
@@ -139,8 +140,6 @@ public class ProfilPetSitter extends Fragment {
                 //ll.removeView(cardMessageEnvoyer);
 
 
-
-
                 if (!message_envoyer[0].getText().toString().equals("")){
 
 
@@ -148,7 +147,7 @@ public class ProfilPetSitter extends Fragment {
                     // sharedPreference pour l'heure
                     UtilisateurManager.addHeureMessageEnvoyer(ctx, "heure_Msg", heureNowMsgEnvoyer);
                     UtilisateurManager.addMessageContacterInsideDiscussion(ctx, "message_contacter", textMsgEnvoyer[0]);
-
+                    son_message_envoyer.start();
                     ctx.startActivity(intent);
                 }
 

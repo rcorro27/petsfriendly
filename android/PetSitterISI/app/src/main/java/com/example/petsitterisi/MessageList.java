@@ -10,10 +10,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Editable;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ImageSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +44,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 public class MessageList extends Fragment {
     Context ctx;
     LinearLayout chat_message_container;
@@ -47,12 +56,17 @@ public class MessageList extends Fragment {
     EditText text_message_discussion;
     Editable textMsgEnvoyer ;
     Editable textMsgRecus ;
-
-
+    // Define the pic id
+    private static final int pic_id = 123;
+    Button ajouter_image;
+    ImageView image_recuperer ;
+    ImageView img_recuper;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View chatMessages =  inflater.inflate(R.layout.activity_message_list, container, false);
+       // final View view_photos_envoyer =  inflater.inflate(R.layout.photo_envoyer, container, false);
+
         ctx = chatMessages.getContext();
 
         TextView nomInterlocuteur = chatMessages.findViewById(R.id.nom_utilsateur_message_recus);
@@ -86,12 +100,37 @@ public class MessageList extends Fragment {
         chat_message_container = chatMessages.findViewById(R.id.container_message_list);
         btn_envoyer_discussion  = (Button) chatMessages.findViewById(R.id.button_chatbox_send);
         text_message_discussion = chatMessages.findViewById(R.id.edittext_chatbox);
+
+        ajouter_image = chatMessages.findViewById(R.id.icone_ajoute_photo_conversation);
+//        image_recuperer = (ImageView) new ImageView(ctx);
+
+//        final MediaPlayer son_photo_envoyer = MediaPlayer.create(ctx, R.raw.son_message_envoye);
+//        ajouter_image.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                Intent camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//                final View view_photos_envoyer = View.inflate(ctx, R.layout.photo_envoyer, null);
+//                image_recuperer = view_photos_envoyer.findViewById(R.id.img_recup);
+//                son_photo_envoyer.start();
+//                chat_message_container.addView(view_photos_envoyer);
+//
+//                startActivityForResult(camera_intent, pic_id);
+//
+//
+//
+//            }
+//        });
+//
+
+
         final String[] tourMessageEnvoyer = {"true"};
 
         // sharePreferenced pour message contacter sitter
         if(tourMessageEnvoyer[0].equals("true"))
         {
             final View cardMessageEnvoyerParam = View.inflate(ctx, R.layout.activity_item_message_envoyer, null);
+
             final TextView messageItemEnvoyer = (TextView) cardMessageEnvoyerParam.findViewById(R.id.text_message_body_envoyer);
             TextView heureMessageEnvoyer = cardMessageEnvoyerParam.findViewById(R.id.text_message_time_envoyer);
             String messageEnvoyerDepuisContacterInsideProfilSitter = UtilisateurManager.getMessageContacterInsideDiscussion(ctx);
@@ -101,12 +140,19 @@ public class MessageList extends Fragment {
             // date with real date system now
             heureMessageEnvoyer.setText(heureMsgEnvoyerContacter);
 
+
+
             if (!messageEnvoyerDepuisContacterInsideProfilSitter.equals("")) {
 
                 chat_message_container.addView(cardMessageEnvoyerParam);
                 tourMessageEnvoyer[0] = "false";
             }
         }
+
+        final MediaPlayer son_message_envoyer = MediaPlayer.create(ctx, R.raw.son_message_envoye);
+        final MediaPlayer son_message_recu = MediaPlayer.create(ctx, R.raw.son_message_recu);
+
+
 
 
 
@@ -118,6 +164,23 @@ public class MessageList extends Fragment {
 
                 if(!tourMessageEnvoyer[0].equals("false")) // simulation message envoyer pour presentation
                 {
+                    // photo
+                    final MediaPlayer son_photo_envoyer = MediaPlayer.create(ctx, R.raw.son_message_envoye);
+                    ajouter_image.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            Intent camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                            final View view_photos_envoyer = View.inflate(ctx, R.layout.photo_envoyer, null);
+                            image_recuperer = view_photos_envoyer.findViewById(R.id.img_recup);
+                            son_photo_envoyer.start();
+                            chat_message_container.addView(view_photos_envoyer);
+
+                            startActivityForResult(camera_intent, pic_id);
+
+                        }
+                    });
+
 
                     final View cardMessageEnvoyer = View.inflate(ctx , R.layout.activity_item_message_envoyer,null);
                     final TextView messageEnvoyer = cardMessageEnvoyer.findViewById(R.id.text_message_body_envoyer);
@@ -134,6 +197,16 @@ public class MessageList extends Fragment {
                     messageEnvoyer.setText(messageEnvoyerDepuisInsideDiscussion);
 
 
+
+
+
+                    ////////////////////////////////////////////////////////////////
+
+
+
+
+
+
                     // date hardcoder
 //                    date = DateConvertisseur(date);
 //                    heureMessageEnvoyer.setText(date);
@@ -148,15 +221,51 @@ public class MessageList extends Fragment {
                    // messageEnvoyer.setText(textMsgEnvoyer);
 
 
+
+
+
+
+
+
                     if(!text_message_discussion.getText().toString().equals("")){
                         tourMessageEnvoyer[0] = "false";
                         chat_message_container.addView(cardMessageEnvoyer);
+
+
+                        son_message_envoyer.start();
+
+
+
+
                     }
 
                     textMsgEnvoyer.clear();
 
                 }
                 else {// simulation message recus pour presentation
+
+
+
+                    // photo
+                    final MediaPlayer son_photo_envoyer = MediaPlayer.create(ctx, R.raw.son_message_envoye);
+                    ajouter_image.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            Intent camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                            final View view_photos_envoyer = View.inflate(ctx, R.layout.photo_envoyer, null);
+                            image_recuperer = view_photos_envoyer.findViewById(R.id.img_recup);
+
+                            chat_message_container.addView(view_photos_envoyer);
+
+                            startActivityForResult(camera_intent, pic_id);
+
+
+
+                        }
+                    });
+
+
 
                     final View cardMessageRecus = View.inflate(ctx , R.layout.activity_item_message_recus,null);
                     final TextView messageRecus = cardMessageRecus.findViewById(R.id.text_message_body_recu);
@@ -203,6 +312,8 @@ public class MessageList extends Fragment {
                     if(!text_message_discussion.getText().toString().equals("")){
                         tourMessageEnvoyer[0] = "true";
                         chat_message_container.addView(cardMessageRecus);
+
+                        son_message_recu.start();
                     }
 
 
@@ -231,6 +342,41 @@ public class MessageList extends Fragment {
         return chatMessages;
 
     }
+//
+//    private void addImageBetweentext(Bitmap drawable, EditText editText1) {
+//
+//
+//        int selectionCursor = editText1.getSelectionStart();
+//        editText1.getText().insert(selectionCursor, ".");
+//        selectionCursor = editText1.getSelectionStart();
+//
+//        SpannableStringBuilder builder = new SpannableStringBuilder(editText1.getText());
+//        builder.setSpan(new ImageSpan(drawable), selectionCursor - ".".length(), selectionCursor,
+//                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        editText1.setText(builder);
+//        editText1.setSelection(selectionCursor);
+//    }
+
+
+    // This method will help to retrieve the image
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+
+        // Match the request 'pic id with requestCode
+        if (requestCode == pic_id) {
+
+            // BitMap is data structure of image file
+            // which stor the image in memory
+            Bitmap photo = (Bitmap) Objects.requireNonNull(data.getExtras()).get("data");
+
+            // Set the image in imageview for display
+            image_recuperer.setImageBitmap(photo);
+        }
+    }
+
+
+
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     private String DateConvertisseur(String timestampWithTimeZone){
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#151515"
+
     tools:context=".MessageList"
     android:orientation="vertical">
 
@@ -104,6 +104,7 @@
             android:padding="4dp"
             android:orientation="horizontal">
 
+
             <Button
                 android:id="@+id/icone_ajoute_photo_conversation"
                 android:layout_width="46dp"
@@ -115,7 +116,6 @@
                 android:backgroundTint="#757575"
                 android:clickable="true"
                 android:gravity="center" />
-
 
             <EditText
                 android:id="@+id/edittext_chatbox"
@@ -164,6 +164,7 @@
         android:layout_height="fill_parent"
         android:layout_above="@+id/footer"
         android:layout_below="@+id/header"
+        android:background="#151515"
         android:fillViewport="true">
 
 
@@ -175,6 +176,7 @@
                 android:gravity="right"
                 android:fillViewport="true"
                 android:orientation="vertical">
+
 
 
 

@@ -1,98 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:orientation="vertical">
+    android:background="@color/greyTransparence"
+    android:orientation="vertical"
+    >
 
-
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <FrameLayout
-            android:id="@+id/video_frame"
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:background="#000"
-            >
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/dogs_cats_rabbits_"
-                android:alpha="0.9"
-                android:scaleType="centerCrop"/>
-            <TextView
-                android:id="@+id/top_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Se connecter"
-                android:gravity="center_horizontal"
-                android:layout_gravity="center_horizontal"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="30dp"
-                android:paddingLeft="40dp"
-                android:paddingRight="40dp"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
-                android:background="@drawable/rounded_corner"
-                android:textColor="@color/white"/>
+        android:layout_height="match_parent"
+        android:src="@drawable/dogs_cats_rabbits_"
+        android:alpha="0.9"
+        android:scaleType="centerCrop"/>
 
 
-        </FrameLayout>
+    <ImageView
+        android:id="@+id/logo_site"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:scaleType="center"
+        android:scaleX="1.4"
+        android:scaleY="1.5"
+        android:src="@drawable/logo" />
 
 
-
-
-
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/connexion_button"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
-        android:layout_margin="16dp"
-
-        android:contentDescription="@string/connexion"
-        android:text="@string/connexion"
-        android:textColor="@color/white"
-            android:backgroundTint="@color/green"
-        android:theme="@style/MyMaterialTheme"
-        android:gravity="center"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical"
-            app:layout_anchor="@+id/video_frame"
-            app:layout_anchorGravity="center">
+        android:layout_below="@+id/logo_site"
+        android:layout_alignBaseline="@+id/logo_site"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:fontFamily="sans-serif-black"
+        android:scaleType="center"
+        android:text="Pets Friendly"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="32sp"
+        android:textStyle="bold">
 
 
-            <LinearLayout
+    </TextView>
+
+
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="200dp"
+                android:layout_centerInParent="true"
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/e_mail"
-                    android:layout_width="wrap_content"
+
+
+                <LinearLayout
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:hint="Adresse e-mail"
-                    android:paddingLeft="23dp"
-                    android:paddingTop="20dp"
-                    android:paddingRight="23dp"
-                    android:paddingBottom="20dp" />
+
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginTop="50dp"
+                    >
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/black"
+
+                      >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/e_mail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:backgroundTint="@color/black"
+                            android:hint="Adresse e-mail"
+                            android:inputType="textEmailAddress"
+                            android:textColorHighlight="@color/black"
+                            android:textColorLink="@color/black"
+                            app:errorEnabled="true" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
 
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/black"
                     app:endIconMode="password_toggle">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -100,6 +103,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Mot de passe"
+                        android:backgroundTint="@color/black"
                         android:inputType="textPassword"
                         app:endIconMode="password_toggle"
                         app:errorEnabled="true" />
@@ -111,17 +115,37 @@
                         android:layout_marginTop="20dp"
                         android:textStyle="bold"
                         android:gravity="center"
-                        android:textColor="@color/redTransparenceBar"/>
+                        android:textColor="@color/black"/>
 
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-            </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
 
 
-        </RelativeLayout>
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/connexion_button"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/rounded_corner_black_transparence_stroke"
+            android:text="Connexion"
+            android:textColor="@android:color/white" />
 
 
-</LinearLayout>
+    </LinearLayout>
+
+
+
+</RelativeLayout>

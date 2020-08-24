@@ -7,11 +7,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="045a04c6-8cfb-428c-aee6-f6dbda5aaaca" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/epaisseur_tint_edit_text.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/rounded_corner_black_transparence_stroke.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/rounded_rectangle_photo_envoyer.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/font/abhaya_libre_bold.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/font/holtwood_one_sc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/photo_envoyer.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/video_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/raw/son_accueille_friendly.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/raw/son_message_envoye.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/raw/son_message_recu.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/raw/video_accueil_pub.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/raw/video_accueille_chiens.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/values/font_certs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/values/preloaded_fonts.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/BottomNavigationBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/BottomNavigationBar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/Connexion.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/Connexion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/MessageList.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/MessageList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/ProfilPetSitter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/ProfilPetSitter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_item_message_recus.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_item_message_recus.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/rounded_corner_red_transparence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/rounded_corner_red_transparence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_connexion.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_connexion.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_message_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_message_list.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_chat.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_chat.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +58,7 @@
       <list>
         <option value="Class" />
         <option value="layoutResourceFile_vertical" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
@@ -63,6 +86,8 @@
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\kelfilal\OneDrive\Session 4 ETE ISI\Projet Final\mypetsitter\android\PetSitterISI\app\src\main\res\drawable" />
+      <recent name="C:\Users\kelfilal\OneDrive\Session 4 ETE ISI\Projet Final\mypetsitter\android\PetSitterISI\app\src\main\res\layout" />
+      <recent name="C:\Users\kelfilal\OneDrive\Session 4 ETE ISI\Projet Final\mypetsitter\android\PetSitterISI\app\src\main\res\raw" />
       <recent name="C:\Users\kelfilal\OneDrive\Session 4 ETE ISI\Projet Final\mypetsitter\android\PetSitterISI\app\src\main\res\drawable-xhdpi" />
       <recent name="D:\dev\projet final\mypetsitter\android\PetSitterISI\app\src\main\assets" />
     </key>
@@ -141,41 +166,50 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="-1070" y="197" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1598244659673">
+      <screen x="-1600" y="0" width="1600" height="900" />
+    </state>
+    <state x="-1070" y="197" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598244659673" />
+    <state x="-1220" y="205" key="AndroidCreateResourceFileDialog" timestamp="1598233229761">
+      <screen x="-1600" y="0" width="1600" height="900" />
+    </state>
+    <state x="-1220" y="205" key="AndroidCreateResourceFileDialog/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598233229761" />
     <state x="-945" y="215" key="AndroidProcessChooserDialog" timestamp="1598221800863">
       <screen x="-1600" y="0" width="1600" height="900" />
     </state>
     <state x="-945" y="215" key="AndroidProcessChooserDialog/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598221800863" />
-    <state x="-1120" y="205" key="Downloadable.Font.Dialog.Size" timestamp="1598211299846">
+    <state x="-1578" y="206" key="Downloadable.Font.Dialog.Size" timestamp="1598237548316">
       <screen x="-1600" y="0" width="1600" height="900" />
     </state>
-    <state x="-1120" y="205" key="Downloadable.Font.Dialog.Size/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598211299846" />
-    <state x="740" y="295" key="FileChooserDialogImpl" timestamp="1597935755670">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state x="-1578" y="206" key="Downloadable.Font.Dialog.Size/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598237548316" />
+    <state x="-983" y="246" key="FileChooserDialogImpl" timestamp="1598230859313">
+      <screen x="-1600" y="0" width="1600" height="900" />
     </state>
+    <state x="-983" y="246" key="FileChooserDialogImpl/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598230859313" />
     <state x="740" y="295" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1597935755670" />
-    <state width="1557" height="425" key="GridCell.Tab.0.bottom" timestamp="1598215046261">
+    <state width="1557" height="235" key="GridCell.Tab.0.bottom" timestamp="1598263716783">
       <screen x="-1600" y="0" width="1600" height="900" />
     </state>
     <state width="1877" height="2" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1597930339195" />
-    <state width="1557" height="425" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598215046261" />
+    <state width="1557" height="235" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598263716783" />
     <state width="1877" height="366" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1597947953250" />
-    <state width="1557" height="425" key="GridCell.Tab.0.center" timestamp="1598215046261">
+    <state width="1557" height="235" key="GridCell.Tab.0.center" timestamp="1598263716782">
       <screen x="-1600" y="0" width="1600" height="900" />
     </state>
     <state width="1877" height="2" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1597930339195" />
-    <state width="1557" height="425" key="GridCell.Tab.0.center/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598215046261" />
+    <state width="1557" height="235" key="GridCell.Tab.0.center/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598263716782" />
     <state width="1877" height="366" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1597947953250" />
-    <state width="1557" height="425" key="GridCell.Tab.0.left" timestamp="1598215046260">
+    <state width="1557" height="235" key="GridCell.Tab.0.left" timestamp="1598263716782">
       <screen x="-1600" y="0" width="1600" height="900" />
     </state>
     <state width="1877" height="2" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1597930339194" />
-    <state width="1557" height="425" key="GridCell.Tab.0.left/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598215046260" />
+    <state width="1557" height="235" key="GridCell.Tab.0.left/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598263716782" />
     <state width="1877" height="366" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1597947953250" />
-    <state width="1557" height="425" key="GridCell.Tab.0.right" timestamp="1598215046261">
+    <state width="1557" height="235" key="GridCell.Tab.0.right" timestamp="1598263716782">
       <screen x="-1600" y="0" width="1600" height="900" />
     </state>
     <state width="1877" height="2" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1597930339195" />
-    <state width="1557" height="425" key="GridCell.Tab.0.right/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598215046261" />
+    <state width="1557" height="235" key="GridCell.Tab.0.right/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598263716782" />
     <state width="1877" height="366" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1597947953250" />
     <state width="1557" height="425" key="GridCell.Tab.1.bottom" timestamp="1598215046261">
       <screen x="-1600" y="0" width="1600" height="900" />
@@ -213,6 +247,10 @@
       <screen x="-1600" y="0" width="1600" height="900" />
     </state>
     <state x="-1144" y="205" key="run.anything.popup/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598222081864" />
+    <state x="-1137" y="190" width="672" height="678" key="search.everywhere.popup" timestamp="1598248945968">
+      <screen x="-1600" y="0" width="1600" height="900" />
+    </state>
+    <state x="-1137" y="190" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598248945968" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
