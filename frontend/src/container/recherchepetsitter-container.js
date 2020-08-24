@@ -201,6 +201,7 @@ class RecherchePetsitter extends Component {
         console.log(this.state.resultat[event.target.name])
         console.log(this.state.dateDebut)
         console.log(this.state.dateFin)
+        localStorage.setItem('serviceRecherche', JSON.stringify(this.state.servicesRechercher))
         localStorage.setItem('dateDebut', JSON.stringify(this.state.dateDebut))
         localStorage.setItem('dateFin', JSON.stringify(this.state.dateFin))
         localStorage.setItem('sitter', JSON.stringify(this.state.resultat[event.target.name]))
@@ -283,7 +284,7 @@ class RecherchePetsitter extends Component {
                 </div>
                 {this.state.resultatRecherche ? '' : <h1 className='text-danger'>Aucun sitter a ete retrouver autour de votre zone dans votres criteres Veuillez nous contacter</h1>}
                 <div className='row'>
-                    {this.state.resultat ? this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} rating={niveauPetSitter(resultat.rating)} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger w-100 p-3 mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' servicesTotal={this.state.servicesTotal} servicesSitter={resultat.services} id={index} />) : ''}
+                    {this.state.resultat ? this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} rating={niveauPetSitter(resultat.rating)} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger w-100 p-3 mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' servicesTotal={this.state.servicesTotal} servicesSitter={this.state.servicesRechercher} id={index} />) : ''}
 
                 </div>
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ServiceDemandeComponent from '../component/services-demande-component'
 import FeedBackCommentaire from '../component/feedback-commentaire-component'
 import FactureDemandeComponent from '../component/facture-demande-component'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import axios from 'axios'
 // import PetSitterInput from 'component/PetSitterInput'
 
@@ -14,14 +14,25 @@ class ProfilDemandePettSitter extends Component {
             recherche: false,
             resultat: [],
             prixSitter: [],
-            servicesTotal: [],
-            dateDebut: false,
-            dateFin: false,
-            idSitter: false,
-            idProprietaire: false
+            service: JSON.parse(localStorage.getItem('serviceRecherche')),
+            servicesTotal: JSON.parse(localStorage.getItem('servicestotal')),
+            dateDebut: JSON.parse(localStorage.getItem('dateDebut')),
+            dateFin: JSON.parse(localStorage.getItem('dateFin')),
+            sitter: JSON.parse(localStorage.getItem('sitter'))
+            //  proprietaire: JSON.parse(localStorage.getItem('usertoken'))
 
         }
         this.handleClick = this.handleClick.bind(this)
+        this.setProprietaire = this.setProprietaire.bind(this)
+        this.unsetProprietaire = this.unsetProprietaire(this)
+    }
+
+    setProprietaire () {
+        this.setState({ proprietaire: JSON.parse(localStorage.getItem('usertoken')) })
+    }
+
+    unsetProprietaire () {
+        this.setState({ proprietaire: false })
     }
 
     handleClick () {
@@ -29,23 +40,19 @@ class ProfilDemandePettSitter extends Component {
             .post('https://pets-friendly.herokuapp.com/contrats/creation', {
 
                 utilisateur: {
-                    id_proprietaire: 11,
-                    id_petsitter: 30
+                    id_proprietaire: this.state.proprietaire.utilisateur.id,
+                    id_petsitter: this.state.sitter.id
                 },
                 contrat: {
-                    date_debut: '2020-10-01',
-                    date_fin: '2020-10-26'
+                    date_debut: this.state.dateDebut,
+                    date_fin: this.state.dateFin
                 },
-                service: [
-                    2,
-                    4
-                ],
+                service: this.state.service,
                 promotion: {
                     id_promotion: 1
                 }
 
             })
-        // .then(response => console.log('creation de contrat apres le envoie de la demande contrat', response))
             .then(response => {
                 if (Object.keys(response.data).length === 0) {
                     alert('Demande Envoyee')
@@ -54,25 +61,9 @@ class ProfilDemandePettSitter extends Component {
                     console.log('demande pas envoyer')
                 }
             })
-        //   .then(response => console.log('creation de contrat apres le envoie de la demande contrat', response))
-        /* .then(
-                alert('Demande Envoyee'),
-                this.props.history.push('/'))
             .catch(err => {
                 console.log('erreur recherche:', err)
-            }) */
-
-        // .then(response => console.log(response.data))
-        /* .then(response => {
-                const service = []
-                response.data.map((info, index) => service.push(info))
-                console.log(service)
-                this.setState({ servicesTotal: service })
-            // event.preventDefault()
             })
-            .catch(err => {
-                console.log('erreur recherche:', err)
-            }) */
     }
 
     handleSubmit () {
@@ -80,14 +71,6 @@ class ProfilDemandePettSitter extends Component {
     }
 
     render () {
-        function setSitterId (params) {
-            this.setState({ idSitter: sitter.id })
-            return ''
-        }
-        function unsetSitterId () {
-            this.setState({ idSitter: false })
-        }
-
         function niveauPetSitter (niveau) {
             let niveauSitter = ''
             if (niveau > 0 && niveau < 50) {
@@ -104,14 +87,15 @@ class ProfilDemandePettSitter extends Component {
             return niveauSitter
         }
         const sitter = JSON.parse(localStorage.getItem('sitter'))
-        const service = JSON.parse(localStorage.getItem('servicestotal'))
-        const dateDebut = JSON.parse(localStorage.getItem('dateDebut'))
-        const dateFin = JSON.parse(localStorage.getItem('dateFin'))
+        const serviceTotal = JSON.parse(localStorage.getItem('servicestotal'))
         const user = JSON.parse(localStorage.getItem('usertoken'))
+
         function PrixAvantTaxes (prix) {
             let prixAvantTaxes = 0
             prix.map((infoPrix, index) => {
-                prixAvantTaxes = prixAvantTaxes + service[infoPrix - 1].prix_service
+                console.log(prix)
+                console.log(serviceTotal[infoPrix - 1].prix_service)
+                prixAvantTaxes = prixAvantTaxes + serviceTotal[infoPrix - 1].prix_service
                 return prixAvantTaxes
             })
             return prixAvantTaxes
@@ -158,11 +142,12 @@ class ProfilDemandePettSitter extends Component {
             'TOTAL avec taxes :'
 
         ]
-        console.log(sitter.id)
-        console.log(this.state.idSitter)
+        console.log('sitter', this.state)
+        console.log('service', JSON.parse(localStorage.getItem('serviceRecherche')))
+
         return (
+
             <div>
-                {this.state.idSitter === false ? setSitterId : unsetSitterId}
 
                 <div>
                     <h1 className='h1 w-25 p-3 mx-auto'>Demande Service </h1>
@@ -183,7 +168,7 @@ class ProfilDemandePettSitter extends Component {
                     <div className='m-5 w-25 p3 float-left bg-white border border-danger rounded shadow '>
                         <h3 className='h3 w-25 p-3 mx-auto'><strong>Services</strong> </h3>
                         <ul className='list-group'>
-                            <ServiceDemandeComponent classNameLi='list-group-item' servicesTotal={service} servicesSitter={sitter.services} classIcone='fas fa-dollar-sign' />
+                            <ServiceDemandeComponent classNameLi='list-group-item' servicesTotal={this.state.servicesTotal} servicesSitter={this.state.service} classIcone='fas fa-dollar-sign' />
                         </ul>
                     </div>
                     <div className=' m-5 w-50 p-3 float-right border border-danger rounded shadow'>
@@ -201,11 +186,11 @@ class ProfilDemandePettSitter extends Component {
 
                         </div>
                         <div className='float-right m-2 w-25 p-3'>
-                            <p><strong>{PrixAvantTaxes(sitter.services)}</strong></p>
-                            <p>{TPS(sitter.services)}</p>
-                            <p>{TVQ(sitter.services)}</p>
-                            <p><strong>{PrixAvecTaxes(sitter.services)}</strong></p>
-                            <input type='button' value='Envoyer Demande' className='btn btn-success' onClick={this.handleClick} />
+                            <p><strong>{PrixAvantTaxes(this.state.service)}</strong></p>
+                            <p>{TPS(this.state.service)}</p>
+                            <p>{TVQ(this.state.service)}</p>
+                            <p><strong>{PrixAvecTaxes(this.state.service)}</strong></p>
+                            <Link to='/payment'> <input type='button' value='Envoyer Demande' className='btn btn-success' /* onClick={this.handleClick} */ /></Link>
                         </div>
 
                     </div>
