@@ -11,8 +11,8 @@
 
 
     <androidx.cardview.widget.CardView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         app:cardCornerRadius="20dp"
         android:layout_margin="5dp"
         android:elevation="10dp">
@@ -34,7 +34,7 @@
         android:layout_marginLeft="8dp"
         android:fontFamily="sans-serif-medium"
         android:text="John Doe"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="12sp"
         app:layout_constraintLeft_toRightOf="@+id/image_message_profile"
         app:layout_constraintTop_toTopOf="parent" />

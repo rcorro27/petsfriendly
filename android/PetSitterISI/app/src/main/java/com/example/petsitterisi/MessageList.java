@@ -93,8 +93,13 @@ public class MessageList extends Fragment {
         {
             final View cardMessageEnvoyerParam = View.inflate(ctx, R.layout.activity_item_message_envoyer, null);
             final TextView messageItemEnvoyer = (TextView) cardMessageEnvoyerParam.findViewById(R.id.text_message_body_envoyer);
+            TextView heureMessageEnvoyer = cardMessageEnvoyerParam.findViewById(R.id.text_message_time_envoyer);
             String messageEnvoyerDepuisContacterInsideProfilSitter = UtilisateurManager.getMessageContacterInsideDiscussion(ctx);
+            String heureMsgEnvoyerContacter = UtilisateurManager.getHeureMessageEnvoyer(ctx);
             messageItemEnvoyer.setText(messageEnvoyerDepuisContacterInsideProfilSitter);
+
+            // date with real date system now
+            heureMessageEnvoyer.setText(heureMsgEnvoyerContacter);
 
             if (!messageEnvoyerDepuisContacterInsideProfilSitter.equals("")) {
 

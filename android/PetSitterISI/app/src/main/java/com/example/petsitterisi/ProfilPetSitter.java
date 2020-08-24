@@ -36,8 +36,11 @@ import org.w3c.dom.Text;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.BreakIterator;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.Objects;
 public class ProfilPetSitter extends Fragment {
     Context ctx;
@@ -91,10 +94,9 @@ public class ProfilPetSitter extends Fragment {
     }
     private void afficherAlertDialogContacter() {
         Button button_envoyer_message;
-        final TextInputEditText message_envoyer;
+        final TextInputEditText[] message_envoyer = new TextInputEditText[1];
         //final String text_message_envoyer;
-
-        final Editable textMsgEnvoyer ;
+        final Editable[] textMsgEnvoyer = new Editable[1];
 
 
         dialog_contacter_sitter.setContentView(R.layout.alert_dialog_contacter_pet_sitter);
@@ -111,15 +113,20 @@ public class ProfilPetSitter extends Fragment {
 //
 //        final LinearLayout item = (LinearLayout) view.findViewById(R.id.container_message_list);
 
-        final View cardMessageEnvoyer = View.inflate(ctx , R.layout.activity_item_message_envoyer,null);
-        final TextView messageEnvoyer = cardMessageEnvoyer.findViewById(R.id.text_message_body_envoyer);
-        message_envoyer = dialog_contacter_sitter.findViewById(R.id.edit_text_message_envoyer_contacter_sitter);
-        textMsgEnvoyer = message_envoyer.getText();
+
 
 
         button_envoyer_message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+                final View cardMessageEnvoyer = View.inflate(ctx , R.layout.activity_item_message_envoyer,null);
+                String heureNowMsgEnvoyer = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
+
+                final TextView messageEnvoyer = cardMessageEnvoyer.findViewById(R.id.text_message_body_envoyer);
+                message_envoyer[0] = dialog_contacter_sitter.findViewById(R.id.edit_text_message_envoyer_contacter_sitter);
+                textMsgEnvoyer[0] = message_envoyer[0].getText();
 
                 Intent intent = new Intent(ctx, BottomNavigationBar.class);
                 intent.putExtra("ChatDiscussion", "true");
@@ -134,15 +141,19 @@ public class ProfilPetSitter extends Fragment {
 
 
 
+                if (!message_envoyer[0].getText().toString().equals("")){
 
 
-                if (!message_envoyer.getText().toString().equals("")){
-                    UtilisateurManager.addMessageContacterInsideDiscussion(ctx, "message_contacter", textMsgEnvoyer);
+
+                    // sharedPreference pour l'heure
+                    UtilisateurManager.addHeureMessageEnvoyer(ctx, "heure_Msg", heureNowMsgEnvoyer);
+                    UtilisateurManager.addMessageContacterInsideDiscussion(ctx, "message_contacter", textMsgEnvoyer[0]);
+
                     ctx.startActivity(intent);
                 }
 
-                assert textMsgEnvoyer != null;
-                textMsgEnvoyer.clear();
+                assert textMsgEnvoyer[0] != null;
+                textMsgEnvoyer[0].clear();
             }
         });
 
