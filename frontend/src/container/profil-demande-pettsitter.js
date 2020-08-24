@@ -14,14 +14,25 @@ class ProfilDemandePettSitter extends Component {
             recherche: false,
             resultat: [],
             prixSitter: [],
-            servicesTotal: [],
-            dateDebut: false,
-            dateFin: false,
-            idSitter: false,
-            idProprietaire: false
+            servicesTotal: JSON.parse(localStorage.getItem('servicestotal')),
+            dateDebut: JSON.parse(localStorage.getItem('dateDebut')),
+            dateFin: JSON.parse(localStorage.getItem('dateFin')),
+            sitter: JSON.parse(localStorage.getItem('sitter')),
+            proprietaire: false,
+            infosContrat: []
 
         }
         this.handleClick = this.handleClick.bind(this)
+        this.setProprietaire = this.setProprietaire.bind(this)
+        this.unsetProprietaire = this.unsetProprietaire(this)
+    }
+
+    setProprietaire () {
+        this.setState({ dateDebut: JSON.parse(localStorage.getItem('usertoken')) })
+    }
+
+    unsetProprietaire () {
+        this.setState({ dateDebut: false })
     }
 
     handleClick () {
@@ -30,16 +41,13 @@ class ProfilDemandePettSitter extends Component {
 
                 utilisateur: {
                     id_proprietaire: 11,
-                    id_petsitter: 30
+                    id_petsitter: this.state.sitter.id
                 },
                 contrat: {
-                    date_debut: '2020-10-01',
-                    date_fin: '2020-10-26'
+                    date_debut: this.state.dateDebut,
+                    date_fin: this.state.dateFin
                 },
-                service: [
-                    2,
-                    4
-                ],
+                service: this.state.sitter.services,
                 promotion: {
                     id_promotion: 1
                 }
@@ -80,14 +88,6 @@ class ProfilDemandePettSitter extends Component {
     }
 
     render () {
-        function setSitterId (params) {
-            this.setState({ idSitter: sitter.id })
-            return ''
-        }
-        function unsetSitterId () {
-            this.setState({ idSitter: false })
-        }
-
         function niveauPetSitter (niveau) {
             let niveauSitter = ''
             if (niveau > 0 && niveau < 50) {
@@ -105,8 +105,9 @@ class ProfilDemandePettSitter extends Component {
         }
         const sitter = JSON.parse(localStorage.getItem('sitter'))
         const service = JSON.parse(localStorage.getItem('servicestotal'))
-        const dateDebut = JSON.parse(localStorage.getItem('dateDebut'))
-        const dateFin = JSON.parse(localStorage.getItem('dateFin'))
+        /*   const dateDebutLocal = JSON.parse(localStorage.getItem('dateDebut'))
+        const dateFinLocal = JSON.parse(localStorage.getItem('dateFin'))
+     */
         const user = JSON.parse(localStorage.getItem('usertoken'))
         function PrixAvantTaxes (prix) {
             let prixAvantTaxes = 0
@@ -158,11 +159,14 @@ class ProfilDemandePettSitter extends Component {
             'TOTAL avec taxes :'
 
         ]
-        console.log(sitter.id)
-        console.log(this.state.idSitter)
+        console.log(this.state.sitter)
+        /* console.log('id sitter apres le render', this.state.idSitter.id)
+        console.log('date Debut', this.state.dateDebut)
+        console.log('services total', this.state.servicesTotal)
+       */
         return (
+
             <div>
-                {this.state.idSitter === false ? setSitterId : unsetSitterId}
 
                 <div>
                     <h1 className='h1 w-25 p-3 mx-auto'>Demande Service </h1>
@@ -183,7 +187,7 @@ class ProfilDemandePettSitter extends Component {
                     <div className='m-5 w-25 p3 float-left bg-white border border-danger rounded shadow '>
                         <h3 className='h3 w-25 p-3 mx-auto'><strong>Services</strong> </h3>
                         <ul className='list-group'>
-                            <ServiceDemandeComponent classNameLi='list-group-item' servicesTotal={service} servicesSitter={sitter.services} classIcone='fas fa-dollar-sign' />
+                            <ServiceDemandeComponent classNameLi='list-group-item' servicesTotal={this.state.servicesTotal} servicesSitter={sitter.services} classIcone='fas fa-dollar-sign' />
                         </ul>
                     </div>
                     <div className=' m-5 w-50 p-3 float-right border border-danger rounded shadow'>

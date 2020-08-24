@@ -66,7 +66,7 @@ class ModalCnxContainer extends Component {
                         // history.push('/admin')
                         this.props.history.push('/admin')
                     }
-                    this.props.onHandleClose()
+                    this.props.onHide()
 
                     // console.log('Object', JSON.parse(localStorage.getItem('usertoken')))
 
@@ -107,7 +107,7 @@ class ModalCnxContainer extends Component {
                     // history.push('/admin')
                     this.props.history.push('/admin')
                 }
-                this.props.onHandleClose()
+                this.props.onHide()
 
                 console.log('test', this.state.users.utilisateur.nom)
                 this.setState({ userName: this.state.users.utilisateur.nom })
