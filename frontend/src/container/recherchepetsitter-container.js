@@ -1,9 +1,11 @@
-import React, { Component } from 'react'
+/*import React, { Component } from 'react'
 import axios from 'axios'
 import InputComponent from 'component/input-component'
 import SelectComponent from 'component/select-component'
 import ListItemComponent from 'component/list-item-component'
 import VignetteComponent from 'component/vignette-component'
+import ModalCnxContainer from '../container/modal-cnx-container'
+import { withRouter } from 'react-router-dom'
 
 import '../css/test.css'
 import ProfilDemandePettSitter from './profil-demande-pettsitter'
@@ -13,27 +15,28 @@ class RecherchePetsitter extends Component {
         super(props)
         // question a poser a nassim voir les criteres comme il sont dans le request ????
         this.state = {
-            garderChezPetsitter: 0,
-            garderChezVous: 0,
-            promenade: 0,
+            servicesRechercher: [],
+            // garderChezPetsitter: null,
+            // garderChezVous: null,
+            // promenade: null,
             numero_rue: '',
             nom_rue: '',
             code_postal: '',
-            ville: 'toto',
+            ville: '',
             pays: '',
             dateDebut: '',
             dateFin: '',
             typeAnimal: '',
             infolettre: '',
 
-            resultatRecherche: false,
-            rechercher: false,
+            resultatRecherche: true,
             infosRecherche: [],
-            username: '',
             recherche: false,
             resultat: [],
             province: '',
-            servicesTotal: []
+            servicesTotal: [],
+            show: false
+
             // idUser: false
         }
 
@@ -45,6 +48,13 @@ class RecherchePetsitter extends Component {
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleAfficherSitterOnClick = this.handleAfficherSitterOnClick.bind(this)
         this.handleEnvoyerDemandeOnClick = this.handleEnvoyerDemandeOnClick.bind(this)
+        this.onHandleClose = this.onHandleClose.bind(this)
+    }
+
+    onHandleClose () {
+        this.setState({
+            show: false
+        })
     }
 
     componentDidMount () {
@@ -57,7 +67,6 @@ class RecherchePetsitter extends Component {
                 console.log('services', service)
                 localStorage.setItem('servicestotal', JSON.stringify(service))
                 this.setState({ servicesTotal: service })
-            // event.preventDefault()
             })
             .catch(err => {
                 console.log('erreur recherche:', err)
@@ -71,13 +80,10 @@ class RecherchePetsitter extends Component {
     handleChange (event) {
         switch (event.target.id) {
         case 'garderChezPetsitter':
-
-            this.setState({ garderChezPetsitter: 1 })
-            // this.setState({ garderChezPetsitter: true })
+            this.state.servicesRechercher[0] = 1
             break
         case 'garderChezVous':
-
-            this.setState({ garderChezVous: 2 })
+            this.state.servicesRechercher[0] = 2
             break
         case 'dateDebut':
             this.setState({ dateDebut: event.target.value })
@@ -86,9 +92,14 @@ class RecherchePetsitter extends Component {
             this.setState({ dateFin: event.target.value })
             break
         case 'promenade':
-            this.setState({ promenade: 3 })
+            if (this.state.servicesRechercher[1] === 3) {
+                this.state.servicesRechercher.splice(1, 1)
+            } else { this.state.servicesRechercher[1] = 3 }
+
+            // this.setState({ promenade: 3 })
             break
         case 'numeroRue':
+            console.log(event.target.value)
             this.setState({ numero_rue: event.target.value })
             break
         case 'nomRue':
@@ -112,33 +123,44 @@ class RecherchePetsitter extends Component {
     }
 
     handleSubmit (event) {
+        /* fetch('resultat-recherche.json', { method: 'GET' })
+            .then(response => response.json())
+            .then(response => {
+                const arrayTest = []
+                console.log(response.resultatRecherche)
+                response.resultatRecherche.map((info, index) => arrayTest.push(info))
+                console.log(arrayTest)
+                this.setState({ resultat: arrayTest })
+            })
+            */
         return axios
             .post('https://pets-friendly.herokuapp.com/recherche', {
 
-                services: [
-                    4
-                ],
+                services: this.state.servicesRechercher,
                 adresse: {
-                    numero_rue: 1890,
-                    nom_rue: 'parthenais',
-                    code_postal: 'H2K 3S3',
-                    ville: 'montreal',
-                    pays: 'canada'
+                    numero_rue: this.state.nom_rue,
+                    nom_rue: this.state.nom_rue,
+                    code_postal: this.state.code_postal,
+                    ville: this.state.ville,
+                    province: this.state.province,
+                    pays: this.state.pays
                 }
 
             })
-        // .then(response => console.log(response.data))
+        //  .then(response => console.log('reponse avant la assignatiion', response.data))
             .then(response => {
-                const arrayTest = []
-                response.data.map((info, index) => arrayTest.push(info))
-                console.log(arrayTest)
-                this.setState({ resultat: arrayTest })
-                // event.preventDefault()
+                if (response.data.length === 0) {
+                    this.setState({ resultatRecherche: false })
+                } else {
+                    this.setState({ resultat: response.data })
+                }
+                /*  const arrayResultat = []
+                response.data.map((info, index) => arrayResultat.push(info))
+                console.log(arrayResultat) */
             })
             .catch(err => {
                 console.log('erreur recherche:', err)
             })
-        // this.setState({ resultatRecherche: true })
     }
 
     handleAddOnClick () {
@@ -150,32 +172,23 @@ class RecherchePetsitter extends Component {
     }
 
     handleAfficherSitterOnClick (event) {
+        console.log(this.state.resultat[event.target.name])
+        console.log(this.state.dateDebut)
+        console.log(this.state.dateFin)
+        localStorage.setItem('dateDebut', JSON.stringify(this.state.dateDebut))
+        localStorage.setItem('dateFin', JSON.stringify(this.state.dateFin))
+        localStorage.setItem('sitter', JSON.stringify(this.state.resultat[event.target.name]))
+        this.props.history.push('/demande')
         // localStorage.removeItem('sitter')
 
         // console.log('local Storage:', JSON.parse(localStorage.getItem('sitter')))
     }
 
     handleEnvoyerDemandeOnClick (event) {
-        console.log(this.state.resultat[event.target.name])
         localStorage.setItem('sitter', JSON.stringify(this.state.resultat[event.target.name]))
-        // alert('demande envoyer' + event.target.name)
     }
 
     render () {
-        const rechercheInfo = {
-            services: [
-                this.state.garderChezPetsitter,
-                this.state.garderChezVous,
-                this.state.promenade
-            ],
-            adresse: {
-                numero_rue: this.state.numero_rue,
-                nom_rue: this.state.nom_rue,
-                code_postal: this.state.code_postal,
-                ville: this.state.ville,
-                pays: this.state.pays
-            }
-        }
         const TYPEANIMAL = [
             {
                 label: 'Chien',
@@ -183,28 +196,23 @@ class RecherchePetsitter extends Component {
             }, {
                 label: 'Chat',
                 value: 'Chat'
-            }, {
-                label: 'Autre',
-                value: 'Autre'
             }]
-        /* [
+
+        /* const servicesTotal = [
             {
                 id: 1,
                 description: 'Promenade',
                 prix_service: 20
-            },
-            {
+            }, {
                 id: 2,
-                description: 'Garder Chez Vous',
-                prix_service: 15
-            },
-            {
+                description: 'garder a la maison ',
+                prix_service: 45
+            }, {
                 id: 3,
-                description: 'Garder Chez Pet Sitter',
-                prix_service: 20
-            }
+                description: 'gardez chez vous ',
+                prix_service: 15
+            }] */
 
-        ] */
         function niveauPetSitter (niveau) {
             let niveauSitter = ''
             if (niveau > 0 && niveau < 50) {
@@ -221,9 +229,9 @@ class RecherchePetsitter extends Component {
             return niveauSitter
         }
         console.log('recherche info : ', this.state.servicesTotal)
-        console.log('state :', this.state.resultat)
+        console.log('state :', this.state)
+        console.log('Services recherche', this.state.servicesRechercher)
 
-        // voir les dates dans le formulaire a chaque fois il y a des erreus dans la console qui pointe le fait de ne pas avoir la bonne valeur date.now??
         return (
             <div>
 
@@ -244,14 +252,16 @@ class RecherchePetsitter extends Component {
                     <InputComponent classCss='form-group' classInput='form-control' textLabel='Nom de la rue' type='text' id='nomRue' name='nom de la rue' onChange={this.handleChange} />
                     <InputComponent classCss='form-group' classInput='form-control' textLabel='Code postal' type='text' id='secteurAction' name='secteurAction' onChange={this.handleChange} />
                     <InputComponent classCss='form-group' classInput='form-control' textLabel='Ville' type='text' id='ville' name='ville' onChange={this.handleChange} />
+                    <InputComponent classCss='form-group' classInput='form-control' textLabel='Province' type='text' id='province' name='province' onChange={this.handleChange} />
+
                     <InputComponent classCss='form-group' classInput='form-control' textLabel='pays' type='text' id='pays' name='pays' onChange={this.handleChange} />
                     <SelectComponent classCss='form-group' classInput='form-control' textLabel='Type de animal:' id='typeAnimal' name='TypeAnimal' options={TYPEANIMAL} onChange={this.handleChangeSelect} value={this.state.typeAnimal} />
                     <InputComponent classInput='btn btn-outline-success' type='submit' id='rechercher' name='Rechercher ' value='rechercher' onClick={this.handleSubmit} />
                 </div>
-                {this.state.idUser ? <ProfilDemandePettSitter idSitter={this.state.idUser} /> : ''}
+                {this.state.resultatRecherche ? '' : <h1 className='text-danger'>Aucun sitter a ete retrouver autour de votre zone dans votres criteres Veuillez nous contacter</h1>}
                 <div className='row'>
-                    {this.state.resultat ? this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} rating={niveauPetSitter(resultat.rating)} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' servicesTotal={this.state.servicesTotal} servicesSitter={resultat.services} id={index} />) : ''}
-                    <button onClick={this.handleSaveOnClick}>retour recherche</button>
+                    {this.state.resultat ? this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} rating={niveauPetSitter(resultat.rating)} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger w-100 p-3 mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' servicesTotal={this.state.servicesTotal} servicesSitter={resultat.services} id={index} />) : ''}
+
                 </div>
 
                 <div id='divPlubicite2'>
@@ -264,7 +274,7 @@ class RecherchePetsitter extends Component {
                         </div>
                         <div className='col-lg-4 mx-auto border border-danger rounded'>
                             {/* METTRE UN ICONE DANS LAVANT DE LES LI POUR LA PUBLICITER */}
-                            <ListItemComponent text='Tout les nouveaux gardiens passent une verification des antecedents de base' className='fas fa-check' />
+                        /*    <ListItemComponent text='Tout les nouveaux gardiens passent une verification des antecedents de base' className='fas fa-check' />
                             <ListItemComponent text='Tout les gardiens fournissent un profil detaille et des informations personnel ' className='fas fa-check' />
                             <ListItemComponent text='tout les Pet Sitter sont agrees par notre equipe de specialistes chez Pets Friendly' className='fas fa-check' />
                         </div>
@@ -278,12 +288,9 @@ class RecherchePetsitter extends Component {
                         <InputComponent classInput='btn btn-outline-danger' type='submit' id='infolettreButton' name='Envoyer ' value='Envoyer' />
                     </form>
                 </div>
-
-                <button onClick={this.props.onHandleSaveOnClickRichard}>retour a la page developement</button>
-
             </div>
         )
     }
 }
 
-export default RecherchePetsitter
+export default withRouter(RecherchePetsitter)

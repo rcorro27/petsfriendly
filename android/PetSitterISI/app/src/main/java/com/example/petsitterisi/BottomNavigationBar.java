@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.example.petsitterisi.managers.UtilisateurManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class BottomNavigationBar extends FragmentActivity {
         BottomNavigationView bottomNav;
@@ -41,6 +42,7 @@ public class BottomNavigationBar extends FragmentActivity {
         String valeurNavigationChat =  "false";
         String valeurNavigationDemande =  "false";
         String valeurNavigationFeedBack =  "false";
+        String valeurNavigationChatDiscussion =  "false";
 
         Intent intentValeur = getIntent();
         String extraValue = intentValeur.getStringExtra("list_pet_sitter");
@@ -73,6 +75,12 @@ public class BottomNavigationBar extends FragmentActivity {
             valeurNavigationFeedBack = extraValue6;
         }
 
+        String extraValue7 = intentValeur.getStringExtra("ChatDiscussion");
+        if(extraValue7 != null){
+            valeurNavigationChatDiscussion = extraValue7;
+        }
+
+
 
         super.onCreate(savedInstanceState);
         //cacher temporairement  la bare d'etat du haut
@@ -102,7 +110,7 @@ public class BottomNavigationBar extends FragmentActivity {
         else if (valeurNavigationChat.equals("true")){
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new ChatFragment()).commit();
+                   new ChatFragment()).commit();
         }
         else if (valeurNavigationDemande.equals("true")){
 
@@ -113,6 +121,11 @@ public class BottomNavigationBar extends FragmentActivity {
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new RechercheFragment()).commit();
+        }
+        else if (valeurNavigationChatDiscussion.equals("true")){
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new MessageList()).commit();
         }
         else {
 
@@ -142,11 +155,17 @@ public class BottomNavigationBar extends FragmentActivity {
                             selectedFragment = new RechercheFragment();
                             break;
                         case R.id.nav_demandes:
-<<<<<<< HEAD
-                            selectedFragment = new PlaningsFragment();
-=======
-                            selectedFragment = new ReservationFragment();
->>>>>>> 9c65e208265a2502be4e271c2af429c4105a0e69
+
+                            int id_role = UtilisateurManager.getIdUtilisateurRole(ctx);
+
+                            if(id_role == 2){
+                                selectedFragment = new ReservationFragment();
+                            }else if(id_role == 3){
+                                selectedFragment = new PlaningsFragment();
+                            }
+
+                           selectedFragment = new ReservationFragment();
+
                             break;
                         case R.id.nav_favoris:
                             selectedFragment = new FavorisFragment();

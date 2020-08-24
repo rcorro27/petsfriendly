@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.petsitterisi.managers.UtilisateurManager;
 import com.example.petsitterisi.services.ApiListFavorisFetcher;
 import com.example.petsitterisi.services.ApiListReservationFetcher;
 public class ReservationFragment extends Fragment {
@@ -26,15 +27,18 @@ public class ReservationFragment extends Fragment {
         ctx = lesReservationProprietaire.getContext();
 
         reservation_container = lesReservationProprietaire.findViewById(R.id.ll_liste_reservation);
-        dialog_commentaire = new Dialog(ctx);
 
-        ApiListReservationFetcher apiListReservationFetcher = new ApiListReservationFetcher(ctx, reservation_container);
-        apiListReservationFetcher.execute("");
+
+        int utilisateurId = UtilisateurManager.getIdUtilisateur(ctx);
+        try {
+            ApiListReservationFetcher apiListReservationFetcher = new ApiListReservationFetcher(ctx, reservation_container);
+            apiListReservationFetcher.execute("https://pets-friendly.herokuapp.com/contrats/recuperation/utilisateur/"+utilisateurId);
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
 
         return lesReservationProprietaire;
-
-
-
 
     }
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ServiceDemandeComponent from '../component/services-demande-component'
 import FeedBackCommentaire from '../component/feedback-commentaire-component'
 import FactureDemandeComponent from '../component/facture-demande-component'
-import axios from 'axios'
+import { withRouter } from 'react-router-dom'
 // import PetSitterInput from 'component/PetSitterInput'
 
 class ProfilDemandePettSitter extends Component {
@@ -16,13 +16,14 @@ class ProfilDemandePettSitter extends Component {
             servicesTotal: []
 
         }
+        this.handleClick = this.handleClick.bind(this)
     }
 
-    componentDidMount () {
-        return axios
-            .get('https://pets-friendly.herokuapp.com/services/recuperation/tout')
+    handleClick () {
+        alert('Demande Envoyee')
+        this.props.history.push('/')
         // .then(response => console.log(response.data))
-            .then(response => {
+        /* .then(response => {
                 const service = []
                 response.data.map((info, index) => service.push(info))
                 console.log(service)
@@ -31,18 +32,31 @@ class ProfilDemandePettSitter extends Component {
             })
             .catch(err => {
                 console.log('erreur recherche:', err)
-            })
+            }) */
+    }
+
+    handleSubmit () {
+
     }
 
     render () {
+        function niveauPetSitter (niveau) {
+            let niveauSitter = ''
+            if (niveau > 0 && niveau < 50) {
+                niveauSitter = 'Debutant'
+            } else if (niveau >= 50 && niveau < 100) {
+                niveauSitter = 'Normal'
+            } else if (niveau >= 100 && niveau < 200) {
+                niveauSitter = 'Intermediare'
+            } else if (niveau >= 200 && niveau < 400) {
+                niveauSitter = 'Proffesionel'
+            } else if (niveau >= 400) {
+                niveauSitter = 'Expert'
+            }
+            return niveauSitter
+        }
         const sitter = JSON.parse(localStorage.getItem('sitter'))
-        // const priceTotal = 0
-        // const price = sitter.services.map((price, index) => priceTotal + service[price - 1].prix_service)
-        /* function name () {
-            const priceTotalSansTaxe = 0
-            sitter.services.map((info, index) => priceTotalSansTaxe + service[info - 1].prix_service)
-            return priceTotalSansTaxe
-        } */
+        const service = JSON.parse(localStorage.getItem('servicestotal'))
         function PrixAvantTaxes (prix) {
             let prixAvantTaxes = 0
             prix.map((infoPrix, index) => {
@@ -63,28 +77,26 @@ class ProfilDemandePettSitter extends Component {
             const prixTotal = Math.ceil(PrixAvantTaxes(prix) + TVQ(prix) + TPS(prix))
             return prixTotal
         }
-
-        const service = JSON.parse(localStorage.getItem('servicestotal'))
         const feedback = [
             {
                 nameProprietaire: 'Carlos',
                 dateCommentaire: '21/05/2020',
-                commentaire: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged'
+                commentaire: 'Bonne sitter, excelent service je le recommende'
             },
             {
                 nameProprietaire: 'Maria',
                 dateCommentaire: '21/08/2019',
-                commentaire: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged'
+                commentaire: 'Bonne sitter, excelent service je le recommende, il a pris vraiment soins de notre chat '
             },
             {
                 nameProprietaire: 'Ricardo',
                 dateCommentaire: '21/04/2018',
-                commentaire: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged'
+                commentaire: 'Bonne sitter, excelent service , mauvais actitud '
             },
             {
                 nameProprietaire: 'Stefanie',
                 dateCommentaire: '21/05/2020',
-                commentaire: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged'
+                commentaire: 'Bonne sitter, excelent service , tres  bonne actitud , je le prendais encore une fois  '
             }
 
         ]
@@ -101,14 +113,14 @@ class ProfilDemandePettSitter extends Component {
         return (
             <div>
                 <div>
-                    <h1 className='h1 w-25 p-3 mx-auto'>Demande services sitter </h1>
+                    <h1 className='h1 w-25 p-3 mx-auto'>Demande Service </h1>
                 </div>
                 <div className='row m-5 bg-white border border-danger rounded shadow'>
-                    <img src='../src/img/caroussel/image1.jpeg' alt='Carlos' className='img-fluid rounded-circle w-25 p-3' />
+                    <img src={sitter.url_photo} alt={sitter.nom} className='img-fluid rounded-circle w-25 p-3' />
                     <div className='m-5'>
                         <h2 className='h2'>{sitter.nom}</h2>
                         <h3 className='h6'>{sitter.secteur_action}</h3>
-                        <h6 className='h6'>{sitter.rating}</h6>
+                        <h6 className='h6'>{niveauPetSitter(sitter.rating)}</h6>
                     </div>
                     <div className='m-5'>
                         <input type='button' value='Contacter' className='btn btn-success m-2' />
@@ -128,7 +140,7 @@ class ProfilDemandePettSitter extends Component {
                     </div>
                 </div>
 
-                <div className=' m-5 w-50 p-3 float-right border border-danger rounded bg-white  shadow'>
+                <div className=' w-100 p-5 float-right border border-danger rounded bg-white  shadow'>
 
                     <h2 className=' h2 w-25 p-3 mx-auto'>Prix des services</h2>
                     <div>
@@ -141,16 +153,14 @@ class ProfilDemandePettSitter extends Component {
                             <p>{TPS(sitter.services)}</p>
                             <p>{TVQ(sitter.services)}</p>
                             <p><strong>{PrixAvecTaxes(sitter.services)}</strong></p>
-                            <input type='button' value='Envoyer Demande' className='btn btn-success' />
+                            <input type='button' value='Envoyer Demande' className='btn btn-success' onClick={this.handleClick} />
                         </div>
 
                     </div>
                 </div>
-
-                <button onClick={this.props.onHandleSaveOnClickRichard}>retour a la page developement</button>
             </div>
         )
     }
 }
-// tu ne exporte pas la bon classe!!! tu dois exporter la classe container dans ce cas la : FormInscription!!
-export default ProfilDemandePettSitter
+
+export default withRouter(ProfilDemandePettSitter)

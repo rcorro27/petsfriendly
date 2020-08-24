@@ -17,6 +17,14 @@ function utilisateurConnexion(req, res) {
                 res.setHeader('Content-Type', 'application/json');
                 res.end(JSON.stringify({ "erreur": 400 }))
                 return undefined
+            }else if (resultatRequeteSqlUtilisateur.rows[0].est_valide === false){
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({ "erreur": 300 }))
+                return undefined
+            }else if (resultatRequeteSqlUtilisateur.rows[0].est_active === false){
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({ "erreur": 200 }))
+                return undefined
             }
 
             //requete sql pour adresse
@@ -114,10 +122,8 @@ function utilisateurCreation(req, res) {
                                             mail.envoyerMailAuPetsitter(mailOptions)
                                         }
 
-                                        console.log(mailOptions)
 
-                                        res.setHeader('Content-Type', 'application/json');
-                                        res.end(JSON.stringify({}))
+                                        res.redirect('/');
 
                                         return undefined
                                     } else {
@@ -302,7 +308,7 @@ function utilisateurRecuperation(req, res) {
 
 //la fonction appelee par la route de recuperation de tout les utilisateurs
 function utilisateurRecuperationTout(req, res) {
-    let sql = "SELECT id, id_role, nom, prenom, age, email, telephone, sexe FROM utilisateur"
+    let sql = "SELECT id, id_role, nom, prenom, age, email, telephone, sexe, est_active, est_valide, url_photo FROM utilisateur ORDER BY id"
 
     //requete sql pour utilisateur
     bd.excuterRequete(sql, [])
@@ -352,29 +358,67 @@ function utilisateurSuppression(req, res) {
 
 //la fonction appelee par la route de recuperation de petsitters
 function petsittersRecuperation(req, res) {
-    let resultatRequeteHttp = []
 
-    let sql = "SELECT * FROM utilisateur WHERE id_role=3"
+    let sql = "SELECT id, nom, prenom, email, est_valide, remuneration_petsitter, id_adresse, est_valide, est_active FROM utilisateur WHERE id_role=3  ORDER BY id"
 
     //requete sql pour utilisateur
     bd.excuterRequete(sql, [])
-        .then(resultatRequeteSqlUtilisateur => {
-            //pour ajoute les info importante de chaque petsitter dans un obj a l'interieur du tableau
-            resultatRequeteSqlUtilisateur.rows.map((petsitter, index) => {
-                let infoSitter = {"id": petsitter.id, "nom": petsitter.nom, "prenom": petsitter.prenom, "email": petsitter.email, "est_valide": petsitter.est_valide}
-                resultatRequeteHttp.push(infoSitter)
-            })
+        .then(async resultatRequeteSqlPetsitters => {
+
+            //pour chaque petsitter on va recuperer son adresse pour l'ajouter apres dans la reponse
+            for (let i=0; i < resultatRequeteSqlPetsitters.rows.length; i++)
+            {
+                await recupererAdresseUtilisateur(resultatRequeteSqlPetsitters.rows[i].id_adresse)
+                .then(async resultatRequeteSqlAdresse => {
+
+                    // ajouter l'adresse dans la reponse du petsitter
+                    resultatRequeteSqlPetsitters.rows[i].numero_rue = resultatRequeteSqlAdresse.rows[0].numero_rue
+                    resultatRequeteSqlPetsitters.rows[i].nom_rue = resultatRequeteSqlAdresse.rows[0].nom_rue
+                    resultatRequeteSqlPetsitters.rows[i].code_postal = resultatRequeteSqlAdresse.rows[0].code_postal
+                    resultatRequeteSqlPetsitters.rows[i].ville = resultatRequeteSqlAdresse.rows[0].ville
+                    resultatRequeteSqlPetsitters.rows[i].province = resultatRequeteSqlAdresse.rows[0].province
+                    resultatRequeteSqlPetsitters.rows[i].pays = resultatRequeteSqlAdresse.rows[0].pays
+                    resultatRequeteSqlPetsitters.rows[i].numero_appt = resultatRequeteSqlAdresse.rows[0].numero_appt
+
+                    //pour chaque petsitter on va recuperer ses services pour l'ajouter apres dans la reponse
+                    await trouverServicesPetsitter(resultatRequeteSqlPetsitters.rows[i].id)
+                    .then(async resultatRequeteSqlServicePetsitter => {
+    
+                        // creer le tableau d'id de services
+                        let servicesPetsitter = []
+                        resultatRequeteSqlServicePetsitter.rows.map((service, index) => {
+                        servicesPetsitter.push(parseInt(service.id_service))
+                        })
+                        
+                        //ajouter les services au petsitter
+                        resultatRequeteSqlPetsitters.rows[i].services = servicesPetsitter   
+                    })
+                    .catch(erreur => {
+                        console.error(erreur.stack)
+    
+                        res.setHeader('Content-Type', 'text/html');
+                        res.end(erreur.stack)
+                    })  
+
+                })
+                .catch(erreur => {
+                    console.error(erreur.stack)
+
+                    res.setHeader('Content-Type', 'text/html');
+                    res.end(erreur.stack)
+                })
+
+            }
+
 
             res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify(resultatRequeteHttp))
+            res.end(JSON.stringify(resultatRequeteSqlPetsitters.rows))
         })
         .catch(erreur => {
             console.error(erreur.stack)
 
             res.setHeader('Content-Type', 'text/html');
             res.end(erreur.stack)
-
-            return undefined
         })
 }
 
@@ -413,8 +457,7 @@ function petsitterActivation(req, res) {
         .then(resultatRequeteSqlUtilisateur => {
             if (resultatRequeteSqlUtilisateur.rowCount >= 1)
             {
-                res.setHeader('Content-Type', 'application/json');
-                res.end(JSON.stringify({}))
+                res.redirect('/');
             } else 
             {
                 res.setHeader('Content-Type', 'application/json');
@@ -442,8 +485,7 @@ function proprietaireActivation(req, res) {
         .then(resultatRequeteSqlUtilisateur => {
             if (resultatRequeteSqlUtilisateur.rowCount >= 1)
             {
-                res.setHeader('Content-Type', 'application/json');
-                res.end(JSON.stringify({}))
+                res.redirect('/');
             } else 
             {
                 res.setHeader('Content-Type', 'application/json');
@@ -475,6 +517,27 @@ function recupererAdresseUtilisateur(id_adresse) {
                 console.error(erreur.stack)
                 reject(erreur)
             })
+    })
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+
+function trouverServicesPetsitter(id_petsitter)
+{
+    return new Promise(async (resolve, reject) => {
+        let sql = "SELECT * FROM service_utilisateur WHERE id_petsitter=$1" 
+
+        //requete sql pour service
+        await bd.excuterRequete(sql, [id_petsitter]) 
+        .then(resultatRequeteSqlServicePetsitter => { 
+
+                resolve(resultatRequeteSqlServicePetsitter)
+        })
+        .catch(erreur => {
+            console.error(erreur.stack)
+
+            reject(erreur)
+        })
     })
 }
 

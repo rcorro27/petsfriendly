@@ -15,6 +15,7 @@ let contratRouter = require('./routes/contratRoutes')
 let planningRouter = require('./routes/planningRoutes')
 let rechercheRouter = require('./routes/rechercheRoutes')
 let favorisRouter = require('./routes/favorisRoutes')
+let PhotoRouter = require('./routes/photoRoute')
 
 //instancier le serveur
 let app = express()
@@ -33,8 +34,15 @@ app.use('/animaux', animalRouter)
 app.use('/services', serviceRouter)
 app.use('/promotions', promotionRouter)
 app.use('/contrats', contratRouter)
+<<<<<<< HEAD
 app.use('/plannings', planningRouter)
 app.use('/recherche', rechercheRouter)
+=======
+app.use('/favoris', favorisRouter)
+app.use('/plannings',  planningRouter)
+app.use('/recherche', rechercheRouter)
+app.use('/photos', PhotoRouter)
+>>>>>>> back_end
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
