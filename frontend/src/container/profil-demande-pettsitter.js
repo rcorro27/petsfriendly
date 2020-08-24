@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ServiceDemandeComponent from '../component/services-demande-component'
 import FeedBackCommentaire from '../component/feedback-commentaire-component'
 import FactureDemandeComponent from '../component/facture-demande-component'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import axios from 'axios'
 // import PetSitterInput from 'component/PetSitterInput'
 
@@ -18,8 +18,8 @@ class ProfilDemandePettSitter extends Component {
             servicesTotal: JSON.parse(localStorage.getItem('servicestotal')),
             dateDebut: JSON.parse(localStorage.getItem('dateDebut')),
             dateFin: JSON.parse(localStorage.getItem('dateFin')),
-            sitter: JSON.parse(localStorage.getItem('sitter')),
-            proprietaire: JSON.parse(localStorage.getItem('usertoken'))
+            sitter: JSON.parse(localStorage.getItem('sitter'))
+            //  proprietaire: JSON.parse(localStorage.getItem('usertoken'))
 
         }
         this.handleClick = this.handleClick.bind(this)
@@ -87,13 +87,15 @@ class ProfilDemandePettSitter extends Component {
             return niveauSitter
         }
         const sitter = JSON.parse(localStorage.getItem('sitter'))
-        const service = JSON.parse(localStorage.getItem('servicestotal'))
+        const serviceTotal = JSON.parse(localStorage.getItem('servicestotal'))
         const user = JSON.parse(localStorage.getItem('usertoken'))
 
         function PrixAvantTaxes (prix) {
             let prixAvantTaxes = 0
             prix.map((infoPrix, index) => {
-                prixAvantTaxes = prixAvantTaxes + service[infoPrix - 1].prix_service
+                console.log(prix)
+                console.log(serviceTotal[infoPrix - 1].prix_service)
+                prixAvantTaxes = prixAvantTaxes + serviceTotal[infoPrix - 1].prix_service
                 return prixAvantTaxes
             })
             return prixAvantTaxes
@@ -142,7 +144,7 @@ class ProfilDemandePettSitter extends Component {
         ]
         console.log('sitter', this.state)
         console.log('service', JSON.parse(localStorage.getItem('serviceRecherche')))
-        console.log('user apres le render', this.state.proprietaire.utilisateur.id)
+
         return (
 
             <div>
@@ -184,11 +186,11 @@ class ProfilDemandePettSitter extends Component {
 
                         </div>
                         <div className='float-right m-2 w-25 p-3'>
-                            <p><strong>{PrixAvantTaxes(sitter.services)}</strong></p>
-                            <p>{TPS(sitter.services)}</p>
-                            <p>{TVQ(sitter.services)}</p>
-                            <p><strong>{PrixAvecTaxes(sitter.services)}</strong></p>
-                            <input type='button' value='Envoyer Demande' className='btn btn-success' onClick={this.handleClick} />
+                            <p><strong>{PrixAvantTaxes(this.state.service)}</strong></p>
+                            <p>{TPS(this.state.service)}</p>
+                            <p>{TVQ(this.state.service)}</p>
+                            <p><strong>{PrixAvecTaxes(this.state.service)}</strong></p>
+                            <Link to='/payment'> <input type='button' value='Envoyer Demande' className='btn btn-success' /* onClick={this.handleClick} */ /></Link>
                         </div>
 
                     </div>

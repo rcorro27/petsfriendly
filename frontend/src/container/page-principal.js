@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Navbar from '../container/navbar-container'
 import Footer from '../component/Footer/Footer'
 import ProfilDemandePettSitter from '../container/profil-demande-pettsitter'
+import PaymentFormContainer from '../container/payment-form-container'
 
 class PagePrincipal extends Component {
     constructor (props) {
@@ -39,6 +40,7 @@ class PagePrincipal extends Component {
                     <Route exact path='/' component={FormContainer} />
                     <Route path='/profil' component={Profile} />
                     <Route path='/demande' component={ProfilDemandePettSitter} />
+                    <Route path='/payment' component={PaymentFormContainer} />
 
                 </Switch>
 
