@@ -7,40 +7,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="045a04c6-8cfb-428c-aee6-f6dbda5aaaca" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/epaisseur_tint_edit_text.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/rounded_corner_black_transparence_stroke.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/rounded_rectangle_photo_envoyer.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/font/abhaya_libre_bold.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/font/holtwood_one_sc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/photo_envoyer.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/video_background.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/raw/son_accueille_friendly.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/raw/son_message_envoye.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/raw/son_message_recu.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/raw/video_accueil_pub.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/raw/video_accueille_chiens.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/values/font_certs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/values/preloaded_fonts.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/icone_logo_appli-playstore.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/icone_logo_appli.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/icone_logo_appli_round.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/icone_logo_appli.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/icone_logo_appli_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/icone_logo_appli_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/icone_logo_appli.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/icone_logo_appli_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/icone_logo_appli_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/icone_logo_appli.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/icone_logo_appli_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/icone_logo_appli_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/icone_logo_appli.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/icone_logo_appli_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/icone_logo_appli_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/icone_logo_appli.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/icone_logo_appli_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/icone_logo_appli_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/logo_pets_friendly.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/values/icone_logo_appli_background.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/BottomNavigationBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/BottomNavigationBar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/Connexion.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/Connexion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/MessageList.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/MessageList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/ProfilPetSitter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/ProfilPetSitter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/rounded_corner_red_transparence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/rounded_corner_red_transparence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_connexion.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_connexion.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_message_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_message_list.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_chat.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_chat.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="kzr4t4qwvwz5mfwo" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Android_Accelerated_x86_Oreo" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -78,18 +73,18 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi" />
   </component>
   <component name="RecentsManager">
     <key name="android.template.741640851">
       <recent name="com.example.petsitterisi" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\kelfilal\OneDrive\Session 4 ETE ISI\Projet Final\mypetsitter\android\PetSitterISI\app\src\main\res\mipmap-xxxhdpi" />
       <recent name="C:\Users\kelfilal\OneDrive\Session 4 ETE ISI\Projet Final\mypetsitter\android\PetSitterISI\app\src\main\res\drawable" />
       <recent name="C:\Users\kelfilal\OneDrive\Session 4 ETE ISI\Projet Final\mypetsitter\android\PetSitterISI\app\src\main\res\layout" />
       <recent name="C:\Users\kelfilal\OneDrive\Session 4 ETE ISI\Projet Final\mypetsitter\android\PetSitterISI\app\src\main\res\raw" />
       <recent name="C:\Users\kelfilal\OneDrive\Session 4 ETE ISI\Projet Final\mypetsitter\android\PetSitterISI\app\src\main\res\drawable-xhdpi" />
-      <recent name="D:\dev\projet final\mypetsitter\android\PetSitterISI\app\src\main\assets" />
     </key>
   </component>
   <component name="RunManager">
@@ -182,10 +177,10 @@
       <screen x="-1600" y="0" width="1600" height="900" />
     </state>
     <state x="-1578" y="206" key="Downloadable.Font.Dialog.Size/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598237548316" />
-    <state x="-983" y="246" key="FileChooserDialogImpl" timestamp="1598230859313">
+    <state x="-983" y="246" key="FileChooserDialogImpl" timestamp="1598269048463">
       <screen x="-1600" y="0" width="1600" height="900" />
     </state>
-    <state x="-983" y="246" key="FileChooserDialogImpl/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598230859313" />
+    <state x="-983" y="246" key="FileChooserDialogImpl/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598269048463" />
     <state x="740" y="295" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1597935755670" />
     <state width="1557" height="235" key="GridCell.Tab.0.bottom" timestamp="1598263716783">
       <screen x="-1600" y="0" width="1600" height="900" />
