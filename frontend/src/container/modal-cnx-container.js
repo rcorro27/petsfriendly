@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import ConnectionPopUp from '../container/connection-container'
 import { login } from '../fonctions/UserFunctions'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 class ModalCnxContainer extends Component {
     constructor (props) {
@@ -118,7 +118,7 @@ class ModalCnxContainer extends Component {
 
     render () {
         return (
-            <Modal show={this.props.show} onHide={this.props.onHandleClose}>
+            <Modal show={this.props.show} onHide={this.props.onHide}>
                 <Modal.Header closeButton>
                     <Modal.Title>Page Connexion</Modal.Title>
                 </Modal.Header>

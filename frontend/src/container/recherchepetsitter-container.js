@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 import axios from 'axios'
 import InputComponent from 'component/input-component'
 import SelectComponent from 'component/select-component'
@@ -8,7 +9,7 @@ import VignetteComponent from 'component/vignette-component'
 import { withRouter } from 'react-router-dom'
 
 import '../css/test.css'
-import ProfilDemandePettSitter from './profil-demande-pettsitter'
+// import ProfilDemandePettSitter from './profil-demande-pettsitter'
 
 class RecherchePetsitter extends Component {
     constructor (props) {

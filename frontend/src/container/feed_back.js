@@ -59,7 +59,7 @@ class FormFeedBack extends Component {
                         {this.state.resultat.map((resultat, index) =>
                             <VignetteFeedBack
                                 urlPhoto={resultat.url_photo} nom={resultat.nom} secteur_action={resultat.secteur_action}
-                                type='radio' className='feedBack' key={index} onChangeEtat={this.handleChange} onChangeTextArea={this.handelEnvoiCommentaire} name={resultat.nom}
+                                type='radio' className='feedBack' key={index} onChangeEtat={this.handleChange} onChangeTextArea={this.handelEnvoiCommentaire.bind(this)} name={resultat.nom}
                                 values={['pro', 'moyen', 'intermediaire', 'amateur', 'apprentie']}
 
                             />
