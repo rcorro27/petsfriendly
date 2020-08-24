@@ -3,6 +3,7 @@ import ServiceDemandeComponent from '../component/services-demande-component'
 import FeedBackCommentaire from '../component/feedback-commentaire-component'
 import FactureDemandeComponent from '../component/facture-demande-component'
 import { withRouter } from 'react-router-dom'
+import axios from 'axios'
 // import PetSitterInput from 'component/PetSitterInput'
 
 class ProfilDemandePettSitter extends Component {
@@ -13,15 +14,54 @@ class ProfilDemandePettSitter extends Component {
             recherche: false,
             resultat: [],
             prixSitter: [],
-            servicesTotal: []
+            servicesTotal: [],
+            dateDebut: false,
+            dateFin: false,
+            idSitter: false,
+            idProprietaire: false
 
         }
         this.handleClick = this.handleClick.bind(this)
     }
 
     handleClick () {
-        alert('Demande Envoyee')
-        this.props.history.push('/')
+        return axios
+            .post('https://pets-friendly.herokuapp.com/contrats/creation', {
+
+                utilisateur: {
+                    id_proprietaire: 11,
+                    id_petsitter: 30
+                },
+                contrat: {
+                    date_debut: '2020-10-01',
+                    date_fin: '2020-10-26'
+                },
+                service: [
+                    2,
+                    4
+                ],
+                promotion: {
+                    id_promotion: 1
+                }
+
+            })
+        // .then(response => console.log('creation de contrat apres le envoie de la demande contrat', response))
+            .then(response => {
+                if (Object.keys(response.data).length === 0) {
+                    alert('Demande Envoyee')
+                    this.props.history.push('/')
+                } else {
+                    console.log('demande pas envoyer')
+                }
+            })
+        //   .then(response => console.log('creation de contrat apres le envoie de la demande contrat', response))
+        /* .then(
+                alert('Demande Envoyee'),
+                this.props.history.push('/'))
+            .catch(err => {
+                console.log('erreur recherche:', err)
+            }) */
+
         // .then(response => console.log(response.data))
         /* .then(response => {
                 const service = []
@@ -40,6 +80,14 @@ class ProfilDemandePettSitter extends Component {
     }
 
     render () {
+        function setSitterId (params) {
+            this.setState({ idSitter: sitter.id })
+            return ''
+        }
+        function unsetSitterId () {
+            this.setState({ idSitter: false })
+        }
+
         function niveauPetSitter (niveau) {
             let niveauSitter = ''
             if (niveau > 0 && niveau < 50) {
@@ -57,6 +105,9 @@ class ProfilDemandePettSitter extends Component {
         }
         const sitter = JSON.parse(localStorage.getItem('sitter'))
         const service = JSON.parse(localStorage.getItem('servicestotal'))
+        const dateDebut = JSON.parse(localStorage.getItem('dateDebut'))
+        const dateFin = JSON.parse(localStorage.getItem('dateFin'))
+        const user = JSON.parse(localStorage.getItem('usertoken'))
         function PrixAvantTaxes (prix) {
             let prixAvantTaxes = 0
             prix.map((infoPrix, index) => {
@@ -107,11 +158,12 @@ class ProfilDemandePettSitter extends Component {
             'TOTAL avec taxes :'
 
         ]
-        console.log(sitter)
-        console.log(this.state.servicesTotal)
-        console.log('services total : ', JSON.parse(localStorage.getItem('servicestotal')))
+        console.log(sitter.id)
+        console.log(this.state.idSitter)
         return (
             <div>
+                {this.state.idSitter === false ? setSitterId : unsetSitterId}
+
                 <div>
                     <h1 className='h1 w-25 p-3 mx-auto'>Demande Service </h1>
                 </div>

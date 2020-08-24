@@ -58,7 +58,6 @@ function favorisSuppression(req, res) {
 
     bd.excuterRequete(sql, [req.body.id])
         .then(resultatRequete => {
-            //verifie s'il y a une ligne a supprimer
             if (resultatRequete.rowCount >= 1) {
                 res.setHeader('Content-Type', 'application/json')
                 res.end(JSON.stringify({}))

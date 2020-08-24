@@ -157,6 +157,7 @@ create table if not exists infos_bd
 ALTER TABLE feedback ADD COLUMN date_creation date NOT NULL DEFAULT NOW();
 ALTER TABLE contrat ALTER COLUMN id_facture DROP NOT NULL;
 ALTER TABLE animal_utilisateur ADD COLUMN id_animal int NOT NULL;
+ALTER TABLE animal_utilisateur DROP COLUMN id_petsitter;
 
  
 INSERT INTO role_utilisateur (type_role, definition) VALUES ('administrateur', 'le administrateur qui gere les donnes par une interface web');

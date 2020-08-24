@@ -54,47 +54,45 @@ function contratCreation(req, res) {
 
 //-----------------------------------------------------------------------------------------------------------------------------
 
-function contratAcceptation(req, res) 
-{                               
-                 // ***************  ajout du planning  ****************
-        ajoutPlanning(req)
+function contratAcceptation(req, res) {
+    // ***************  ajout du planning  ****************
+    ajoutPlanning(req)
         .then(resultatRequetePlanning => {
 
-                         // ***************  desactivation du contrat pour les autres petsitters  ****************
-                    contratDesactivation(req)
-                    .then(resultatRequeteContrat => {
-                        
-                                         // ***************  activation du contrat pour  ce petsitter ****************
-                                    contratActivation(req)
-                                    .then(contratActivation => {
-                                        res.setHeader('Content-Type', 'application/json');
-                                        res.end(JSON.stringify({}))
-                                    })
-                                    .catch(erreur => {
-                                        console.error(erreur.stack)
-                                        res.setHeader('Content-Type', 'text/html')
-                                        res.end(erreur.stack)
-                                    })
+            // ***************  desactivation du contrat pour les autres petsitters  ****************
+            contratDesactivation(req)
+                .then(resultatRequeteContrat => {
 
-                    })
-                    .catch(erreur => {
+                    // ***************  activation du contrat pour  ce petsitter ****************
+                    contratActivation(req)
+                        .then(contratActivation => {
+                            res.setHeader('Content-Type', 'application/json');
+                            res.end(JSON.stringify({}))
+                        })
+                        .catch(erreur => {
                             console.error(erreur.stack)
                             res.setHeader('Content-Type', 'text/html')
                             res.end(erreur.stack)
-                    })
+                        })
+
+                })
+                .catch(erreur => {
+                    console.error(erreur.stack)
+                    res.setHeader('Content-Type', 'text/html')
+                    res.end(erreur.stack)
+                })
 
         })
-       .catch(erreur => {
-       console.error(erreur.stack)
-        res.setHeader('Content-Type', 'text/html')
-        res.end(erreur.stack)
-         })
+        .catch(erreur => {
+            console.error(erreur.stack)
+            res.setHeader('Content-Type', 'text/html')
+            res.end(erreur.stack)
+        })
 }
 
 //----------------------------------------------------------------------------------------------------------------------------
 
-function contratDesactivation(req)
-{
+function contratDesactivation(req) {
     return new Promise((resolve, reject) => {
         let sql = "UPDATE contrat SET est_accepte=false, est_lu_proprietaire=false, est_lu_petsitter=false, encore_disponible=false" 
                  + " FROM contrat c INNER JOIN contrat_utilisateur t ON c.id=t.id_contrat"
@@ -107,26 +105,25 @@ function contratDesactivation(req)
             .catch(erreur => {
                 reject(erreur)
             })
-        })
+    })
 }
-function contratActivation(req)
-{
+function contratActivation(req) {
     return new Promise((resolve, reject) => {
-        let sql = "UPDATE contrat SET est_accepte=true, est_lu_proprietaire=false, est_lu_petsitter=false, encore_disponible=false" 
-                 +" WHERE id=$1"
+        let sql = "UPDATE contrat SET est_accepte=true, est_lu_proprietaire=false, est_lu_petsitter=false, encore_disponible=false"
+            + " WHERE id=$1"
 
         bd.excuterRequete(sql, [req.body.contrat.id_contrat])
             .then(resultatRequeteContrat => {
                 if (resultatRequeteContrat.rowCount >= 1) {
                     resolve(resultatRequeteContrat)
                 } else {
-                    reject ({"erreur" : 400})
+                    reject({ "erreur": 400 })
                 }
             })
             .catch(erreur => {
                 reject(erreur)
             })
-        })
+    })
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------

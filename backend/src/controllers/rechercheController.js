@@ -14,7 +14,7 @@ function recherchePetsitters(req, res)
 
     let reponseRequeteHttp = []
 
-    let sql = "SELECT * FROM utilisateur WHERE id_role=3 AND est_disponible=true" 
+    let sql = "SELECT * FROM utilisateur WHERE id_role=3 AND est_disponible=true"
 
     //requete sql pour recuperer tout les petsitters
     bd.excuterRequete(sql, []) 
@@ -108,29 +108,28 @@ function recherchePetsitters(req, res)
     .catch(erreur => {
         console.error(erreur.stack)
 
-        res.setHeader('Content-Type', 'text/html');
-        res.end(erreur.stack)
-    })
+            res.setHeader('Content-Type', 'text/html');
+            res.end(erreur.stack)
+        })
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
 
-function trouverServicesPetsitter(id_petsitter)
-{
+function trouverServicesPetsitter(id_petsitter) {
     return new Promise(async (resolve, reject) => {
-        let sql = "SELECT * FROM service_utilisateur WHERE id_petsitter=$1" 
+        let sql = "SELECT * FROM service_utilisateur WHERE id_petsitter=$1"
 
         //requete sql pour service
-        await bd.excuterRequete(sql, [id_petsitter]) 
-        .then(resultatRequeteSqlServicePetsitter => { 
+        await bd.excuterRequete(sql, [id_petsitter])
+            .then(resultatRequeteSqlServicePetsitter => {
 
                 resolve(resultatRequeteSqlServicePetsitter)
         })
         .catch(erreur => {
             console.error(erreur.stack)
 
-            reject(erreur)
-        })
+                reject(erreur)
+            })
     })
 }
 
@@ -156,24 +155,18 @@ function verifierSecteurActionPetsitter(req, petsitter)
                 if (!err)
                 {
                     // si tout est correct on renvoie un true
-                    if (distances.status === "OK" && distances.rows[0].elements[0].status === "OK" && distances.rows[0].elements[0].distance.value <= petsitter.secteur_action * 10000) {
+                    if (distances.status === "OK" && distances.rows[0].elements[0].status === "OK" && distances.rows[0].elements[0].distance.value <= petsitter.secteur_action * 1000) {
                         resolve(true)
                     } else {
                         resolve(false)
                     }
                 }
-                else 
-                {
-                    reject(err)
-                }
+
+                })
             })
-
-
-        })
-        .catch(erreur => {
-            reject(erreur)
-        })
-
+            .catch(erreur => {
+                reject(erreur)
+            })
     })
 }
 
