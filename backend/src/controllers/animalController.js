@@ -2,17 +2,17 @@ const bd = require('../servers/bd')
 const { Animal } = require('../models/animal')
 
 //la fonction appelee par la route ajout d'animal   
-function animalAjout(req, res) {
-
+async function animalAjout(req, res) {
+    
     let sql = "INSERT INTO animal (race, type_animal, poids_animal, sexe_animal, nom_animal, age_animal, url_photo_animal) VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING *"
 
     //execution de la requete
-    bd.excuterRequete(sql, [req.body.animal.race, req.body.animal.type_animal, req.body.animal.poids_animal, req.body.animal.sexe_animal, req.body.nom_animal, req.body.age_animal, req.body.url_photo_animal])//reqccuperer req.body
-        .then(resultatRequete => {
+    await bd.excuterRequete(sql, [req.body.animaux.race, req.body.animaux.type_animal, req.body.animaux.poids_animal, req.body.animaux.sexe_animal, req.body.animaux.nom_animal, req.body.animaux.age_animal, req.body.animaux.url_photo_animal])//reqccuperer req.body
+        .then(async resultatRequete => {
 
             let requeteSQLAnimalUtilisateur = "INSERT INTO animal_utilisateur (id_proprietaire, id_animal) VALUES ($1,$2)"
 
-            bd.excuterRequete(requeteSQLAnimalUtilisateur, [req.body.utilisateur.id, resultatRequete.rows[0].id])
+           await  bd.excuterRequete(requeteSQLAnimalUtilisateur, [req.body.utilisateur.id, resultatRequete.rows[0].id])
                 .then(resultatRequeteAnimal => {
                     res.setHeader('Content-Type', 'application/json');
                     res.end(JSON.stringify(resultatRequeteAnimal.rows))
@@ -26,11 +26,13 @@ function animalAjout(req, res) {
             res.setHeader('Content-Type', 'application/json')
             res.end(JSON.stringify(resultatRequete.rows))
         })
-        .catch(erreur => {
-            console.error(erreur.stack)
+        .catch(erreur => { 
+            // si erreur on affiche les details et et on l'envois --- developpement seulement
+           console.error(erreur.stack)
             res.setHeader('Content-Type', 'text/html')
             res.end(erreur.stack)
         })
+
 }
 
 //la fonction appelee par la route modification d'animal

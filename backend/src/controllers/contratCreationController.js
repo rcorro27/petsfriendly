@@ -5,53 +5,6 @@ const { Service } = require('../models/service')
 
 //la fonction appelee par la route ajout de contrat
 function contratCreation(req, res) {
-<<<<<<< HEAD
-
-    // ***************  ajout du contrat  ****************
-    ajoutContrat(req)
-        .then(resultatRequeteContrat => {
-
-            // ***************  ajout du contrat_utilisateur  ****************
-            ajoutContratUtilisateur(req, resultatRequeteContrat.rows[0].id)
-                .then(resultatRequeteContratUtilisateur => {
-
-                    // ***************  ajout du promotion_utilisateur  ****************
-                    ajoutPromotionUtilisateur(req)
-                        .then(resultatRequetePromotionUtilisateur => {
-
-                            // ***************  ajout des service_contrat  ****************
-                            ajoutServiceContrat(req, resultatRequeteContrat.rows[0].id)
-                                .then(resultatRequeteServiceContrat => {
-                                    res.setHeader('Content-Type', 'application/json');
-                                    res.end(JSON.stringify({}))
-                                })
-                                .catch(erreur => {
-                                    console.error(erreur.stack)
-                                    res.setHeader('Content-Type', 'text/html')
-                                    res.end(erreur.stack)
-                                })
-
-                        })
-                        .catch(erreur => {
-                            console.error(erreur.stack)
-                            res.setHeader('Content-Type', 'text/html')
-                            res.end(erreur.stack)
-                        })
-
-                })
-                .catch(erreur => {
-                    console.error(erreur.stack)
-                    res.setHeader('Content-Type', 'text/html')
-                    res.end(erreur.stack)
-                })
-
-        })
-        .catch(erreur => {
-            console.error(erreur.stack)
-            res.setHeader('Content-Type', 'text/html')
-            res.end(erreur.stack)
-        })
-=======
 
                     // ***************  ajout du contrat  ****************
             ajoutContrat(req)
@@ -97,7 +50,6 @@ function contratCreation(req, res) {
                 res.setHeader('Content-Type', 'text/html')
                 res.end(erreur.stack)
             })
->>>>>>> back_end
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -142,25 +94,13 @@ function contratAcceptation(req, res) {
 
 function contratDesactivation(req) {
     return new Promise((resolve, reject) => {
-<<<<<<< HEAD
-        let sql = "UPDATE contrat SET est_accepte=false, est_lu_proprietaire=false, est_lu_petsitter=false, encore_disponible=false"
-            + "FROM contrat c INNER JOIN contrat_utilisateur t ON c.id=t.id_contrat"
-            + " WHERE t.id_proprietaire=$1 AND t.id_petsitter!=$4 AND c.date_debut=$2 AND c.date_fin=$3 RETURNING *"
-=======
         let sql = "UPDATE contrat SET est_accepte=false, est_lu_proprietaire=false, est_lu_petsitter=false, encore_disponible=false" 
                  + " FROM contrat c INNER JOIN contrat_utilisateur t ON c.id=t.id_contrat"
                  +" WHERE t.id_proprietaire=$1 AND t.id_petsitter!=$2 AND c.date_debut=$3 AND c.date_fin=$4 RETURNING *"
->>>>>>> back_end
 
                  bd.excuterRequete(sql, [req.body.utilisateur.id_proprietaire, req.body.utilisateur.id_petsitter, req.body.contrat.date_debut, req.body.contrat.date_fin])
             .then(resultatRequeteContrat => {               
                     resolve(resultatRequeteContrat)
-<<<<<<< HEAD
-                } else {
-                    reject({ "erreur": 400 })
-                }
-=======
->>>>>>> back_end
             })
             .catch(erreur => {
                 reject(erreur)
@@ -188,12 +128,8 @@ function contratActivation(req) {
 
 //-----------------------------------------------------------------------------------------------------------------------------
 
-<<<<<<< HEAD
-function ajoutFacture(req) {
-=======
 function ajoutFacture(req) 
 {
->>>>>>> back_end
     return new Promise((resolve, reject) => {
         let sql = "INSERT INTO facture (id_promotion, prix) VALUES ($1,$2) RETURNING *"
 
@@ -211,16 +147,10 @@ function ajoutFacture(req)
     })
 }
 
-<<<<<<< HEAD
-function ajoutContrat(req) {
-    return new Promise((resolve, reject) => {
-
-=======
 function ajoutContrat(req)
 {
     return new Promise((resolve, reject) => {
     
->>>>>>> back_end
         let sql = "INSERT INTO contrat (date_debut, date_fin) VALUES ($1,$2) RETURNING *"
 
         bd.excuterRequete(sql, [req.body.contrat.date_debut, req.body.contrat.date_fin])
@@ -228,13 +158,8 @@ function ajoutContrat(req)
                 if (resultatRequeteContrat.rowCount >= 1) {
                     resolve(resultatRequeteContrat)
                 } else {
-<<<<<<< HEAD
-                    reject({ "erreur": 400 })
-                }
-=======
                     reject ({"erreur" : 400})
                 }      
->>>>>>> back_end
             })
             .catch(erreur => {
                 reject(erreur)
@@ -284,11 +209,7 @@ function ajoutPlanning(req) {
     return new Promise((resolve, reject) => {
 
         let sql = "INSERT INTO planning (id_contrat, id_proprietaire, id_petsitter, date_debut, date_fin) VALUES ($1,$2,$3,$4,$5) RETURNING *"
-<<<<<<< HEAD
-
-=======
     
->>>>>>> back_end
         bd.excuterRequete(sql, [req.body.contrat.id_contrat, req.body.utilisateur.id_proprietaire, req.body.utilisateur.id_petsitter, req.body.contrat.date_debut, req.body.contrat.date_fin])
             .then(resultatRequetePlanning => {
                 if (resultatRequetePlanning.rowCount >= 1) {
