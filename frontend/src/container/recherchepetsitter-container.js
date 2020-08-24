@@ -5,6 +5,8 @@ import InputComponent from 'component/input-component'
 import SelectComponent from 'component/select-component'
 import ListItemComponent from 'component/list-item-component'
 import VignetteComponent from 'component/vignette-component'
+import ModalCnxContainer from '../container/modal-cnx-container'
+
 // import ModalCnxContainer from '../container/modal-cnx-container'
 import { withRouter } from 'react-router-dom'
 
@@ -50,6 +52,7 @@ class RecherchePetsitter extends Component {
         this.handleAfficherSitterOnClick = this.handleAfficherSitterOnClick.bind(this)
         this.handleEnvoyerDemandeOnClick = this.handleEnvoyerDemandeOnClick.bind(this)
         this.onHandleClose = this.onHandleClose.bind(this)
+        this.handleShow = this.handleShow.bind(this)
     }
 
     onHandleClose () {
@@ -123,7 +126,18 @@ class RecherchePetsitter extends Component {
         }
     }
 
+    handleShow () {
+        this.setState({
+            show: true
+        })
+    }
+
     handleSubmit (event) {
+        this.handleShow(),
+        console.log(this.state.show, 'show'),
+            <ModalCnxContainer show={this.state.show} onHide={this.onHandleClose} />
+        console.log(this.state.show, 'show')
+
         /* fetch('resultat-recherche.json', { method: 'GET' })
             .then(response => response.json())
             .then(response => {
@@ -134,34 +148,40 @@ class RecherchePetsitter extends Component {
                 this.setState({ resultat: arrayTest })
             })
             */
-        return axios
-            .post('https://pets-friendly.herokuapp.com/recherche', {
+        if (localStorage.getItem('usertoken')) {
+            <ModalCnxContainer show={this.state.show} onHide={this.onHandleClose} />
+            console.log('test modal')
+        } else {
+            <ModalCnxContainer show={this.state.show} onHide={this.onHandleClose} />
+            return axios
+                .post('https://pets-friendly.herokuapp.com/recherche', {
 
-                services: this.state.servicesRechercher,
-                adresse: {
-                    numero_rue: this.state.nom_rue,
-                    nom_rue: this.state.nom_rue,
-                    code_postal: this.state.code_postal,
-                    ville: this.state.ville,
-                    province: this.state.province,
-                    pays: this.state.pays
-                }
+                    services: this.state.servicesRechercher,
+                    adresse: {
+                        numero_rue: this.state.nom_rue,
+                        nom_rue: this.state.nom_rue,
+                        code_postal: this.state.code_postal,
+                        ville: this.state.ville,
+                        province: this.state.province,
+                        pays: this.state.pays
+                    }
 
-            })
-        //  .then(response => console.log('reponse avant la assignatiion', response.data))
-            .then(response => {
-                if (response.data.length === 0) {
-                    this.setState({ resultatRecherche: false })
-                } else {
-                    this.setState({ resultat: response.data })
-                }
+                })
+            //  .then(response => console.log('reponse avant la assignatiion', response.data))
+                .then(response => {
+                    if (response.data.length === 0) {
+                        this.setState({ resultatRecherche: false })
+                    } else {
+                        this.setState({ resultat: response.data })
+                    }
                 /*  const arrayResultat = []
                 response.data.map((info, index) => arrayResultat.push(info))
                 console.log(arrayResultat) */
-            })
-            .catch(err => {
-                console.log('erreur recherche:', err)
-            })
+                })
+                .catch(err => {
+                    console.log('erreur recherche:', err)
+                })
+        }
     }
 
     handleAddOnClick () {

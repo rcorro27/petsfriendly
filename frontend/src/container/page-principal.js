@@ -18,13 +18,13 @@ class PagePrincipal extends Component {
     setupBeforeUnloadListener () {
         window.addEventListener('beforeunload', (ev) => {
             ev.preventDefault()
-            localStorage.removeItem('usertoken')
+            // localStorage.removeItem('usertoken')
         })
     };
 
     componentDidMount () {
         // Activate the event listener
-        this.setupBeforeUnloadListener()
+        // this.setupBeforeUnloadListener()
     }
 
     render () {

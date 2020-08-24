@@ -48,7 +48,7 @@ class NavbarLinks extends Component {
         this.onHandleChangePass = this.onHandleChangePass.bind(this)
         this.handleShow = this.handleShow.bind(this)
         this.handleShowInsc = this.handleShowInsc.bind(this)
-        this.onHandleClose = this.onHandleClose.bind(this)
+        this.handleClose = this.handleClose.bind(this)
         this.handleCloseInsc = this.handleCloseInsc.bind(this)
         this.getValues = this.getValues.bind(this)
         this.getValuesRadio = this.getValuesRadio.bind(this)
@@ -159,7 +159,7 @@ class NavbarLinks extends Component {
         })
     }
 
-    onHandleClose () {
+    handleClose () {
         this.setState({
             show: false
         })
@@ -302,7 +302,7 @@ class NavbarLinks extends Component {
         return (
             <div className='collapse navbar-collapse' id='navbarResponsive'>
                 {localStorage.usertoken ? userLink : loginRegLink}
-                <ModalCnxContainer show={this.state.show} onHide={this.onHandleClose} />
+                <ModalCnxContainer show={this.state.show} onHide={this.handleClose} />
                 <Modal show={this.state.showInscription} onHide={this.handleCloseInsc}>
                     <Modal.Header closeButton>
                         <Modal.Title>Page Inscription</Modal.Title>
