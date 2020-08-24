@@ -7,6 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="045a04c6-8cfb-428c-aee6-f6dbda5aaaca" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/services/ApiContratFetcher.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/services/ChatService.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/carte_1.png" afterDir="false" />
@@ -15,6 +16,28 @@
       <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/carte_4.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/carte_5.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/alert_dialog_paiement.xml" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/app/src/main/icone_logo_appli-playstore.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/icone_logo_appli.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/icone_logo_appli_round.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/icone_logo_appli.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/icone_logo_appli_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/icone_logo_appli_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/icone_logo_appli.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/icone_logo_appli_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/icone_logo_appli_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/icone_logo_appli.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/icone_logo_appli_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/icone_logo_appli_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/icone_logo_appli.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/icone_logo_appli_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/icone_logo_appli_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/icone_logo_appli.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/icone_logo_appli_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/icone_logo_appli_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/logo_pets_friendly.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/values/icone_logo_appli_background.xml" afterDir="false" />
+>>>>>>> cdfdf3c85d89195157e579aa571ec3d45c769ba6
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/MainActivity.java" afterDir="false" />
@@ -30,7 +53,11 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
   <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_3a_API_30_x86" />
+=======
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Android_Accelerated_x86_Oreo" />
+>>>>>>> cdfdf3c85d89195157e579aa571ec3d45c769ba6
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -47,9 +74,20 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+<<<<<<< HEAD
       </list>
     </option>
   </component>
+=======
+        <option value="layoutResourceFile_vertical" />
+        <option value="layoutResourceFile" />
+      </list>
+    </option>
+  </component>
+  <component name="GenerateSignedApkSettings">
+    <option name="BUILD_TARGET_KEY" value="apk" />
+  </component>
+>>>>>>> cdfdf3c85d89195157e579aa571ec3d45c769ba6
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
@@ -62,14 +100,19 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/assets" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\dev\projet final\mypetsitter\android\PetSitterISI\app\src\main\res\drawable-v24" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\dev\projet final\mypetsitter\android\PetSitterISI\app\src\main\assets" />
+      <recent name="C:\Users\kelfilal\OneDrive\Session 4 ETE ISI\Projet Final\mypetsitter\android\PetSitterISI\app\src\main\res\mipmap-xxxhdpi" />
+      <recent name="C:\Users\kelfilal\OneDrive\Session 4 ETE ISI\Projet Final\mypetsitter\android\PetSitterISI\app\src\main\res\drawable" />
+      <recent name="C:\Users\kelfilal\OneDrive\Session 4 ETE ISI\Projet Final\mypetsitter\android\PetSitterISI\app\src\main\res\layout" />
+      <recent name="C:\Users\kelfilal\OneDrive\Session 4 ETE ISI\Projet Final\mypetsitter\android\PetSitterISI\app\src\main\res\raw" />
+      <recent name="C:\Users\kelfilal\OneDrive\Session 4 ETE ISI\Projet Final\mypetsitter\android\PetSitterISI\app\src\main\res\drawable-xhdpi" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.example.petsitterisi.services" />
@@ -152,46 +195,107 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+<<<<<<< HEAD
     <state x="764" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1597943482330">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="764" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1597943482330" />
     <state width="1877" height="2" key="GridCell.Tab.0.bottom" timestamp="1597930339195">
       <screen x="0" y="0" width="1920" height="1040" />
+=======
+    <state x="-1070" y="197" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1598244659673">
+      <screen x="-1600" y="0" width="1600" height="900" />
+    </state>
+    <state x="-1070" y="197" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598244659673" />
+    <state x="-1220" y="205" key="AndroidCreateResourceFileDialog" timestamp="1598233229761">
+      <screen x="-1600" y="0" width="1600" height="900" />
+    </state>
+    <state x="-1220" y="205" key="AndroidCreateResourceFileDialog/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598233229761" />
+    <state x="-945" y="215" key="AndroidProcessChooserDialog" timestamp="1598221800863">
+      <screen x="-1600" y="0" width="1600" height="900" />
+    </state>
+    <state x="-945" y="215" key="AndroidProcessChooserDialog/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598221800863" />
+    <state x="-1578" y="206" key="Downloadable.Font.Dialog.Size" timestamp="1598237548316">
+      <screen x="-1600" y="0" width="1600" height="900" />
+    </state>
+    <state x="-1578" y="206" key="Downloadable.Font.Dialog.Size/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598237548316" />
+    <state x="-983" y="246" key="FileChooserDialogImpl" timestamp="1598269048463">
+      <screen x="-1600" y="0" width="1600" height="900" />
+    </state>
+    <state x="-983" y="246" key="FileChooserDialogImpl/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598269048463" />
+    <state x="740" y="295" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1597935755670" />
+    <state width="1557" height="235" key="GridCell.Tab.0.bottom" timestamp="1598263716783">
+      <screen x="-1600" y="0" width="1600" height="900" />
+>>>>>>> cdfdf3c85d89195157e579aa571ec3d45c769ba6
     </state>
     <state width="1877" height="2" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1597930339195" />
-    <state width="1877" height="2" key="GridCell.Tab.0.center" timestamp="1597930339195">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1557" height="235" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598263716783" />
+    <state width="1877" height="366" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1597947953250" />
+    <state width="1557" height="235" key="GridCell.Tab.0.center" timestamp="1598263716782">
+      <screen x="-1600" y="0" width="1600" height="900" />
     </state>
     <state width="1877" height="2" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1597930339195" />
-    <state width="1877" height="2" key="GridCell.Tab.0.left" timestamp="1597930339194">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1557" height="235" key="GridCell.Tab.0.center/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598263716782" />
+    <state width="1877" height="366" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1597947953250" />
+    <state width="1557" height="235" key="GridCell.Tab.0.left" timestamp="1598263716782">
+      <screen x="-1600" y="0" width="1600" height="900" />
     </state>
     <state width="1877" height="2" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1597930339194" />
-    <state width="1877" height="2" key="GridCell.Tab.0.right" timestamp="1597930339195">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1557" height="235" key="GridCell.Tab.0.left/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598263716782" />
+    <state width="1877" height="366" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1597947953250" />
+    <state width="1557" height="235" key="GridCell.Tab.0.right" timestamp="1598263716782">
+      <screen x="-1600" y="0" width="1600" height="900" />
     </state>
     <state width="1877" height="2" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1597930339195" />
-    <state width="1877" height="2" key="GridCell.Tab.1.bottom" timestamp="1597930312477">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1557" height="235" key="GridCell.Tab.0.right/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598263716782" />
+    <state width="1877" height="366" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1597947953250" />
+    <state width="1557" height="425" key="GridCell.Tab.1.bottom" timestamp="1598215046261">
+      <screen x="-1600" y="0" width="1600" height="900" />
     </state>
     <state width="1877" height="2" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1597930312477" />
-    <state width="1877" height="2" key="GridCell.Tab.1.center" timestamp="1597930312476">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1557" height="425" key="GridCell.Tab.1.bottom/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598215046261" />
+    <state width="1877" height="285" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1597940959631" />
+    <state width="1557" height="425" key="GridCell.Tab.1.center" timestamp="1598215046261">
+      <screen x="-1600" y="0" width="1600" height="900" />
     </state>
     <state width="1877" height="2" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1597930312476" />
-    <state width="1877" height="2" key="GridCell.Tab.1.left" timestamp="1597930312476">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1557" height="425" key="GridCell.Tab.1.center/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598215046261" />
+    <state width="1877" height="285" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1597940959630" />
+    <state width="1557" height="425" key="GridCell.Tab.1.left" timestamp="1598215046261">
+      <screen x="-1600" y="0" width="1600" height="900" />
     </state>
     <state width="1877" height="2" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1597930312476" />
-    <state width="1877" height="2" key="GridCell.Tab.1.right" timestamp="1597930312476">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1557" height="425" key="GridCell.Tab.1.left/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598215046261" />
+    <state width="1877" height="285" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1597940959630" />
+    <state width="1557" height="425" key="GridCell.Tab.1.right" timestamp="1598215046261">
+      <screen x="-1600" y="0" width="1600" height="900" />
     </state>
     <state width="1877" height="2" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1597930312476" />
+<<<<<<< HEAD
     <state x="656" y="338" key="com.intellij.ide.util.TipDialog" timestamp="1598276873671">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="656" y="338" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598276873671" />
+=======
+    <state width="1557" height="425" key="GridCell.Tab.1.right/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598215046261" />
+    <state width="1877" height="285" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1597940959631" />
+    <state x="-984" y="228" key="chooseDestDirectoryDialog" timestamp="1598194787085">
+      <screen x="-1600" y="0" width="1600" height="900" />
+    </state>
+    <state x="-984" y="228" key="chooseDestDirectoryDialog/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598194787085" />
+    <state x="655" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1597858343819">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="655" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1597858343819" />
+    <state x="-1144" y="205" key="run.anything.popup" timestamp="1598222081864">
+      <screen x="-1600" y="0" width="1600" height="900" />
+    </state>
+    <state x="-1144" y="205" key="run.anything.popup/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598222081864" />
+    <state x="-1137" y="190" width="672" height="678" key="search.everywhere.popup" timestamp="1598248945968">
+      <screen x="-1600" y="0" width="1600" height="900" />
+    </state>
+    <state x="-1137" y="190" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598248945968" />
+>>>>>>> cdfdf3c85d89195157e579aa571ec3d45c769ba6
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -206,6 +310,7 @@
           <line>106</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
+<<<<<<< HEAD
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/services/ApiListPetSitterFetcher.java</url>
           <line>166</line>
@@ -221,6 +326,8 @@
           <line>167</line>
           <option name="timeStamp" value="48" />
         </line-breakpoint>
+=======
+>>>>>>> cdfdf3c85d89195157e579aa571ec3d45c769ba6
       </breakpoints>
     </breakpoint-manager>
   </component>

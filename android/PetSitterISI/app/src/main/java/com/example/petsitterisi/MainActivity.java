@@ -27,6 +27,7 @@ import android.widget.VideoView;
 import com.example.petsitterisi.managers.UtilisateurManager;
 import com.example.petsitterisi.services.ConnexionBd;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.InputStream;
 
@@ -34,25 +35,97 @@ import java.io.InputStream;
 public class MainActivity extends Activity {
 
 
-    TextView top_textView;
     Button connexion_button;
     Context ctx;
-    //cacher temporairement la navigation bar android par defaut
+
+
+
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onStart() {
         super.onStart();
+        //cacher temporairement la navigation bar android par defaut
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         |View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY); // cacher temporairement avec transparence
+
+
+
+
+
+
+
+
+
+
+
+        final MediaPlayer[] son_accueille = {MediaPlayer.create(ctx, R.raw.son_accueille_friendly)};
+
+        VideoView videoView =(VideoView)findViewById(R.id.videoView);
+        MediaController mediaController = new MediaController(this);
+        mediaController.setAnchorView(videoView);
+        String path = "android.resource://" + getPackageName() + "/" + R.raw.video_accueille_chiens;
+        videoView.setMediaController(mediaController);
+        videoView.setVideoPath(path);
+        videoView.requestFocus();
+        mediaController.setVisibility(View.GONE);
+        videoView.setMediaController(mediaController);
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.setVolume(0f, 0f);
+                mp.setLooping(true);
+                son_accueille[0].setLooping(true);
+
+            }
+        });
+        videoView.start();
+        son_accueille[0].start();
+
+
+        //ouvrir l'activite connexion
+        connexion_button = findViewById(R.id.connexion_button);
+        connexion_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ctx, Connexion.class);
+
+
+                if (son_accueille[0].isPlaying()) {
+                    son_accueille[0].stop();
+//                        son_accueille[0].release();
+//                        son_accueille[0] = MediaPlayer.create(ctx, R.raw.son_message_envoye);
+                }
+                son_accueille[0].start();
+
+                startActivity(intent);
+
+
+
+
+            }
+        });
+
+
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ctx = this;
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         //cacher temporairement  la bare d'etat du haut
         requestWindowFeature(Window.FEATURE_NO_TITLE); getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+=======
+
+
+
+
+
+//        //cacher temporairement  la bare d'etat du haut
+//        requestWindowFeature(Window.FEATURE_NO_TITLE); getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+>>>>>>> cdfdf3c85d89195157e579aa571ec3d45c769ba6
         setContentView(R.layout.activity_bottom_navigation_bar);
 
         ConnexionBd.copyBdFromAssets(this);
@@ -76,38 +149,16 @@ public class MainActivity extends Activity {
 
             setContentView(R.layout.activity_main);
             ConnexionBd.copyBdFromAssets(this);
-            top_textView = findViewById(R.id.top_textView);
-            connexion_button = findViewById(R.id.connexion_button);
-            connexion_button.setBackgroundColor(getResources().getColor(R.color.black));
-            connexion_button.setTextColor(getResources().getColor(R.color.white));
-            VideoView videoView =(VideoView)findViewById(R.id.videoView1);
-            MediaController mediaController = new MediaController(this);
-            mediaController.setAnchorView(videoView);
-            String path = "android.resource://" + getPackageName() + "/" + R.raw.video_accueil;
-            videoView.setMediaController(mediaController);
-            videoView.setVideoPath(path);
-            videoView.requestFocus();
-            mediaController.setVisibility(View.GONE);
-            videoView.setMediaController(mediaController);
-            videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                @Override
-                public void onPrepared(MediaPlayer mp) {
-                    mp.setVolume(0f, 0f);
-                    mp.setLooping(true);
-                }
-            });
-            videoView.start();
 
 
-            //ouvrir l'activite connexion
 
-            connexion_button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(ctx, Connexion.class);
-                    startActivity(intent);
-                }
-            });
+
+
+
+
+
+
+
 
         }
 
@@ -117,7 +168,6 @@ public class MainActivity extends Activity {
 
 
     }
-
 
 
 

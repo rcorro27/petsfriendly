@@ -31,12 +31,10 @@ public class Connexion extends Activity {
         setContentView(R.layout.activity_connexion);
 
         ctx = this;
-        top_textView = findViewById(R.id.top_textView);
+
         connexion_button = findViewById(R.id.connexion_button);
-        top_textView.setBackground(getResources().getDrawable(R.drawable.rounded_corner));
-        connexion_button.setBackgroundColor(getResources().getColor(R.color.black));
-        connexion_button.setTextColor(getResources().getColor(R.color.white));
-        e_mail = findViewById(R.id.e_mail);
+
+        e_mail =  findViewById(R.id.e_mail);
         error = findViewById(R.id.error);
         mot_de_passe = findViewById(R.id.mot_de_passe);
 

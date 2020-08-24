@@ -2,22 +2,36 @@ package com.example.petsitterisi.services;
 
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Bundle;
+import android.text.Editable;
+import android.view.LayoutInflater;
 import android.view.View;
+<<<<<<< HEAD
+=======
+import android.view.ViewGroup;
+>>>>>>> cdfdf3c85d89195157e579aa571ec3d45c769ba6
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
+import com.example.petsitterisi.BottomNavigationBar;
 import com.example.petsitterisi.R;
+import com.example.petsitterisi.managers.UtilisateurManager;
+import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,9 +47,14 @@ import java.util.Locale;
 public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, String> {
 
     private Context  context;
-    LinearLayout ll;
+    //LinearLayout ll;
+    View view;
+    LinearLayout lll;
+    LinearLayout chat_message_container;
+    View messageListe;
     SharedPreferences sharedpreferences;
     TextView item_message_recu;
+<<<<<<< HEAD
     TextView item_message_envoye;
     EditText edittext_chatbox;
     Button button_chatbox_send;
@@ -46,6 +65,15 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
         this.ll = llParam;
         this.edittext_chatbox = edittext_chatbox;
         this.button_chatbox_send = button_chatbox_send;
+=======
+    TextView item_message_envoye ;
+    Button btn_envoyer_discussion;
+   private Object LinearLayout;
+
+    public ApiListChatDiscussionFetcher(Context  context, View viewParam) {
+        this.context = context;
+        this.view = viewParam;
+>>>>>>> cdfdf3c85d89195157e579aa571ec3d45c769ba6
         sharedpreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         chatService = new ChatService(context, ll);
         chatService.start();
@@ -90,7 +118,7 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
 
 
 
-    
+
 
     @Override
     protected void onPreExecute() {
@@ -115,12 +143,117 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
                 stream.close();
                 tContents = new String(buffer);
 
-            JSONArray jsonArray = new JSONArray(tContents);
+                JSONArray jsonArray = new JSONArray(tContents);
 
 
 
-                View headerChat = View.inflate(context , R.layout.header_footer_chat,null);
-                ll.addView(headerChat);
+//                View headerChat = View.inflate(context , R.layout.header_footer_chat,null);
+//                ll.addView(messageListe);
+
+
+
+//                final View cardMessageEnvoyerParam = View.inflate(context , R.layout.activity_item_message_envoyer,null);
+//                View viewMessageList = View.inflate(context , R.layout.activity_message_list,null);
+//
+//                //ll.addView(cardMessageEnvoyerParam);
+//
+//                TextInputEditText text_message_discussion;
+//                btn_envoyer_discussion  = (Button) viewMessageList.findViewById(R.id.button_chatbox_send);
+//                final TextView messageItemEnvoyer = (TextView) cardMessageEnvoyerParam.findViewById(R.id.text_message_body_envoyer);
+//                text_message_discussion =  viewMessageList.findViewById(R.id.edittext_chatbox);
+//
+//                final Editable textMsgEnvoyerDepuisEditText =  text_message_discussion.getText();
+
+
+
+
+
+
+//                Toast.makeText(context.getApplicationContext(), textMsgEnvoyerDepuisEditText, Toast.LENGTH_LONG).show();
+
+//                btn_envoyer_discussion.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+////
+////                            try {
+////                                Intent intent = new Intent(context, BottomNavigationBar.class);
+////                                intent.putExtra("Demande", "true");
+////
+////                                context.startActivity(intent);
+////                            } catch (Exception e) {
+////                                e.printStackTrace();
+////                            }
+//
+//
+//
+//                            final View cardMessageEnvoyerParamsss = View.inflate(context , R.layout.activity_item_message_envoyer,null);
+//                            ll.addView(cardMessageEnvoyerParamsss);
+//
+//                            messageItemEnvoyer.setText((CharSequence) textMsgEnvoyerDepuisEditText);
+//
+//
+//
+//                            //UtilisateurManager.addMessageContacterInsideDiscussion(context, "message_contacter", textMsgEnvoyer);
+//
+//                        }
+//                    });
+//
+//                ll.addView(cardMessageEnvoyerParam);
+//                lll.addView(viewMessageList);
+
+
+
+
+//                ViewGroup container = null;
+//                LayoutInflater  inflater = null;
+//                assert inflater != null;
+//
+//                View rootView =   inflater.inflate(R.layout.activity_message_list, container, false);
+//
+//                LinearLayout container_message_liste = (LinearLayout) rootView.findViewById(R.id.container_message_list);
+//                //View cardMessageEnvoyerParamss = LayoutInflater.from(context).inflate(R.layout.activity_item_message_envoyer , (ViewGroup) container_message_liste, false);
+//                Intent intentte = new Intent();
+//                intentte.getStringExtra("textMsgEnvoyer");
+
+
+
+
+
+
+
+                //iciiiiiiiiiiiiiiiiii
+
+//                chat_message_container = view.findViewById(R.id.container_message_list);
+//
+//                final View cardMessageEnvoyerParam = View.inflate(context , R.layout.activity_item_message_envoyer,null);
+//
+//                final TextView messageItemEnvoyer = (TextView) cardMessageEnvoyerParam.findViewById(R.id.text_message_body_envoyer);
+//
+//                String messageEnvoyerDepuisContacterInsideProfilSitter = UtilisateurManager.getMessageContacterInsideDiscussion(context);
+//
+//                messageItemEnvoyer.setText(messageEnvoyerDepuisContacterInsideProfilSitter);
+//
+//
+//
+//                if (!messageEnvoyerDepuisContacterInsideProfilSitter.equals(""))
+//                {
+//
+//                    // UtilisateurManager.getMessageContacterInsideDiscussion(context,"");
+//                    //ll.addView(cardMessageEnvoyerParam);
+//
+//                    chat_message_container.addView(cardMessageEnvoyerParam);
+//
+//
+//
+//                }
+
+
+
+
+
+
+
+
 
 
 
@@ -133,78 +266,88 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
                 String urlImage = chatJsonObject.getString("url_photo");
                 String messageConversation = chatJsonObject.getString("discussion");
                 String heureMessage = chatJsonObject.getString("date");
+//                String msg_lu = "true";
+
                 //String messageEstLu = chatJsonObject.getString("message_est_lu");
                 //String messageAEteLu = chatJsonObject.getString("a_lu");
 
 
-                TextView nomInterlocuteur = headerChat.findViewById(R.id.nom_utilsateur_message_recus);
 
-                nomInterlocuteur.setText(nomUtilisateur);
-
-
-                if (idUtlisateur.equals("1")  ) // message envoyer de michel
-                {
-                     View cardMessageEnvoyerParam = View.inflate(context , R.layout.activity_item_message_envoyer,null);
-
-
-                    TextView heureMessageEnvoyer = cardMessageEnvoyerParam.findViewById(R.id.text_message_time_envoyer);
-                    TextView messageEnvoyer = cardMessageEnvoyerParam.findViewById(R.id.text_message_body_envoyer);
-//                    ImageView messageLu = cardMessageEnvoyerParam.findViewById(R.id.image_message_lu);
-                    //final Editable textMsgEnvoyer ;
-
-                    heureMessage = DateConvertisseur(heureMessage);
-                    heureMessageEnvoyer.setText(heureMessage);
-
-                    messageEnvoyer.setText(messageConversation);
-
-
-//                    textMsgEnvoyer = editTextConversation.getText();
+//                if (idUtlisateur.equals("1")  ) // message envoyer de michel
+//                {
 //
-//                    btn_envoyer_discussion.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
 //
-//                            messageEnvoyer.setText(textMsgEnvoyer);
-//                            ll.addView(cardMessageEnvoyerParam);
-//                        }
-//                    });
+//
+//                    TextView heureMessageEnvoyer = cardMessageEnvoyerParam.findViewById(R.id.text_message_time_envoyer);
+//                    //TextView messageEnvoyer = cardMessageEnvoyerParam.findViewById(R.id.text_message_body_envoyer);
+////                    ImageView messageLu = cardMessageEnvoyerParam.findViewById(R.id.image_message_lu);
+//                    //final Editable textMsgEnvoyer ;
+//
+//                    heureMessage = DateConvertisseur(heureMessage);
+//                    heureMessageEnvoyer.setText(heureMessage);
+//
+//                    messageItemEnvoyer.setText(messageConversation);
+//
+////                    textMsgEnvoyer = editTextConversation.getText();
+////
+////                    btn_envoyer_discussion.setOnClickListener(new View.OnClickListener() {
+////                        @Override
+////                        public void onClick(View v) {
+////
+////                            messageEnvoyer.setText(textMsgEnvoyer);
+////                            ll.addView(cardMessageEnvoyerParam);
+////                        }
+////                    });
+//
+//
+//
+//                    ll.addView(cardMessageEnvoyerParam);
+//
+//
+//
+//                    //item_message_envoye = cardMessageEnvoyerParam.findViewById(R.id.text_message_body_envoyer);
+//
+//
+//
+//
+//                }
 
 
 
-                    ll.addView(cardMessageEnvoyerParam);
 
 
+                if(idUtlisateur.equals("2")){ //  message recus de kamel
 
-                    //item_message_envoye = cardMessageEnvoyerParam.findViewById(R.id.text_message_body_envoyer);
-
-
-
-
-                }
-                else if(idUtlisateur.equals("2")){ //  message recus de kamel
 
                     View cardMessageRecuParam =  View.inflate(context , R.layout.activity_item_message_recus,null);
 
-                    TextView heureMessageRecu = cardMessageRecuParam.findViewById(R.id.text_message_time_recus);
+
+
+
+
                     TextView messageRecu = cardMessageRecuParam.findViewById(R.id.text_message_body_recu);
+                    String non_chat_header = UtilisateurManager.getNomChat(context);
+                    TextView heureMessageRecu = cardMessageRecuParam.findViewById(R.id.text_message_time_recus);
                     TextView nomUtilisateurRecus = cardMessageRecuParam.findViewById(R.id.text_message_name_recus);
                     ImageView UrlPhotoUtilisateurRecus = cardMessageRecuParam.findViewById(R.id.image_message_profile);
                     ImageView messageLu = cardMessageRecuParam.findViewById(R.id.image_message_lu);
+
 
 
                    // String.valueOf(messageAEteLu.equals("true"));
 
                     heureMessage = DateConvertisseur(heureMessage);
                     heureMessageRecu.setText(heureMessage);
+                    UrlPhotoUtilisateurRecus.setImageResource(R.drawable.rectangle_66);
 
                     //messageLu.setImageResource(R.drawable.icone_message_lu);
 
                     messageRecu.setText(messageConversation);
 
-                    nomUtilisateurRecus.setText(nomUtilisateur);
+                    nomUtilisateurRecus.setText(non_chat_header);
 
-                    UrlPhotoUtilisateurRecus.setImageResource(R.drawable.rectangle_66);
-
+                    //ll.addView(cardMessageEnvoyerParam);
+                   // chat_message_container.addView(cardMessageRecuParam);
 
 
 //                     if (!messageAEteLu.equals("false")){
@@ -215,13 +358,13 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
 
                    // item_message_recu =  cardMessageRecuParam.findViewById(R.id.text_message_body_recu);
 
-                    ll.addView(cardMessageRecuParam);
+
 
                 }
 
 
 
-            }
+           }
 
 
         } catch (JSONException e) {
@@ -273,9 +416,6 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
         BufferedReader rd = new BufferedReader(isr);
 
         String in = "";
-
-
-
 
 
 
