@@ -94,3 +94,24 @@ body {
     cursor: pointer;
     transition: color 200ms;
 }
+
+#infolettre {
+    opacity: 0.5;
+    width: 40%;
+}
+
+#service1 {
+    background-color: rgba(76, 175, 80, 0.3);
+}
+
+#service2 {
+    background-color: rgba(76, 175, 80, 0.3);
+}
+
+.grey-box {
+    color: white;
+    opacity: 0.5;
+    background-color: grey;
+    width: 50%;
+    margin: auto;
+}
