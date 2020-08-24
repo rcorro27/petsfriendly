@@ -1,0 +1,96 @@
+/**********************************page Recherche*************************************************/
+
+.formRechercheContainer {
+    /*background-image: url('../img/caroussel/image3.jpg');*/
+    width: 60%;
+    margin: auto
+}
+
+h1 {
+    margin: auto;
+}
+
+.infolettreDiv {
+    background-image: url('../img/image_site/images/do-pet-sitters-need-pet-sitter-insurance-the-pet-sitter-blog.jpg');
+    /* background-image: url('../img/image_site/images/Dogs_Cats_Rabbits_504758.jpg');*/
+    width: 60%;
+    height: 50vh;
+    margin: auto
+}
+
+.infolettreDiv h1 {
+    margin: auto;
+    width: 82%;
+}
+
+.resultatRechercheDiv {
+    border: solid rgba(203, 50, 50, 0.71);
+    /* border-radius: 2%; */
+    border-bottom-left-radius: 1%;
+    border-bottom-right-radius: 1%;
+    display: grid;
+    width: 80%;
+    box-shadow: gray;
+    /* box-shadow: 6px 3px grey; */
+    margin: 1%;
+    box-shadow: 0 0 7px 1px grey;
+}
+
+.resultatRechercheDiv img {
+    width: 100%;
+}
+
+.resultatRechercheDiv h2 {
+    margin: auto;
+    font-size: 50px;
+}
+
+.resultatRechercheDiv h2 {
+    margin: auto;
+    font-size: 50px;
+}
+
+.resultatRechercheDiv button {
+    background-color: rgba(203, 50, 50, 0.71);
+    /* border: none; */
+    border-color: 1px solid grey;
+    border-color: oldlace;
+    border-radius: 5%;
+}
+
+h2, p {
+    /* width: 20%;*/
+    cursor: pointer;
+}
+
+button {
+    width: 50%;
+}
+
+/*h1 {
+    width: 59%;
+}*/
+
+.divAnnonce {
+    margin: 5%;
+}
+
+body {
+    background-color: #f443361f
+}
+
+#divPublicite {
+    background-image: url('../img/image_site/images/Dogs_Cats_Rabbits_504758.jpg');
+    height: 60vh;
+}
+
+#divPlubicite2 {
+    background-image: url('../img/image_site/images/Dogs_Cats_Rabbits_504758.jpg');
+    height: 60vh;
+    margin-top: 2%
+}
+
+.star {
+    cursor: pointer;
+    transition: color 200ms;
+}
