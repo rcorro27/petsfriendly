@@ -5,7 +5,8 @@
     <!-- View background color -->
     <solid
 
-        android:color="@color/blue">
+        android:background="@drawable/kamel">
+
 
 
     </solid>

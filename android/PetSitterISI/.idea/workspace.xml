@@ -7,19 +7,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="045a04c6-8cfb-428c-aee6-f6dbda5aaaca" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icone_ajouter_photo_discussion.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icone_envoyer_message.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/rounded_rectangle_edit_text_greyy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/kamel.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/michel.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icone_suivant.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/rounded_rectangle_discussion_photo.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/BottomNavigationBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/BottomNavigationBar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/assets/resultat_chat.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/resultat_chat.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/MessageList.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/MessageList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/ProfilPetSitter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/ProfilPetSitter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/managers/UtilisateurManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/managers/UtilisateurManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/services/ApiListChatDiscussionFetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/services/ApiListChatDiscussionFetcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/services/ApiListChatFetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/services/ApiListChatFetcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/rounded_rectangle_discussion_blue.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/rounded_rectangle_discussion_blue.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_item_message_envoyer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_item_message_envoyer.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_item_message_recus.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_item_message_recus.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_message_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_message_list.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/alert_dialog_contacter_pet_sitter.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/alert_dialog_contacter_pet_sitter.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/card_chat.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/card_chat.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_chat.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_chat.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/header_footer_chat.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +68,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
   </component>
   <component name="RecentsManager">
@@ -70,6 +77,7 @@
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\kelfilal\OneDrive\Session 4 ETE ISI\Projet Final\mypetsitter\android\PetSitterISI\app\src\main\res\drawable" />
+      <recent name="C:\Users\kelfilal\OneDrive\Session 4 ETE ISI\Projet Final\mypetsitter\android\PetSitterISI\app\src\main\res\drawable-xhdpi" />
       <recent name="D:\dev\projet final\mypetsitter\android\PetSitterISI\app\src\main\assets" />
     </key>
   </component>
@@ -147,66 +155,78 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="-945" y="215" key="AndroidProcessChooserDialog" timestamp="1598221800863">
+      <screen x="-1600" y="0" width="1600" height="900" />
+    </state>
+    <state x="-945" y="215" key="AndroidProcessChooserDialog/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598221800863" />
+    <state x="-1120" y="205" key="Downloadable.Font.Dialog.Size" timestamp="1598211299846">
+      <screen x="-1600" y="0" width="1600" height="900" />
+    </state>
+    <state x="-1120" y="205" key="Downloadable.Font.Dialog.Size/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598211299846" />
     <state x="740" y="295" key="FileChooserDialogImpl" timestamp="1597935755670">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="740" y="295" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1597935755670" />
-    <state width="1557" height="425" key="GridCell.Tab.0.bottom" timestamp="1598170155412">
+    <state width="1557" height="425" key="GridCell.Tab.0.bottom" timestamp="1598215046261">
       <screen x="-1600" y="0" width="1600" height="900" />
     </state>
     <state width="1877" height="2" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1597930339195" />
-    <state width="1557" height="425" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598170155412" />
+    <state width="1557" height="425" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598215046261" />
     <state width="1877" height="366" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1597947953250" />
-    <state width="1557" height="425" key="GridCell.Tab.0.center" timestamp="1598170155411">
+    <state width="1557" height="425" key="GridCell.Tab.0.center" timestamp="1598215046261">
       <screen x="-1600" y="0" width="1600" height="900" />
     </state>
     <state width="1877" height="2" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1597930339195" />
-    <state width="1557" height="425" key="GridCell.Tab.0.center/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598170155411" />
+    <state width="1557" height="425" key="GridCell.Tab.0.center/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598215046261" />
     <state width="1877" height="366" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1597947953250" />
-    <state width="1557" height="425" key="GridCell.Tab.0.left" timestamp="1598170155411">
+    <state width="1557" height="425" key="GridCell.Tab.0.left" timestamp="1598215046260">
       <screen x="-1600" y="0" width="1600" height="900" />
     </state>
     <state width="1877" height="2" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1597930339194" />
-    <state width="1557" height="425" key="GridCell.Tab.0.left/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598170155411" />
+    <state width="1557" height="425" key="GridCell.Tab.0.left/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598215046260" />
     <state width="1877" height="366" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1597947953250" />
-    <state width="1557" height="425" key="GridCell.Tab.0.right" timestamp="1598170155411">
+    <state width="1557" height="425" key="GridCell.Tab.0.right" timestamp="1598215046261">
       <screen x="-1600" y="0" width="1600" height="900" />
     </state>
     <state width="1877" height="2" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1597930339195" />
-    <state width="1557" height="425" key="GridCell.Tab.0.right/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598170155411" />
+    <state width="1557" height="425" key="GridCell.Tab.0.right/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598215046261" />
     <state width="1877" height="366" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1597947953250" />
-    <state width="1557" height="425" key="GridCell.Tab.1.bottom" timestamp="1598170155412">
+    <state width="1557" height="425" key="GridCell.Tab.1.bottom" timestamp="1598215046261">
       <screen x="-1600" y="0" width="1600" height="900" />
     </state>
     <state width="1877" height="2" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1597930312477" />
-    <state width="1557" height="425" key="GridCell.Tab.1.bottom/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598170155412" />
+    <state width="1557" height="425" key="GridCell.Tab.1.bottom/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598215046261" />
     <state width="1877" height="285" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1597940959631" />
-    <state width="1557" height="425" key="GridCell.Tab.1.center" timestamp="1598170155412">
+    <state width="1557" height="425" key="GridCell.Tab.1.center" timestamp="1598215046261">
       <screen x="-1600" y="0" width="1600" height="900" />
     </state>
     <state width="1877" height="2" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1597930312476" />
-    <state width="1557" height="425" key="GridCell.Tab.1.center/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598170155412" />
+    <state width="1557" height="425" key="GridCell.Tab.1.center/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598215046261" />
     <state width="1877" height="285" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1597940959630" />
-    <state width="1557" height="425" key="GridCell.Tab.1.left" timestamp="1598170155412">
+    <state width="1557" height="425" key="GridCell.Tab.1.left" timestamp="1598215046261">
       <screen x="-1600" y="0" width="1600" height="900" />
     </state>
     <state width="1877" height="2" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1597930312476" />
-    <state width="1557" height="425" key="GridCell.Tab.1.left/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598170155412" />
+    <state width="1557" height="425" key="GridCell.Tab.1.left/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598215046261" />
     <state width="1877" height="285" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1597940959630" />
-    <state width="1557" height="425" key="GridCell.Tab.1.right" timestamp="1598170155412">
+    <state width="1557" height="425" key="GridCell.Tab.1.right" timestamp="1598215046261">
       <screen x="-1600" y="0" width="1600" height="900" />
     </state>
     <state width="1877" height="2" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1597930312476" />
-    <state width="1557" height="425" key="GridCell.Tab.1.right/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598170155412" />
+    <state width="1557" height="425" key="GridCell.Tab.1.right/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598215046261" />
     <state width="1877" height="285" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1597940959631" />
+    <state x="-984" y="228" key="chooseDestDirectoryDialog" timestamp="1598194787085">
+      <screen x="-1600" y="0" width="1600" height="900" />
+    </state>
+    <state x="-984" y="228" key="chooseDestDirectoryDialog/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598194787085" />
     <state x="655" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1597858343819">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="655" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1597858343819" />
-    <state x="-1144" y="205" key="run.anything.popup" timestamp="1598161093404">
+    <state x="-1144" y="205" key="run.anything.popup" timestamp="1598222081864">
       <screen x="-1600" y="0" width="1600" height="900" />
     </state>
-    <state x="-1144" y="205" key="run.anything.popup/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598161093404" />
+    <state x="-1144" y="205" key="run.anything.popup/0.0.1920.1080/1920.0.1366.768/-1600.0.1600.900@-1600.0.1600.900" timestamp="1598222081864" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -220,51 +240,6 @@
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/services/ApiUtilisateurFetcher.java</url>
           <line>106</line>
           <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/MessageList.java</url>
-          <line>62</line>
-          <option name="timeStamp" value="99" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/MessageList.java</url>
-          <line>85</line>
-          <option name="timeStamp" value="102" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/MessageList.java</url>
-          <line>97</line>
-          <option name="timeStamp" value="106" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/MessageList.java</url>
-          <line>91</line>
-          <option name="timeStamp" value="107" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/MessageList.java</url>
-          <line>83</line>
-          <option name="timeStamp" value="110" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/MessageList.java</url>
-          <line>82</line>
-          <option name="timeStamp" value="111" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/MessageList.java</url>
-          <line>61</line>
-          <option name="timeStamp" value="114" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/MessageList.java</url>
-          <line>72</line>
-          <option name="timeStamp" value="115" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/MessageList.java</url>
-          <line>74</line>
-          <option name="timeStamp" value="117" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

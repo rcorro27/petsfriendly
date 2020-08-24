@@ -117,6 +117,59 @@ return Integer.parseInt(id_retour);
         return message_discussion;
     }
 
+    public static final String getMessageRecusInsideDiscussion(Context ctx){
+
+        SharedPreferences sharedpreferences;
+        String message_recus_discussion = "";
+        try {
+            sharedpreferences = ctx.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+            message_recus_discussion = sharedpreferences.getString("message_recus_discussion", null);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        if(message_recus_discussion == null){
+            message_recus_discussion = "";
+        }
+
+        return message_recus_discussion;
+    }
+    public static final String getHeureMessageRecus(Context ctx){
+
+        SharedPreferences sharedpreferences;
+        String heure_Msg = "";
+        try {
+            sharedpreferences = ctx.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+            heure_Msg = sharedpreferences.getString("heure_Msg", null);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        if(heure_Msg == null){
+            heure_Msg = "";
+        }
+
+        return heure_Msg;
+    }
+    public static final String getHeureMessageEnvoyer(Context ctx){
+
+        SharedPreferences sharedpreferences;
+        String heure_Msg = "";
+        try {
+            sharedpreferences = ctx.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+            heure_Msg = sharedpreferences.getString("heure_Msg", null);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        if(heure_Msg == null){
+            heure_Msg = "";
+        }
+
+        return heure_Msg;
+    }
+
+
     public static void addIdUtilisateur(Context ctx, int id) {
         SharedPreferences sharedpreferences;
         sharedpreferences = ctx.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
@@ -166,7 +219,29 @@ return Integer.parseInt(id_retour);
         editor.apply();
     }
 
+    public static void addMessageRecusInsideDiscussion(Context ctx, String nom, Editable valeur) {
+        SharedPreferences sharedpreferences;
+        sharedpreferences = ctx.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString(nom, String.valueOf(valeur));
+        editor.apply();
+    }
 
+    public static void addHeureMessageRecus(Context ctx, String nom, String heure) {
+        SharedPreferences sharedpreferences;
+        sharedpreferences = ctx.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString(nom,heure);
+        editor.apply();
+    }
+
+    public static void addHeureMessageEnvoyer(Context ctx, String nom, String heure) {
+        SharedPreferences sharedpreferences;
+        sharedpreferences = ctx.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString(nom,heure);
+        editor.apply();
+    }
 
 
 

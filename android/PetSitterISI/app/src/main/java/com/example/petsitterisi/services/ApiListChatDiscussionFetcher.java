@@ -198,29 +198,43 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
 //                intentte.getStringExtra("textMsgEnvoyer");
 
 
-                chat_message_container = view.findViewById(R.id.container_message_list);
-
-                final View cardMessageEnvoyerParam = View.inflate(context , R.layout.activity_item_message_envoyer,null);
-
-                final TextView messageItemEnvoyer = (TextView) cardMessageEnvoyerParam.findViewById(R.id.text_message_body_envoyer);
-
-                String messageEnvoyerDepuisContacterInsideProfilSitter = UtilisateurManager.getMessageContacterInsideDiscussion(context);
-
-                messageItemEnvoyer.setText(messageEnvoyerDepuisContacterInsideProfilSitter);
 
 
 
-                if (!messageEnvoyerDepuisContacterInsideProfilSitter.equals(""))
-                {
-
-                    // UtilisateurManager.getMessageContacterInsideDiscussion(context,"");
-                    //ll.addView(cardMessageEnvoyerParam);
-
-                    chat_message_container.addView(cardMessageEnvoyerParam);
 
 
+                //iciiiiiiiiiiiiiiiiii
 
-                }
+//                chat_message_container = view.findViewById(R.id.container_message_list);
+//
+//                final View cardMessageEnvoyerParam = View.inflate(context , R.layout.activity_item_message_envoyer,null);
+//
+//                final TextView messageItemEnvoyer = (TextView) cardMessageEnvoyerParam.findViewById(R.id.text_message_body_envoyer);
+//
+//                String messageEnvoyerDepuisContacterInsideProfilSitter = UtilisateurManager.getMessageContacterInsideDiscussion(context);
+//
+//                messageItemEnvoyer.setText(messageEnvoyerDepuisContacterInsideProfilSitter);
+//
+//
+//
+//                if (!messageEnvoyerDepuisContacterInsideProfilSitter.equals(""))
+//                {
+//
+//                    // UtilisateurManager.getMessageContacterInsideDiscussion(context,"");
+//                    //ll.addView(cardMessageEnvoyerParam);
+//
+//                    chat_message_container.addView(cardMessageEnvoyerParam);
+//
+//
+//
+//                }
+
+
+
+
+
+
+
 
 
 
@@ -292,9 +306,10 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
 
 
 
+
+                    TextView messageRecu = cardMessageRecuParam.findViewById(R.id.text_message_body_recu);
                     String non_chat_header = UtilisateurManager.getNomChat(context);
                     TextView heureMessageRecu = cardMessageRecuParam.findViewById(R.id.text_message_time_recus);
-                    TextView messageRecu = cardMessageRecuParam.findViewById(R.id.text_message_body_recu);
                     TextView nomUtilisateurRecus = cardMessageRecuParam.findViewById(R.id.text_message_name_recus);
                     ImageView UrlPhotoUtilisateurRecus = cardMessageRecuParam.findViewById(R.id.image_message_profile);
                     ImageView messageLu = cardMessageRecuParam.findViewById(R.id.image_message_lu);
@@ -314,7 +329,7 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
                     nomUtilisateurRecus.setText(non_chat_header);
 
                     //ll.addView(cardMessageEnvoyerParam);
-                    chat_message_container.addView(cardMessageRecuParam);
+                   // chat_message_container.addView(cardMessageRecuParam);
 
 
 //                     if (!messageAEteLu.equals("false")){
