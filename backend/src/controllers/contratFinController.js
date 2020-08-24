@@ -10,33 +10,43 @@ function contratFin(req, res) {
 
     bd.excuterRequete(sqlFacture, [req.body.contrat.id_contrat, req.body.promotion.id_promotion, req.body.facture.prix])
         .then(resultatRequete1 => {
-            let sqlContrat = "UPDATE contrat SET id_facture=$1,est_termine=true where id=$2"
+            let sqlContrat = "UPDATE contrat SET id_facture=$1,est_termine=true where id=$2 RETURNING *"
 
             bd.excuterRequete(sqlContrat, [resultatRequete1.rows[0].id_facture, resultatRequete1.rows[0].contrat.id_contrat])
                 .then(resultatRequete2 => {
 
-                    let sqlFeedback = "INSERT INTO feedback (id_contrat, commentaire, etoile) VALUES ($1,$2,$3)"
+                    let sqlContratUtilisateur = 'SELECT * FROM contrat_utilisateur WHERE id_contrat = $1 RETURNING *'
 
-                    bd.excuterRequete(sqlFeedback, [resultatRequete1.rows[0].id_contrat, req.body.commentaire, req.body.etoile])
-                        .then(resultatRequete3 => {
+                    bd.excuterRequete(sqlContratUtilisateur, [resultatRequete1.rows[0].id_contrat])
+                        .then(resultatRequete5 => {
+                            let sqlFeedback = "INSERT INTO feedback (id_contrat, commentaire, etoile) VALUES ($1,$2,$3)"
 
-                            let sqlGainPetsitter = "UPDATE utilisateur SET remuneration_petsitter = remuneration_petsitter + $1 WHERE id = "
+                            bd.excuterRequete(sqlFeedback, [resultatRequete1.rows[0].contrat.id_contrat, req.body.commentaire, req.body.etoile])
+                                .then(resultatRequete3 => {
 
-                            bd.excuterRequete(sqlGainPetsitter, [])
-                                .then(resultatRequete4 => {
-                                    res.setHeader('Content-Type', 'application/json')
-                                    res.end(JSON.stringify({}))
+                                    let sqlGainPetsitter = "UPDATE utilisateur SET remuneration_petsitter = remuneration_petsitter + $1 WHERE id = "
+
+                                    bd.excuterRequete(sqlGainPetsitter, [])
+                                        .then(resultatRequete4 => {
+                                            res.setHeader('Content-Type', 'application/json')
+                                            res.end(JSON.stringify({}))
+                                        })
+                                        .catch(erreur => {
+                                            console.error(erreur.stack)
+                                            res.setHeader('Content-Type', 'application/json')
+                                            res.end(erreur)
+                                        })
                                 })
                                 .catch(erreur => {
                                     console.error(erreur.stack)
                                     res.setHeader('Content-Type', 'application/json')
-                                    res.end(erreur)
+                                    res.end(erreur.stack)
                                 })
                         })
                         .catch(erreur => {
                             console.error(erreur.stack)
                             res.setHeader('Content-Type', 'application/json')
-                            res.end(erreur.stack)
+                            res.end(erreur)
                         })
                 })
                 .catch(erreur => {
