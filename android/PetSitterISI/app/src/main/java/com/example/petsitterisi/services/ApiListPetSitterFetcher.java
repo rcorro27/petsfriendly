@@ -12,6 +12,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.view.View;
@@ -71,66 +72,66 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
     @Override
     protected String doInBackground(String... urls) {
 
-        String result = "";
+//        String result = "";
+//
+//        try {
+//            URL url = new URL(urls[0]);
+//
+//            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+//            urlConnection.setDoOutput(true);
+//            urlConnection.setDoInput(true);
+//            urlConnection.setRequestMethod("POST");
+//            urlConnection.setRequestProperty("Content-Type", "application/json");
+//            urlConnection.connect();
+//
+//
+//            JSONArray adressJsonArray = new JSONArray();
+//            adressJsonArray.put(4);
+//
+//            JSONObject adresseJsonObject = new JSONObject();
+//
+//            String numero_rue = UtilisateurManager.getAdresseInfos(context, "numero_rue");
+//            adresseJsonObject.put("numero_rue", numero_rue);
+//
+//            String nom_rue = UtilisateurManager.getAdresseInfos(context, "nom_rue");
+//            adresseJsonObject.put("nom_rue", nom_rue);
+//
+//            String code_postal = UtilisateurManager.getAdresseInfos(context, "code_postal");
+//            adresseJsonObject.put("code_postal", code_postal);
+//
+//            String ville = UtilisateurManager.getAdresseInfos(context, "ville");
+//            adresseJsonObject.put("ville", ville);
+//
+//            String pays = UtilisateurManager.getAdresseInfos(context, "pays");
+//            adresseJsonObject.put("pays", pays);
+//
+//            JSONObject grandJsonObject = new JSONObject();
+//            grandJsonObject.put("services", adressJsonArray);
+//            grandJsonObject.put("adresse", adresseJsonObject);
+//
+//
+//            DataOutputStream wr = new DataOutputStream(urlConnection.getOutputStream());
+//            wr.writeBytes(grandJsonObject.toString());
+//            wr.flush();
+//            wr.close();
+//
+//            int codeRetour = urlConnection.getResponseCode();
+//
+//            if (codeRetour == HttpURLConnection.HTTP_OK) {
+//
+//                BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+//
+//                String line = "";
+//                while ((line = in.readLine()) != null)
+//                    result += line;
+//
+//            }
+//
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
 
-        try {
-            URL url = new URL(urls[0]);
-
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setDoOutput(true);
-            urlConnection.setDoInput(true);
-            urlConnection.setRequestMethod("POST");
-            urlConnection.setRequestProperty("Content-Type", "application/json");
-            urlConnection.connect();
-
-
-            JSONArray adressJsonArray = new JSONArray();
-            adressJsonArray.put(4);
-
-            JSONObject adresseJsonObject = new JSONObject();
-
-            String numero_rue = UtilisateurManager.getAdresseInfos(context, "numero_rue");
-            adresseJsonObject.put("numero_rue", numero_rue);
-
-            String nom_rue = UtilisateurManager.getAdresseInfos(context, "nom_rue");
-            adresseJsonObject.put("nom_rue", nom_rue);
-
-            String code_postal = UtilisateurManager.getAdresseInfos(context, "code_postal");
-            adresseJsonObject.put("code_postal", code_postal);
-
-            String ville = UtilisateurManager.getAdresseInfos(context, "ville");
-            adresseJsonObject.put("ville", ville);
-
-            String pays = UtilisateurManager.getAdresseInfos(context, "pays");
-            adresseJsonObject.put("pays", pays);
-
-            JSONObject grandJsonObject = new JSONObject();
-            grandJsonObject.put("services", adressJsonArray);
-            grandJsonObject.put("adresse", adresseJsonObject);
-
-
-            DataOutputStream wr = new DataOutputStream(urlConnection.getOutputStream());
-            wr.writeBytes(grandJsonObject.toString());
-            wr.flush();
-            wr.close();
-
-            int codeRetour = urlConnection.getResponseCode();
-
-            if (codeRetour == HttpURLConnection.HTTP_OK) {
-
-                BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-
-                String line = "";
-                while ((line = in.readLine()) != null)
-                    result += line;
-
-            }
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        return result;
+        return "";
     }
 
     @Override
@@ -142,10 +143,19 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        try {
+            String tContents = "";
+            String concat = "";
+            try {
+                InputStream stream = context.getAssets().open("resultat-recherche.json");
+                int size = stream.available();
+                byte[] buffer = new byte[size];
+                stream.read(buffer);
+                stream.close();
+                tContents = new String(buffer);
 
 
-            JSONArray jsonArray = new JSONArray(s);
+
+                JSONArray jsonArray = new JSONArray(tContents);
 
             for(int i = 0; i < jsonArray.length(); i++){
                 JSONObject jsObject = (JSONObject) jsonArray.get(i);
@@ -165,27 +175,40 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
                         int ratingInteger = Integer.parseInt(rating);
 
                         Drawable = 0;
+                        ImageView rateIcon = cardPetSitterParam.findViewById(R.id.rate_icon);
                         String rateDescription = "";
 
-                        if(ratingInteger == 1){
+
+                        if(ratingInteger > 0 && ratingInteger < 50){
                             Drawable  = R.drawable.icones_pas_satisfaisant;
+                            rateIcon.setColorFilter(Color.rgb(255, 0, 0)); // rouge
                             rateDescription = "Debutant";
-                        }else if(ratingInteger == 2){
+
+                        }else if(ratingInteger >= 50 && ratingInteger < 100){
                             Drawable  = R.drawable.icones_moyen;
+                            rateIcon.setColorFilter(Color.rgb(255, 204, 0)); // jaune
                             rateDescription = "Intermediare";
-                        }else if(ratingInteger == 3){
+
+                        }else if(ratingInteger >= 100 && ratingInteger < 200){
                             Drawable  = R.drawable.icones_bien;
+                            rateIcon.setColorFilter(Color.rgb(255, 51, 0)); // orange
                             rateDescription = "Avance";
-                        }else if(ratingInteger == 4){
+
+                        }else if(ratingInteger >= 200 && ratingInteger < 400){
                             Drawable  = R.drawable.icones_tres_bien;
+                            rateIcon.setColorFilter(Color.rgb(255, 153, 0)); // or
                             rateDescription = "Expert";
-                        }else if(ratingInteger >= 5){
+
+                        }else if(ratingInteger >= 400){
                             Drawable  = R.drawable.icones_excellent;
+                            rateIcon.setColorFilter(Color.rgb(46, 184, 46)); // vert
                             rateDescription = "Genie";
+
                         }
-                        ImageView rateIcon = cardPetSitterParam.findViewById(R.id.rate_icon);
+
                         TextView description_niveau_pet_sitter = cardPetSitterParam.findViewById(R.id.description_niveau_pet_sitter);
-                description_niveau_pet_sitter.setText(rateDescription);
+                        description_niveau_pet_sitter.setText(rateDescription);
+
                         rateIcon.setImageResource(Drawable);
 
                         button_profil.setOnClickListener(new View.OnClickListener() {
@@ -254,7 +277,7 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
 
 
 
-        } catch (JSONException e) {
+        } catch (JSONException | IOException e) {
             // Handle exceptions here
 
         }
