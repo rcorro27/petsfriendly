@@ -4,7 +4,7 @@ import InputComponent from 'component/input-component'
 import SelectComponent from 'component/select-component'
 import ListItemComponent from 'component/list-item-component'
 import VignetteComponent from 'component/vignette-component'
-import ModalCnxContainer from '../container/modal-cnx-container'
+
 import { withRouter } from 'react-router-dom'
 
 import '../css/test.css'
@@ -49,11 +49,18 @@ class RecherchePetsitter extends Component {
         this.handleAfficherSitterOnClick = this.handleAfficherSitterOnClick.bind(this)
         this.handleEnvoyerDemandeOnClick = this.handleEnvoyerDemandeOnClick.bind(this)
         this.onHandleClose = this.onHandleClose.bind(this)
+        this.onHandleShow = this.onHandleShow.bind(this)
     }
 
     onHandleClose () {
         this.setState({
             show: false
+        })
+    }
+
+    onHandleShow () {
+        this.setState({
+            show: true
         })
     }
 
@@ -147,7 +154,7 @@ class RecherchePetsitter extends Component {
                 }
 
             })
-        //  .then(response => console.log('reponse avant la assignatiion', response.data))
+            //  .then(response => console.log('reponse avant la assignatiion', response.data))
             .then(response => {
                 if (response.data.length === 0) {
                     this.setState({ resultatRecherche: false })
