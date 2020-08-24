@@ -7,9 +7,12 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -34,12 +37,18 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
     SharedPreferences sharedpreferences;
     TextView item_message_recu;
     TextView item_message_envoye;
+    EditText edittext_chatbox;
+    Button button_chatbox_send;
+    ChatService chatService;
 
-
-    public ApiListChatDiscussionFetcher(Context  context, LinearLayout llParam) {
+    public ApiListChatDiscussionFetcher(Context  context, LinearLayout llParam, EditText edittext_chatbo, Button tem_message_envoye) {
         this.context = context;
         this.ll = llParam;
+        this.edittext_chatbox = edittext_chatbox;
+        this.button_chatbox_send = button_chatbox_send;
         sharedpreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        chatService = new ChatService(context, ll);
+        chatService.start();
 
     }
 
@@ -228,6 +237,21 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
 
 //        View footerChat = View.inflate(context , R.layout.footer_bar_chat,null);
 //        ll.addView(footerChat);
+
+
+
+        button_chatbox_send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String message = edittext_chatbox.getText().toString();
+
+                if(!message.trim().equals("")){
+                    chatService.sendMyMessage(message);
+                }else{
+                    Toast.makeText(context, "CHamp message vide", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
     }
 

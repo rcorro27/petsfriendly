@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -27,6 +28,8 @@ import java.util.List;
 public class MessageList extends Fragment {
     Context ctx;
     LinearLayout chat_message_container;
+    EditText edittext_chatbox;
+    Button button_chatbox_send;
 //    LinearLayout icone_retour;
 
 
@@ -50,12 +53,16 @@ public class MessageList extends Fragment {
 
         chat_message_container = chatMessages.findViewById(R.id.container_message_list);
 
+        edittext_chatbox = chatMessages.findViewById(R.id.edittext_chatbox);
+
+        button_chatbox_send = chatMessages.findViewById(R.id.button_chatbox_send);
+
 
 
         int utilisateurId = UtilisateurManager.getIdUtilisateur(ctx);
         try {
-            ApiListChatDiscussionFetcher apiListChatFetcher = new ApiListChatDiscussionFetcher(ctx, chat_message_container);
-            apiListChatFetcher.execute("https://pets-friendly.herokuapp.com/" + utilisateurId);
+            ApiListChatDiscussionFetcher apiListChatFetcher = new ApiListChatDiscussionFetcher(ctx, chat_message_container, edittext_chatbox, button_chatbox_send);
+            apiListChatFetcher.execute("");
         }catch (Exception e)
         {
             e.printStackTrace();

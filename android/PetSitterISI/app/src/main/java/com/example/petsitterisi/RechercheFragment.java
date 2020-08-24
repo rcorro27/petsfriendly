@@ -20,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.petsitterisi.managers.UtilisateurManager;
 import com.example.petsitterisi.services.ApiRechercheFetcher;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
@@ -97,6 +98,8 @@ public class RechercheFragment extends Fragment {
                                 jourDebut = dayOfMonth;
                                 anneeDebut = year;
                                 eText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                String debutContrat =  year +"-"+(monthOfYear + 1)+"-"+dayOfMonth;
+                                
                             }
                         }, year, month, day);
                 picker.show();
@@ -122,6 +125,9 @@ public class RechercheFragment extends Fragment {
                                 jourFin = dayOfMonth;
                                 anneeFin = year;
                                 eText_2.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                String finContrat =  year +"-"+(monthOfYear + 1)+"-"+dayOfMonth;
+
+                                
                             }
                         }, year, month, day);
                 picker.show();

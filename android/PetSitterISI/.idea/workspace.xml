@@ -7,15 +7,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="045a04c6-8cfb-428c-aee6-f6dbda5aaaca" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/services/ApiContratFetcher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/services/ChatService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/carte_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/carte_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/carte_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/carte_4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/carte_5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/alert_dialog_paiement.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/MessageList.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/MessageList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/RechercheFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/RechercheFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/services/ApiListChatDiscussionFetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/services/ApiListChatDiscussionFetcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/services/ApiListPetSitterFetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/services/ApiListPetSitterFetcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_message_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_message_list.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/alert_dialog_reservation.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/alert_dialog_reservation.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="kzr4t4qwvwz5mfwo" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_3a_API_30_x86" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -27,6 +42,13 @@
         <projects_view />
       </state>
     </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -43,11 +65,17 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/assets" />
   </component>
   <component name="RecentsManager">
-    <key name="android.template.741640851">
-      <recent name="com.example.petsitterisi" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\dev\projet final\mypetsitter\android\PetSitterISI\app\src\main\res\drawable-v24" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\dev\projet final\mypetsitter\android\PetSitterISI\app\src\main\assets" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.petsitterisi.services" />
+    </key>
+    <key name="android.template.741640851">
+      <recent name="com.example.petsitterisi" />
     </key>
   </component>
   <component name="RunManager">
@@ -115,7 +143,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="1d7366b5-7962-4749-be10-1d41fb3fa2bc" name="Default Changelist" comment="" />
+      <changelist id="045a04c6-8cfb-428c-aee6-f6dbda5aaaca" name="Default Changelist" comment="" />
       <created>1597858061251</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -124,6 +152,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="764" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1597943482330">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="764" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1597943482330" />
     <state width="1877" height="2" key="GridCell.Tab.0.bottom" timestamp="1597930339195">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -156,10 +188,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="2" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1597930312476" />
-    <state x="655" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1597858343819">
+    <state x="656" y="338" key="com.intellij.ide.util.TipDialog" timestamp="1598276873671">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="655" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1597858343819" />
+    <state x="656" y="338" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598276873671" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -176,17 +208,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/services/ApiListPetSitterFetcher.java</url>
-          <line>159</line>
+          <line>166</line>
           <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/services/ApiListPetSitterFetcher.java</url>
-          <line>156</line>
+          <line>163</line>
           <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/petsitterisi/services/ApiListPetSitterFetcher.java</url>
-          <line>160</line>
+          <line>167</line>
           <option name="timeStamp" value="48" />
         </line-breakpoint>
       </breakpoints>
