@@ -11,6 +11,7 @@ class Profile extends Component {
             email: '',
             sexe: '',
             telephone: '',
+            est_valide: false,
             errors: {}
         }
     }
@@ -25,7 +26,7 @@ class Profile extends Component {
                 age: JSON.parse(localStorage.getItem('usertoken')).utilisateur.age,
                 sexe: JSON.parse(localStorage.getItem('usertoken')).utilisateur.sexe,
                 telephone: JSON.parse(localStorage.getItem('usertoken')).utilisateur.telephone,
-
+                est_valide: JSON.parse(localStorage.getItem('usertoken')).utilisateur.est_valide,
                 email: JSON.parse(localStorage.getItem('usertoken')).utilisateur.email
             })
         } else {
@@ -34,11 +35,13 @@ class Profile extends Component {
     }
 
     render () {
+        console.log('state', this.state)
         return (
             <div className='container'>
                 <div className='jumbotron mt-5'>
                     <div className='col-sm-8 mx-auto'>
-                        <h1 className='text-center'>PROFILE</h1>
+                        {this.state.est_valide ? <h3 className='text-center text-success '> Votre profile est active vous pouvez acceder aux services</h3> : <h3 className='text-center text-danger '>Votre profil n'est pas encore valide , vous n'avez pas l'acces a nos services</h3>}
+                        <h1 className='text-center'>PROFILE </h1>
                     </div>
                     <table className='table col-md-6 mx-auto'>
                         <tbody>

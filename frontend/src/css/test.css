@@ -169,3 +169,8 @@ body {
     height: 60vh;
     margin-top: 2%
 }
+
+.star {
+    cursor: pointer;
+    transition: color 200ms;
+}
