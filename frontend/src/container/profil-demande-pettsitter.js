@@ -18,8 +18,8 @@ class ProfilDemandePettSitter extends Component {
             servicesTotal: JSON.parse(localStorage.getItem('servicestotal')),
             dateDebut: JSON.parse(localStorage.getItem('dateDebut')),
             dateFin: JSON.parse(localStorage.getItem('dateFin')),
-            sitter: JSON.parse(localStorage.getItem('sitter'))
-            //  proprietaire: JSON.parse(localStorage.getItem('usertoken'))
+            sitter: JSON.parse(localStorage.getItem('sitter')),
+            proprietaire: JSON.parse(localStorage.getItem('usertoken'))
 
         }
         this.handleClick = this.handleClick.bind(this)

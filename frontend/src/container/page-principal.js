@@ -10,6 +10,7 @@ import Footer from '../component/Footer/Footer'
 import ProfilDemandePettSitter from '../container/profil-demande-pettsitter'
 import PaymentFormContainer from '../container/payment-form-container'
 import UpdateProfile from '../container/update-profil'
+import AfficherContratsContainer from '../container/afficher-contrats-container'
 
 class PagePrincipal extends Component {
     constructor (props) {
@@ -43,6 +44,7 @@ class PagePrincipal extends Component {
                     <Route path='/update' component={UpdateProfile} />
                     <Route path='/demande' component={ProfilDemandePettSitter} />
                     <Route path='/payment' component={PaymentFormContainer} />
+                    <Route path='/profilcontrats' component={AfficherContratsContainer} />
 
                 </Switch>
 
