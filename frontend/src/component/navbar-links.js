@@ -188,7 +188,7 @@ class NavbarLinks extends Component {
                 this.setState({
                     users: res
                 })
-                this.onHandleClose()
+                this.handleClose()
 
                 console.log('test', this.state.users.utilisateur.nom)
                 this.setState({ userName: this.state.users.utilisateur.nom })
@@ -235,7 +235,7 @@ class NavbarLinks extends Component {
                         // history.push('/admin')
                         this.props.history.push('/admin')
                     }
-                    this.onHandleClose()
+                    this.handleClose()
 
                     // console.log('Object', JSON.parse(localStorage.getItem('usertoken')))
 
@@ -305,7 +305,6 @@ class NavbarLinks extends Component {
             <div className='collapse navbar-collapse' id='navbarResponsive'>
                 {localStorage.usertoken ? userLink : loginRegLink}
                 <ModalCnxContainer show={this.state.show} onHide={this.handleClose} />
-                <ModalCnxContainer show={this.state.show} onHandleClose={this.onHandleClose} />
                 <Modal show={this.state.showInscription} onHide={this.handleCloseInsc}>
                     <Modal.Header closeButton>
                         <Modal.Title>Page Inscription</Modal.Title>
