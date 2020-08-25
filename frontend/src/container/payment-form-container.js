@@ -54,6 +54,13 @@ class PaymentFormContainer extends Component {
     }
 
     render () {
+        console.log(JSON.parse(localStorage.getItem('serviceRecherche')))
+        console.log(JSON.parse(localStorage.getItem('servicestotal')))
+        console.log(JSON.parse(localStorage.getItem('dateDebut')))
+        console.log(JSON.parse(localStorage.getItem('dateFin')))
+        console.log(JSON.parse(localStorage.getItem('sitter')))
+        console.log(JSON.parse(localStorage.getItem('usertoken')))
+
         return (
             <div className='row'>
                 <div className='col-75'>
