@@ -35,17 +35,17 @@ class InscriptionAdressContainer extends Component {
 
                 <div className='modal-body mx-3'>
 
-                    {this.state.inputs.map((input, index) => <InputComponent classCss={input.classCss} classIcon={input.classIcon} classInput={input.classInput} type={input.type} id={input.id} name={input.name} min={input.min} key={index} />)}
+                    {this.state.inputs.map((input, index) => <InputComponent classCss={input.classCss} classIcon={input.classIcon} classInput={input.classInput} type={input.type} id={input.id} name={input.name} min={input.min} onchange={this.props.change} textLabel={input.textLabel} key={index} />)}
                 </div>
 
                 <ul className='pagination'>
                     <li className='page-item'>
-                        <a href='#'>Previous
+                        <a href='#' onClick={this.props.back}>Previous
                         </a>
 
                     </li>
                     <li className='page-item'>
-                        <a href='#'/* onClick={this.props.next} */>Next
+                        <a href='#' onClick={this.props.next}>Next
                         </a>
                     </li>
                 </ul>

@@ -9,6 +9,7 @@ import Navbar from '../container/navbar-container'
 import Footer from '../component/Footer/Footer'
 import ProfilDemandePettSitter from '../container/profil-demande-pettsitter'
 import PaymentFormContainer from '../container/payment-form-container'
+import UpdateProfile from '../container/update-profil'
 
 class PagePrincipal extends Component {
     constructor (props) {
