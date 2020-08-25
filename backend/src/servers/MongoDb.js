@@ -1,5 +1,3 @@
-const { restart } = require('nodemon');
-
 let MongoClient = require('mongodb').MongoClient
 
 let urlMongodb = "mongodb+srv://petsFriendly:abc123...@cluster0.s3u73.mongodb.net/petsFriendly?retryWrites=true&w=majority"
@@ -47,5 +45,4 @@ module.exports = {
     recupererMessages,
     insererMessage
 }
-
 
