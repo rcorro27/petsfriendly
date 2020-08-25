@@ -36,7 +36,8 @@ class ProfilDemandePettSitter extends Component {
     }
 
     handleClick () {
-        return axios
+        this.props.history.push('/payment')
+        /*  return axios
             .post('https://pets-friendly.herokuapp.com/contrats/creation', {
 
                 utilisateur: {
@@ -63,7 +64,7 @@ class ProfilDemandePettSitter extends Component {
             })
             .catch(err => {
                 console.log('erreur recherche:', err)
-            })
+            }) */
     }
 
     handleSubmit () {
