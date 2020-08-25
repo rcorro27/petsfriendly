@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom'
 // import PetSitterInput from 'component/PetSitterInput'
 
 class ProfilDemandePettSitter extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props)
 
         this.state = {
@@ -19,13 +19,13 @@ class ProfilDemandePettSitter extends Component {
         this.handleClick = this.handleClick.bind(this)
     }
 
-    handleClick () {
+    handleClick() {
         alert('Demande Envoyee')
         this.props.history.push('/')
     }
 
-    render () {
-        function PrixAvantTaxes (prix) {
+    render() {
+        function PrixAvantTaxes(prix) {
             let prixAvantTaxes = 0
             prix.map((infoPrix, index) => {
                 prixAvantTaxes = prixAvantTaxes + infoPrix.prix_service
@@ -33,15 +33,15 @@ class ProfilDemandePettSitter extends Component {
             })
             return prixAvantTaxes
         }
-        function TPS (prix) {
+        function TPS(prix) {
             const tps = PrixAvantTaxes(prix) * 5 / 100
             return tps
         }
-        function TVQ (prix) {
+        function TVQ(prix) {
             const tvq = PrixAvantTaxes(prix) * 9.975 / 100
             return tvq
         }
-        function PrixAvecTaxes (prix) {
+        function PrixAvecTaxes(prix) {
             const prixTotal = Math.ceil(PrixAvantTaxes(prix) + TVQ(prix) + TPS(prix))
             return prixTotal
         }
@@ -68,22 +68,22 @@ class ProfilDemandePettSitter extends Component {
             {
                 nameProprietaire: 'Carlos',
                 dateCommentaire: '21/05/2020',
-                commentaire: 'Bonne sitter, excelent service je le recommende'
+                commentaire: 'Bonne sitter, excellent service je la recommande'
             },
             {
                 nameProprietaire: 'Maria',
                 dateCommentaire: '21/08/2019',
-                commentaire: 'Bonne sitter, excelent service je le recommende, il a pris vraiment soins de notre chat '
+                commentaire: 'Bonne sitter, excellent service je la recommande. Elle a vraiment bien pris soin de notre chat '
             },
             {
                 nameProprietaire: 'Ricardo',
                 dateCommentaire: '21/04/2018',
-                commentaire: 'Bonne sitter, excelent service , mauvais actitud '
+                commentaire: 'Bonne sitter, mais mauvaise attitude'
             },
             {
                 nameProprietaire: 'Stefanie',
                 dateCommentaire: '21/05/2020',
-                commentaire: 'Bonne sitter, excelent service , tres  bonne actitud , je le prendais encore une fois  '
+                commentaire: 'Bonne sitter, excellent service , tres  bonne attitude , je ferai encore affaire avec elle'
             }
 
         ]
@@ -110,7 +110,7 @@ class ProfilDemandePettSitter extends Component {
                     <img src='../src/img/caroussel/image1.jpeg' alt='Carlos' className='img-fluid rounded-circle w-25 p-3' />
                     <div className='m-5'>
                         <h2 className='h2'>Carlos</h2>
-                        <h3 className='h6'>Secteur de Action</h3>
+                        <h3 className='h6'>Secteur d'action</h3>
                         <h6 className='h6'>Rating</h6>
                     </div>
                     <div className='m-5'>
@@ -126,7 +126,7 @@ class ProfilDemandePettSitter extends Component {
                         </ul>
                     </div>
                     <div className=' m-5 w-50 p-3 float-right border border-danger rounded shadow'>
-                        <h1 className='w-25 p-3 mx-auto'><strong>Feedback</strong></h1>
+                        <h1 className='w-25 p-3 mx-auto'><strong>Commentaires</strong></h1>
                         {feedback.map((info, index) => <FeedBackCommentaire nomProprietaire={info.nameProprietaire} dateCommentaire={info.dateCommentaire} commentaire={info.commentaire} key={index} divClass=' m-2 border bg-white border-danger rounded' />)}
                     </div>
                 </div>
