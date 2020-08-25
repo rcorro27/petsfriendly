@@ -7,8 +7,12 @@ import Profile from 'container/profil.js'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Navbar from '../container/navbar-container'
 import Footer from '../component/Footer/Footer'
+<<<<<<< HEAD
 import ProfilDemandePettSitter from '../container/profil-demande-pettsitter'
 import PaymentFormContainer from '../container/payment-form-container'
+=======
+import UpdateProfile from './update-profil'
+>>>>>>> inscription_yb
 
 class PagePrincipal extends Component {
     constructor (props) {
@@ -39,9 +43,12 @@ class PagePrincipal extends Component {
                     <Route exact path='/admin' component={AdminContainer} />
                     <Route exact path='/' component={FormContainer} />
                     <Route path='/profil' component={Profile} />
-                    <Route path='/update' component={UpdateProfile} />
+<<<<<<< HEAD
                     <Route path='/demande' component={ProfilDemandePettSitter} />
                     <Route path='/payment' component={PaymentFormContainer} />
+=======
+                    <Route path='/update' component={UpdateProfile} />
+>>>>>>> inscription_yb
 
                 </Switch>
 

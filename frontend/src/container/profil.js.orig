@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import FormData from 'form-data'
+<<<<<<< HEAD
+=======
 import { Link, withRouter } from 'react-router-dom'
+>>>>>>> inscription_yb
 
 import axios from 'axios'
 import { Button } from 'react-bootstrap'
@@ -97,13 +100,20 @@ class Profile extends Component {
                         <h1 className='text-center'>PROFILE </h1>
                     </div>
                     <form method='post' encType='multipart/form-data'>
+<<<<<<< HEAD
+
+=======
+>>>>>>> inscription_yb
                         <div className='form-group'>
                             <label htmlFor='exampleFormControlFile1'>Mettre une photo de profil</label>
                             <input name='image' type='file' className='form-control-file' id='exampleFormControlFile1' onChange={this.fileSelected} />
                             <Button onClick={this.fileUpload}>Upload</Button>
                         </div>
                     </form>
+<<<<<<< HEAD
+=======
                     <Link to='/update'> <Button>Update Profil</Button></Link>
+>>>>>>> inscription_yb
 
                     <table className='table col-md-6 mx-auto'>
                         <tbody>
