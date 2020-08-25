@@ -7,6 +7,7 @@ import Profile from 'container/profil.js'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Navbar from '../container/navbar-container'
 import Footer from '../component/Footer/Footer'
+import UpdateProfile from './update-profil'
 
 class PagePrincipal extends Component {
     constructor (props) {
@@ -23,7 +24,7 @@ class PagePrincipal extends Component {
 
     componentDidMount () {
         // Activate the event listener
-        this.setupBeforeUnloadListener()
+        // this.setupBeforeUnloadListener()
     }
 
     render () {
@@ -37,6 +38,7 @@ class PagePrincipal extends Component {
                     <Route exact path='/admin' component={AdminContainer} />
                     <Route exact path='/' component={FormContainer} />
                     <Route path='/profil' component={Profile} />
+                    <Route path='/update' component={UpdateProfile} />
 
                 </Switch>
 
