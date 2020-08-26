@@ -3,6 +3,7 @@ import FormData from 'form-data'
 
 import axios from 'axios'
 import { Button } from 'react-bootstrap'
+import '../css/profil.css'
 
 class UpdateProfile extends Component {
     constructor () {

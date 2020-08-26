@@ -19,6 +19,43 @@
     background: rgba(203, 50, 50, 0.71);
 }
 
+.navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+/*@media screen and (max-width: 600px) {
+    .navbar {
+        position: relative;
+    }
+    .navbar .avatarIcon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .navbar a .logo .avatarIcon {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+    .navbar .avatarIcon .logo {
+        float: none;
+    }
+    .navbar .logo .avatarIcon {
+        position: relative;
+    }
+    .navbar .logo .avatarIcon {
+        display: block;
+        width: 100%;
+        text-align: left;
+    }
+}*/
+
 .avatarIcon {
     width: 200px;
     clip-path: ellipse(50% 50%);
