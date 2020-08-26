@@ -40,7 +40,7 @@ class Profile extends Component {
                 telephone: JSON.parse(localStorage.getItem('usertoken')).utilisateur.telephone,
                 est_valide: JSON.parse(localStorage.getItem('usertoken')).utilisateur.est_valide,
                 email: JSON.parse(localStorage.getItem('usertoken')).utilisateur.email,
-                urlImg: 'http://pets-friendly.herokuapp.com/images/images_profiles/' + JSON.parse(localStorage.getItem('usertoken')).utilisateur.url_photo
+                urlImg: 'https://pets-friendly.herokuapp.com/images/images_profiles/' + JSON.parse(localStorage.getItem('usertoken')).utilisateur.url_photo
             })
         } else {
             this.props.history.push('/')
@@ -86,7 +86,7 @@ class Profile extends Component {
     }
 
     render () {
-        console.log('state', this.state.urlImg)
+        console.log('image', this.state.urlImg)
         return (
             <div className='container'>
 
@@ -96,14 +96,9 @@ class Profile extends Component {
                         {this.state.est_valide ? <h3 className='text-center text-success '> Votre profile est active vous pouvez acceder aux services</h3> : <h3 className='text-center text-danger '>Votre profil n'est pas encore valide , vous n'avez pas l'acces a nos services</h3>}
                         <h1 className='text-center'>PROFILE </h1>
                     </div>
-                    <form method='post' encType='multipart/form-data'>
-                        <div className='form-group'>
-                            <label htmlFor='exampleFormControlFile1'>Mettre une photo de profil</label>
-                            <input name='image' type='file' className='form-control-file' id='exampleFormControlFile1' onChange={this.fileSelected} />
-                            <Button onClick={this.fileUpload}>Upload</Button>
-                        </div>
-                    </form>
+
                     <Link to='/update'> <Button>Update Profil</Button></Link>
+                    <Link to='/contrats'> <Button>Afficher les contrats</Button></Link>
 
                     <table className='table col-md-6 mx-auto'>
                         <tbody>
