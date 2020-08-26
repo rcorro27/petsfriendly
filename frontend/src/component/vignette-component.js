@@ -4,7 +4,7 @@ import React from 'react'
 const VignetteComponent = ({ urlPhoto, className, nom, rating, onClickProfil, classInput, classInput2, onClickEnvoyer, textBoutonProfil, textBoutonEnvoyer, servicesSitter, servicesTotal, id }) => (
 
     <div className={className}>
-        <img className='img-fluid img-thumbnail' src={urlPhoto} alt={urlPhoto} />
+        <img className='img-fluid img-thumbnail rounded-circle m-20' style={{ heigth: '30vh', width: '75%' }} src={'https://pets-friendly.herokuapp.com/images/images_profiles/' + urlPhoto} alt={urlPhoto} />
         <h2 className=' w-25 p-3 mx-auto'>{nom}</h2>
         <ul className='list-group'>
             {/* ul  a sortir dans une autre function */}
