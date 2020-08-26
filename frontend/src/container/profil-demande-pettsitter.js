@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
+import InputComponent from 'component/input-component'
 import ServiceDemandeComponent from '../component/services-demande-component'
+import ListItemComponent from 'component/list-item-component'
 import FeedBackCommentaire from '../component/feedback-commentaire-component'
 import FactureDemandeComponent from '../component/facture-demande-component'
-import { withRouter, Link } from 'react-router-dom'
-import axios from 'axios'
+import { withRouter } from 'react-router-dom'
+import '../css/demande.css'
 // import PetSitterInput from 'component/PetSitterInput'
-
+//commentire probleme push
 class ProfilDemandePettSitter extends Component {
     constructor(props) {
         super(props)
@@ -13,90 +15,23 @@ class ProfilDemandePettSitter extends Component {
         this.state = {
             recherche: false,
             resultat: [],
-            prixSitter: [],
-            service: JSON.parse(localStorage.getItem('serviceRecherche')),
-            servicesTotal: JSON.parse(localStorage.getItem('servicestotal')),
-            dateDebut: JSON.parse(localStorage.getItem('dateDebut')),
-            dateFin: JSON.parse(localStorage.getItem('dateFin')),
-            sitter: JSON.parse(localStorage.getItem('sitter')),
-            proprietaire: JSON.parse(localStorage.getItem('usertoken'))
+            idUser: '',
+            services: []
 
         }
         this.handleClick = this.handleClick.bind(this)
-        this.setProprietaire = this.setProprietaire.bind(this)
-        this.unsetProprietaire = this.unsetProprietaire(this)
-    }
-
-    setProprietaire () {
-        this.setState({ proprietaire: JSON.parse(localStorage.getItem('usertoken')) })
-    }
-
-    unsetProprietaire () {
-        this.setState({ proprietaire: false })
     }
 
     handleClick() {
-        this.props.history.push('/payment')
-        /*  return axios
-            .post('https://pets-friendly.herokuapp.com/contrats/creation', {
-
-                utilisateur: {
-                    id_proprietaire: this.state.proprietaire.utilisateur.id,
-                    id_petsitter: this.state.sitter.id
-                },
-                contrat: {
-                    date_debut: this.state.dateDebut,
-                    date_fin: this.state.dateFin
-                },
-                service: this.state.service,
-                promotion: {
-                    id_promotion: 1
-                }
-
-            })
-            .then(response => {
-                if (Object.keys(response.data).length === 0) {
-                    alert('Demande Envoyee')
-                    this.props.history.push('/')
-                } else {
-                    console.log('demande pas envoyer')
-                }
-            })
-            .catch(err => {
-                console.log('erreur recherche:', err)
-            }) */
-    }
-
-    handleSubmit () {
-
+        alert('Demande Envoyee')
+        this.props.history.push('/')
     }
 
     render() {
-        function niveauPetSitter (niveau) {
-            let niveauSitter = ''
-            if (niveau > 0 && niveau < 50) {
-                niveauSitter = 'Debutant'
-            } else if (niveau >= 50 && niveau < 100) {
-                niveauSitter = 'Normal'
-            } else if (niveau >= 100 && niveau < 200) {
-                niveauSitter = 'Intermediare'
-            } else if (niveau >= 200 && niveau < 400) {
-                niveauSitter = 'Proffesionel'
-            } else if (niveau >= 400) {
-                niveauSitter = 'Expert'
-            }
-            return niveauSitter
-        }
-        const sitter = JSON.parse(localStorage.getItem('sitter'))
-        const serviceTotal = JSON.parse(localStorage.getItem('servicestotal'))
-        const user = JSON.parse(localStorage.getItem('usertoken'))
-
         function PrixAvantTaxes(prix) {
             let prixAvantTaxes = 0
             prix.map((infoPrix, index) => {
-                console.log(prix)
-                console.log(serviceTotal[infoPrix - 1].prix_service)
-                prixAvantTaxes = prixAvantTaxes + serviceTotal[infoPrix - 1].prix_service
+                prixAvantTaxes = prixAvantTaxes + infoPrix.prix_service
                 return prixAvantTaxes
             })
             return prixAvantTaxes
@@ -113,6 +48,25 @@ class ProfilDemandePettSitter extends Component {
             const prixTotal = Math.ceil(PrixAvantTaxes(prix) + TVQ(prix) + TPS(prix))
             return prixTotal
         }
+
+        const service = [
+            {
+                id: 1,
+                description: 'Promenade',
+                prix_service: 20
+            },
+            {
+                id: 2,
+                description: 'Garder Chez Vous',
+                prix_service: 15
+            },
+            {
+                id: 3,
+                description: 'Garder Chez Pet Sitter',
+                prix_service: 20
+            }
+
+        ]
         const feedback = [
             {
                 nameProprietaire: 'Carlos',
@@ -132,7 +86,7 @@ class ProfilDemandePettSitter extends Component {
             {
                 nameProprietaire: 'Stefanie',
                 dateCommentaire: '21/05/2020',
-                commentaire: 'Bonne sitter, excellent service , tres  bonne attitude , je ferai encore affaire avec elle'
+                commentaire: 'Bonne sitter, excellent service , tres bonne attitude , je ferai encore affaire avec elle'
             }
 
         ]
@@ -143,42 +97,43 @@ class ProfilDemandePettSitter extends Component {
             'TOTAL avec taxes :'
 
         ]
-        console.log('sitter', this.state)
-        console.log('service', JSON.parse(localStorage.getItem('serviceRecherche')))
 
+        console.log('taxes tps', TPS(service))
+        console.log('taxes tvq', TVQ(service))
+        console.log('Prix Total : ', PrixAvecTaxes(service))
         return (
 
-            <div>
-
+            // AHMED CHAQUE ELEMENT JSX DOIT AVOIR UNE ELEMENT PARENT ( ce ca le div qui envelope tout le restes)
+            // ligne 21 pas la bonne syntaxe
+            <div className='demandewrapper'>
                 <div>
-                    <h1 className='h1 w-25 p-3 mx-auto'>Demande Service </h1>
+                    <h1 className='h1 w-25 p-3 mx-auto'>Profil Pet Sitter</h1>
                 </div>
                 <div className='row m-5 bg-white border border-danger rounded shadow'>
-                    <img src={sitter.url_photo} alt={sitter.nom} className='img-fluid rounded-circle w-25 p-3' />
-                    <div className='m-5'>
-                        <h2 className='h2'>{sitter.nom}</h2>
-                        <h3 className='h6'>{sitter.secteur_action}</h3>
-                        <h6 className='h6'>{niveauPetSitter(sitter.rating)}</h6>
+                    <img src='../src/img/caroussel/image1.jpeg' alt='Carlos' className='img-fluid rounded-circle w-25 p-3' />
+                    <div className='m-5 infoSitterWrapper'>
+                        <h2 className='h2'>Carlos</h2>
+                        <h3 className='h6'>Secteur d'action</h3>
+                        <h6 className='h6'>Rating</h6>
+                        <input type='button' value='Contacter' className='btn btn-success m-2 boutonPetsitter' />
+                        <input type='button' value='Aimer' className='btn btn-danger m-2 boutonPetsitter' />
                     </div>
-                    <div className='m-5'>
-                        <input type='button' value='Contacter' className='btn btn-success m-2' />
-                        <input type='button' value='Aimer' className='btn btn-danger m-2' />
-                    </div>
+
                 </div>
                 <div className='clearfix '>
-                    <div className='m-5 w-25 p3 float-left bg-white border border-danger rounded shadow '>
+                    <div className='m-5 w-25 p3 float-left border border-danger rounded shadow serviceBox'>
                         <h3 className='h3 w-25 p-3 mx-auto'><strong>Services</strong> </h3>
                         <ul className='list-group'>
-                            <ServiceDemandeComponent classNameLi='list-group-item' servicesTotal={this.state.servicesTotal} servicesSitter={this.state.service} classIcone='fas fa-dollar-sign' />
+                            {service.map((info, index) => <ServiceDemandeComponent key={index} classNameLi='list-group-item serviceBox' textLi={info.description} textPrice={info.prix_service} classIcone='fas fa-dollar-sign ' />)}
                         </ul>
                     </div>
-                    <div className=' m-5 w-50 p-3 float-right border border-danger rounded shadow'>
+                    <div className=' m-5 w-50 p-3 float-right border border-danger rounded shadow commentBox'>
                         <h1 className='w-25 p-3 mx-auto'><strong>Commentaires</strong></h1>
-                        {feedback.map((info, index) => <FeedBackCommentaire nomProprietaire={info.nameProprietaire} dateCommentaire={info.dateCommentaire} commentaire={info.commentaire} key={index} divClass=' m-2 border bg-white border-danger rounded' />)}
+                        {feedback.map((info, index) => <FeedBackCommentaire nomProprietaire={info.nameProprietaire} dateCommentaire={info.dateCommentaire} commentaire={info.commentaire} key={index} divClass=' m-2 feedbackComment' />)}
                     </div>
                 </div>
 
-                <div className=' w-100 p-5 float-right border border-danger rounded bg-white  shadow'>
+                <div className='border border-danger rounded shadow prixEtServiceWrapper'>
 
                     <h2 className=' h2 w-25 p-3 mx-auto'>Prix des services</h2>
                     <div>
@@ -187,16 +142,61 @@ class ProfilDemandePettSitter extends Component {
 
                         </div>
                         <div className='float-right m-2 w-25 p-3'>
-                            <p><strong>{PrixAvantTaxes(this.state.service)}</strong></p>
-                            <p>{TPS(this.state.service)}</p>
-                            <p>{TVQ(this.state.service)}</p>
-                            <p><strong>{PrixAvecTaxes(this.state.service)}</strong></p>
-                            <Link to='/payment'> <input type='button' value='Envoyer Demande' className='btn btn-success' /* onClick={this.handleClick} */ /></Link>
+                            <p><strong>{PrixAvantTaxes(service)}</strong></p>
+                            <p>{TPS(service)}</p>
+                            <p>{TVQ(service)}</p>
+                            <p><strong>{PrixAvecTaxes(service)}</strong></p>
+                            <input type='button' value='Envoyer Demande' className='btn btn-success' onClick={this.handleClick} />
                         </div>
 
                     </div>
                 </div>
+                <div id='divPlubicite2'>
+                    <h1 className='w-50 p-3 mx-auto h1'>Des services sur mesure pour un animal d'exeption </h1>
+                    <div className='row divAnnonce'>
+                        <div className='col-lg-4 mx-auto border border-danger rounded serviceProposes' >
+                            <ListItemComponent text='Faites garder votre animal à votre domicile ou à celui du Pet Sitter' className='fas fa-check' />
+                            <ListItemComponent text='Partez à votre rendez-vous sans vous soucier de la promenade de votre chien' className='fas fa-check' />
+                            <ListItemComponent text='Besoin de flexibilite? Choisissez les horaires et periodes qui vous conviennent' className='fas fa-check' />
+                        </div>
+                        <div className='col-lg-4 mx-auto border border-danger rounded serviceProposes'>
+                            {/* METTRE UN ICONE DANS LAVANT DE LES LI POUR LA PUBLICITER */}
+                            <ListItemComponent text='Tous les nouveaux gardiens passent une verification des antecedents de base' className='fas fa-check' />
+                            <ListItemComponent text='Tous les gardiens fournissent un profil detaille et des informations personnelles ' className='fas fa-check' />
+                            <ListItemComponent text='Tous les Pet Sitter sont agrees par notre equipe de specialistes chez Pets Friendly' className='fas fa-check' />
+                        </div>
+                    </div>
+                </div>
+                <div className='infolettreDiv mt-3'>
+                    <h1 className='h1'>Laissez nous vous prevenir des nouveautes</h1>
+                    <h6 className='h6'>Restez informe</h6>
+                    <form>
+                        <InputComponent classCss='form-group' classInput='form-control' textLabel='Entrez votre email' type='email' id='infolettre' name='infolettre' onChange={this.handleChange} />
+                        <InputComponent classInput='btn btn-outline-danger' type='submit' id='infolettreButton' name='Envoyer ' value='Envoyer' />
+                    </form>
+                </div>
             </div>
+        )
+    }
+}
+// tu ne exporte pas la bon classe!!! tu dois exporter la classe container dans ce cas la : FormInscription!!
+export default withRouter(ProfilDemandePettSitter)
+    < div >
+    <div className='float-left m-2 w-25 p-3'>
+        {facture.map((infoFacture, index) => <FactureDemandeComponent text={infoFacture} key={index} />)}
+
+    </div>
+    <div className='float-right m-2 w-25 p-3'>
+        <p><strong>{PrixAvantTaxes(this.state.service)}</strong></p>
+        <p>{TPS(this.state.service)}</p>
+        <p>{TVQ(this.state.service)}</p>
+        <p><strong>{PrixAvecTaxes(this.state.service)}</strong></p>
+        <Link to='/payment'> <input type='button' value='Envoyer Demande' className='btn btn-success' /* onClick={this.handleClick} */ /></Link>
+    </div>
+
+                    </div >
+                </div >
+            </div >
         )
     }
 }
