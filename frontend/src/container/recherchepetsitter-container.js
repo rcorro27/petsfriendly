@@ -137,9 +137,7 @@ class RecherchePetsitter extends Component {
     }
 
     handleSubmit (event) {
-        if (!JSON.parse(localStorage.getItem('usertoken'))) {
-            alert('dans le if')
-        }
+        console.log('dans le if ')
         /* fetch('resultat-recherche.json', { method: 'GET' })
             .then(response => response.json())
             .then(response => {
