@@ -8,11 +8,11 @@ import VignetteComponent from 'component/vignette-component'
 
 import { withRouter } from 'react-router-dom'
 
-import '../css/test.css'
+import '../css/recherche.css'
 // import ProfilDemandePettSitter from './profil-demande-pettsitter'
 
 class RecherchePetsitter extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props)
         // question a poser a nassim voir les criteres comme il sont dans le request ????
         this.state = {
@@ -53,7 +53,7 @@ class RecherchePetsitter extends Component {
         this.onHandleShow = this.onHandleShow.bind(this)
     }
 
-    onHandleClose () {
+    onHandleClose() {
         this.setState({
             show: false
         })
@@ -65,10 +65,10 @@ class RecherchePetsitter extends Component {
         })
     }
 
-    componentDidMount () {
+    componentDidMount() {
         return axios
             .get('https://pets-friendly.herokuapp.com/services/recuperation/tout')
-        // .then(response => console.log(response.data))
+            // .then(response => console.log(response.data))
             .then(response => {
                 const service = []
                 response.data.map((info, index) => service.push(info))
@@ -81,52 +81,52 @@ class RecherchePetsitter extends Component {
             })
     }
 
-    handleChangeSelect (event) {
+    handleChangeSelect(event) {
         this.setState({ typeAnimal: event.target.value })
     }
 
-    handleChange (event) {
+    handleChange(event) {
         switch (event.target.id) {
-        case 'garderChezPetsitter':
+            case 'garderChezPetsitter':
             this.state.servicesRechercher[0] = 1
-            break
-        case 'garderChezVous':
+                break
+            case 'garderChezVous':
             this.state.servicesRechercher[0] = 2
-            break
-        case 'dateDebut':
-            this.setState({ dateDebut: event.target.value })
-            break
-        case 'dateFin':
-            this.setState({ dateFin: event.target.value })
-            break
-        case 'promenade':
+                break
+            case 'dateDebut':
+                this.setState({ dateDebut: event.target.value })
+                break
+            case 'dateFin':
+                this.setState({ dateFin: event.target.value })
+                break
+            case 'promenade':
             if (this.state.servicesRechercher[1] === 3) {
                 this.state.servicesRechercher.splice(1, 1)
             } else { this.state.servicesRechercher[1] = 3 }
 
             // this.setState({ promenade: 3 })
-            break
-        case 'numeroRue':
+                break
+            case 'numeroRue':
             console.log(event.target.value)
-            this.setState({ numero_rue: event.target.value })
-            break
-        case 'nomRue':
-            this.setState({ nom_rue: event.target.value })
-            break
-        case 'secteurAction':
-            this.setState({ code_postal: event.target.value })
-            break
-        case 'province':
-            this.setState({ province: event.target.value })
-            break
-        case 'ville':
-            this.setState({ ville: event.target.value })
-            break
-        case 'pays':
-            this.setState({ pays: event.target.value })
-            break
-        case 'infolettre':
-            this.setState({ infolettre: event.target.value })
+                this.setState({ numero_rue: event.target.value })
+                break
+            case 'nomRue':
+                this.setState({ nom_rue: event.target.value })
+                break
+            case 'secteurAction':
+                this.setState({ code_postal: event.target.value })
+                break
+            case 'province':
+                this.setState({ province: event.target.value })
+                break
+            case 'ville':
+                this.setState({ ville: event.target.value })
+                break
+            case 'pays':
+                this.setState({ pays: event.target.value })
+                break
+            case 'infolettre':
+                this.setState({ infolettre: event.target.value })
         }
     }
 
@@ -136,7 +136,7 @@ class RecherchePetsitter extends Component {
         })
     }
 
-    handleSubmit (event) {
+    handleSubmit(event) {
         /* fetch('resultat-recherche.json', { method: 'GET' })
             .then(response => response.json())
             .then(response => {
@@ -178,15 +178,15 @@ class RecherchePetsitter extends Component {
             })
     }
 
-    handleAddOnClick () {
+    handleAddOnClick() {
         this.setState({ resultatRecherche: true })
     }
 
-    handleSaveOnClick () {
+    handleSaveOnClick() {
         this.setState({ resultatRecherche: false })
     }
 
-    handleAfficherSitterOnClick (event) {
+    handleAfficherSitterOnClick(event) {
         console.log(this.state.resultat[event.target.name])
         console.log(this.state.dateDebut)
         console.log(this.state.dateFin)
@@ -200,11 +200,11 @@ class RecherchePetsitter extends Component {
         // console.log('local Storage:', JSON.parse(localStorage.getItem('sitter')))
     }
 
-    handleEnvoyerDemandeOnClick (event) {
+    handleEnvoyerDemandeOnClick(event) {
         localStorage.setItem('sitter', JSON.stringify(this.state.resultat[event.target.name]))
     }
 
-    render () {
+    render() {
         const TYPEANIMAL = [
             {
                 label: 'Chien',
@@ -221,15 +221,16 @@ class RecherchePetsitter extends Component {
                 prix_service: 20
             }, {
                 id: 2,
-                description: 'garder a la maison ',
+                description: 'Garder a la maison',
                 prix_service: 45
             }, {
                 id: 3,
-                description: 'gardez chez vous ',
+                // ??????????????????????????????????? est ce que je peux corriger ca
+                description: 'Garder chez vous ',
                 prix_service: 15
             }] */
 
-        function niveauPetSitter (niveau) {
+        function niveauPetSitter(niveau) {
             let niveauSitter = ''
             if (niveau > 0 && niveau < 50) {
                 niveauSitter = 'Debutant'
@@ -249,8 +250,8 @@ class RecherchePetsitter extends Component {
             <div>
 
                 <div id='divPublicite'>
-                    <div className='w-50 p-3 mx-auto bg-secondary text-white'>
-                        <h1 className='h1'>Gagnez Temps et Tranquilite de d'esprit Recherchez ce qu'il vous faut on se occupe du reste </h1>
+                    <div className='greyboxdiv'>
+                        <h1 className='h1'>Gagnez temps et tranquilite d'esprit. Recherchez ce qu'il vous faut, on s'occupe du reste! </h1>
                     </div>
                 </div>
                 <h1 className='w-25 p-3 mx-auto'>Recherche Petsitter</h1>
@@ -278,24 +279,24 @@ class RecherchePetsitter extends Component {
                 </div>
 
                 <div id='divPlubicite2'>
-                    <h1 className='w-50 p-3 mx-auto h1'>Des Services Sur mesure pour un Animal d'exeption </h1>
+                    <h1 className='w-50 p-3 mx-auto h1'>Des services sur mesure pour un animal d'exeption </h1>
                     <div className='row divAnnonce'>
-                        <div className='col-lg-4 mx-auto border border-danger rounded'>
-                            <ListItemComponent text='Faite garder votre animal a votre domicile ou celui du Pett Sitter' className='fas fa-check' />
-                            <ListItemComponent text='Partez a votre rendez vous sans vous soucier de la promenade de votre chien' className='fas fa-check' />
-                            <ListItemComponent text='Besoin de flexibilite? Choisisez les horraires et periodes qui vous conviennent' className='fas fa-check' />
+                        <div className='col-lg-4 mx-auto border border-danger rounded serviceProposes' >
+                            <ListItemComponent text='Faites garder votre animal à votre domicile ou à celui du Pet Sitter' className='fas fa-check' />
+                            <ListItemComponent text='Partez à votre rendez-vous sans vous soucier de la promenade de votre chien' className='fas fa-check' />
+                            <ListItemComponent text='Besoin de flexibilite? Choisissez les horaires et periodes qui vous conviennent' className='fas fa-check' />
                         </div>
-                        <div className='col-lg-4 mx-auto border border-danger rounded'>
+                        <div className='col-lg-4 mx-auto border border-danger rounded serviceProposes'>
                             {/* METTRE UN ICONE DANS LAVANT DE LES LI POUR LA PUBLICITER */}
-                            <ListItemComponent text='Tout les nouveaux gardiens passent une verification des antecedents de base' className='fas fa-check' />
-                            <ListItemComponent text='Tout les gardiens fournissent un profil detaille et des informations personnel ' className='fas fa-check' />
-                            <ListItemComponent text='tout les Pet Sitter sont agrees par notre equipe de specialistes chez Pets Friendly' className='fas fa-check' />
+                            <ListItemComponent text='Tous les nouveaux gardiens passent une verification des antecedents de base' className='fas fa-check' />
+                            <ListItemComponent text='Tous les gardiens fournissent un profil detaille et des informations personnelles ' className='fas fa-check' />
+                            <ListItemComponent text='Tous les Pet Sitter sont agrees par notre equipe de specialistes chez Pets Friendly' className='fas fa-check' />
                         </div>
                     </div>
                 </div>
                 <div className='infolettreDiv mt-3'>
-                    <h1 className='h1'>Laisse nous vous prevenir des nouveautes</h1>
-                    <h6 className='h6'>Reste informe</h6>
+                    <h1 className='h1'>Laissez nous vous prevenir des nouveautes</h1>
+                    <h6 className='h6'>Restez informe</h6>
                     <form>
                         <InputComponent classCss='form-group' classInput='form-control' textLabel='Entrez votre email' type='email' id='infolettre' name='infolettre' onChange={this.handleChange} />
                         <InputComponent classInput='btn btn-outline-danger' type='submit' id='infolettreButton' name='Envoyer ' value='Envoyer' />
