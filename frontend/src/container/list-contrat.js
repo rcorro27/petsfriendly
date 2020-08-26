@@ -108,7 +108,7 @@ class ListContrat extends Component {
 
                                     <td>{contrat.est_accepte ? <Button>Accepter</Button> : <Button>Annuler</Button>}</td>
 
-                                    <td>{contrat.est_termine ? 'true' : 'False'}</td>
+                                    <td>{contrat.est_termine ? 'Terminee ' : 'Pas Encore Terminee'}</td>
 
                                 </tr>
 
