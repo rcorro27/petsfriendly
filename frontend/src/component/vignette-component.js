@@ -1,7 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 //* import ImgComposant from 'img-composant'
 
-const VignetteComponent = ({ urlPhoto, className, nom, rating, onClickProfil, classInput, classInput2, onClickEnvoyer, textBoutonProfil, textBoutonEnvoyer, servicesSitter, servicesTotal, id }) => (
+const VignetteComponent = ({ urlPhoto, className, nom, rating, onClickProfil, classInput, classInput2, onClickEnvoyer, textBoutonProfil, textBoutonEnvoyer, servicesSitter, servicesTotal, id, link }) => (
 
     <div className={className}>
         <img className='img-fluid img-thumbnail rounded-circle m-20' style={{ heigth: '30vh', width: '75%' }} src={'https://pets-friendly.herokuapp.com/images/images_profiles/' + urlPhoto} alt={urlPhoto} />
@@ -15,7 +16,7 @@ const VignetteComponent = ({ urlPhoto, className, nom, rating, onClickProfil, cl
             })}
 
             <p className=' w-25 p-3 mx-auto'>{rating}</p>
-            <button type='button' name={id} onClick={onClickProfil} className={classInput}>{textBoutonProfil} </button>
+            <Link to={link}>  <button type='button' name={id} onClick={onClickProfil} className={classInput}>{textBoutonProfil} </button></Link>
             {/* <button type='button' name={id} onClick={onClickEnvoyer} className={classInput2}>{textBoutonEnvoyer}</button> */}
         </ul>
 
