@@ -7,7 +7,7 @@ import axios from 'axios'
 // import PetSitterInput from 'component/PetSitterInput'
 
 class ProfilDemandePettSitter extends Component {
-    constructor(props) {
+    constructor (props) {
         super(props)
 
         this.state = {
@@ -35,7 +35,7 @@ class ProfilDemandePettSitter extends Component {
         this.setState({ proprietaire: false })
     }
 
-    handleClick() {
+    handleClick () {
         this.props.history.push('/payment')
         /*  return axios
             .post('https://pets-friendly.herokuapp.com/contrats/creation', {
@@ -71,7 +71,7 @@ class ProfilDemandePettSitter extends Component {
 
     }
 
-    render() {
+    render () {
         function niveauPetSitter (niveau) {
             let niveauSitter = ''
             if (niveau > 0 && niveau < 50) {
@@ -91,7 +91,7 @@ class ProfilDemandePettSitter extends Component {
         const serviceTotal = JSON.parse(localStorage.getItem('servicestotal'))
         const user = JSON.parse(localStorage.getItem('usertoken'))
 
-        function PrixAvantTaxes(prix) {
+        function PrixAvantTaxes (prix) {
             let prixAvantTaxes = 0
             prix.map((infoPrix, index) => {
                 console.log(prix)
@@ -101,15 +101,15 @@ class ProfilDemandePettSitter extends Component {
             })
             return prixAvantTaxes
         }
-        function TPS(prix) {
+        function TPS (prix) {
             const tps = PrixAvantTaxes(prix) * 5 / 100
             return tps
         }
-        function TVQ(prix) {
+        function TVQ (prix) {
             const tvq = PrixAvantTaxes(prix) * 9.975 / 100
             return tvq
         }
-        function PrixAvecTaxes(prix) {
+        function PrixAvecTaxes (prix) {
             const prixTotal = Math.ceil(PrixAvantTaxes(prix) + TVQ(prix) + TPS(prix))
             return prixTotal
         }
