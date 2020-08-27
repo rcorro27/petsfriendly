@@ -35,6 +35,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -61,36 +63,36 @@ public class ApiListChatFetcher extends AsyncTask<String, Nullable, String> {
     @Override
     protected String doInBackground(String... urls) {
 
-//        String result = "";
-//
-//        try {
-//            URL url = new URL(urls[0]);
-//
-//
-//            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-//            urlConnection.setDoOutput(false);
-//            urlConnection.setDoInput(true);
-//            urlConnection.setRequestMethod("GET");
-//            urlConnection.setRequestProperty("Content-Type", "application/json; utf-8");
-//            urlConnection.connect();
-//
-//            int codeRetour = urlConnection.getResponseCode();
-//
-//
-//            if (codeRetour == HttpURLConnection.HTTP_OK) {
-//
-//                BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-//
-//                String line = "";
-//                while ((line = in.readLine()) != null)
-//                    result += line;
-//
-//            }
-//
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//        }
-//
+        String result = "";
+
+        try {
+            URL url = new URL(urls[0]);
+
+
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setDoOutput(false);
+            urlConnection.setDoInput(true);
+            urlConnection.setRequestMethod("GET");
+            urlConnection.setRequestProperty("Content-Type", "application/json; utf-8");
+            urlConnection.connect();
+
+            int codeRetour = urlConnection.getResponseCode();
+
+
+            if (codeRetour == HttpURLConnection.HTTP_OK) {
+
+                BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+
+                String line = "";
+                while ((line = in.readLine()) != null)
+                    result += line;
+
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
               return "";
     }
 
@@ -109,17 +111,7 @@ public class ApiListChatFetcher extends AsyncTask<String, Nullable, String> {
 
         try {
 
-            String tContents = "";
-            String concat = "";
-            try {
-                InputStream stream = context.getAssets().open("resultat_chat.json");
-                int size = stream.available();
-                byte[] buffer = new byte[size];
-                stream.read(buffer);
-                stream.close();
-                tContents = new String(buffer);
-
-            JSONArray jsonArray = new JSONArray(tContents);
+            JSONArray jsonArray = new JSONArray(s);
 
             for(int i = 0; i < jsonArray.length(); i++){
 
@@ -206,14 +198,6 @@ public class ApiListChatFetcher extends AsyncTask<String, Nullable, String> {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
-    }catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-
-
 
 
     }

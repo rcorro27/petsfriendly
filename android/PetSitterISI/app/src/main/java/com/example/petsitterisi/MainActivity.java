@@ -50,15 +50,6 @@ public class MainActivity extends Activity {
                         |View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY); // cacher temporairement avec transparence
 
 
-
-
-
-
-
-
-
-
-
         final MediaPlayer[] son_accueille = {MediaPlayer.create(ctx, R.raw.son_accueille_friendly)};
 
         VideoView videoView =(VideoView)findViewById(R.id.videoView);
@@ -113,20 +104,14 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         ctx = this;
         super.onCreate(savedInstanceState);
-<<<<<<< HEAD
+
         //cacher temporairement  la bare d'etat du haut
         requestWindowFeature(Window.FEATURE_NO_TITLE); getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-=======
-
-
-
-
 
 //        //cacher temporairement  la bare d'etat du haut
 //        requestWindowFeature(Window.FEATURE_NO_TITLE); getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
->>>>>>> cdfdf3c85d89195157e579aa571ec3d45c769ba6
-        setContentView(R.layout.activity_bottom_navigation_bar);
+        setContentView(R.layout.activity_main);
 
         ConnexionBd.copyBdFromAssets(this);
 
@@ -144,33 +129,9 @@ public class MainActivity extends Activity {
             }
 
 
-        }else {
-            //C'est la premiere fois qu;il ouvre l'application
-
-            setContentView(R.layout.activity_main);
-            ConnexionBd.copyBdFromAssets(this);
-
-
-
-
-
-
-
-
-
-
-
         }
 
-
-
-
-
-
     }
-
-
-
 
     }
 

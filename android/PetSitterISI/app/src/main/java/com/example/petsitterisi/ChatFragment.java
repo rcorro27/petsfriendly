@@ -28,8 +28,8 @@ public class ChatFragment extends Fragment {
 
         int utilisateurId = UtilisateurManager.getIdUtilisateur(ctx);
         try {
-            ApiListChatFetcher apiListChatFetcher = new ApiListChatFetcher(ctx, chat_liste_container);
-            apiListChatFetcher.execute("");
+         ApiListChatFetcher apiListChatFetcher = new ApiListChatFetcher(ctx, chat_liste_container);
+          apiListChatFetcher.execute("");
         }catch (Exception e)
         {
             e.printStackTrace();

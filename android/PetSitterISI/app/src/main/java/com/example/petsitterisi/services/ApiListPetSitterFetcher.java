@@ -79,66 +79,70 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
     @Override
     protected String doInBackground(String... urls) {
 
-//        String result = "";
-//
-//        try {
-//            URL url = new URL(urls[0]);
-//
-//            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-//            urlConnection.setDoOutput(true);
-//            urlConnection.setDoInput(true);
-//            urlConnection.setRequestMethod("POST");
-//            urlConnection.setRequestProperty("Content-Type", "application/json");
-//            urlConnection.connect();
-//
-//
-//            JSONArray adressJsonArray = new JSONArray();
-//            adressJsonArray.put(4);
-//
-//            JSONObject adresseJsonObject = new JSONObject();
-//
-//            String numero_rue = UtilisateurManager.getAdresseInfos(context, "numero_rue");
-//            adresseJsonObject.put("numero_rue", numero_rue);
-//
-//            String nom_rue = UtilisateurManager.getAdresseInfos(context, "nom_rue");
-//            adresseJsonObject.put("nom_rue", nom_rue);
-//
-//            String code_postal = UtilisateurManager.getAdresseInfos(context, "code_postal");
-//            adresseJsonObject.put("code_postal", code_postal);
-//
-//            String ville = UtilisateurManager.getAdresseInfos(context, "ville");
-//            adresseJsonObject.put("ville", ville);
-//
-//            String pays = UtilisateurManager.getAdresseInfos(context, "pays");
-//            adresseJsonObject.put("pays", pays);
-//
-//            JSONObject grandJsonObject = new JSONObject();
-//            grandJsonObject.put("services", adressJsonArray);
-//            grandJsonObject.put("adresse", adresseJsonObject);
-//
-//
-//            DataOutputStream wr = new DataOutputStream(urlConnection.getOutputStream());
-//            wr.writeBytes(grandJsonObject.toString());
-//            wr.flush();
-//            wr.close();
-//
-//            int codeRetour = urlConnection.getResponseCode();
-//
-//            if (codeRetour == HttpURLConnection.HTTP_OK) {
-//
-//                BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-//
-//                String line = "";
-//                while ((line = in.readLine()) != null)
-//                    result += line;
-//
-//            }
-//
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//        }
+        String result = "";
 
-        return "";
+        try {
+            URL url = new URL(urls[0]);
+
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setDoOutput(true);
+            urlConnection.setDoInput(true);
+            urlConnection.setRequestMethod("POST");
+            urlConnection.setRequestProperty("Content-Type", "application/json");
+            urlConnection.connect();
+
+
+            JSONArray adressJsonArray = new JSONArray();
+            adressJsonArray.put(4);
+
+            JSONObject adresseJsonObject = new JSONObject();
+
+            String numero_rue = UtilisateurManager.getAdresseInfos(context, "numero_rue");
+            adresseJsonObject.put("numero_rue", numero_rue);
+
+            String nom_rue = UtilisateurManager.getAdresseInfos(context, "nom_rue");
+            adresseJsonObject.put("nom_rue", nom_rue);
+
+            String code_postal = UtilisateurManager.getAdresseInfos(context, "code_postal");
+            adresseJsonObject.put("code_postal", code_postal);
+
+            String ville = UtilisateurManager.getAdresseInfos(context, "ville");
+            adresseJsonObject.put("ville", ville);
+
+            String province = UtilisateurManager.getAdresseInfos(context, "province");
+            adresseJsonObject.put("province", province);
+
+
+            String pays = UtilisateurManager.getAdresseInfos(context, "pays");
+            adresseJsonObject.put("pays", pays);
+
+            JSONObject grandJsonObject = new JSONObject();
+            grandJsonObject.put("services", adressJsonArray);
+            grandJsonObject.put("adresse", adresseJsonObject);
+
+
+            DataOutputStream wr = new DataOutputStream(urlConnection.getOutputStream());
+            wr.writeBytes(grandJsonObject.toString());
+            wr.flush();
+            wr.close();
+
+            int codeRetour = urlConnection.getResponseCode();
+
+            if (codeRetour == HttpURLConnection.HTTP_OK) {
+
+                BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+
+                String line = "";
+                while ((line = in.readLine()) != null)
+                    result += line;
+
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return result;
     }
 
     @Override
@@ -150,19 +154,9 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-            String tContents = "";
-            String concat = "";
             try {
-                InputStream stream = context.getAssets().open("resultat-recherche.json");
-                int size = stream.available();
-                byte[] buffer = new byte[size];
-                stream.read(buffer);
-                stream.close();
-                tContents = new String(buffer);
 
-
-
-                JSONArray jsonArray = new JSONArray(tContents);
+                JSONArray jsonArray = new JSONArray(s);
 
             for(int i = 0; i < jsonArray.length(); i++){
                 JSONObject jsObject = (JSONObject) jsonArray.get(i);
@@ -179,7 +173,13 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
                         button_profil = cardPetSitterParam.findViewById(R.id.button_profil);
                         reservervation_liste_pet_sitter = cardPetSitterParam.findViewById(R.id.reservervation_liste_pet_sitter);
 
-                        int ratingInteger = Integer.parseInt(rating);
+                         int ratingInteger = 0;
+
+                        if(rating != null && rating != "null"){
+                            ratingInteger = Integer.parseInt(rating);
+                        }
+
+
 
                         Drawable = 0;
                         ImageView rateIcon = cardPetSitterParam.findViewById(R.id.rate_icon);
@@ -283,9 +283,9 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
 
 
 
-        } catch (JSONException | IOException e) {
+        } catch (JSONException e) {
             // Handle exceptions here
-
+              e.printStackTrace();
         }
 
     }
@@ -415,7 +415,6 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
 
                                 if(!numeroDeCarteValeur.trim().equals("")){
                                     numeroDeCarte.setBackgroundColor(R.color.white);
-                                }else{
 
                                     if(!dateExpirationValeur.trim().equals("")){
                                         dateExpiration.setBackgroundColor(R.color.white);
@@ -430,38 +429,47 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
                                             //Object utilisateur
                                             int idProprietaire = UtilisateurManager.getIdUtilisateur(context);
                                             JSONObject contratUtilisateurJsonObject = new JSONObject();
-                                            JSONObject contratUtilisateurJsonObjectContainer = new JSONObject();
 
                                             //Object contrat
                                             JSONObject contratJsonObject = new JSONObject();
-                                            JSONObject contratJsonObjectContainer = new JSONObject();
-
-                                            //Object contrat
-                                            JSONObject contratServicesJsonObject = new JSONObject();
 
                                             try {
-                                                contratUtilisateurJsonObject.put("id_proprietaire", String.valueOf(idProprietaire));
-                                                contratUtilisateurJsonObject.put("id_petsitter", petSitterId);
+                                                contratUtilisateurJsonObject.put("id_proprietaire",idProprietaire);
+                                                contratUtilisateurJsonObject.put("id_petsitter", Integer.parseInt(petSitterId));
                                                 contratJSONDonneeAuComplet.put("utilisateur", contratUtilisateurJsonObject);
 
-                                                contratJsonObject.put("date_debut", "null");
-                                                contratJsonObject.put("date_fin", "null");
+                                                String debutContrat = UtilisateurManager.getDataFromSharePreference(context, "debut_contrat");
+                                                String finContrat = UtilisateurManager.getDataFromSharePreference(context, "fin_contrat");
+                                                contratJsonObject.put("date_debut", debutContrat);
+                                                contratJsonObject.put("date_fin", finContrat);
                                                 contratJSONDonneeAuComplet.put("contrat", contratJsonObject);
 
 
 
                                                 JSONArray petSitterIdServiceJsonAttay = new JSONArray();
 
-                                                for(int k = 0; k <  petSitterServiceStringArray.length(); k++) {
-
-                                                    String petSitterIdService = petSitterServiceStringArray.getString(k);
-                                                    petSitterIdServiceJsonAttay.put(petSitterIdService);
-
+                                                sharedpreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+                                                String serviceSelectIdDansRecherche = sharedpreferences.getString("id_service_select", null);
+                                                if(serviceSelectIdDansRecherche != null) {
+                                                    petSitterIdServiceJsonAttay.put(Integer.parseInt(serviceSelectIdDansRecherche));
                                                 }
+
+                                                String id_service_promenade_selectDansLaRecherche = sharedpreferences.getString("id_service_promenade_select", null);
+
+                                                if(id_service_promenade_selectDansLaRecherche != null && id_service_promenade_selectDansLaRecherche != "0"){
+                                                    petSitterIdServiceJsonAttay.put(Integer.parseInt(serviceSelectIdDansRecherche));
+                                                }
+
+
+
+                                                JSONObject promotionJsonObject = new JSONObject();
+                                                promotionJsonObject.put("id_promotion", 1);
+
+                                                contratJSONDonneeAuComplet.put("promotion", promotionJsonObject);
 
                                                 contratJSONDonneeAuComplet.put("service", petSitterIdServiceJsonAttay);
 
-                                              ApiContratFetcher apiContratFetcher = new ApiContratFetcher(context, contratJSONDonneeAuComplet);
+                                                ApiContratFetcher apiContratFetcher = new ApiContratFetcher(context, contratJSONDonneeAuComplet);
                                                 apiContratFetcher.execute("https://pets-friendly.herokuapp.com/contrats/creation");
 
                                             } catch (JSONException e) {
@@ -477,7 +485,12 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
                                     }else{
                                         dateExpiration.setBackgroundColor(R.color.red);
                                     }
+
                                     numeroDeCarte.setBackgroundColor(R.color.red);
+
+                                }else{
+
+
                                 }
                             }else{
                                 nomSurCarte.setBackgroundColor(R.color.red);
@@ -493,12 +506,6 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
                     //ApiAjouterFactureFetcher apiFacture = new ApiAjouterFactureFetcher(context,finalPrixTotal);
                     ApiAjouterContratFetcher apiContrat = new ApiAjouterContratFetcher(context);
 
-
-
-
-                    Intent intent = new Intent(context, BottomNavigationBar.class);
-                    intent.putExtra("Demande", "true");
-                    context.startActivity(intent);
 
                 }
             });

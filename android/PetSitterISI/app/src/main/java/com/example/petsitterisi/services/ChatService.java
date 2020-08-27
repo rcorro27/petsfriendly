@@ -2,8 +2,15 @@ package com.example.petsitterisi.services;
 
 
 import android.content.Context;
+import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
+import com.example.petsitterisi.R;
+import com.example.petsitterisi.RechercheFragment;
+import com.example.petsitterisi.entitees.Utilisateur;
+import com.example.petsitterisi.managers.UtilisateurManager;
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
@@ -19,63 +26,60 @@ public class ChatService {
     Context ctx;
     private Socket mSocket;
     JSONObject data;
-    LinearLayout discussionContainer;
+    TextView chatView;
     String  message;
     Handler handler;
+    View chatMessages;
 
-    public ChatService(Context ctx, LinearLayout discussionContainer) {
+    public ChatService(final Context ctx, View chatMessages) {
         this.ctx = ctx;
-        this.discussionContainer = discussionContainer;
+        this.chatMessages = chatMessages;
+        mSocket = RechercheFragment.mSocket;
 
-
-        try {
-            mSocket = IO.socket("http://chat.socket.io");
-        }catch (URISyntaxException e) {
-
-        }
-    }
-
-    public void start(){
-        if(mSocket != null) {
-            mSocket.connect();
-        }
-    }
-
-    public void sendMyMessage(String text){
-        mSocket.emit("new message", text);
-    }
-
-    public JSONObject listener(){
-        mSocket.on("new message", new Emitter.Listener() {
+        mSocket.on("nouveau_message", new Emitter.Listener() {
             @Override
             public void call(final Object... args) {
 
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        data = (JSONObject) args[0];
-                    }
-                });
+                data = (JSONObject) args[0];
+                try {
 
-                handler = new Handler();
+                    int chat_id_petsitter = Integer.parseInt(UtilisateurManager.getDataFromSharePreference(ctx, "chat_id_petsitter"));
+                    int chat_id_proprietaire = Integer.parseInt(UtilisateurManager.getDataFromSharePreference(ctx, "chat_id_proprietaire"));
 
-                final Runnable r = new Runnable() {
-                    public void run() {
-                        data = (JSONObject) args[0];
-                        handler.postDelayed(this, 1000);
-                    }
-                };
+                        if( data.getInt("idFrom") == chat_id_petsitter || data.getInt("idFrom")  == chat_id_proprietaire) {
 
 
+                            chatView.setText(data.getString("message"));
 
+                        }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
             }
 
+           });
 
-        }).connect();
+    }
+
+    public void start(){
+//        if(mSocket != null) {
+//            mSocket.connect();
+//        }
+    }
+
+    public void sendMyMessage(JSONObject messageJsonObject) throws JSONException {
+        mSocket.emit("nouveau_message", messageJsonObject);
+        LinearLayout chat_message_container = chatMessages.findViewById(R.id.container_message_list);
+        ScrollView message_container_scrollview = chatMessages.findViewById(R.id.message_container_scrollview);
+
+        View cardMessageEnvoyer = View.inflate(ctx , R.layout.activity_item_message_envoyer,null);
+        TextView messageBulbeTextView = cardMessageEnvoyer.findViewById(R.id.text_message_body_envoyer);
+        messageBulbeTextView.setText(messageJsonObject.getString("message"));
+        chat_message_container.addView(cardMessageEnvoyer);
+        message_container_scrollview.fullScroll(View.FOCUS_DOWN);
 
 
-        return data;
     }
 
 

@@ -31,10 +31,10 @@ public class ApiContratFetcher extends AsyncTask<String, Nullable, String> {
     TextView error;
     String email;
     String mot_de_passe;
-    JSONArray contratJsonObject;
+    JSONObject contratJsonObject;
 
 
-    public ApiContratFetcher(Context  context, JSONArray contratJsonObject) {
+    public ApiContratFetcher(Context  context, JSONObject contratJsonObject) {
         this.context = context;
         this.email = email;
         this.mot_de_passe = mot_de_passe;
@@ -91,10 +91,10 @@ public class ApiContratFetcher extends AsyncTask<String, Nullable, String> {
         try {
 
              JSONObject jsonObject = new JSONObject(s);
-             JSONObject contrat = jsonObject.getJSONObject("contrat");
 
-             if(contrat != null){
+             if(jsonObject.length() == 0){
 
+                 Toast.makeText(context, "Reservation faite avec Success", Toast.LENGTH_SHORT).show();
                  Intent intent = new Intent(context, BottomNavigationBar.class);
                  intent.putExtra("Demande", "true");
                  context.startActivity(intent);
@@ -110,6 +110,8 @@ public class ApiContratFetcher extends AsyncTask<String, Nullable, String> {
 
 
     }
+
+
 
     private String inputStreamToString(InputStream is) {
         String rLine = "";

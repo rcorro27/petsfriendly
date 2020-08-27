@@ -6,8 +6,10 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -18,6 +20,7 @@ import androidx.annotation.RequiresApi;
 
 import com.example.petsitterisi.BottomNavigationBar;
 import com.example.petsitterisi.R;
+import com.example.petsitterisi.managers.UtilisateurManager;
 import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONArray;
@@ -30,8 +33,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
 public class ApiListReservationFetcher extends AsyncTask<String, Nullable, String> {
@@ -41,8 +46,10 @@ public class ApiListReservationFetcher extends AsyncTask<String, Nullable, Strin
     SharedPreferences sharedpreferences;
     Button button_commentaire;
     Button button_envoyer_commentaire;
+    Button button_contacterSitter;
     TextInputEditText commentaire_envoyer;
     Dialog dialog_reservation;
+    Dialog dialog_contacter_sitter;
 
 
 
@@ -51,42 +58,43 @@ public class ApiListReservationFetcher extends AsyncTask<String, Nullable, Strin
         this.ll = llParam;
         sharedpreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         dialog_reservation = new Dialog(context);
+        dialog_contacter_sitter = new Dialog(context);
     }
 
     @Override
     protected String doInBackground(String... urls) {
 
-//        String result = "";
-//
-//        try {
-//            URL url = new URL(urls[0]);
-//
-//
-//            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-//            urlConnection.setDoOutput(false);
-//            urlConnection.setDoInput(true);
-//            urlConnection.setRequestMethod("GET");
-//            urlConnection.setRequestProperty("Content-Type", "application/json; utf-8");
-//            urlConnection.connect();
-//
-//            int codeRetour = urlConnection.getResponseCode();
-//
-//
-//            if (codeRetour == HttpURLConnection.HTTP_OK) {
-//
-//                BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-//
-//                String line = "";
-//                while ((line = in.readLine()) != null)
-//                    result += line;
-//
-//            }
-//
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//        }
-//
-              return "";
+        String result = "";
+
+        try {
+            URL url = new URL(urls[0]);
+
+
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setDoOutput(false);
+            urlConnection.setDoInput(true);
+            urlConnection.setRequestMethod("GET");
+            urlConnection.setRequestProperty("Content-Type", "application/json; utf-8");
+            urlConnection.connect();
+
+            int codeRetour = urlConnection.getResponseCode();
+
+
+            if (codeRetour == HttpURLConnection.HTTP_OK) {
+
+                BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+
+                String line = "";
+                while ((line = in.readLine()) != null)
+                    result += line;
+
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+              return result;
     }
 
     @Override
@@ -102,24 +110,14 @@ public class ApiListReservationFetcher extends AsyncTask<String, Nullable, Strin
 
         try {
 
-            String tContents = "";
-            String concat = "";
-            try {
-                InputStream stream = context.getAssets().open("reponse_ajouter_recuperer_contrat.json");
-                int size = stream.available();
-                byte[] buffer = new byte[size];
-                stream.read(buffer);
-                stream.close();
-                tContents = new String(buffer);
-
-            JSONArray jsonArray = new JSONArray(tContents);
+            JSONArray jsonArray = new JSONArray(s);
 
             for(int i = 0; i < jsonArray.length(); i++){
 
                 JSONObject reservationJsonObject = jsonArray.getJSONObject(i);
 
-//                String idPetSitter = reservationJsonObject.getString("id_petsitter");
-//                String idProprietaire = reservationJsonObject.getString("id_proprietaire");
+                final String idPetSitter = reservationJsonObject.getString("id_petsitter");
+                final String idProprietaire = reservationJsonObject.getString("id_proprietaire");
                 String dateDebut = reservationJsonObject.getString("date_debut");
                 String dateFin = reservationJsonObject.getString("date_fin");
                 String dateReservation = reservationJsonObject.getString("date_creation");
@@ -129,6 +127,7 @@ public class ApiListReservationFetcher extends AsyncTask<String, Nullable, Strin
                 TextView dateDebutContratReservationProprietaire = cardReservationParam.findViewById(R.id.date_debut_contrat_demande);
                 TextView dateFinContratReservationProprietaire = cardReservationParam.findViewById(R.id.date_fin_contrat_demande);
                 TextView dateReservationReservationProprietaire = cardReservationParam.findViewById(R.id.date_reservation_demande);
+
 
 
                 dateReservationReservationProprietaire.setText(dateReservation);
@@ -152,6 +151,20 @@ public class ApiListReservationFetcher extends AsyncTask<String, Nullable, Strin
 
                     }
                 });
+
+                button_contacterSitter = cardReservationParam.findViewById(R.id.buttom_contacter_pet_sitter);
+
+                button_contacterSitter.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            afficherAlertDialogContacter(idPetSitter, idProprietaire);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
                 ll.addView(cardReservationParam);
 
             }
@@ -162,13 +175,77 @@ public class ApiListReservationFetcher extends AsyncTask<String, Nullable, Strin
         }
 
 
+    }
 
 
 
-    }catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+
+    private void afficherAlertDialogContacter(final String idPetSitter, final String idProprietaire) {
+        Button button_envoyer_message;
+        final TextInputEditText[] message_envoyer = new TextInputEditText[1];
+        //final String text_message_envoyer;
+        final Editable[] textMsgEnvoyer = new Editable[1];
+
+
+        dialog_contacter_sitter.setContentView(R.layout.alert_dialog_contacter_pet_sitter);
+
+        button_envoyer_message = dialog_contacter_sitter.findViewById(R.id.button_envoyer_message);
+
+
+        //text_message_envoyer = Objects.requireNonNull(message_envoyer.getText()).toString();
+
+//
+//        View view;
+//        LayoutInflater inflater = (LayoutInflater)   requireContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        view = inflater.inflate(R.layout.activity_message_list, null);
+//
+//        final LinearLayout item = (LinearLayout) view.findViewById(R.id.container_message_list);
+
+
+
+
+        button_envoyer_message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final MediaPlayer son_message_envoyer = MediaPlayer.create(context, R.raw.son_message_envoye);
+                final View cardMessageEnvoyer = View.inflate(context , R.layout.activity_item_message_envoyer,null);
+                String heureNowMsgEnvoyer = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
+
+                final TextView messageEnvoyer = cardMessageEnvoyer.findViewById(R.id.text_message_body_envoyer);
+                message_envoyer[0] = dialog_contacter_sitter.findViewById(R.id.edit_text_message_envoyer_contacter_sitter);
+                textMsgEnvoyer[0] = message_envoyer[0].getText();
+
+                Intent intent = new Intent(context, BottomNavigationBar.class);
+                intent.putExtra("ChatDiscussion", "true");
+//                Intent intentte = new Intent();
+//                intentte.putExtra("textMsgEnvoyer", textMsgEnvoyer);
+
+
+                //messageEnvoyer.setText(textMsgEnvoyer);
+                //item.addView(cardMessageEnvoyer);
+                //ll.removeView(cardMessageEnvoyer);
+
+
+                if (!message_envoyer[0].getText().toString().equals("")){
+
+                    UtilisateurManager.addDataToSharedPreference(context, "chat_id_petsitter", idPetSitter);
+                    UtilisateurManager.addDataToSharedPreference(context, "chat_id_proprietaire", idProprietaire);
+
+                    // sharedPreference pour l'heure
+                    UtilisateurManager.addHeureMessageEnvoyer(context, "heure_Msg", heureNowMsgEnvoyer);
+                    UtilisateurManager.addMessageContacterInsideDiscussion(context, "message_contacter", textMsgEnvoyer[0]);
+                    UtilisateurManager.addDataToSharedPreference(context, "bouton_contacter", "1");
+                    son_message_envoyer.start();
+                    context.startActivity(intent);
+                }
+
+                assert textMsgEnvoyer[0] != null;
+                textMsgEnvoyer[0].clear();
+            }
+        });
+
+        dialog_contacter_sitter.show();
     }
 
 

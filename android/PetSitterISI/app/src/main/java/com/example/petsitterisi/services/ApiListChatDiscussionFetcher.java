@@ -12,10 +12,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
-<<<<<<< HEAD
-=======
 import android.view.ViewGroup;
->>>>>>> cdfdf3c85d89195157e579aa571ec3d45c769ba6
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -49,34 +46,25 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
     private Context  context;
     //LinearLayout ll;
     View view;
-    LinearLayout lll;
+    LinearLayout ll;
     LinearLayout chat_message_container;
     View messageListe;
     SharedPreferences sharedpreferences;
     TextView item_message_recu;
-<<<<<<< HEAD
     TextView item_message_envoye;
     EditText edittext_chatbox;
     Button button_chatbox_send;
     ChatService chatService;
+    private Object LinearLayout;
 
     public ApiListChatDiscussionFetcher(Context  context, LinearLayout llParam, EditText edittext_chatbo, Button tem_message_envoye) {
         this.context = context;
         this.ll = llParam;
         this.edittext_chatbox = edittext_chatbox;
         this.button_chatbox_send = button_chatbox_send;
-=======
-    TextView item_message_envoye ;
-    Button btn_envoyer_discussion;
-   private Object LinearLayout;
 
-    public ApiListChatDiscussionFetcher(Context  context, View viewParam) {
-        this.context = context;
-        this.view = viewParam;
->>>>>>> cdfdf3c85d89195157e579aa571ec3d45c769ba6
-        sharedpreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        chatService = new ChatService(context, ll);
-        chatService.start();
+        TextView item_message_envoye;
+        Button btn_envoyer_discussion;
 
     }
 
@@ -382,19 +370,19 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
 //        ll.addView(footerChat);
 
 
-
-        button_chatbox_send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String message = edittext_chatbox.getText().toString();
-
-                if(!message.trim().equals("")){
-                    chatService.sendMyMessage(message);
-                }else{
-                    Toast.makeText(context, "CHamp message vide", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+//
+//        button_chatbox_send.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String message = edittext_chatbox.getText().toString();
+//
+//                if(!message.trim().equals("")){
+//                    chatService.sendMyMessage(message);
+//                }else{
+//                    Toast.makeText(context, "Champ message vide", Toast.LENGTH_LONG).show();
+//                }
+//            }
+//        });
 
     }
 
@@ -416,10 +404,6 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
         BufferedReader rd = new BufferedReader(isr);
 
         String in = "";
-
-
-
-
 
         try {
             while ((rLine = rd.readLine()) != null) {
