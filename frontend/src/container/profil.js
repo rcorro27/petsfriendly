@@ -2,11 +2,13 @@ import React, { Component } from 'react'
 import FormData from 'form-data'
 import { Link, withRouter } from 'react-router-dom'
 import '../css/profil.css'
+import InputComponent from 'component/input-component'
+import ListItemComponent from 'component/list-item-component'
 import axios from 'axios'
 import { Button } from 'react-bootstrap'
 
 class Profile extends Component {
-    constructor () {
+    constructor() {
         super()
         this.state = {
             user: [],
@@ -26,7 +28,7 @@ class Profile extends Component {
         this.fileUpload = this.fileUpload.bind(this)
     }
 
-    componentDidMount () {
+    componentDidMount() {
         // const token = localStorage.usertoken
         // const decoded = jwtdecode(token)
         if (localStorage.getItem('usertoken')) {
@@ -47,14 +49,14 @@ class Profile extends Component {
         }
     }
 
-    fileSelected (e) {
+    fileSelected(e) {
         this.setState({
             selectedFile: e.target.files[0]
         })
         console.log(e.target.files[0])
     }
 
-    fileUpload (e) {
+    fileUpload(e) {
         const image = this.state.selectedFile
         e.preventDefault()
         const data = new FormData()
@@ -83,18 +85,19 @@ class Profile extends Component {
             .catch(err => {
                 console.log(err)
             })
+        // commentaire test
     }
 
-    render () {
+    render() {
         console.log('image', this.state.urlImg)
         return (
             <div className='container'>
 
                 <img src={this.state.urlImg} className='image-profil' alt='Cinque Terre' />
-                <div className='jumbotron mt-5'>
+                <div className='jumbotron mt-5 bg-light'>
                     <div className='col-sm-8 mx-auto'>
-                        {this.state.est_valide ? <h3 className='text-center text-success '> Votre profile est active vous pouvez acceder aux services</h3> : <h3 className='text-center text-danger '>Votre profil n'est pas encore valide , vous n'avez pas l'acces a nos services</h3>}
-                        <h1 className='text-center'>PROFILE </h1>
+                        {this.state.est_valide ? <h3 className='text-center text-success '> Votre profil est activé, vous pouvez accéder aux services</h3> : <h3 className='text-center text-danger '>Votre profil n'est pas encore valide , vous n'avez pas l'acces a nos services</h3>}
+                        <h1 className='text-center'>PROFIL </h1>
                     </div>
 
                     <Link to='/update'> <Button id='bouton1'>Update Profil</Button></Link>
@@ -103,11 +106,11 @@ class Profile extends Component {
                     <table className='table col-md-6 mx-auto'>
                         <tbody>
                             <tr>
-                                <td>Fist Name</td>
+                                <td>Prénom</td>
                                 <td>{this.state.user.nom}</td>
                             </tr>
                             <tr>
-                                <td>Last Name</td>
+                                <td>Nom</td>
                                 <td>{this.state.user.prenom}</td>
                             </tr>
                             <tr>
@@ -115,7 +118,7 @@ class Profile extends Component {
                                 <td>{this.state.user.email}</td>
                             </tr>
                             <tr>
-                                <td>Age</td>
+                                <td>Âge</td>
                                 <td>{this.state.user.age}</td>
                             </tr>
                             <tr>
@@ -123,11 +126,11 @@ class Profile extends Component {
                                 <td>{this.state.user.sexe}</td>
                             </tr>
                             <tr>
-                                <td>Telephone</td>
+                                <td>Téléphone</td>
                                 <td>{this.state.user.telephone}</td>
                             </tr>
                             <tr>
-                                <td>Numero de la rue</td>
+                                <td>Numéro de la rue</td>
                                 <td>{this.state.address.numero_rue}</td>
                             </tr>
                             <tr>
@@ -151,13 +154,37 @@ class Profile extends Component {
                                 <td>{this.state.address.pays}</td>
                             </tr>
                             <tr>
-                                <td>Numero appartement</td>
+                                <td>Numéro appartement</td>
                                 <td>{this.state.address.numero_appt}</td>
                             </tr>
                             {/* je veux pusher cette page aussi */}
 
                         </tbody>
                     </table>
+                </div>
+                <div id='divPlubicite2'>
+                    <h1 className='w-50 p-3 mx-auto h1'>Des services sur mesure pour un animal d'exeption </h1>
+                    <div className='row divAnnonce'>
+                        <div className='col-lg-4 mx-auto border border-danger rounded serviceProposes'>
+                            <ListItemComponent text='Faites garder votre animal à votre domicile ou à celui du Pet Sitter' className='fas fa-check' />
+                            <ListItemComponent text='Partez à votre rendez-vous sans vous soucier de la promenade de votre chien' className='fas fa-check' />
+                            <ListItemComponent text='Besoin de flexibilité? Choisissez les horaires et périodes qui vous conviennent' className='fas fa-check' />
+                        </div>
+                        <div className='col-lg-4 mx-auto border border-danger rounded serviceProposes'>
+                            {/* METTRE UN ICONE DANS LAVANT DE LES LI POUR LA PUBLICITER */}
+                            <ListItemComponent text='Tous les nouveaux gardiens passent une vérification des antécédents de base' className='fas fa-check' />
+                            <ListItemComponent text='Tous les gardiens fournissent un profil détaillé et des informations personnelles ' className='fas fa-check' />
+                            <ListItemComponent text='Tous les Pet Sitter sont agréés par notre équipe de spécialistes chez Pets Friendly' className='fas fa-check' />
+                        </div>
+                    </div>
+                </div>
+                <div className='infolettreDiv mt-3'>
+                    <h1 className='h1'>Laissez nous vous prévenir de nos nouveautés</h1>
+                    <h6 className='h6'>Restez informé</h6>
+                    <form>
+                        <InputComponent classCss='form-group' classInput='form-control' textLabel='Entrez votre email' type='email' id='infolettre' name='infolettre' onChange={this.handleChange} />
+                        <InputComponent classInput='btn btn-outline-danger' type='submit' id='infolettreButton' name='Envoyer ' value='Envoyer' />
+                    </form>
                 </div>
             </div>
         )

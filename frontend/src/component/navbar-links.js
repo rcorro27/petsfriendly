@@ -1,7 +1,8 @@
 
 import { Button, Modal } from 'react-bootstrap'
+import axios from 'axios'
 
-import { login, register } from '../fonctions/UserFunctions'
+// import { login, register } from '../fonctions/UserFunctions'
 
 import React, { Component } from 'react'
 import InscriptionContainer from '../container/inscription-container'
@@ -21,6 +22,7 @@ class NavbarLinks extends Component {
             qs3: '',
             qs4: '',
             qs5: '',
+            message: '',
 
             id_role: 0,
             nom: '',
@@ -172,11 +174,12 @@ class NavbarLinks extends Component {
     }
 
     onSubmit (e) {
-        console.log('email', this.state.utilisateur)
-        // if (e.key === 'Enter') {
-        e.preventDefault()
 
-        const user = {
+        //  console.log('email', this.state.utilisateur)
+        // if (e.key === 'Enter') {
+        // e.preventDefault()
+
+        /* const user = {
             userName: this.state.email,
             password: this.state.mot_de_passe
         }
@@ -191,7 +194,7 @@ class NavbarLinks extends Component {
                 console.log('test', this.state.users.utilisateur.nom)
                 this.setState({ userName: this.state.users.utilisateur.nom })
             }
-        })
+        }) */
         // this.register(user)
     }
     // }
@@ -257,7 +260,7 @@ class NavbarLinks extends Component {
     }
 
     render () {
-        // console.log(this.state.utilisateur.sexe)
+        console.log(this.state.message)
         const loginRegLink = (
             <div className='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
                 <ul className='navbar-nav ml-auto'>

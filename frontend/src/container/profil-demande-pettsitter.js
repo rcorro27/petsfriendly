@@ -155,7 +155,8 @@ class ProfilDemandePettSitter extends Component {
                     <h1 className='h1 w-25 p-3 mx-auto'>Demande Service </h1>
                 </div>
                 <div className='row m-5 bg-white border border-danger rounded shadow'>
-                    <img src='../src/img/caroussel/image1.jpeg' alt='Carlos' className='img-fluid rounded-circle w-25 p-3' />
+
+                    <img src={'https://pets-friendly.herokuapp.com/images/images_profiles/' + this.state.sitter.url_photo} alt={this.state.sitter.nom} className='img-fluid rounded-circle ' id='imagedemande' />
                     <div className='m-5 infoSitterWrapper'>
                         <h2 className='h2'>{this.state.sitter.nom}</h2>
                         <h3 className='h6'>{this.state.sitter.secteur_action}</h3>
@@ -191,7 +192,7 @@ class ProfilDemandePettSitter extends Component {
                             <p>{TPS(this.state.service)}<i className='fas fa-dollar-sign' /><i className='fab fa-canadian-maple-leaf' /></p>
                             <p>{TVQ(this.state.service)}<i className='fas fa-dollar-sign' /><i className='fab fa-canadian-maple-leaf' /></p>
                             <p><strong>{PrixAvecTaxes(this.state.service)}</strong><i className='fas fa-dollar-sign' /><i className='fab fa-canadian-maple-leaf' /></p>
-                            <Link to='/payment'> <input type='button' value='Envoyer Demande' className='btn btn-success' /* onClick={this.handleClick} */ /></Link>
+                            <Link to='/payment'> <input type='button' value='Envoyer Demande' className='btn btn-success payButton' /* onClick={this.handleClick} */ /></Link>
                         </div>
 
                     </div>

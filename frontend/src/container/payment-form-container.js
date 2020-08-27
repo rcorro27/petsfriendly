@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import '../css/payment.css'
 import Modal from 'component/modal'
 class PaymentFormContainer extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props)
 
         this.state = {
@@ -25,15 +25,15 @@ class PaymentFormContainer extends Component {
         this.onHandleonClose = this.onHandleonClose.bind(this)
     }
 
-    showModal () {
+    showModal() {
         this.setState({ show: true })
     };
 
-    onHandleonClose () {
+    onHandleonClose() {
         this.setState({ show: false })
     };
 
-    handleClick () {
+    handleClick() {
         return axios
             .post('https://pets-friendly.herokuapp.com/contrats/creation', {
 
@@ -68,7 +68,7 @@ class PaymentFormContainer extends Component {
             })
     }
 
-    render () {
+    render() {
         console.log(this.state)
 
         return (
@@ -80,7 +80,7 @@ class PaymentFormContainer extends Component {
                         <div className='row'>
                             <div className='col-50'>
                                 <h3>Adresse de facturation</h3>
-                                <label htmlFor='fname'><i className='fa fa-user' /> Nom et Prenom</label>
+                                <label htmlFor='fname'><i className='fa fa-user' /> Nom et prénom</label>
                                 <input type='text' id='fname' name='firstname' placeholder='John M. Doe' />
                                 <label htmlFor='email'><i className='fa fa-envelope' /> Email</label>
                                 <input type='text' id='email' name='email' placeholder='john@example.com' />
@@ -102,8 +102,8 @@ class PaymentFormContainer extends Component {
                             </div>
 
                             <div className='col-50'>
-                                <h3>Payment</h3>
-                                <label htmlFor='fname'>Cartes acceptes</label>
+                                <h3>Paiement</h3>
+                                <label htmlFor='fname'>Cartes acceptées</label>
                                 <div className='icon-container'>
                                     <i className='fab fa-cc-visa' style={{ color: 'navy' }} />
                                     <i className='fab fa-cc-amex' style={{ color: 'blue' }} />
@@ -112,14 +112,14 @@ class PaymentFormContainer extends Component {
                                 </div>
                                 <label htmlFor='cname'>Nom dans la carte</label>
                                 <input type='text' id='cname' name='cardname' placeholder='Nom dans la carte' />
-                                <label htmlFor='ccnum'>Numero de carte </label>
+                                <label htmlFor='ccnum'>Numéro de carte </label>
                                 <input type='text' id='ccnum' name='cardnumber' placeholder='1111-2222-3333-4444' />
-                                <label htmlFor='expmonth'> Moix Exp</label>
+                                <label htmlFor='expmonth'> Date d'expiration (mois)</label>
                                 <input type='text' id='expmonth' name='expmonth' placeholder='September' />
 
                                 <div className='row'>
                                     <div className='col-50'>
-                                        <label htmlFor='expyear'>Annee expiration</label>
+                                        <label htmlFor='expyear'>Date d'expiration (année)</label>
                                         <input type='text' id='expyear' name='expyear' placeholder='2018' />
                                     </div>
                                     <div className='col-50'>

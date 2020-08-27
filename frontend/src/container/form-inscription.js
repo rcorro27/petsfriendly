@@ -4,10 +4,10 @@ import InputComponent from 'component/input-component'
 import Boutton from 'component/bouton-component'
 
 class FormInscription extends Component {
-    render () {
+    render() {
         return (
             <div>
-                <h1>Inscrivez-vous a Pets Friendly</h1>
+                <h1>Inscrivez-vous à Pets Friendly</h1>
                 <form id='form-Inscription'>
                     <div class='radio1'>
                         <InputComponent text='pettesitter' type='checkbox' id='petsitter' name='pettesitter' value='pet' />
@@ -38,12 +38,12 @@ class FormInscription extends Component {
 
                     </div>
                     <h1>Services</h1>
-                    <p> Garder l'animal a votre domicile </p>
+                    <p> Garder l'animal à votre domicile </p>
                     <InputComponent text='Oui' type='checkbox' id='petsitter' name='pettesitter' value='pet' />
 
                     <InputComponent text='Non' type='checkbox' id='petsitter' name='pettesitter' value='pet' />
 
-                    <p> Garder l'animal au domicile du proprietaire </p>
+                    <p> Garder l'animal au domicile du propriétaire </p>
                     <InputComponent text='Oui' type='checkbox' id='petsitter' name='pettesitter' value='pet' />
 
                     <InputComponent text='Non' type='checkbox' id='petsitter' name='pettesitter' value='pet' />
@@ -53,7 +53,7 @@ class FormInscription extends Component {
 
                     <InputComponent text='Non' type='checkbox' id='petsitter' name='pettesitter' value='pet' />
 
-                    <p> Visite medial de l'animal </p>
+                    <p> Visite médicale de l'animal </p>
                     <InputComponent text='Oui' type='checkbox' id='petsitter' name='pettesitter' value='pet' />
 
                     <InputComponent text='Non' type='checkbox' id='petsitter' name='pettesitter' value='pet' />
@@ -63,7 +63,7 @@ class FormInscription extends Component {
 
                     <InputComponent text='Non' type='checkbox' id='petsitter' name='pettesitter' value='pet' />
 
-                    <p> combien d'animaux pouvez vous gardez  </p>
+                    <p> Combien d'animaux pouvez-vous gardez  </p>
                     <select>
 
                         type='select'
@@ -81,7 +81,7 @@ class FormInscription extends Component {
                         option value='1'
 
                     </select>
-                    <p> Soins Extrat </p>
+                    <p> Soins en extra </p>
 
                     <InputComponent text='toilettage de Chiens' type='checkbox' id='petsitter' name='pettesitter' value='pet' />
 
@@ -91,14 +91,14 @@ class FormInscription extends Component {
 
                     <InputComponent text='Dressage' type='checkbox' id='petsitter' name='pettesitter' value='pet' />
 
-                    <p> Soins Extrat </p>
+                    <p> Soins en extra </p>
                     <Boutton type='submit' id='envoi' name='envoi' value='envoyer' />
 
-                    <p> Vous avez deja un compte PetsFriendly? </p>
+                    <p> Vous avez déjà un compte PetsFriendly? </p>
                     <ahrefComponent type='a' text='se connecter' />
 
                 </form>
-                <button onClick={this.props.onHandleSaveOnClickAhmed}>retour a la page</button>
+                <button onClick={this.props.onHandleSaveOnClickAhmed}>retour à la page</button>
             </div>
         )
     }

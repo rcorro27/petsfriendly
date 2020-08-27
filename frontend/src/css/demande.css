@@ -1,10 +1,4 @@
-/*couleur background pour commentaire*/
-
-/*commentire pour probleme push*/
-
-/*adslkajdkljads*/
-
-/* aranger section profil (nom, region, rating, bouton contacter et aimer*/
+/********************************** DEMANDE PROFIL **************************************/
 
 .demandewrapper {
     background-color: white;
@@ -54,4 +48,9 @@
     background-color: rgba(202, 202, 202, 0.5);
 }
 
-/*rassembler prix des services, code promo, total etc*/
+.payButton {}
+
+#imagedemande {
+    width: 10%;
+    background-color: hotpink;
+}

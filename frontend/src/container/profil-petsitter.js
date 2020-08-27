@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import InputComponent from 'component/input-component'
 
 class ProfilPettSitter extends Component {
-    render () {
+    render() {
         return (
             // AHMED CHAQUE ELEMENT JSX DOIT AVOIR UNE ELEMENT PARENT ( ce ca le div qui envelope tout le restes)
             // ligne 21 pas la bonne syntaxe
@@ -12,7 +12,7 @@ class ProfilPettSitter extends Component {
                 <div>
                     <h1>Contacter le PetSitter</h1>
 
-                    <h2>Laisser lui un messager</h2>
+                    <h2>Laissez-lui un message</h2>
                 </div>
 
                 <form id='petSitterpopups'>
