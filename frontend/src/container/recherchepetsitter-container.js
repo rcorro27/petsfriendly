@@ -5,10 +5,13 @@ import InputComponent from 'component/input-component'
 import SelectComponent from 'component/select-component'
 import ListItemComponent from 'component/list-item-component'
 import VignetteComponent from 'component/vignette-component'
+import ModalMessage from 'component/modal'
 
 import { withRouter } from 'react-router-dom'
-
+// importer fichier css
 import '../css/recherche.css'
+// import '../css/modal.css'
+import { Alert } from 'react-bootstrap'
 // import ProfilDemandePettSitter from './profil-demande-pettsitter'
 
 class RecherchePetsitter extends Component {
@@ -36,7 +39,10 @@ class RecherchePetsitter extends Component {
             resultat: [],
             province: '',
             servicesTotal: [],
-            show: false
+            showmodal: false,
+            message: '',
+            blurry: false,
+            idblur: ''
 
             // idUser: false
         }
@@ -49,10 +55,19 @@ class RecherchePetsitter extends Component {
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleAfficherSitterOnClick = this.handleAfficherSitterOnClick.bind(this)
         this.handleEnvoyerDemandeOnClick = this.handleEnvoyerDemandeOnClick.bind(this)
-        this.onHandleClose = this.onHandleClose.bind(this)
-        this.onHandleShow = this.onHandleShow.bind(this)
+        this.showModal = this.showModal.bind(this)
+        this.onHandleonCloseModal = this.onHandleonCloseModal.bind(this)
     }
 
+    showModal () {
+        this.setState({ showmodal: true })
+    };
+
+    onHandleonCloseModal () {
+        this.setState({ showmodal: false })
+    };
+
+    /*
     onHandleClose () {
         this.setState({
             show: false
@@ -64,7 +79,7 @@ class RecherchePetsitter extends Component {
             show: true
         })
     }
-
+*/
     componentDidMount () {
         return axios
             .get('https://pets-friendly.herokuapp.com/services/recuperation/tout')
@@ -130,48 +145,38 @@ class RecherchePetsitter extends Component {
         }
     }
 
-    handleShow () {
-        this.setState({
-            show: true
-        })
-    }
-
     handleSubmit (event) {
-        if (!JSON.parse(localStorage.getItem('usertoken'))) {
-        console.log('toto')
-            alert('Veuillez Vous CONECTER/INSCRIRE')
-        } else {
-            return axios
-                .post('https://pets-friendly.herokuapp.com/recherche', {
+        return axios
+            .post('https://pets-friendly.herokuapp.com/recherche', {
 
-                    services: this.state.servicesRechercher,
-                    adresse: {
-                        numero_rue: this.state.nom_rue,
-                        nom_rue: this.state.nom_rue,
-                        code_postal: this.state.code_postal,
-                        ville: this.state.ville,
-                        province: this.state.province,
-                        pays: this.state.pays
-                    }
+                services: this.state.servicesRechercher,
+                adresse: {
+                    numero_rue: this.state.nom_rue,
+                    nom_rue: this.state.nom_rue,
+                    code_postal: this.state.code_postal,
+                    ville: this.state.ville,
+                    province: this.state.province,
+                    pays: this.state.pays
+                }
 
-                })
+            })
             //  .then(response => console.log('reponse avant la assignatiion', response.data))
-                .then(response => {
-                    this.setState({ resultat: response.data })
-                    /* if (response.data.length === 0) {
+            .then(response => {
+                this.setState({ resultat: response.data })
+                /* if (response.data.length === 0) {
 
                 this.setState({ resultatRecherche: false })
             } else {
                 this.setState({ resultat: response.data })
             } */
-                    /*  const arrayResultat = []
+                /*  const arrayResultat = []
             response.data.map((info, index) => arrayResultat.push(info))
             console.log(arrayResultat) */
-                })
-                .catch(err => {
-                    console.log('erreur recherche:', err)
-                })
-        }
+            })
+            .catch(err => {
+                console.log('erreur recherche:', err)
+            })
+
         /* fetch('resultat-recherche.json', { method: 'GET' })
             .then(response => response.json())
             .then(response => {
@@ -193,14 +198,28 @@ class RecherchePetsitter extends Component {
     }
 
     handleAfficherSitterOnClick (event) {
-        console.log(this.state.resultat[event.target.name])
-        console.log(this.state.dateDebut)
-        console.log(this.state.dateFin)
-        localStorage.setItem('serviceRecherche', JSON.stringify(this.state.servicesRechercher))
-        localStorage.setItem('dateDebut', JSON.stringify(this.state.dateDebut))
-        localStorage.setItem('dateFin', JSON.stringify(this.state.dateFin))
-        localStorage.setItem('sitter', JSON.stringify(this.state.resultat[event.target.name]))
-        this.props.history.push('/demande')
+        if (localStorage.getItem('usertoken') && JSON.parse(localStorage.getItem('usertoken')).utilisateur.id_role === 3) {
+            this.state.message = 'Vous deves etre un proprietaire pour utiliser notres services de recherche '
+            this.showModal()
+            // alert('Vous deves etre un proprietaire pour utiliser notres services de recherche ')
+            // this.props.history.push('/')
+        } else if (!localStorage.getItem('usertoken')) {
+            this.state.message = 'Veuillez vous connecter ou inscrire pour continuer'
+            console.log('dans le if non user')
+            this.showModal()
+
+            //            alert('veuillez vous conecter ou INSCRIRE Pour continuer a profiter de notres sernvices svp')
+        } else if (localStorage.getItem('usertoken') && JSON.parse(localStorage.getItem('usertoken')).utilisateur.id_role === 2) {
+            console.log(this.state.resultat[event.target.name])
+            console.log(this.state.dateDebut)
+            console.log(this.state.dateFin)
+            localStorage.setItem('serviceRecherche', JSON.stringify(this.state.servicesRechercher))
+            localStorage.setItem('dateDebut', JSON.stringify(this.state.dateDebut))
+            localStorage.setItem('dateFin', JSON.stringify(this.state.dateFin))
+            localStorage.setItem('sitter', JSON.stringify(this.state.resultat[event.target.name]))
+
+            this.props.history.push('/demande')
+        }
         // localStorage.removeItem('sitter')
 
         // console.log('local Storage:', JSON.parse(localStorage.getItem('sitter')))
@@ -254,68 +273,74 @@ class RecherchePetsitter extends Component {
         console.log('state :', this.state)
         console.log('codepostal', this.state.code_postal.length)
         return (
+
             <div>
-
-                <div id='divPublicite'>
-                    <div className='greyboxdiv'>
-                        <h1 className='h1'>Gagnez temps et tranquilite d'esprit. Recherchez ce qu'il vous faut, on s'occupe du reste! </h1>
-                    </div>
-                </div>
-                <h1 className='w-25 p-3 mx-auto'>Recherche Petsitter</h1>
-                <div className='w-50 p-3 mx-auto img-fluid img-thumbnail'>
-
-                    <InputComponent classCss='form-check' classInput='form-form-check-input' labelClass='form-check-label' type='radio' textLabel='Garder Chez le PettSitter' id='garderChezPetsitter' name='gardeMaison' value={this.state.garderChezPetsitter} onChange={this.handleChange} />
-                    <InputComponent classCss='form-check' classInput='form-form-check-input' labelClass='form-check-label' type='radio' textLabel='Garder chez vous' id='garderChezVous' name='gardeMaison' value={this.state.garderChezVous} onChange={this.handleChange} />
-                    <InputComponent classCss='form-check' classInput='form-form-check-input' labelClass='form-check-label' type='checkbox' textLabel='Promenade' id='promenade' name='Promenade' value={this.state.promenade} onChange={this.handleChange} />
-                    <InputComponent classCss='form-group' classInput='form-control' textLabel='Date de debut' type='date' id='dateDebut' name='dateDebut' onChange={this.handleChange} />
-                    <InputComponent classCss='form-group' classInput='form-control' textLabel='Date de fin' type='date' id='dateFin' name='dateFin' onChange={this.handleChange} />
-                    <InputComponent classCss='form-group' classInput='form-control' textLabel='Numero' type='number' id='numeroRue' name='numero' min={0} onChange={this.handleChange} />
-                    <InputComponent classCss='form-group' classInput='form-control' textLabel='Nom de la rue' type='text' id='nomRue' name='nom de la rue' onChange={this.handleChange} />
-                    <InputComponent classCss='form-group' classInput='form-control' textLabel='Code postal' type='text' id='secteurAction' name='secteurAction' onChange={this.handleChange} />
-                    <InputComponent classCss='form-group' classInput='form-control' textLabel='Ville' type='text' id='ville' name='ville' onChange={this.handleChange} />
-                    <InputComponent classCss='form-group' classInput='form-control' textLabel='Province' type='text' id='province' name='province' onChange={this.handleChange} />
-
-                    <InputComponent classCss='form-group' classInput='form-control' textLabel='pays' type='text' id='pays' name='pays' onChange={this.handleChange} />
-                    <SelectComponent classCss='form-group' classInput='form-control' textLabel='Type de animal:' id='typeAnimal' name='TypeAnimal' options={TYPEANIMAL} onChange={this.handleChangeSelect} value={this.state.typeAnimal} />
-                    <InputComponent classInput='btn btn-outline-success' type='submit' id='rechercher' name='Rechercher ' value='rechercher' onClick={this.handleSubmit} />
-                </div>
-                {this.state.resultatRecherche ? '' : <h1 className='text-danger'>Aucun sitter a ete retrouver autour de votre zone dans votres criteres Veuillez nous contacter</h1>}
-                <div className='row'>
-                    {this.state.resultat ? this.state.resultat.map((resultat, index) => {
-                        if (resultat.url_photo === null && resultat.sexe === 'masculin') {
-                            resultat.url_photo = 'image_profile_default_homme.jpg'
-                        } else if (resultat.url_photo === null && resultat.sexe === 'feminin') {
-                            resultat.url_photo = 'image_profile_default_femme.jpg'
-                        }
-                        return <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} rating={niveauPetSitter(resultat.rating)} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger w-100 p-3 mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' servicesTotal={this.state.servicesTotal} servicesSitter={this.state.servicesRechercher} id={index} link='/demande' />
-                    }) : ''}
-
-                </div>
-
-                <div id='divPlubicite2'>
-                    <h1 className='w-50 p-3 mx-auto h1'>Des services sur mesure pour un animal d'exeption </h1>
-                    <div className='row divAnnonce'>
-                        <div className='col-lg-4 mx-auto border border-danger rounded serviceProposes'>
-                            <ListItemComponent text='Faites garder votre animal à votre domicile ou à celui du Pet Sitter' className='fas fa-check' />
-                            <ListItemComponent text='Partez à votre rendez-vous sans vous soucier de la promenade de votre chien' className='fas fa-check' />
-                            <ListItemComponent text='Besoin de flexibilite? Choisissez les horaires et periodes qui vous conviennent' className='fas fa-check' />
-                        </div>
-                        <div className='col-lg-4 mx-auto border border-danger rounded serviceProposes'>
-                            {/* METTRE UN ICONE DANS LAVANT DE LES LI POUR LA PUBLICITER */}
-                            <ListItemComponent text='Tous les nouveaux gardiens passent une verification des antecedents de base' className='fas fa-check' />
-                            <ListItemComponent text='Tous les gardiens fournissent un profil detaille et des informations personnelles ' className='fas fa-check' />
-                            <ListItemComponent text='Tous les Pet Sitter sont agrees par notre equipe de specialistes chez Pets Friendly' className='fas fa-check' />
+                <div id={this.state.showmodal ? 'blury' : ''}>
+                    <div id='divPublicite'>
+                        <div className='greyboxdiv'>
+                            <h1 className='h1'>Gagnez temps et tranquilité d'esprit. Recherchez ce qu'il vous faut, on s'occupe du reste! </h1>
                         </div>
                     </div>
+                    <h1 className='w-25 p-3 mx-auto'>Recherche Petsitter</h1>
+                    <div className='w-50 p-3 mx-auto img-fluid img-thumbnail'>
+
+                        <InputComponent classCss='form-check' classInput='form-form-check-input' labelClass='form-check-label' type='radio' textLabel='Garder Chez le PetSitter' id='garderChezPetsitter' name='gardeMaison' value={this.state.garderChezPetsitter} onChange={this.handleChange} />
+                        <InputComponent classCss='form-check' classInput='form-form-check-input' labelClass='form-check-label' type='radio' textLabel='Garder chez vous' id='garderChezVous' name='gardeMaison' value={this.state.garderChezVous} onChange={this.handleChange} />
+                        <InputComponent classCss='form-check' classInput='form-form-check-input' labelClass='form-check-label' type='checkbox' textLabel='Promenade' id='promenade' name='Promenade' value={this.state.promenade} onChange={this.handleChange} />
+                        <InputComponent classCss='form-group' classInput='form-control' textLabel='Date de debut' type='date' id='dateDebut' name='dateDebut' onChange={this.handleChange} />
+                        <InputComponent classCss='form-group' classInput='form-control' textLabel='Date de fin' type='date' id='dateFin' name='dateFin' onChange={this.handleChange} />
+                        <InputComponent classCss='form-group' classInput='form-control' textLabel='Numero' type='number' id='numeroRue' name='numero' min={0} onChange={this.handleChange} />
+                        <InputComponent classCss='form-group' classInput='form-control' textLabel='Nom de la rue' type='text' id='nomRue' name='nom de la rue' onChange={this.handleChange} />
+                        <InputComponent classCss='form-group' classInput='form-control' textLabel='Code postal' type='text' id='secteurAction' name='secteurAction' onChange={this.handleChange} />
+                        <InputComponent classCss='form-group' classInput='form-control' textLabel='Ville' type='text' id='ville' name='ville' onChange={this.handleChange} />
+                        <InputComponent classCss='form-group' classInput='form-control' textLabel='Province' type='text' id='province' name='province' onChange={this.handleChange} />
+
+                        <InputComponent classCss='form-group' classInput='form-control' textLabel='pays' type='text' id='pays' name='pays' onChange={this.handleChange} />
+                        <SelectComponent classCss='form-group' classInput='form-control' textLabel='Type de animal:' id='typeAnimal' name='TypeAnimal' options={TYPEANIMAL} onChange={this.handleChangeSelect} value={this.state.typeAnimal} />
+                        <InputComponent classInput='btn btn-outline-success' type='submit' id='rechercher' name='Rechercher ' value='rechercher' onClick={this.handleSubmit} />
+                    </div>
+
+                    {/* <button onClick={e => { this.showModal() }}> show Modal</button> */}
+
+                    {this.state.resultatRecherche ? '' : <h1 className='text-danger'>Aucun sitter n'a été retrouvé selon vos critères. Veuillez changer vos critères de sélection ou nous contacter</h1>}
+                    <div className='row'>
+                        {this.state.resultat ? this.state.resultat.map((resultat, index) => {
+                            if (resultat.url_photo === null && resultat.sexe === 'masculin') {
+                                resultat.url_photo = 'image_profile_default_homme.jpg'
+                            } else if (resultat.url_photo === null && resultat.sexe === 'feminin') {
+                                resultat.url_photo = 'image_profile_default_femme.jpg'
+                            }
+                            return <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} rating={niveauPetSitter(resultat.rating)} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger w-100 p-3 mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' servicesTotal={this.state.servicesTotal} servicesSitter={this.state.servicesRechercher} id={index} link='/demande' />
+                        }) : ''}
+
+                    </div>
+
+                    <div id='divPlubicite2'>
+                        <h1 className='w-50 p-3 mx-auto h1'>Des services sur mesure pour un animal d'exeption </h1>
+                        <div className='row divAnnonce'>
+                            <div className='col-lg-4 mx-auto border border-danger rounded serviceProposes'>
+                                <ListItemComponent text='Faites garder votre animal à votre domicile ou à celui du Pet Sitter' className='fas fa-check' />
+                                <ListItemComponent text='Partez à votre rendez-vous sans vous soucier de la promenade de votre chien' className='fas fa-check' />
+                                <ListItemComponent text='Besoin de flexibilité? Choisissez les horaires et périodes qui vous conviennent' className='fas fa-check' />
+                            </div>
+                            <div className='col-lg-4 mx-auto border border-danger rounded serviceProposes'>
+                                {/* METTRE UN ICONE DANS LAVANT DE LES LI POUR LA PUBLICITER */}
+                                <ListItemComponent text='Tous les nouveaux gardiens passent une vérification des antécédents de base' className='fas fa-check' />
+                                <ListItemComponent text='Tous les gardiens fournissent un profil détaillé et des informations personnelles ' className='fas fa-check' />
+                                <ListItemComponent text='Tous les Pet Sitter sont agréés par notre équipe de spécialistes chez Pets Friendly' className='fas fa-check' />
+                            </div>
+                        </div>
+                    </div>
+                    <div className='infolettreDiv mt-3'>
+                        <h1 className='h1'>Laissez nous vous prévenir de nos nouveautés</h1>
+                        <h6 className='h6'>Restez informé</h6>
+                        <form>
+                            <InputComponent classCss='form-group' classInput='form-control' textLabel='Entrez votre email' type='email' id='infolettre' name='infolettre' onChange={this.handleChange} />
+                            <InputComponent classInput='btn btn-outline-danger' type='submit' id='infolettreButton' name='Envoyer ' value='Envoyer' />
+                        </form>
+                    </div>
                 </div>
-                <div className='infolettreDiv mt-3'>
-                    <h1 className='h1'>Laissez nous vous prevenir des nouveautes</h1>
-                    <h6 className='h6'>Restez informe</h6>
-                    <form>
-                        <InputComponent classCss='form-group' classInput='form-control' textLabel='Entrez votre email' type='email' id='infolettre' name='infolettre' onChange={this.handleChange} />
-                        <InputComponent classInput='btn btn-outline-danger' disabled={this.state.code_postal.length < 1} type='submit' id='infolettreButton' name='Envoyer ' value='Envoyer' />
-                    </form>
-                </div>
+                <ModalMessage onHandleonCloseModal={this.onHandleonCloseModal} show={this.state.showmodal}>{this.state.message}</ModalMessage>
             </div>
         )
     }

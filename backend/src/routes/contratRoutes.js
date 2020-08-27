@@ -11,6 +11,9 @@ router.post("/creation", contratCreationController.contratCreation)
 //route pour acceptation du contrat et tout ce qui va avec
 router.post("/acceptation", contratCreationController.contratAcceptation)
 
+//route pour refus du contrat et tout ce qui va avec
+router.put("/refus", contratCreationController.contratRefus)
+
 // route pour fin du contrat et tout ce qui va avec
 router.put("/fin", contratFinController.contratFin)
 
@@ -19,5 +22,8 @@ router.get("/recuperation/proprietaire/:id", contratFinController.contratRecuper
 
 // route pour recuperer les contrats du petsitter avec son id
 router.get("/recuperation/petsitter/:id", contratFinController.contratRecuperationByIdPetsitter)
+
+// route pour recuperer les contrats d'un utilisateur avec son id
+router.get("/recuperation/utilisateur/:id", contratFinController.contratRecuperationByIdUtilisateur)
 
 module.exports = router 

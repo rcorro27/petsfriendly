@@ -88,16 +88,16 @@ class ProfilDemandePettSitter extends Component {
             }
             return niveauSitter
         }
-        const sitter = JSON.parse(localStorage.getItem('sitter'))
-        const serviceTotal = JSON.parse(localStorage.getItem('servicestotal'))
-        const user = JSON.parse(localStorage.getItem('usertoken'))
+        // const sitter = JSON.parse(localStorage.getItem('sitter'))
+        const servicesTotal = JSON.parse(localStorage.getItem('servicestotal'))
+        // const user = JSON.parse(localStorage.getItem('usertoken'))
 
         function PrixAvantTaxes (prix) {
             let prixAvantTaxes = 0
             prix.map((infoPrix, index) => {
                 console.log(prix)
-                console.log(serviceTotal[infoPrix - 1].prix_service)
-                prixAvantTaxes = prixAvantTaxes + serviceTotal[infoPrix - 1].prix_service
+                console.log(servicesTotal[infoPrix - 1].prix_service)
+                prixAvantTaxes = prixAvantTaxes + servicesTotal[infoPrix - 1].prix_service
                 return prixAvantTaxes
             })
             return prixAvantTaxes
@@ -107,7 +107,7 @@ class ProfilDemandePettSitter extends Component {
             return tps
         }
         function TVQ (prix) {
-            const tvq = PrixAvantTaxes(prix) * 9.975 / 100
+            const tvq = Math.ceil(PrixAvantTaxes(prix) * 9.975 / 100)
             return tvq
         }
         function PrixAvecTaxes (prix) {
@@ -155,18 +155,19 @@ class ProfilDemandePettSitter extends Component {
                     <h1 className='h1 w-25 p-3 mx-auto'>Demande Service </h1>
                 </div>
                 <div className='row m-5 bg-white border border-danger rounded shadow'>
-                    <img src='../src/img/caroussel/image1.jpeg' alt='Carlos' className='img-fluid rounded-circle w-25 p-3' />
+
+                    <img src={'https://pets-friendly.herokuapp.com/images/images_profiles/' + this.state.sitter.url_photo} alt={this.state.sitter.nom} className='img-fluid rounded-circle ' id='imagedemande' />
                     <div className='m-5 infoSitterWrapper'>
-                        <h2 className='h2'>Carlos</h2>
-                        <h3 className='h6'>Secteur d'action</h3>
-                        <h6 className='h6'>Rating</h6>
+                        <h2 className='h2'>{this.state.sitter.nom}</h2>
+                        <h3 className='h6'>{this.state.sitter.secteur_action}</h3>
+                        <h6 className='h6'>{niveauPetSitter(this.state.sitter.rating)}</h6>
                         <input type='button' value='Contacter' className='btn btn-success m-2 boutonPetsitter' />
                         <input type='button' value='Aimer' className='btn btn-danger m-2 boutonPetsitter' />
                     </div>
 
                 </div>
                 <div className='clearfix '>
-                    <div className='m-5 w-25 p3 float-left bg-white border border-danger rounded shadow serviceBox'>
+                    <div className='m-5 w-25 p3 float-left border border-danger rounded shadow serviceBox'>
                         <h3 className='h3 w-25 p-3 mx-auto'><strong>Services</strong> </h3>
                         <ul className='list-group'>
                             <ServiceDemandeComponent classNameLi='list-group-item serviceBox' servicesTotal={this.state.servicesTotal} servicesSitter={this.state.service} classIcone='fas fa-dollar-sign' />
@@ -187,11 +188,11 @@ class ProfilDemandePettSitter extends Component {
 
                         </div>
                         <div className='float-right m-2 w-25 p-3'>
-                            <p><strong>{PrixAvantTaxes(this.state.service)}</strong></p>
-                            <p>{TPS(this.state.service)}</p>
-                            <p>{TVQ(this.state.service)}</p>
-                            <p><strong>{PrixAvecTaxes(this.state.service)}</strong></p>
-                            <Link to='/payment'> <input type='button' value='Envoyer Demande' className='btn btn-success' /* onClick={this.handleClick} */ /></Link>
+                            <p><strong>{PrixAvantTaxes(this.state.service)}</strong><i className='fas fa-dollar-sign' /><i className='fab fa-canadian-maple-leaf' /></p>
+                            <p>{TPS(this.state.service)}<i className='fas fa-dollar-sign' /><i className='fab fa-canadian-maple-leaf' /></p>
+                            <p>{TVQ(this.state.service)}<i className='fas fa-dollar-sign' /><i className='fab fa-canadian-maple-leaf' /></p>
+                            <p><strong>{PrixAvecTaxes(this.state.service)}</strong><i className='fas fa-dollar-sign' /><i className='fab fa-canadian-maple-leaf' /></p>
+                            <Link to='/payment'> <input type='button' value='Envoyer Demande' className='btn btn-success payButton' /* onClick={this.handleClick} */ /></Link>
                         </div>
 
                     </div>
@@ -200,5 +201,5 @@ class ProfilDemandePettSitter extends Component {
         )
     }
 }
-
+// comment push
 export default withRouter(ProfilDemandePettSitter)

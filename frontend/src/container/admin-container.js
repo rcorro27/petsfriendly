@@ -6,7 +6,7 @@ import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 import { withRouter } from 'react-router-dom'
 
 class AdminContainer extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props)
 
         this.state = {
@@ -16,7 +16,7 @@ class AdminContainer extends Component {
         this.handleChangeSinglePost = this.handleChangeSinglePost.bind(this)
     }
 
-    componentWillMount () {
+    componentWillMount() {
         if (localStorage.getItem('usertoken') && JSON.parse(localStorage.getItem('usertoken')).utilisateur.id_role === 1) {
             axios.get('https://pets-friendly.herokuapp.com/utilisateurs/recuperation/petsitters/tout')
                 .then(response => {
@@ -30,12 +30,12 @@ class AdminContainer extends Component {
         }
     }
 
-    checked () {
+    checked() {
         this.setState({ isUserAdmin: !this.state.isUserAdmin })
         console.log('isUserAdmin1', this.state.isUserAdmin)
     }
 
-    handleChangeSinglePost (id) {
+    handleChangeSinglePost(id) {
         // console.log('value>>>', value)
         console.log('id>>>', id)
         return axios
@@ -48,7 +48,7 @@ class AdminContainer extends Component {
             })
     }
 
-    render () {
+    render() {
         // console.log('localStorage', JSON.parse(localStorage.getItem('usertoken')).utilisateur.id_role)
         //  console.log('isUserAdmin', this.state.isUserAdmin)
         return (
@@ -60,7 +60,7 @@ class AdminContainer extends Component {
                             <th>Nom .</th>
                             <th>Prenom .</th>
                             <th>Email</th>
-                            <th>Etat de compte .</th>
+                            <th>Etat du compte .</th>
                         </tr>
                     </thead>
                     <tbody>

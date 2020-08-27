@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import '../css/contratsAffichage.css'
 
 class AfficherContratsContainer extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props)
 
         this.state = {
@@ -14,7 +14,7 @@ class AfficherContratsContainer extends Component {
         this.onHandleChargerContrats = this.onHandleChargerContrats.bind(this)
     }
 
-    onHandleChargerContrats () {
+    onHandleChargerContrats() {
         if (this.state.reponseContrats === false) {
             return axios
                 .get('https://pets-friendly.herokuapp.com/contrats/recuperation/utilisateur/' + this.state.idUtilisateur)
@@ -27,13 +27,13 @@ class AfficherContratsContainer extends Component {
         }
     }
 
-    render () {
+    render() {
         console.log(this.state.idUtilisateur)
         console.log(this.state.reponseContrats.length)
         return (
             <div>
                 {this.state.reponseContrats ? <h1>Pas Des Contrats</h1> : this.onHandleChargerContrats()}
-                <h1>Demandes de Services</h1>
+                <h1>Demande de services</h1>
 
             </div>)
     }

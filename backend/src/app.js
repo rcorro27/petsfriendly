@@ -1,10 +1,13 @@
 const createError = require('http-errors')
+const http = require('./bin/www')
 const express = require('express')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const cors = require('cors')
 const mongo = require("./servers/MongoDb")
+const io = require('socket.io')(http) // obj pour gerer le chat
+
 
 // les routes a utiliser
 let indexRouter = require('./routes/index')
@@ -28,6 +31,11 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(cors())
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 //les routes du serveur
 app.use('/', indexRouter)
@@ -58,28 +66,7 @@ app.use(function (err, req, res, next) {
   res.render('error')
 })
 
-//-----------------------------------------------------------------------------------------------------------------------------
-const io = require('socket.io')(app.http) // obj pour gerer le chat
 
 
-// gerer la connexion des sockets des utilisateurs
-io.on("join", function(data) {
-
-    io.join(data.id)
-})
-
-// gerer l'envoie des messages
-io.on("nouveau_message", function(data){
-
-    mongo.insererMessage(data)
-    .then(resultatMessages => {
-        io.in(data.idTo).emit("nouveau_message", data.message) // envoyer le msg au destinataire 
-    })
-    .catch(erreur => {
-        io.in(data.idFrom).emit("nouveau_message", erreur) // changer nouveau_message et parler avec les gars d'Android de ca
-    })
-})
-
-//-----------------------------------------------------------------------------------------------------------------------------
 
 module.exports = app
