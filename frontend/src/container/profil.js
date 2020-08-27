@@ -98,7 +98,7 @@ class Profile extends Component {
                     </div>
 
                     <Link to='/update'> <Button>Update Profil</Button></Link>
-                    <Link to='/contrats'> <Button>Afficher les contrats</Button></Link>
+                    <Link to='/contrats'> <Button>Afficher les contrat</Button></Link>
 
                     <table className='table col-md-6 mx-auto'>
                         <tbody>
