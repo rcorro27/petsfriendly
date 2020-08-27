@@ -3,7 +3,7 @@
 }
 
 #exampleFormControlFile1 {
-    background-color: #DCDCDC;
+    background-color: #ffffff;
     border-radius: 50%;
     color: white;
     padding: 20px;
@@ -15,37 +15,37 @@
 .md-form .mb-5 {
     width: 100%;
     padding: 12px;
-    border: 1px solid #ccc;
+    border: none rgb(255, 255, 255);
     border-radius: 4px;
     resize: vertical;
 }
 
-label {
-    padding: 12px 12px 12px 0;
-    display: inline-block;
+.jumbotron {
+    background-color: white;
 }
 
-.col-md-6 .mx-auto {
-    width: 1000px;
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
 }
 
-tr:nth-child(even) {
-    background-color: #f2f2f2;
+.table td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: none;
+    border-top-width: initial;
+    border-top-style: none;
+    border-top-color: initial;
 }
 
-tr:hover {
-    background-color: #ddd;
+tr, td {
+    border: solid none;
+    width: 10%;
 }
 
-tr td {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-
-tr {
-    padding-top: 12px;
-    padding-bottom: 12px;
+td {
     text-align: left;
+    border-top: none;
 }
 
 #bouton1 {
@@ -83,7 +83,7 @@ tr {
 }
 
 @media screen and (max-width: 600px) {
-    .col-25, .col-75, #bouton1, tr, td, #exampleFormControlFile1, .image-profil, .modal-body .mx-3 {
+    .col-25, .col-75, #bouton1, tr, td, #exampleFormControlFile1, .image-profil, .text-center .text-success, .modal-body .mx-3 {
         width: 100%;
         margin-top: 0;
     }
