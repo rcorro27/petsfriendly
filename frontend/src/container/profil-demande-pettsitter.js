@@ -88,16 +88,16 @@ class ProfilDemandePettSitter extends Component {
             }
             return niveauSitter
         }
-        const sitter = JSON.parse(localStorage.getItem('sitter'))
-        const serviceTotal = JSON.parse(localStorage.getItem('servicestotal'))
-        const user = JSON.parse(localStorage.getItem('usertoken'))
+        // const sitter = JSON.parse(localStorage.getItem('sitter'))
+        const servicesTotal = JSON.parse(localStorage.getItem('servicestotal'))
+        // const user = JSON.parse(localStorage.getItem('usertoken'))
 
         function PrixAvantTaxes (prix) {
             let prixAvantTaxes = 0
             prix.map((infoPrix, index) => {
                 console.log(prix)
-                console.log(serviceTotal[infoPrix - 1].prix_service)
-                prixAvantTaxes = prixAvantTaxes + serviceTotal[infoPrix - 1].prix_service
+                console.log(servicesTotal[infoPrix - 1].prix_service)
+                prixAvantTaxes = prixAvantTaxes + servicesTotal[infoPrix - 1].prix_service
                 return prixAvantTaxes
             })
             return prixAvantTaxes
@@ -157,9 +157,9 @@ class ProfilDemandePettSitter extends Component {
                 <div className='row m-5 bg-white border border-danger rounded shadow'>
                     <img src='../src/img/caroussel/image1.jpeg' alt='Carlos' className='img-fluid rounded-circle w-25 p-3' />
                     <div className='m-5 infoSitterWrapper'>
-                        <h2 className='h2'>Carlos</h2>
-                        <h3 className='h6'>Secteur d'action</h3>
-                        <h6 className='h6'>Rating</h6>
+                        <h2 className='h2'>{this.state.sitter.nom}</h2>
+                        <h3 className='h6'>{this.state.sitter.secteur_action}</h3>
+                        <h6 className='h6'>{niveauPetSitter(this.state.sitter.rating)}</h6>
                         <input type='button' value='Contacter' className='btn btn-success m-2 boutonPetsitter' />
                         <input type='button' value='Aimer' className='btn btn-danger m-2 boutonPetsitter' />
                     </div>
