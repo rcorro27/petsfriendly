@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap'
 import '../css/payment.css'
 
 class UpdateProfile extends Component {
-    constructor() {
+    constructor () {
         super()
         this.state = {
             id: '',
@@ -40,7 +40,7 @@ class UpdateProfile extends Component {
         this.fileUpload = this.fileUpload.bind(this)
     }
 
-    componentDidMount() {
+    componentDidMount () {
         // const token = localStorage.usertoken
         // const decoded = jwtdecode(token)
         if (localStorage.getItem('usertoken')) {
@@ -72,14 +72,14 @@ class UpdateProfile extends Component {
         }
     }
 
-    fileSelected(e) {
+    fileSelected (e) {
         this.setState({
             selectedFile: e.target.files[0]
         })
         console.log(e.target.files[0])
     }
 
-    submitModifier() {
+    submitModifier () {
         axios
             .put('https://pets-friendly.herokuapp.com/utilisateurs/configuration', {
                 utilisateur: {
@@ -111,11 +111,11 @@ class UpdateProfile extends Component {
             })
     }
 
-    onTodoChange(e) {
+    onTodoChange (e) {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    fileUpload(e) {
+    fileUpload (e) {
         const image = this.state.selectedFile
         e.preventDefault()
         const data = new FormData()
@@ -146,7 +146,7 @@ class UpdateProfile extends Component {
             })
     }
 
-    render() {
+    render () {
         console.log('state', this.state.urlImg)
         return (
 
@@ -155,8 +155,8 @@ class UpdateProfile extends Component {
                 <form method='post' encType='multipart/form-data'>
                     <div className='form-group'>
                         <label htmlFor='exampleFormControlFile1' id='label1'>Mettre une photo de profil</label>
-                        <input name='image' type='file' className='form-control-file' id='exampleFormControlFile1' onChange={this.fileSelected} />
-                        <Button onClick={this.fileUpload}>Upload</Button>
+                        <input name='image' type='file' className='form-control-file btnPayment' style={{ backgroundColor: 'pink' }} id='exampleFormControlFile1' onChange={this.fileSelected} />
+                        <Button className='btnPayment' onClick={this.fileUpload}>Upload</Button>
                     </div>
                 </form>
                 <div className='row'>
@@ -239,8 +239,8 @@ class UpdateProfile extends Component {
                                     <input type='number' className='form-control validate' name='numero_appt' value={this.state.numero_appt} onChange={this.onTodoChange} />
                                 </div>
 
-                                <Button variant='btnPayment ' onClick={this.fileUpload}>Annuler </Button>
-                                <Button variant='btnPayment ' onClick={this.submitModifier}>Update </Button>
+                                <Button className='btnPayment ' onClick={this.fileUpload}>Annuler </Button>
+                                <Button className='btnPayment ' onClick={this.submitModifier}>Update </Button>
                             </div>
                         </div>
                     </div>
