@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.petsitterisi.R;
 import com.example.petsitterisi.RechercheFragment;
@@ -36,30 +37,6 @@ public class ChatService {
         this.chatMessages = chatMessages;
         mSocket = RechercheFragment.mSocket;
 
-        mSocket.on("nouveau_message", new Emitter.Listener() {
-            @Override
-            public void call(final Object... args) {
-
-                data = (JSONObject) args[0];
-                try {
-
-                    int chat_id_petsitter = Integer.parseInt(UtilisateurManager.getDataFromSharePreference(ctx, "chat_id_petsitter"));
-                    int chat_id_proprietaire = Integer.parseInt(UtilisateurManager.getDataFromSharePreference(ctx, "chat_id_proprietaire"));
-
-                        if( data.getInt("idFrom") == chat_id_petsitter || data.getInt("idFrom")  == chat_id_proprietaire) {
-
-
-                            chatView.setText(data.getString("message"));
-
-                        }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-           });
-
     }
 
     public void start(){
@@ -67,6 +44,8 @@ public class ChatService {
 //            mSocket.connect();
 //        }
     }
+
+
 
     public void sendMyMessage(JSONObject messageJsonObject) throws JSONException {
         mSocket.emit("nouveau_message", messageJsonObject);

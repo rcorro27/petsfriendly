@@ -49,6 +49,7 @@
                         android:textSize="25dp"/>-
 
                     <TextView
+                        android:id="@+id/petSitterAddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Montreal, Qc, H4P"

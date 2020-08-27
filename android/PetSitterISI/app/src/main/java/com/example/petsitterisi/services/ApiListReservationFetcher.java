@@ -123,6 +123,12 @@ public class ApiListReservationFetcher extends AsyncTask<String, Nullable, Strin
                 String dateReservation = reservationJsonObject.getString("date_creation");
 
                 View cardReservationParam = View.inflate(context , R.layout.card_reservation_proprietaire,null);
+                TextView nomPetSitter = cardReservationParam.findViewById(R.id.name);
+                TextView petSitterAddress = cardReservationParam.findViewById(R.id.petSitterAddress);
+
+                ApiRecupererUtilisateurReserverFetcher apiRecupererUtilisateurReserverFetcher = new ApiRecupererUtilisateurReserverFetcher(context, nomPetSitter, petSitterAddress);
+                apiRecupererUtilisateurReserverFetcher.execute("https://pets-friendly.herokuapp.com/utilisateurs/recuperation/"+idPetSitter);
+
 
                 TextView dateDebutContratReservationProprietaire = cardReservationParam.findViewById(R.id.date_debut_contrat_demande);
                 TextView dateFinContratReservationProprietaire = cardReservationParam.findViewById(R.id.date_fin_contrat_demande);
@@ -229,6 +235,7 @@ public class ApiListReservationFetcher extends AsyncTask<String, Nullable, Strin
 
                 if (!message_envoyer[0].getText().toString().equals("")){
 
+
                     UtilisateurManager.addDataToSharedPreference(context, "chat_id_petsitter", idPetSitter);
                     UtilisateurManager.addDataToSharedPreference(context, "chat_id_proprietaire", idProprietaire);
 
@@ -236,6 +243,7 @@ public class ApiListReservationFetcher extends AsyncTask<String, Nullable, Strin
                     UtilisateurManager.addHeureMessageEnvoyer(context, "heure_Msg", heureNowMsgEnvoyer);
                     UtilisateurManager.addMessageContacterInsideDiscussion(context, "message_contacter", textMsgEnvoyer[0]);
                     UtilisateurManager.addDataToSharedPreference(context, "bouton_contacter", "1");
+                    message_envoyer[0].setText("");
                     son_message_envoyer.start();
                     context.startActivity(intent);
                 }

@@ -3,15 +3,19 @@ package com.example.petsitterisi.services;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
 import com.example.petsitterisi.BottomNavigationBar;
 import com.example.petsitterisi.R;
+import com.example.petsitterisi.RechercheFragment;
 import com.example.petsitterisi.managers.UtilisateurManager;
+import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 
@@ -37,7 +41,7 @@ public class ApiMessageListFetcher extends AsyncTask<String, Nullable, String> {
     int id_petsitter;
     LinearLayout chat_message_container;
     ChatService chatService;
-
+    Handler handler;
 
 
     public ApiMessageListFetcher(Context  context, LinearLayout chat_message_container, ChatService chatService, int id_proprietaire, int id_petsitter) {
@@ -46,6 +50,7 @@ public class ApiMessageListFetcher extends AsyncTask<String, Nullable, String> {
         this.id_petsitter = id_petsitter;
         this.chat_message_container = chat_message_container;
         this.chatService = chatService;
+        handler = new Handler();
     }
 
     @Override
@@ -103,6 +108,7 @@ public class ApiMessageListFetcher extends AsyncTask<String, Nullable, String> {
         try {
             JSONArray chatJsonArrayObject = new JSONArray(s);
 
+            chat_message_container.removeAllViews();
             int monIdUtilisateur = UtilisateurManager.getIdUtilisateur(context);
 
             for(int i = 0; i < chatJsonArrayObject.length(); i++){
@@ -125,6 +131,42 @@ public class ApiMessageListFetcher extends AsyncTask<String, Nullable, String> {
                 }
 
             }
+
+//            RechercheFragment.mSocket.on("nouveau_message", new Emitter.Listener() {
+//                @Override
+//                public void call(final Object... args) {
+//
+//                   JSONObject data = (JSONObject) args[0];
+//
+//                    String message = null;
+//                    try {
+//
+//
+//                        message = data.getString("message");
+//
+//                        final String finalMessage = message;
+//                        final String finalMessage1 = message;
+//                        handler.post(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                View cardMessageRecus = View.inflate(context , R.layout.activity_item_message_recus,null);
+//                                TextView messageBulbeTextView = cardMessageRecus.findViewById(R.id.text_message_body_recu);
+//                                messageBulbeTextView.setText(finalMessage1);
+//                                chat_message_container.addView(cardMessageRecus);
+//
+//                            }
+//                        });
+//
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//
+//
+//                }
+//
+//            });
+
+
 
             String chatDebutDestination = UtilisateurManager.getDataFromSharePreference(context, "bouton_contacter");
 
@@ -161,6 +203,7 @@ public class ApiMessageListFetcher extends AsyncTask<String, Nullable, String> {
                     chatJsonObject.put("message_entre", id_proprietaire+"_"+id_petsitter);
                     chatJsonObject.put("message", messageEnvoyerDepuisContacterInsideProfilSitter);
                     chatService.sendMyMessage(chatJsonObject);
+                    UtilisateurManager.addDataToSharedPreference(context, "bouton_contacter", "");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

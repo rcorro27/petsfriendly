@@ -1,5 +1,6 @@
 package com.example.petsitterisi;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,9 +28,12 @@ public class ChatFragment extends Fragment {
         chat_liste_container = listeChatView.findViewById(R.id.liste_chat_container);
 
         int utilisateurId = UtilisateurManager.getIdUtilisateur(ctx);
+        int id_role = UtilisateurManager.getIdUtilisateurRole(ctx);
         try {
-         ApiListChatFetcher apiListChatFetcher = new ApiListChatFetcher(ctx, chat_liste_container);
-          apiListChatFetcher.execute("");
+         ApiListChatFetcher apiListChatFetcher = new ApiListChatFetcher(ctx, chat_liste_container, utilisateurId, id_role);
+         String root = "https://pets-friendly.herokuapp.com/chats/recuperation/utilisateur/"+utilisateurId+"/"+id_role;
+          apiListChatFetcher.execute(root);
+
         }catch (Exception e)
         {
             e.printStackTrace();

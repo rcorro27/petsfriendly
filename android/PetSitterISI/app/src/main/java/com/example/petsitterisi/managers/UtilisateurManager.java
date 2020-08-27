@@ -261,11 +261,11 @@ return Integer.parseInt(id_retour);
         editor.apply();
     }
 
-    public static void addDataToSharedPreference(Context ctx, String nom, String heure) {
+    public static void addDataToSharedPreference(Context ctx, String nom, String data) {
         SharedPreferences sharedpreferences;
         sharedpreferences = ctx.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.putString(nom,heure);
+        editor.putString(nom,data);
         editor.apply();
     }
 

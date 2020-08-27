@@ -17,6 +17,7 @@ import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.Spannable;
@@ -31,6 +32,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.petsitterisi.entitees.Utilisateur;
 import com.example.petsitterisi.managers.UtilisateurManager;
@@ -39,7 +41,9 @@ import com.example.petsitterisi.services.ApiListChatFetcher;
 import com.example.petsitterisi.services.ApiListReservationFetcher;
 import com.example.petsitterisi.services.ApiMessageListFetcher;
 import com.example.petsitterisi.services.ChatService;
+import com.github.nkzawa.emitter.Emitter;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.gson.JsonObject;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -82,6 +86,8 @@ public class MessageList extends Fragment {
        // final View view_photos_envoyer =  inflater.inflate(R.layout.photo_envoyer, container, false);
 
         ctx = chatMessages.getContext();
+        final Handler handler = new Handler();
+
 
         final View cardMessageEnvoyer = View.inflate(ctx , R.layout.activity_item_message_envoyer,null);
         final ChatService chatService = new ChatService(ctx, chatMessages);
@@ -108,6 +114,41 @@ public class MessageList extends Fragment {
 
        ApiMessageListFetcher apiMessageListFetcher = new ApiMessageListFetcher(ctx, chat_message_container, chatService, chat_id_proprietaire, chat_id_petsitter);
        apiMessageListFetcher.execute("https://pets-friendly.herokuapp.com/chats/recuperation");
+
+            RechercheFragment.mSocket.on("nouveau_message", new Emitter.Listener() {
+                @Override
+                public void call(final Object... args) {
+
+                    JSONObject data = (JSONObject) args[0];
+
+                    String message = null;
+                    try {
+
+                        message = data.getString("message");
+
+                        final String finalMessage = message;
+                        final String finalMessage1 = message;
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                View cardMessageRecus = View.inflate(ctx , R.layout.activity_item_message_recus,null);
+                                TextView messageBulbeTextView = cardMessageRecus.findViewById(R.id.text_message_body_recu);
+                                messageBulbeTextView.setText(finalMessage1);
+                                chat_message_container.addView(cardMessageRecus);
+                                Toast.makeText(ctx, finalMessage, Toast.LENGTH_LONG).show();
+                            }
+                        }, 1000);
+
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+
+            });
 
 
 

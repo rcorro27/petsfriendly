@@ -40,6 +40,7 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
@@ -51,13 +52,16 @@ public class ApiListChatFetcher extends AsyncTask<String, Nullable, String> {
     LinearLayout card_chat_select;
 
     Button icone_suivant;
+    int utilisateurId;
+    int id_role;
 
 
-    public ApiListChatFetcher(Context  context, LinearLayout llParam) {
+    public ApiListChatFetcher(Context  context, LinearLayout llParam, int utilisateurId, int id_role) {
         this.context = context;
         this.ll = llParam;
         sharedpreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-
+        this.utilisateurId = utilisateurId;
+        this.id_role = id_role;
     }
 
     @Override
@@ -93,7 +97,7 @@ public class ApiListChatFetcher extends AsyncTask<String, Nullable, String> {
             ex.printStackTrace();
         }
 
-              return "";
+              return result;
     }
 
 
@@ -110,91 +114,21 @@ public class ApiListChatFetcher extends AsyncTask<String, Nullable, String> {
         super.onPostExecute(s);
 
         try {
+            JSONArray chatJSONArray = new JSONArray(s);
 
-            JSONArray jsonArray = new JSONArray(s);
+            ArrayList<String> ids = new ArrayList<String>();
 
-            for(int i = 0; i < jsonArray.length(); i++){
+            for(int i = 0; i < chatJSONArray.length(); i++){
+                JSONObject chatOject = chatJSONArray.getJSONObject(i);
+                String discussion_avec_id = chatOject.getString("_id");
 
-                JSONObject chatJsonObject = jsonArray.getJSONObject(i);
-
-                View cardChatParam = View.inflate(context , R.layout.card_chat,null);
-                card_chat_select = cardChatParam.findViewById(R.id.car_chat_selectionner);
-
-                TextView prenom_chat = cardChatParam.findViewById(R.id.prenom_chat);
-                String urlPhoto = chatJsonObject.getString("url_photo");
-                ImageView UrlPhotoUtilisateurRecus = (ImageView) cardChatParam.findViewById(R.id.image_message_profile_liste_discussionr);
-                final String nom_proprietaire = chatJsonObject.getString("nom");
-                final String id_petsitter = chatJsonObject.getString("id_petsitter");
-               // String heureMessage = chatJsonObject.getString("date");
-             //
-                TextView heureMessageRecu = cardChatParam.findViewById(R.id.date_liste_discussion);
+                    View cardChatParam = View.inflate(context , R.layout.card_chat,null);
+                    ApiRecupererUtilisateurChatBoxFetcher apiRecupererUtilisateurChatBoxFetcher = new ApiRecupererUtilisateurChatBoxFetcher(context, cardChatParam, ll, Integer.parseInt(discussion_avec_id));
+                    apiRecupererUtilisateurChatBoxFetcher.execute("https://pets-friendly.herokuapp.com/utilisateurs/recuperation/"+discussion_avec_id);
 
 
-
-                if(id_petsitter.equals("1"))
-                {
-                    UrlPhotoUtilisateurRecus.setImageResource(R.drawable.kamel);
-
-  //                  // date hardcode
-//                    heureMessage = DateConvertisseur(heureMessage);
-//                    heureMessageRecu.setText(heureMessage);
-
-                    String sharedPreferencesHeureMsgRecus = UtilisateurManager.getHeureMessageRecus(context);
-                    heureMessageRecu.setText(sharedPreferencesHeureMsgRecus);
-                    //UrlPhotoUtilisateurRecus.setImageBitmap(myBitmap);
-
-                }
-                else if (id_petsitter.equals("2"))
-                {
-                   UrlPhotoUtilisateurRecus.setImageResource(R.drawable.michel);
-
-//                   // date hardcode
-//                    heureMessage = DateConvertisseur(heureMessage);
-//                    heureMessageRecu.setText(heureMessage);
-
-                    String sharedPreferencesHeureMsgRecus = UtilisateurManager.getHeureMessageRecus(context);
-                    heureMessageRecu.setText(sharedPreferencesHeureMsgRecus);
-
-                    //UrlPhotoUtilisateurRecus.setImageBitmap(myBitmap);
-                }
-
-
-
-                prenom_chat.setText(nom_proprietaire);
-
-
-
-                icone_suivant = cardChatParam.findViewById(R.id.icone_suivant);
-                icone_suivant.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(context, BottomNavigationBar.class);
-                        intent.putExtra("ChatDiscussion", "true");
-                        context.startActivity(intent);
-                    }
-                });
-
-
-                card_chat_select.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-
-                        Intent intent = new Intent(context, BottomNavigationBar.class);
-                        intent.putExtra("ChatDiscussion", "true");
-                        UtilisateurManager.addNomMessage(context, "nom_chat", nom_proprietaire);
-                        context.startActivity(intent);
-
-
-                    }
-                });
-
-
-                ll.addView(cardChatParam);
 
             }
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }

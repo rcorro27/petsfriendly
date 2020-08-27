@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,6 +24,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.petsitterisi.managers.UtilisateurManager;
 import com.example.petsitterisi.services.ApiRechercheFetcher;
+import com.example.petsitterisi.services.ChatService;
+import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 import com.google.android.material.switchmaterial.SwitchMaterial;
@@ -32,6 +36,7 @@ import org.json.JSONObject;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.util.Calendar;
+import java.util.Objects;
 
 public class RechercheFragment extends Fragment {
 
@@ -63,16 +68,18 @@ public class RechercheFragment extends Fragment {
     SharedPreferences sharedpreferences;
     public static Socket mSocket;
     boolean isConnected = false;
+    JSONObject data;
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         final View monFragmentRecherche = inflater.inflate(R.layout.fragment_recherche, container, false);
         ctx = monFragmentRecherche.getContext();
 
+
         try {
-            mSocket = IO.socket("https://pets-friendly.herokuapp.com");
+            mSocket = IO.socket("http://192.168.0.140:3000");
 
             mSocket.connect();
             int monIdUtilisateur = UtilisateurManager.getIdUtilisateur(ctx);
@@ -80,6 +87,9 @@ public class RechercheFragment extends Fragment {
             idJsonObject.put("id", monIdUtilisateur);
             this.isConnected = mSocket.connected();
             mSocket.emit("join", idJsonObject);
+
+
+
 
 
         } catch (URISyntaxException | JSONException e) {
