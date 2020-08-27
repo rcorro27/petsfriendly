@@ -273,13 +273,13 @@ class RecherchePetsitter extends Component {
 
                 <div id='divPublicite'>
                     <div className='greyboxdiv'>
-                        <h1 className='h1'>Gagnez temps et tranquilite d'esprit. Recherchez ce qu'il vous faut, on s'occupe du reste! </h1>
+                        <h1 className='h1'>Gagnez temps et tranquilité d'esprit. Recherchez ce qu'il vous faut, on s'occupe du reste! </h1>
                     </div>
                 </div>
                 <h1 className='w-25 p-3 mx-auto'>Recherche Petsitter</h1>
                 <div className='w-50 p-3 mx-auto img-fluid img-thumbnail'>
 
-                    <InputComponent classCss='form-check' classInput='form-form-check-input' labelClass='form-check-label' type='radio' textLabel='Garder Chez le PettSitter' id='garderChezPetsitter' name='gardeMaison' value={this.state.garderChezPetsitter} onChange={this.handleChange} />
+                    <InputComponent classCss='form-check' classInput='form-form-check-input' labelClass='form-check-label' type='radio' textLabel='Garder Chez le PetSitter' id='garderChezPetsitter' name='gardeMaison' value={this.state.garderChezPetsitter} onChange={this.handleChange} />
                     <InputComponent classCss='form-check' classInput='form-form-check-input' labelClass='form-check-label' type='radio' textLabel='Garder chez vous' id='garderChezVous' name='gardeMaison' value={this.state.garderChezVous} onChange={this.handleChange} />
                     <InputComponent classCss='form-check' classInput='form-form-check-input' labelClass='form-check-label' type='checkbox' textLabel='Promenade' id='promenade' name='Promenade' value={this.state.promenade} onChange={this.handleChange} />
                     <InputComponent classCss='form-group' classInput='form-control' textLabel='Date de debut' type='date' id='dateDebut' name='dateDebut' onChange={this.handleChange} />
@@ -297,7 +297,7 @@ class RecherchePetsitter extends Component {
                 <Modal onHandleonClose={this.onHandleonClose} show={this.state.show}>{this.state.message}</Modal>
                 {/* <button onClick={e => { this.showModal() }}> show Modal</button> */}
 
-                {this.state.resultatRecherche ? '' : <h1 className='text-danger'>Aucun sitter a ete retrouver autour de votre zone dans votres criteres Veuillez nous contacter</h1>}
+                {this.state.resultatRecherche ? '' : <h1 className='text-danger'>Aucun sitter n'a été retrouvé selon vos critères. Veuillez changer vos critères de sélection ou nous contacter</h1>}
                 <div className='row'>
                     {this.state.resultat ? this.state.resultat.map((resultat, index) => {
                         if (resultat.url_photo === null && resultat.sexe === 'masculin') {
@@ -316,19 +316,19 @@ class RecherchePetsitter extends Component {
                         <div className='col-lg-4 mx-auto border border-danger rounded serviceProposes'>
                             <ListItemComponent text='Faites garder votre animal à votre domicile ou à celui du Pet Sitter' className='fas fa-check' />
                             <ListItemComponent text='Partez à votre rendez-vous sans vous soucier de la promenade de votre chien' className='fas fa-check' />
-                            <ListItemComponent text='Besoin de flexibilite? Choisissez les horaires et periodes qui vous conviennent' className='fas fa-check' />
+                            <ListItemComponent text='Besoin de flexibilité? Choisissez les horaires et périodes qui vous conviennent' className='fas fa-check' />
                         </div>
                         <div className='col-lg-4 mx-auto border border-danger rounded serviceProposes'>
                             {/* METTRE UN ICONE DANS LAVANT DE LES LI POUR LA PUBLICITER */}
-                            <ListItemComponent text='Tous les nouveaux gardiens passent une verification des antecedents de base' className='fas fa-check' />
-                            <ListItemComponent text='Tous les gardiens fournissent un profil detaille et des informations personnelles ' className='fas fa-check' />
-                            <ListItemComponent text='Tous les Pet Sitter sont agrees par notre equipe de specialistes chez Pets Friendly' className='fas fa-check' />
+                            <ListItemComponent text='Tous les nouveaux gardiens passent une vérification des antécédents de base' className='fas fa-check' />
+                            <ListItemComponent text='Tous les gardiens fournissent un profil détaillé et des informations personnelles ' className='fas fa-check' />
+                            <ListItemComponent text='Tous les Pet Sitter sont agréés par notre équipe de spécialistes chez Pets Friendly' className='fas fa-check' />
                         </div>
                     </div>
                 </div>
                 <div className='infolettreDiv mt-3'>
-                    <h1 className='h1'>Laissez nous vous prevenir des nouveautes</h1>
-                    <h6 className='h6'>Restez informe</h6>
+                    <h1 className='h1'>Laissez nous vous prévenir de nos nouveautés</h1>
+                    <h6 className='h6'>Restez informé</h6>
                     <form>
                         <InputComponent classCss='form-group' classInput='form-control' textLabel='Entrez votre email' type='email' id='infolettre' name='infolettre' onChange={this.handleChange} />
                         <InputComponent classInput='btn btn-outline-danger' disabled={this.state.code_postal.length < 1} type='submit' id='infolettreButton' name='Envoyer ' value='Envoyer' />

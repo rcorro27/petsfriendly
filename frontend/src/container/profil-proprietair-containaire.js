@@ -3,30 +3,30 @@ import InputComponent from 'component/input-component'
 import Boutton from 'component/bouton-component'
 
 class ProfilProprietaireBord extends Component {
-    constructor (props) {
+    constructor(props) {
         super()
         this.state = { nom: '', prenom: '' }
         this.handleronchange = this.handleronchange.bind(this)
     }
 
-    handelOnClick (e) {
+    handelOnClick(e) {
         this.setState({ [e.target.nom]: e.target.value })
         console.log('inseret')
     }
 
-    handleronchange (e) {
+    handleronchange(e) {
         this.setState({ [e.target.nom]: e.target.value })
         this.setState({ [e.target.prenom]: e.target.value })
     }
 
     /** evenement a revoir j'arivve pas recuperer les champs  */
-    render () {
+    render() {
         return (
             <div>
                 <div class='imageProfil' />
 
                 <div>
-                    <h1>Mes Information </h1>
+                    <h1>Mes informations </h1>
 
                     <form id='profilPettSitter'>
                         <div class='formulaire'>
@@ -53,9 +53,9 @@ class ProfilProprietaireBord extends Component {
                             <InputComponent text='Cree le mot de passe   :' type='password' id='pwd' name='password' />
                         </div>
                         <div>
-                            <h1>Mes contract</h1>
+                            <h1>Mes contrats</h1>
                         </div>
-                        <p>PettSitter...</p>
+                        <p>PetSitter...</p>
                         <div class='date-contact'>
                             <InputComponent text='date debut' type='date' id='date_debut' name='dateD' />
                             <InputComponent text='date fin' type='date' id='date_debut' name='datef' />
