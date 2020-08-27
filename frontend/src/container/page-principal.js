@@ -45,6 +45,8 @@ class PagePrincipal extends Component {
                     <Route exact path='/demande' component={ProfilDemandePettSitter} />
                     <Route exact path='/payment' component={PaymentFormContainer} />
                     <Route exact path='/contrats' component={ListContrat} />
+                    <Route exact path='/demande' component={ProfilDemandePettSitter} />
+                    <Route exact path='/payment' component={PaymentFormContainer} />
 
                 </Switch>
 

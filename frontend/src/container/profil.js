@@ -94,6 +94,7 @@ class Profile extends Component {
                     <form method='post' encType='multipart/form-data'>
 
                         <div className='form-group'>
+                    <Link to='/contrats'> <Button>Afficher les contrat</Button></Link>
                             <label htmlFor='exampleFormControlFile1'>Mettre une photto de profil</label>
                             <input name='image' type='file' className='form-control-file' id='exampleFormControlFile1' onChange={this.fileSelected} />
                             <Button onClick={this.fileUpload}>Upload</Button>

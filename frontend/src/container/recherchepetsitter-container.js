@@ -138,6 +138,7 @@ class RecherchePetsitter extends Component {
 
     handleSubmit (event) {
         if (!JSON.parse(localStorage.getItem('usertoken'))) {
+        console.log('toto')
             alert('Veuillez Vous CONECTER/INSCRIRE')
         } else {
             return axios
@@ -286,7 +287,7 @@ class RecherchePetsitter extends Component {
                         } else if (resultat.url_photo === null && resultat.sexe === 'feminin') {
                             resultat.url_photo = 'image_profile_default_femme.jpg'
                         }
-                        return <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} rating={niveauPetSitter(resultat.rating)} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger w-100 p-3 mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' servicesTotal={this.state.servicesTotal} servicesSitter={this.state.servicesRechercher} id={index} />
+                        return <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} rating={niveauPetSitter(resultat.rating)} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger w-100 p-3 mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' servicesTotal={this.state.servicesTotal} servicesSitter={this.state.servicesRechercher} id={index} link='/demande' />
                     }) : ''}
 
                 </div>
