@@ -1,6 +1,6 @@
 import React from 'react'
 import '../css/modal.css'
-export default class Modal extends React.Component {
+export default class ModalMessage extends React.Component {
     render () {
         if (!this.props.show) {
             return null
@@ -25,7 +25,7 @@ export default class Modal extends React.Component {
                                 <h5 className='mx-auto'>{this.props.children}</h5>
                             </div>
                             <div className='modal-footer'>
-                                <button className='btn btn-outline-danger w-50' onClick={this.props.onHandleonClose}>Close</button>
+                                <button className='btn btn-outline-danger w-50' onClick={this.props.onHandleonCloseModal}>Close</button>
                             </div>
                         </div>
                     </div>

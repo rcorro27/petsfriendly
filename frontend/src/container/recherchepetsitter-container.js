@@ -5,7 +5,7 @@ import InputComponent from 'component/input-component'
 import SelectComponent from 'component/select-component'
 import ListItemComponent from 'component/list-item-component'
 import VignetteComponent from 'component/vignette-component'
-import Modal from 'component/modal'
+import ModalMessage from 'component/modal'
 
 import { withRouter } from 'react-router-dom'
 // importer fichier css
@@ -38,7 +38,7 @@ class RecherchePetsitter extends Component {
             resultat: [],
             province: '',
             servicesTotal: [],
-            show: false,
+            showmodal: false,
             message: '',
             blurry: false,
             idblur: ''
@@ -55,15 +55,15 @@ class RecherchePetsitter extends Component {
         this.handleAfficherSitterOnClick = this.handleAfficherSitterOnClick.bind(this)
         this.handleEnvoyerDemandeOnClick = this.handleEnvoyerDemandeOnClick.bind(this)
         this.showModal = this.showModal.bind(this)
-        this.onHandleonClose = this.onHandleonClose.bind(this)
+        this.onHandleonCloseModal = this.onHandleonCloseModal.bind(this)
     }
 
     showModal () {
-        this.setState({ show: true })
+        this.setState({ showmodal: true })
     };
 
-    onHandleonClose () {
-        this.setState({ show: false })
+    onHandleonCloseModal () {
+        this.setState({ showmodal: false })
     };
 
     /*
@@ -339,7 +339,7 @@ class RecherchePetsitter extends Component {
                         </form>
                     </div>
                 </div>
-                <Modal onHandleonClose={this.onHandleonClose} show={this.state.show}>{this.state.message}</Modal>
+                <ModalMessage onHandleonCloseModal={this.onHandleonCloseModal} show={this.state.showmodal}>{this.state.message}</ModalMessage>
             </div>
         )
     }

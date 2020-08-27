@@ -1,4 +1,15 @@
 import axios from 'axios'
+function message (params) {
+    let message = ''
+    if (params === 200) {
+        message = 'COmpte pas active'
+    } if (params === 300) {
+        message = 'COmpte pas valider'
+    } if (params === 400) {
+        message = 'Utilisateur ou mote de passe errone'
+    }
+    return message
+}
 
 export const login = user => {
     return axios
@@ -14,6 +25,7 @@ export const login = user => {
             return response.data
         })
         .catch(err => {
+            message(err)
             console.log(err)
         })
 }
