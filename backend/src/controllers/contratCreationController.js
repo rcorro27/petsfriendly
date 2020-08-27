@@ -129,6 +129,25 @@ function contratActivation(req) {
 
 //-----------------------------------------------------------------------------------------------------------------------------
 
+function contratRefus(req, res) {
+    // ***************  desactivation du contrat  ****************
+    let sql = "UPDATE contrat SET est_accepte=false, est_lu_proprietaire=false, est_lu_petsitter=false, encore_disponible=false"
+    + " WHERE id=$1"
+
+    bd.excuterRequete(sql, [req.body.id_contrat])
+    .then(resultatRequeteContrat => {               
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify({}))
+    })
+    .catch(erreur => {
+        console.error(erreur.stack)
+        res.setHeader('Content-Type', 'text/html')
+        res.end(erreur.stack)
+    })
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+
 function ajoutFacture(req) 
 {
     return new Promise((resolve, reject) => {
@@ -266,6 +285,7 @@ function ajoutServiceContrat(req, id_contrat) {
 module.exports = {
     contratCreation,
     contratAcceptation,
+    contratRefus,
     contratDesactivation,
     ajoutFacture
 }
