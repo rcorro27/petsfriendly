@@ -24,9 +24,12 @@ class Profile extends Component {
         }
         this.fileSelected = this.fileSelected.bind(this)
         this.fileUpload = this.fileUpload.bind(this)
+        this.setupBeforeUnloadListener = this.setupBeforeUnloadListener.bind(this)
     }
 
     componentDidMount () {
+        this.setupBeforeUnloadListener()
+
         // const token = localStorage.usertoken
         // const decoded = jwtdecode(token)
         if (localStorage.getItem('usertoken')) {
@@ -41,7 +44,9 @@ class Profile extends Component {
                 est_valide: JSON.parse(localStorage.getItem('usertoken')).utilisateur.est_valide,
                 email: JSON.parse(localStorage.getItem('usertoken')).utilisateur.email,
                 urlImg: 'https://pets-friendly.herokuapp.com/images/images_profiles/' + JSON.parse(localStorage.getItem('usertoken')).utilisateur.url_photo
+
             })
+            this.setupBeforeUnloadListener()
         } else {
             this.props.history.push('/')
         }
@@ -85,20 +90,27 @@ class Profile extends Component {
             })
     }
 
+    setupBeforeUnloadListener () {
+        window.addEventListener('beforeunload', (ev) => {
+            // ev.preventDefault()
+            // localStorage.removeItem('usertoken')
+        })
+    };
+
     render () {
         console.log('image', this.state.urlImg)
         return (
             <div className='container'>
 
-                <img src={this.state.urlImg} className='img-rounded' alt='Cinque Terre' />
+                <img src={this.state.urlImg} className='imageProfile' alt='Cinque Terre' />
                 <div className='jumbotron mt-5'>
                     <div className='col-sm-8 mx-auto'>
                         {this.state.est_valide ? <h3 className='text-center text-success '> Votre profile est active vous pouvez acceder aux services</h3> : <h3 className='text-center text-danger '>Votre profil n'est pas encore valide , vous n'avez pas l'acces a nos services</h3>}
                         <h1 className='text-center'>PROFILE </h1>
                     </div>
 
-                    <Link to='/update'> <Button>Update Profil</Button></Link>
-                    <Link to='/contrats'> <Button>Afficher les contrat</Button></Link>
+                    <Link to='/update'> <Button variant='boutonProfil'>Update Profil</Button></Link>
+                    <Link to='/contrats'> <Button variant='boutonProfil'>Afficher les contrat</Button></Link>
 
                     <table className='table col-md-6 mx-auto'>
                         <tbody>
