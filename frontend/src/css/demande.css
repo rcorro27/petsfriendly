@@ -44,9 +44,10 @@
     margin-top: -15%;
     position: relative;
     background-color: rgba(202, 202, 202, 0.5);
-    width: 30%;
+    width: 40%;
     margin-left: 2%;
     padding-bottom: 12%;
+    height: 60vh;
 }
 
 .serviceBox {
