@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import FormData from 'form-data'
 import { Link, withRouter } from 'react-router-dom'
-
+import ListItemComponent from 'component/list-item-component'
+import InputComponent from 'component/input-component'
 import axios from 'axios'
 import { Button } from 'react-bootstrap'
 
@@ -158,6 +159,30 @@ class Profile extends Component {
 
                         </tbody>
                     </table>
+                </div>
+                <div id='divPlubicite2'>
+                    <h1 className='w-50 p-3 mx-auto h1'>Des services sur mesure pour un animal d'exeption </h1>
+                    <div className='row divAnnonce'>
+                        <div className='col-lg-4 mx-auto border border-danger rounded serviceProposes'>
+                            <ListItemComponent text='Faites garder votre animal à votre domicile ou à celui du Pet Sitter' className='fas fa-check' />
+                            <ListItemComponent text='Partez à votre rendez-vous sans vous soucier de la promenade de votre chien' className='fas fa-check' />
+                            <ListItemComponent text='Besoin de flexibilité? Choisissez les horaires et périodes qui vous conviennent' className='fas fa-check' />
+                        </div>
+                        <div className='col-lg-4 mx-auto border border-danger rounded serviceProposes'>
+                            {/* METTRE UN ICONE DANS LAVANT DE LES LI POUR LA PUBLICITER */}
+                            <ListItemComponent text='Tous les nouveaux gardiens passent une vérification des antécédents de base' className='fas fa-check' />
+                            <ListItemComponent text='Tous les gardiens fournissent un profil détaillé et des informations personnelles ' className='fas fa-check' />
+                            <ListItemComponent text='Tous les Pet Sitter sont agréés par notre équipe de spécialistes chez Pets Friendly' className='fas fa-check' />
+                        </div>
+                    </div>
+                </div>
+                <div className='infolettreDiv mt-3'>
+                    <h1 className='h1'>Laissez nous vous prévenir de nos nouveautés</h1>
+                    <h6 className='h6'>Restez informé</h6>
+                    <form>
+                        <InputComponent classCss='form-group' classInput='form-control' textLabel='Entrez votre email' type='email' id='infolettre' name='infolettre' onChange={this.handleChange} />
+                        <InputComponent classInput='btn btn-outline-danger' type='submit' id='infolettreButton' name='Envoyer ' value='Envoyer' />
+                    </form>
                 </div>
             </div>
         )
