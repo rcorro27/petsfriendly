@@ -137,6 +137,41 @@ class RecherchePetsitter extends Component {
     }
 
     handleSubmit (event) {
+        if (!JSON.parse(localStorage.getItem('usertoken'))) {
+        console.log('toto')
+            alert('Veuillez Vous CONECTER/INSCRIRE')
+        } else {
+            return axios
+                .post('https://pets-friendly.herokuapp.com/recherche', {
+
+                    services: this.state.servicesRechercher,
+                    adresse: {
+                        numero_rue: this.state.nom_rue,
+                        nom_rue: this.state.nom_rue,
+                        code_postal: this.state.code_postal,
+                        ville: this.state.ville,
+                        province: this.state.province,
+                        pays: this.state.pays
+                    }
+
+                })
+            //  .then(response => console.log('reponse avant la assignatiion', response.data))
+                .then(response => {
+                    this.setState({ resultat: response.data })
+                    /* if (response.data.length === 0) {
+
+                this.setState({ resultatRecherche: false })
+            } else {
+                this.setState({ resultat: response.data })
+            } */
+                    /*  const arrayResultat = []
+            response.data.map((info, index) => arrayResultat.push(info))
+            console.log(arrayResultat) */
+                })
+                .catch(err => {
+                    console.log('erreur recherche:', err)
+                })
+        }
         /* fetch('resultat-recherche.json', { method: 'GET' })
             .then(response => response.json())
             .then(response => {
@@ -147,37 +182,6 @@ class RecherchePetsitter extends Component {
                 this.setState({ resultat: arrayTest })
             })
             */
-
-        return axios
-            .post('https://pets-friendly.herokuapp.com/recherche', {
-
-                services: this.state.servicesRechercher,
-                adresse: {
-                    numero_rue: this.state.nom_rue,
-                    nom_rue: this.state.nom_rue,
-                    code_postal: this.state.code_postal,
-                    ville: this.state.ville,
-                    province: this.state.province,
-                    pays: this.state.pays
-                }
-
-            })
-            //  .then(response => console.log('reponse avant la assignatiion', response.data))
-            .then(response => {
-                this.setState({ resultat: response.data })
-                /* if (response.data.length === 0) {
-
-                    this.setState({ resultatRecherche: false })
-                } else {
-                    this.setState({ resultat: response.data })
-                } */
-                /*  const arrayResultat = []
-                response.data.map((info, index) => arrayResultat.push(info))
-                console.log(arrayResultat) */
-            })
-            .catch(err => {
-                console.log('erreur recherche:', err)
-            })
     }
 
     handleAddOnClick () {
@@ -248,6 +252,7 @@ class RecherchePetsitter extends Component {
             return niveauSitter
         }
         console.log('state :', this.state)
+        console.log('codepostal', this.state.code_postal.length)
         return (
             <div>
 
@@ -282,7 +287,7 @@ class RecherchePetsitter extends Component {
                         } else if (resultat.url_photo === null && resultat.sexe === 'feminin') {
                             resultat.url_photo = 'image_profile_default_femme.jpg'
                         }
-                        return <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} rating={niveauPetSitter(resultat.rating)} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger w-100 p-3 mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' servicesTotal={this.state.servicesTotal} servicesSitter={this.state.servicesRechercher} id={index} />
+                        return <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} rating={niveauPetSitter(resultat.rating)} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger w-100 p-3 mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' servicesTotal={this.state.servicesTotal} servicesSitter={this.state.servicesRechercher} id={index} link='/demande' />
                     }) : ''}
 
                 </div>
@@ -308,7 +313,7 @@ class RecherchePetsitter extends Component {
                     <h6 className='h6'>Restez informe</h6>
                     <form>
                         <InputComponent classCss='form-group' classInput='form-control' textLabel='Entrez votre email' type='email' id='infolettre' name='infolettre' onChange={this.handleChange} />
-                        <InputComponent classInput='btn btn-outline-danger' type='submit' id='infolettreButton' name='Envoyer ' value='Envoyer' />
+                        <InputComponent classInput='btn btn-outline-danger' disabled={this.state.code_postal.length < 1} type='submit' id='infolettreButton' name='Envoyer ' value='Envoyer' />
                     </form>
                 </div>
             </div>
