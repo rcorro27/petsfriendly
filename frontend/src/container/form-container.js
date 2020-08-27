@@ -8,16 +8,17 @@ import Navbar from '../container/navbar-container'
 import DivBoutons from '../component/div-boutons'
 import ImageTitreComposant from '../container/image-titre-container'
 import InputComponent from '../component/input-component'
+import '../css/modal.css'
 
 class FormContainer extends Component {
-    constructor(props) {
+    constructor (props) {
         super(props)
         this.state = {
             titres: []
         }
     }
 
-    componentWillMount() {
+    componentWillMount () {
         fetch('titres.json', { method: 'GET' })
             .then(response => response.json())
             .then(response => {
@@ -25,7 +26,7 @@ class FormContainer extends Component {
             })
     }
 
-    render() {
+    render () {
         return (
 
             <div>

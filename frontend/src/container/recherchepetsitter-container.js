@@ -10,6 +10,7 @@ import ModalMessage from 'component/modal'
 import { withRouter } from 'react-router-dom'
 // importer fichier css
 import '../css/recherche.css'
+// import '../css/modal.css'
 import { Alert } from 'react-bootstrap'
 // import ProfilDemandePettSitter from './profil-demande-pettsitter'
 
@@ -274,7 +275,7 @@ class RecherchePetsitter extends Component {
         return (
 
             <div>
-                <div id={this.state.show ? 'blury' : ''}>
+                <div id={this.state.showmodal ? 'blury' : ''}>
                     <div id='divPublicite'>
                         <div className='greyboxdiv'>
                             <h1 className='h1'>Gagnez temps et tranquilité d'esprit. Recherchez ce qu'il vous faut, on s'occupe du reste! </h1>
