@@ -4,7 +4,7 @@ import axios from 'axios'
 import { Button } from 'react-bootstrap'
 
 class UpdateProfile extends Component {
-    constructor () {
+    constructor() {
         super()
         this.state = {
             id: '',
@@ -39,7 +39,7 @@ class UpdateProfile extends Component {
         this.fileUpload = this.fileUpload.bind(this)
     }
 
-    componentDidMount () {
+    componentDidMount() {
         // const token = localStorage.usertoken
         // const decoded = jwtdecode(token)
         if (localStorage.getItem('usertoken')) {
@@ -71,14 +71,14 @@ class UpdateProfile extends Component {
         }
     }
 
-    fileSelected (e) {
+    fileSelected(e) {
         this.setState({
             selectedFile: e.target.files[0]
         })
         console.log(e.target.files[0])
     }
 
-    submitModifier () {
+    submitModifier() {
         axios
             .put('https://pets-friendly.herokuapp.com/utilisateurs/configuration', {
                 utilisateur: {
@@ -110,11 +110,11 @@ class UpdateProfile extends Component {
             })
     }
 
-    onTodoChange (e) {
+    onTodoChange(e) {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    fileUpload (e) {
+    fileUpload(e) {
         const image = this.state.selectedFile
         e.preventDefault()
         const data = new FormData()
@@ -145,7 +145,7 @@ class UpdateProfile extends Component {
             })
     }
 
-    render () {
+    render() {
         console.log('state', this.state.urlImg)
         return (
 
@@ -161,7 +161,7 @@ class UpdateProfile extends Component {
                 <div className='modal-body mx-3'>
 
                     <div className='md-form mb-5'>
-                        <label data-error='wrong' data-success='right' htmlFor='defaultForm-email'>Ton Nom</label>
+                        <label data-error='wrong' data-success='right' htmlFor='defaultForm-email'>Votre Nom</label>
                         <input type='text' className='form-control validate' name='nom' value={this.state.nom} onChange={this.onTodoChange} />
 
                     </div>
@@ -169,7 +169,7 @@ class UpdateProfile extends Component {
                 <div className='modal-body mx-3'>
 
                     <div className='md-form mb-5'>
-                        <label data-error='wrong' data-success='right' htmlFor='defaultForm-email'>Ton Prenom</label>
+                        <label data-error='wrong' data-success='right' htmlFor='defaultForm-email'>Votre Prénom</label>
                         <input type='text' className='form-control validate' name='prenom' value={this.state.prenom} onChange={this.onTodoChange} />
 
                     </div>
@@ -177,7 +177,7 @@ class UpdateProfile extends Component {
                 <div className='modal-body mx-3'>
 
                     <div className='md-form mb-5'>
-                        <label data-error='wrong' data-success='right' htmlFor='defaultForm-email'>Ton sexe</label>
+                        <label data-error='wrong' data-success='right' htmlFor='defaultForm-email'>Votre sexe</label>
                         <input type='text' className='form-control validate' name='sexe' value={this.state.sexe} onChange={this.onTodoChange} />
 
                     </div>
@@ -185,7 +185,7 @@ class UpdateProfile extends Component {
                 <div className='modal-body mx-3'>
 
                     <div className='md-form mb-5'>
-                        <label data-error='wrong' data-success='right' htmlFor='defaultForm-email'>Ton numero de telephone </label>
+                        <label data-error='wrong' data-success='right' htmlFor='defaultForm-email'>Votre numéro de téléphone </label>
                         <input type='tel' className='form-control validate' name='telephone' value={this.state.telephone} onChange={this.onTodoChange} />
 
                     </div>
@@ -193,7 +193,7 @@ class UpdateProfile extends Component {
                 <div className='modal-body mx-3'>
 
                     <div className='md-form mb-5'>
-                        <label data-error='wrong' data-success='right' htmlFor='defaultForm-email'>Ton Email</label>
+                        <label data-error='wrong' data-success='right' htmlFor='defaultForm-email'>Votre Email</label>
                         <input type='email' className='form-control validate' name='email' value={this.state.email} onChange={this.onTodoChange} />
 
                     </div>
@@ -202,7 +202,7 @@ class UpdateProfile extends Component {
 
                     <div className='md-form mb-5'>
                         <input type='number' className='form-control validate' name='numero_rue' value={this.state.numero_rue} onChange={this.onTodoChange} />
-                        <label data-error='wrong' data-success='right' htmlFor='defaultForm-email'>Numero de rue</label>
+                        <label data-error='wrong' data-success='right' htmlFor='defaultForm-email'>Numéro de rue</label>
 
                     </div>
 
@@ -258,7 +258,7 @@ class UpdateProfile extends Component {
                 <div className='modal-body mx-3'>
 
                     <div className='md-form mb-5'>
-                        <label data-error='wrong' data-success='right' htmlFor='defaultForm-email'>Numero appartement</label>
+                        <label data-error='wrong' data-success='right' htmlFor='defaultForm-email'>Numéro d'appartement</label>
 
                         <input type='number' className='form-control validate' name='numero_appt' value={this.state.numero_appt} onChange={this.onTodoChange} />
 

@@ -6,7 +6,7 @@ import axios from 'axios'
 import { Button } from 'react-bootstrap'
 
 class Profile extends Component {
-    constructor () {
+    constructor() {
         super()
         this.state = {
             user: [],
@@ -26,7 +26,7 @@ class Profile extends Component {
         this.fileUpload = this.fileUpload.bind(this)
     }
 
-    componentDidMount () {
+    componentDidMount() {
         // const token = localStorage.usertoken
         // const decoded = jwtdecode(token)
         if (localStorage.getItem('usertoken')) {
@@ -47,14 +47,14 @@ class Profile extends Component {
         }
     }
 
-    fileSelected (e) {
+    fileSelected(e) {
         this.setState({
             selectedFile: e.target.files[0]
         })
         console.log(e.target.files[0])
     }
 
-    fileUpload (e) {
+    fileUpload(e) {
         const image = this.state.selectedFile
         e.preventDefault()
         const data = new FormData()
@@ -85,7 +85,7 @@ class Profile extends Component {
             })
     }
 
-    render () {
+    render() {
         console.log('image', this.state.urlImg)
         return (
             <div className='container'>
@@ -93,21 +93,21 @@ class Profile extends Component {
                 <img src={this.state.urlImg} className='img-rounded' alt='Cinque Terre' />
                 <div className='jumbotron mt-5'>
                     <div className='col-sm-8 mx-auto'>
-                        {this.state.est_valide ? <h3 className='text-center text-success '> Votre profile est active vous pouvez acceder aux services</h3> : <h3 className='text-center text-danger '>Votre profil n'est pas encore valide , vous n'avez pas l'acces a nos services</h3>}
-                        <h1 className='text-center'>PROFILE </h1>
+                        {this.state.est_valide ? <h3 className='text-center text-success '> Votre profil est activé, vous pouvez accéder aux services</h3> : <h3 className='text-center text-danger '>Votre profil n'est pas encore valide , vous n'avez pas l'acces a nos services</h3>}
+                        <h1 className='text-center'>PROFIL </h1>
                     </div>
 
-                    <Link to='/update'> <Button>Update Profil</Button></Link>
-                    <Link to='/contrats'> <Button>Afficher les contrat</Button></Link>
+                    <Link to='/update'> <Button>Update du Profil</Button></Link>
+                    <Link to='/contrats'> <Button>Afficher les contrats</Button></Link>
 
                     <table className='table col-md-6 mx-auto'>
                         <tbody>
                             <tr>
-                                <td>Fist Name</td>
+                                <td>Prénom</td>
                                 <td>{this.state.user.nom}</td>
                             </tr>
                             <tr>
-                                <td>Last Name</td>
+                                <td>Nom</td>
                                 <td>{this.state.user.prenom}</td>
                             </tr>
                             <tr>
@@ -115,7 +115,7 @@ class Profile extends Component {
                                 <td>{this.state.user.email}</td>
                             </tr>
                             <tr>
-                                <td>Age</td>
+                                <td>Âge</td>
                                 <td>{this.state.user.age}</td>
                             </tr>
                             <tr>
@@ -123,11 +123,11 @@ class Profile extends Component {
                                 <td>{this.state.user.sexe}</td>
                             </tr>
                             <tr>
-                                <td>Telephone</td>
+                                <td>Téléphone</td>
                                 <td>{this.state.user.telephone}</td>
                             </tr>
                             <tr>
-                                <td>Numero de la rue</td>
+                                <td>Numéro de la rue</td>
                                 <td>{this.state.address.numero_rue}</td>
                             </tr>
                             <tr>
@@ -151,7 +151,7 @@ class Profile extends Component {
                                 <td>{this.state.address.pays}</td>
                             </tr>
                             <tr>
-                                <td>Numero appartement</td>
+                                <td>Numéro appartement</td>
                                 <td>{this.state.address.numero_appt}</td>
                             </tr>
                             {/* je veux pusher cette page aussi */}

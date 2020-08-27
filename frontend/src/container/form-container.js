@@ -10,14 +10,14 @@ import ImageTitreComposant from '../container/image-titre-container'
 import InputComponent from '../component/input-component'
 
 class FormContainer extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props)
         this.state = {
             titres: []
         }
     }
 
-    componentWillMount () {
+    componentWillMount() {
         fetch('titres.json', { method: 'GET' })
             .then(response => response.json())
             .then(response => {
@@ -25,7 +25,7 @@ class FormContainer extends Component {
             })
     }
 
-    render () {
+    render() {
         return (
 
             <div>
@@ -39,7 +39,7 @@ class FormContainer extends Component {
 
                             <span
                                 className='SpanTitre'
-                            >Nous considerons votre Animal Comme un membre De notre Famille
+                            >Nous considérons votre animal comme un membre de notre famille
                             </span>
                         </div>
 
@@ -53,8 +53,8 @@ class FormContainer extends Component {
 
                     <ImageTitreComposant />
                     <div className='infolettreDiv mt-3'>
-                        <h1 className='h1'>Laisse nous vous prevenir des nouveautes</h1>
-                        <h6 className='h6'>Reste informe</h6>
+                        <h1 className='h1'>Laissez nous vous prévenir des nouveautés</h1>
+                        <h6 className='h6'>Restez informé</h6>
                         <form>
                             <InputComponent classCss='form-group' classInput='form-control' textLabel='Entrez votre email' type='email' id='infolettre' name='infolettre' onChange={this.handleChange} />
                             <InputComponent classInput='btn btn-outline-danger' type='submit' id='infolettreButton' name='Envoyer ' value='Envoyer' />
