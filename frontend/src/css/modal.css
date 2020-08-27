@@ -19,3 +19,16 @@
         left: calc(50% - 250px);
     }
 }
+
+/*body :not(#unblurred) {
+    -webkit-filter: blur(2px);
+    -moz-filter: blur(2px);
+    -o-filter: blur(2px);
+    -ms-filter: blur(2px);
+    filter: blur(2px);
+}*/
+
+#blury {
+    -webkit-filter: blur(10px);
+    filter: blur(10px);
+}
