@@ -48,9 +48,9 @@ class ModalCnxContainer extends Component {
 
     message (params) {
         if (params === 200) {
-            this.state.message = 'COmpte pas active'
+            this.state.message = 'Compte pas active'
         } if (params === 300) {
-            this.state.message = 'COmpte pas valider'
+            this.state.message = 'Compte pas valider'
         } if (params === 400) {
             this.state.message = 'Utilisateur ou mote de passe errone'
         } return this.state.message
