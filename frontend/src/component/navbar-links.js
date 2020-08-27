@@ -12,7 +12,7 @@ import ModalCnxContainer from '../container/modal-cnx-container'
 import { Link, withRouter } from 'react-router-dom'
 
 class NavbarLinks extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props)
         this.state = {
             step: 1,
@@ -58,7 +58,7 @@ class NavbarLinks extends Component {
         this.prevStep = this.prevStep.bind(this)
     }
 
-    onSubmitRegister (e) {
+    onSubmitRegister(e) {
         this.handleCloseInsc()
         console.log('new User', this.state)
         // if (e.key === 'Enter') {
@@ -97,7 +97,7 @@ class NavbarLinks extends Component {
         // this.register(user)
     }
 
-    nextStep (e) {
+    nextStep(e) {
         console.log('step', this.state.step)
         e.preventDefault()
         this.setState({
@@ -105,7 +105,7 @@ class NavbarLinks extends Component {
         })
     }
 
-    prevStep (e) {
+    prevStep(e) {
         const { step } = this.state
         e.preventDefault()
         this.setState({
@@ -113,7 +113,7 @@ class NavbarLinks extends Component {
         })
     }
 
-    showStep () {
+    showStep() {
         // const { step } = this.state
 
         if (this.state.step === 1) {
@@ -147,31 +147,31 @@ class NavbarLinks extends Component {
         }
     }
 
-    handleShow () {
+    handleShow() {
         this.setState({
             show: true
         })
     }
 
-    handleShowInsc () {
+    handleShowInsc() {
         this.setState({
             showInscription: true
         })
     }
 
-    onHandleClose () {
+    onHandleClose() {
         this.setState({
             show: false
         })
     }
 
-    handleCloseInsc () {
+    handleCloseInsc() {
         this.setState({
             showInscription: false
         })
     }
 
-    onSubmit (e) {
+    onSubmit(e) {
         console.log('email', this.state.utilisateur)
         // if (e.key === 'Enter') {
         e.preventDefault()
@@ -196,17 +196,17 @@ class NavbarLinks extends Component {
     }
     // }
 
-    onHandleChangeName (e) {
+    onHandleChangeName(e) {
         this.setState({ email: e.target.value })
         // this.setState({ utilisateur: { email: e.target.value } })
     }
 
-    onHandleChangePass (e) {
+    onHandleChangePass(e) {
         this.setState({ mot_de_passe: e.target.value })
         // this.setState({ utilisateur: { mot_de_passe: e.target.value } })
     }
 
-    logOut (e) {
+    logOut(e) {
         e.preventDefault()
         localStorage.removeItem('usertoken')
         console.log('disconnected')
@@ -214,7 +214,7 @@ class NavbarLinks extends Component {
         this.props.history.push('/')
     }
 
-    onHandleChangeAndEnter (e) {
+    onHandleChangeAndEnter(e) {
         if (e.key === 'Enter') {
             e.preventDefault()
 
@@ -243,12 +243,12 @@ class NavbarLinks extends Component {
         }
     }
 
-    getValues (e) {
+    getValues(e) {
         //  console.log('sexe', e.target.value)
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    getValuesRadio (e) {
+    getValuesRadio(e) {
         if (e.target.name === 'sexe') {
             console.log('sexe', e.target.value)
             this.setState({ sexe: e.target.value })
@@ -256,7 +256,7 @@ class NavbarLinks extends Component {
         } else if (e.target.name === 'id_role') { this.setState({ id_role: e.target.value }) }
     }
 
-    render () {
+    render() {
         // console.log(this.state.utilisateur.sexe)
         const loginRegLink = (
             <div className='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>

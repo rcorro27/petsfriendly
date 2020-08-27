@@ -14,7 +14,7 @@ import { Alert } from 'react-bootstrap'
 // import ProfilDemandePettSitter from './profil-demande-pettsitter'
 
 class RecherchePetsitter extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props)
         // question a poser a nassim voir les criteres comme il sont dans le request ????
         this.state = {
@@ -56,11 +56,11 @@ class RecherchePetsitter extends Component {
         this.onHandleonClose = this.onHandleonClose.bind(this)
     }
 
-    showModal () {
+    showModal() {
         this.setState({ show: true })
     };
 
-    onHandleonClose () {
+    onHandleonClose() {
         this.setState({ show: false })
     };
 
@@ -77,7 +77,7 @@ class RecherchePetsitter extends Component {
         })
     }
 */
-    componentDidMount () {
+    componentDidMount() {
         return axios
             .get('https://pets-friendly.herokuapp.com/services/recuperation/tout')
             // .then(response => console.log(response.data))
@@ -93,56 +93,56 @@ class RecherchePetsitter extends Component {
             })
     }
 
-    handleChangeSelect (event) {
+    handleChangeSelect(event) {
         this.setState({ typeAnimal: event.target.value })
     }
 
-    handleChange (event) {
+    handleChange(event) {
         switch (event.target.id) {
-        case 'garderChezPetsitter':
-            this.state.servicesRechercher[0] = 1
-            break
-        case 'garderChezVous':
-            this.state.servicesRechercher[0] = 2
-            break
-        case 'dateDebut':
-            this.setState({ dateDebut: event.target.value })
-            break
-        case 'dateFin':
-            this.setState({ dateFin: event.target.value })
-            break
-        case 'promenade':
-            if (this.state.servicesRechercher[1] === 3) {
-                this.state.servicesRechercher.splice(1, 1)
-            } else { this.state.servicesRechercher[1] = 3 }
+            case 'garderChezPetsitter':
+                this.state.servicesRechercher[0] = 1
+                break
+            case 'garderChezVous':
+                this.state.servicesRechercher[0] = 2
+                break
+            case 'dateDebut':
+                this.setState({ dateDebut: event.target.value })
+                break
+            case 'dateFin':
+                this.setState({ dateFin: event.target.value })
+                break
+            case 'promenade':
+                if (this.state.servicesRechercher[1] === 3) {
+                    this.state.servicesRechercher.splice(1, 1)
+                } else { this.state.servicesRechercher[1] = 3 }
 
-            // this.setState({ promenade: 3 })
-            break
-        case 'numeroRue':
-            console.log(event.target.value)
-            this.setState({ numero_rue: event.target.value })
-            break
-        case 'nomRue':
-            this.setState({ nom_rue: event.target.value })
-            break
-        case 'secteurAction':
-            this.setState({ code_postal: event.target.value })
-            break
-        case 'province':
-            this.setState({ province: event.target.value })
-            break
-        case 'ville':
-            this.setState({ ville: event.target.value })
-            break
-        case 'pays':
-            this.setState({ pays: event.target.value })
-            break
-        case 'infolettre':
-            this.setState({ infolettre: event.target.value })
+                // this.setState({ promenade: 3 })
+                break
+            case 'numeroRue':
+                console.log(event.target.value)
+                this.setState({ numero_rue: event.target.value })
+                break
+            case 'nomRue':
+                this.setState({ nom_rue: event.target.value })
+                break
+            case 'secteurAction':
+                this.setState({ code_postal: event.target.value })
+                break
+            case 'province':
+                this.setState({ province: event.target.value })
+                break
+            case 'ville':
+                this.setState({ ville: event.target.value })
+                break
+            case 'pays':
+                this.setState({ pays: event.target.value })
+                break
+            case 'infolettre':
+                this.setState({ infolettre: event.target.value })
         }
     }
 
-    handleSubmit (event) {
+    handleSubmit(event) {
         return axios
             .post('https://pets-friendly.herokuapp.com/recherche', {
 
@@ -186,15 +186,15 @@ class RecherchePetsitter extends Component {
             */
     }
 
-    handleAddOnClick () {
+    handleAddOnClick() {
         this.setState({ resultatRecherche: true })
     }
 
-    handleSaveOnClick () {
+    handleSaveOnClick() {
         this.setState({ resultatRecherche: false })
     }
 
-    handleAfficherSitterOnClick (event) {
+    handleAfficherSitterOnClick(event) {
         if (localStorage.getItem('usertoken') && JSON.parse(localStorage.getItem('usertoken')).utilisateur.id_role === 3) {
             this.state.message = 'Vous deves etre un proprietaire pour utiliser notres services de recherche '
             this.showModal()
@@ -221,11 +221,11 @@ class RecherchePetsitter extends Component {
         // console.log('local Storage:', JSON.parse(localStorage.getItem('sitter')))
     }
 
-    handleEnvoyerDemandeOnClick (event) {
+    handleEnvoyerDemandeOnClick(event) {
         localStorage.setItem('sitter', JSON.stringify(this.state.resultat[event.target.name]))
     }
 
-    render () {
+    render() {
         const TYPEANIMAL = [
             {
                 label: 'Chien',
@@ -251,7 +251,7 @@ class RecherchePetsitter extends Component {
                 prix_service: 15
             }] */
 
-        function niveauPetSitter (niveau) {
+        function niveauPetSitter(niveau) {
             let niveauSitter = ''
             if (niveau > 0 && niveau < 50) {
                 niveauSitter = 'Debutant'
@@ -331,7 +331,7 @@ class RecherchePetsitter extends Component {
                     <h6 className='h6'>Restez informé</h6>
                     <form>
                         <InputComponent classCss='form-group' classInput='form-control' textLabel='Entrez votre email' type='email' id='infolettre' name='infolettre' onChange={this.handleChange} />
-                        <InputComponent classInput='btn btn-outline-danger' disabled={this.state.code_postal.length < 1} type='submit' id='infolettreButton' name='Envoyer ' value='Envoyer' />
+                        <InputComponent classInput='btn btn-outline-danger' type='submit' id='infolettreButton' name='Envoyer ' value='Envoyer' />
                     </form>
                 </div>
             </div>
