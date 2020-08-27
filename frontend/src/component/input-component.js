@@ -14,6 +14,8 @@ const InputComponent = ({ classCss, onChangeRadio, classIcon, classInput, type, 
             min={min}
             onChange={onChange}
             onClick={onClick}
+            required
+
         />
         <label className={labelClass} data-error='wrong' data-success='right' htmlFor={id}>{textLabel}</label>
     </div>

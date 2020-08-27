@@ -18,8 +18,8 @@ class ProfilDemandePettSitter extends Component {
             servicesTotal: JSON.parse(localStorage.getItem('servicestotal')),
             dateDebut: JSON.parse(localStorage.getItem('dateDebut')),
             dateFin: JSON.parse(localStorage.getItem('dateFin')),
-            sitter: JSON.parse(localStorage.getItem('sitter'))
-            //  proprietaire: JSON.parse(localStorage.getItem('usertoken'))
+            sitter: JSON.parse(localStorage.getItem('sitter')),
+            proprietaire: JSON.parse(localStorage.getItem('usertoken'))
 
         }
         this.handleClick = this.handleClick.bind(this)
@@ -117,22 +117,22 @@ class ProfilDemandePettSitter extends Component {
             {
                 nameProprietaire: 'Carlos',
                 dateCommentaire: '21/05/2020',
-                commentaire: 'Bonne sitter, excelent service je le recommende'
+                commentaire: 'Bonne sitter, excellent service je la recommande'
             },
             {
                 nameProprietaire: 'Maria',
                 dateCommentaire: '21/08/2019',
-                commentaire: 'Bonne sitter, excelent service je le recommende, il a pris vraiment soins de notre chat '
+                commentaire: 'Bonne sitter, excellent service je la recommande. Elle a vraiment bien pris soin de notre chat '
             },
             {
                 nameProprietaire: 'Ricardo',
                 dateCommentaire: '21/04/2018',
-                commentaire: 'Bonne sitter, excelent service , mauvais actitud '
+                commentaire: 'Bonne sitter, mais mauvaise attitude'
             },
             {
                 nameProprietaire: 'Stefanie',
                 dateCommentaire: '21/05/2020',
-                commentaire: 'Bonne sitter, excelent service , tres  bonne actitud , je le prendais encore une fois  '
+                commentaire: 'Bonne sitter, excellent service , tres  bonne attitude , je ferai encore affaire avec elle'
             }
 
         ]
@@ -173,7 +173,7 @@ class ProfilDemandePettSitter extends Component {
                         </ul>
                     </div>
                     <div className=' m-5 w-50 p-3 float-right border border-danger rounded shadow'>
-                        <h1 className='w-25 p-3 mx-auto'><strong>Feedback</strong></h1>
+                        <h1 className='w-25 p-3 mx-auto'><strong>Commentaires</strong></h1>
                         {feedback.map((info, index) => <FeedBackCommentaire nomProprietaire={info.nameProprietaire} dateCommentaire={info.dateCommentaire} commentaire={info.commentaire} key={index} divClass=' m-2 border bg-white border-danger rounded' />)}
                     </div>
                 </div>

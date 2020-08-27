@@ -7,9 +7,10 @@ import Profile from 'container/profil.js'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Navbar from '../container/navbar-container'
 import Footer from '../component/Footer/Footer'
+import UpdateProfile from './update-profil'
+import ListContrat from '../container/list-contrat'
 import ProfilDemandePettSitter from '../container/profil-demande-pettsitter'
 import PaymentFormContainer from '../container/payment-form-container'
-import UpdateProfile from '../container/update-profil'
 
 class PagePrincipal extends Component {
     constructor (props) {
@@ -20,7 +21,7 @@ class PagePrincipal extends Component {
     setupBeforeUnloadListener () {
         window.addEventListener('beforeunload', (ev) => {
             ev.preventDefault()
-            // localStorage.removeItem('usertoken')
+            localStorage.removeItem('usertoken')
         })
     };
 
@@ -39,10 +40,11 @@ class PagePrincipal extends Component {
                     <Route exact path='/search' component={RecherchePetsitter} />
                     <Route exact path='/admin' component={AdminContainer} />
                     <Route exact path='/' component={FormContainer} />
-                    <Route path='/profil' component={Profile} />
-                    <Route path='/update' component={UpdateProfile} />
-                    <Route path='/demande' component={ProfilDemandePettSitter} />
-                    <Route path='/payment' component={PaymentFormContainer} />
+                    <Route exact path='/profil' component={Profile} />
+                    <Route exact path='/update' component={UpdateProfile} />
+                    <Route exact path='/contrats' component={ListContrat} />
+                    <Route exact path='/demande' component={ProfilDemandePettSitter} />
+                    <Route exact path='/payment' component={PaymentFormContainer} />
 
                 </Switch>
 
