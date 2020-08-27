@@ -166,7 +166,7 @@ class ProfilDemandePettSitter extends Component {
 
                 </div>
                 <div className='clearfix '>
-                    <div className='m-5 w-25 p3 float-left bg-white border border-danger rounded shadow serviceBox'>
+                    <div className='m-5 w-25 p3 float-left border border-danger rounded shadow serviceBox'>
                         <h3 className='h3 w-25 p-3 mx-auto'><strong>Services</strong> </h3>
                         <ul className='list-group'>
                             <ServiceDemandeComponent classNameLi='list-group-item serviceBox' servicesTotal={this.state.servicesTotal} servicesSitter={this.state.service} classIcone='fas fa-dollar-sign' />
