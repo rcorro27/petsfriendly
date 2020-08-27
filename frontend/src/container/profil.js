@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import FormData from 'form-data'
 import { Link, withRouter } from 'react-router-dom'
-
+import '../css/profil.css'
 import axios from 'axios'
 import { Button } from 'react-bootstrap'
 
@@ -90,15 +90,15 @@ class Profile extends Component {
         return (
             <div className='container'>
 
-                <img src={this.state.urlImg} className='img-rounded' alt='Cinque Terre' />
+                <img src={this.state.urlImg} className='image-profil' alt='Cinque Terre' />
                 <div className='jumbotron mt-5'>
                     <div className='col-sm-8 mx-auto'>
                         {this.state.est_valide ? <h3 className='text-center text-success '> Votre profile est active vous pouvez acceder aux services</h3> : <h3 className='text-center text-danger '>Votre profil n'est pas encore valide , vous n'avez pas l'acces a nos services</h3>}
                         <h1 className='text-center'>PROFILE </h1>
                     </div>
 
-                    <Link to='/update'> <Button>Update Profil</Button></Link>
-                    <Link to='/contrats'> <Button>Afficher les contrat</Button></Link>
+                    <Link to='/update'> <Button id='bouton1'>Update Profil</Button></Link>
+                    <Link to='/contrats'> <Button id='bouton1'>Afficher les contrat</Button></Link>
 
                     <table className='table col-md-6 mx-auto'>
                         <tbody>

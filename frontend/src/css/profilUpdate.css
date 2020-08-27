@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+}
+
+.form-control, .validate, .modal-body .mx-3 {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+#label1 {
+    padding: 12px 12px 12px 11px;
+    display: inline-block;
+}
