@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { withRouter } from 'react-router-dom'
 import '../css/payment.css'
+import Modal from 'component/modal'
 class PaymentFormContainer extends Component {
     constructor (props) {
         super(props)
@@ -13,12 +14,24 @@ class PaymentFormContainer extends Component {
             dateFin: JSON.parse(localStorage.getItem('dateFin')),
             sitter: JSON.parse(localStorage.getItem('sitter')),
             proprietaire: JSON.parse(localStorage.getItem('usertoken')),
-            paimentFait: ''
+            paimentFait: '',
+            show: false,
+            message: ''
             /* voir pour les paiments et la demande */
 
         }
         this.handleClick = this.handleClick.bind(this)
+        this.showModal = this.showModal.bind(this)
+        this.onHandleonClose = this.onHandleonClose.bind(this)
     }
+
+    showModal () {
+        this.setState({ show: true })
+    };
+
+    onHandleonClose () {
+        this.setState({ show: false })
+    };
 
     handleClick () {
         return axios
@@ -40,11 +53,13 @@ class PaymentFormContainer extends Component {
             })
             .then(response => {
                 if (Object.keys(response.data).length === 0) {
-                    alert('Demande Envoyee')
+                    this.state.message = 'Demande pas envoyee '
+                    this.showModal()
+                    // alert('Demande Envoyee')
                     this.props.history.push('/')
                 } else {
-                    alert('Demande pas envoye veuillez communiquer avec nous')
-                    console.log('demande pas envoyer')
+                    this.state.message = 'Demande pas envoye veuillez communiquer avec nous'
+                    this.showModal()
                 }
             })
             .catch(err => {
@@ -58,6 +73,7 @@ class PaymentFormContainer extends Component {
 
         return (
             <div className='row'>
+                <Modal onHandleonClose={this.onHandleonClose} show={this.state.show}>{this.state.message}</Modal>
                 <div className='col-75'>
                     <div className='containerPayment'>
 

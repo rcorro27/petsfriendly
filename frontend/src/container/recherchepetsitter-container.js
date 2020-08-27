@@ -5,10 +5,12 @@ import InputComponent from 'component/input-component'
 import SelectComponent from 'component/select-component'
 import ListItemComponent from 'component/list-item-component'
 import VignetteComponent from 'component/vignette-component'
+import Modal from 'component/modal'
 
 import { withRouter } from 'react-router-dom'
 
 import '../css/recherche.css'
+import { Alert } from 'react-bootstrap'
 // import ProfilDemandePettSitter from './profil-demande-pettsitter'
 
 class RecherchePetsitter extends Component {
@@ -36,7 +38,8 @@ class RecherchePetsitter extends Component {
             resultat: [],
             province: '',
             servicesTotal: [],
-            show: false
+            show: false,
+            message: ''
 
             // idUser: false
         }
@@ -49,10 +52,19 @@ class RecherchePetsitter extends Component {
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleAfficherSitterOnClick = this.handleAfficherSitterOnClick.bind(this)
         this.handleEnvoyerDemandeOnClick = this.handleEnvoyerDemandeOnClick.bind(this)
-        this.onHandleClose = this.onHandleClose.bind(this)
-        this.onHandleShow = this.onHandleShow.bind(this)
+        this.showModal = this.showModal.bind(this)
+        this.onHandleonClose = this.onHandleonClose.bind(this)
     }
 
+    showModal () {
+        this.setState({ show: true })
+    };
+
+    onHandleonClose () {
+        this.setState({ show: false })
+    };
+
+    /*
     onHandleClose () {
         this.setState({
             show: false
@@ -64,7 +76,7 @@ class RecherchePetsitter extends Component {
             show: true
         })
     }
-
+*/
     componentDidMount () {
         return axios
             .get('https://pets-friendly.herokuapp.com/services/recuperation/tout')
@@ -130,48 +142,38 @@ class RecherchePetsitter extends Component {
         }
     }
 
-    handleShow () {
-        this.setState({
-            show: true
-        })
-    }
-
     handleSubmit (event) {
-        if (!JSON.parse(localStorage.getItem('usertoken'))) {
-        console.log('toto')
-            alert('Veuillez Vous CONECTER/INSCRIRE')
-        } else {
-            return axios
-                .post('https://pets-friendly.herokuapp.com/recherche', {
+        return axios
+            .post('https://pets-friendly.herokuapp.com/recherche', {
 
-                    services: this.state.servicesRechercher,
-                    adresse: {
-                        numero_rue: this.state.nom_rue,
-                        nom_rue: this.state.nom_rue,
-                        code_postal: this.state.code_postal,
-                        ville: this.state.ville,
-                        province: this.state.province,
-                        pays: this.state.pays
-                    }
+                services: this.state.servicesRechercher,
+                adresse: {
+                    numero_rue: this.state.nom_rue,
+                    nom_rue: this.state.nom_rue,
+                    code_postal: this.state.code_postal,
+                    ville: this.state.ville,
+                    province: this.state.province,
+                    pays: this.state.pays
+                }
 
-                })
+            })
             //  .then(response => console.log('reponse avant la assignatiion', response.data))
-                .then(response => {
-                    this.setState({ resultat: response.data })
-                    /* if (response.data.length === 0) {
+            .then(response => {
+                this.setState({ resultat: response.data })
+                /* if (response.data.length === 0) {
 
                 this.setState({ resultatRecherche: false })
             } else {
                 this.setState({ resultat: response.data })
             } */
-                    /*  const arrayResultat = []
+                /*  const arrayResultat = []
             response.data.map((info, index) => arrayResultat.push(info))
             console.log(arrayResultat) */
-                })
-                .catch(err => {
-                    console.log('erreur recherche:', err)
-                })
-        }
+            })
+            .catch(err => {
+                console.log('erreur recherche:', err)
+            })
+
         /* fetch('resultat-recherche.json', { method: 'GET' })
             .then(response => response.json())
             .then(response => {
@@ -193,14 +195,27 @@ class RecherchePetsitter extends Component {
     }
 
     handleAfficherSitterOnClick (event) {
-        console.log(this.state.resultat[event.target.name])
-        console.log(this.state.dateDebut)
-        console.log(this.state.dateFin)
-        localStorage.setItem('serviceRecherche', JSON.stringify(this.state.servicesRechercher))
-        localStorage.setItem('dateDebut', JSON.stringify(this.state.dateDebut))
-        localStorage.setItem('dateFin', JSON.stringify(this.state.dateFin))
-        localStorage.setItem('sitter', JSON.stringify(this.state.resultat[event.target.name]))
-        this.props.history.push('/demande')
+        if (localStorage.getItem('usertoken') && JSON.parse(localStorage.getItem('usertoken')).utilisateur.id_role === 3) {
+            this.state.message = 'Vous deves etre un proprietaire pour utiliser notres services de recherche '
+            this.showModal()
+            // alert('Vous deves etre un proprietaire pour utiliser notres services de recherche ')
+            // this.props.history.push('/')
+        } else if (!localStorage.getItem('usertoken')) {
+            this.state.message = 'Veuillez vous connecter ou inscrire pour continuer'
+            console.log('dans le if non user')
+            this.showModal()
+
+            //            alert('veuillez vous conecter ou INSCRIRE Pour continuer a profiter de notres sernvices svp')
+        } else if (localStorage.getItem('usertoken') && JSON.parse(localStorage.getItem('usertoken')).utilisateur.id_role === 2) {
+            console.log(this.state.resultat[event.target.name])
+            console.log(this.state.dateDebut)
+            console.log(this.state.dateFin)
+            localStorage.setItem('serviceRecherche', JSON.stringify(this.state.servicesRechercher))
+            localStorage.setItem('dateDebut', JSON.stringify(this.state.dateDebut))
+            localStorage.setItem('dateFin', JSON.stringify(this.state.dateFin))
+            localStorage.setItem('sitter', JSON.stringify(this.state.resultat[event.target.name]))
+            this.props.history.push('/demande')
+        }
         // localStorage.removeItem('sitter')
 
         // console.log('local Storage:', JSON.parse(localStorage.getItem('sitter')))
@@ -279,6 +294,9 @@ class RecherchePetsitter extends Component {
                     <SelectComponent classCss='form-group' classInput='form-control' textLabel='Type de animal:' id='typeAnimal' name='TypeAnimal' options={TYPEANIMAL} onChange={this.handleChangeSelect} value={this.state.typeAnimal} />
                     <InputComponent classInput='btn btn-outline-success' type='submit' id='rechercher' name='Rechercher ' value='rechercher' onClick={this.handleSubmit} />
                 </div>
+                <Modal onHandleonClose={this.onHandleonClose} show={this.state.show}>{this.state.message}</Modal>
+                {/* <button onClick={e => { this.showModal() }}> show Modal</button> */}
+
                 {this.state.resultatRecherche ? '' : <h1 className='text-danger'>Aucun sitter a ete retrouver autour de votre zone dans votres criteres Veuillez nous contacter</h1>}
                 <div className='row'>
                     {this.state.resultat ? this.state.resultat.map((resultat, index) => {
