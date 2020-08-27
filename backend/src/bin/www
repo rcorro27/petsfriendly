@@ -7,6 +7,7 @@
 let app = require('../app');
 let debug = require('debug')('src:server');
 let http = require('http');
+const mongo = require("../servers/MongoDb")
 
 /**
  * Get port from environment and store in Express.
@@ -20,6 +21,40 @@ app.set('port', port);
  */
 
 let server = http.createServer(app);
+
+//-----------------------------------------------------------------------------------------------------------------------------
+const io = require('socket.io')(server, { origin: "*:*" }) // obj pour gerer le chat
+
+// gerer la connexion des sockets des utilisateurs
+io.on('connection', function(socket){
+  console.log("quelqu'un est connecte ----")
+
+  socket.on("disconnect", function() {
+    console.log("quelqu'un est deconnecte -------")
+  })
+
+  socket.on("join", function(data) {
+    console.log(data.id)
+    
+    socket.join(data.id)
+  })
+
+  socket.on("nouveau_message", function(data){
+    console.log("message : ", data)
+    
+    mongo.insererMessage(data)
+    .then(resultatMessages => {
+        io.to(data.idTo).emit("nouveau_message", data) // envoyer le msg au destinataire 
+    })
+    .catch(erreur => {
+        io.to(data.idFrom).emit("nouveau_message", erreur) // changer nouveau_message et parler avec les gars d'Android de ca
+    })
+    
+  })
+
+})
+
+//-----------------------------------------------------------------------------------------------------------------------------
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -87,4 +122,10 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
+}
+
+
+module.exports = {
+  http,
+  server
 }
