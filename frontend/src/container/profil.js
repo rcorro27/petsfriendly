@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import FormData from 'form-data'
-import { withRouter, Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
+
 import axios from 'axios'
 import { Button } from 'react-bootstrap'
 
@@ -8,6 +9,8 @@ class Profile extends Component {
     constructor () {
         super()
         this.state = {
+            user: [],
+            address: [],
             nom: '',
             urlImg: '',
             prenom: '',
@@ -28,6 +31,8 @@ class Profile extends Component {
         // const decoded = jwtdecode(token)
         if (localStorage.getItem('usertoken')) {
             this.setState({
+                user: JSON.parse(localStorage.getItem('usertoken')).utilisateur,
+                address: JSON.parse(localStorage.getItem('usertoken')).adresse,
                 nom: JSON.parse(localStorage.getItem('usertoken')).utilisateur.nom,
                 prenom: JSON.parse(localStorage.getItem('usertoken')).utilisateur.prenom,
                 age: JSON.parse(localStorage.getItem('usertoken')).utilisateur.age,
@@ -35,7 +40,7 @@ class Profile extends Component {
                 telephone: JSON.parse(localStorage.getItem('usertoken')).utilisateur.telephone,
                 est_valide: JSON.parse(localStorage.getItem('usertoken')).utilisateur.est_valide,
                 email: JSON.parse(localStorage.getItem('usertoken')).utilisateur.email,
-                urlImg: 'http://pets-friendly.herokuapp.com/images/images_profiles/' + JSON.parse(localStorage.getItem('usertoken')).utilisateur.url_photo
+                urlImg: 'https://pets-friendly.herokuapp.com/images/images_profiles/' + JSON.parse(localStorage.getItem('usertoken')).utilisateur.url_photo
             })
         } else {
             this.props.history.push('/')
@@ -81,52 +86,76 @@ class Profile extends Component {
     }
 
     render () {
-        console.log('state', this.state.urlImg)
+        console.log('image', this.state.urlImg)
         return (
             <div className='container'>
 
-                <img src={this.state.urlImg} className='imgameProfil' alt='Cinque Terre' />
+                <img src={this.state.urlImg} className='img-rounded' alt='Cinque Terre' />
                 <div className='jumbotron mt-5'>
                     <div className='col-sm-8 mx-auto'>
                         {this.state.est_valide ? <h3 className='text-center text-success '> Votre profile est active vous pouvez acceder aux services</h3> : <h3 className='text-center text-danger '>Votre profil n'est pas encore valide , vous n'avez pas l'acces a nos services</h3>}
                         <h1 className='text-center'>PROFILE </h1>
                     </div>
-                    <form method='post' encType='multipart/form-data'>
 
-                        <div className='form-group'>
-                            <Link to='/contrats'> <Button>Afficher les contrat</Button></Link>
-                            <label htmlFor='exampleFormControlFile1'>Mettre une photto de profil</label>
-                            <input name='image' type='file' className='form-control-file' id='exampleFormControlFile1' onChange={this.fileSelected} />
-                            <Button onClick={this.fileUpload}>Upload</Button>
-                        </div>
-                    </form>
+                    <Link to='/update'> <Button>Update Profil</Button></Link>
+                    <Link to='/contrats'> <Button>Afficher les contrat</Button></Link>
 
                     <table className='table col-md-6 mx-auto'>
                         <tbody>
                             <tr>
                                 <td>Fist Name</td>
-                                <td>{this.state.nom}</td>
+                                <td>{this.state.user.nom}</td>
                             </tr>
                             <tr>
                                 <td>Last Name</td>
-                                <td>{this.state.prenom}</td>
+                                <td>{this.state.user.prenom}</td>
                             </tr>
                             <tr>
                                 <td>Email</td>
-                                <td>{this.state.email}</td>
+                                <td>{this.state.user.email}</td>
                             </tr>
                             <tr>
                                 <td>Age</td>
-                                <td>{this.state.age}</td>
+                                <td>{this.state.user.age}</td>
                             </tr>
                             <tr>
                                 <td>Sexe</td>
-                                <td>{this.state.sexe}</td>
+                                <td>{this.state.user.sexe}</td>
                             </tr>
                             <tr>
                                 <td>Telephone</td>
-                                <td>{this.state.telephone}</td>
+                                <td>{this.state.user.telephone}</td>
                             </tr>
+                            <tr>
+                                <td>Numero de la rue</td>
+                                <td>{this.state.address.numero_rue}</td>
+                            </tr>
+                            <tr>
+                                <td>Nom de la rue</td>
+                                <td>{this.state.address.nom_rue}</td>
+                            </tr>
+                            <tr>
+                                <td>Code Postal</td>
+                                <td>{this.state.address.code_postal}</td>
+                            </tr>
+                            <tr>
+                                <td>Ville</td>
+                                <td>{this.state.address.ville}</td>
+                            </tr>
+                            <tr>
+                                <td>Province</td>
+                                <td>{this.state.address.province}</td>
+                            </tr>
+                            <tr>
+                                <td>Pays</td>
+                                <td>{this.state.address.pays}</td>
+                            </tr>
+                            <tr>
+                                <td>Numero appartement</td>
+                                <td>{this.state.address.numero_appt}</td>
+                            </tr>
+                            {/* je veux pusher cette page aussi */}
+
                         </tbody>
                     </table>
                 </div>
@@ -135,4 +164,4 @@ class Profile extends Component {
     }
 }
 
-export default Profile
+export default withRouter(Profile)
