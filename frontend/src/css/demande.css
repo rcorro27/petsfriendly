@@ -1,0 +1,54 @@
+/*couleur background pour commentaire*/
+
+/*commentire pour probleme push*/
+
+/* aranger section profil (nom, region, rating, bouton contacter et aimer*/
+
+.demandewrapper {
+    background-color: white;
+}
+
+.commentBox {
+    background-color: rgba(202, 202, 202, 0.5)
+}
+
+.infoSitterWrapper .h2 {
+    font-size: 50px;
+}
+
+.infoSitterWrapper .h6 {
+    font-size: 24px;
+}
+
+.feedbackComment {
+    border-bottom: 1px solid #7b7f81;
+    margin-bottom: 10px;
+}
+
+.feedbackComment h3 {
+    color: red;
+    font-size: 36px;
+}
+
+.feedbackComment h4 {
+    font-size: 18px;
+}
+
+.feedbackComment p {
+    font-size: 24px;
+}
+
+.prixEtServiceWrapper {
+    margin-top: -15%;
+    position: relative;
+    background-color: rgba(202, 202, 202, 0.5);
+    width: 30%;
+    margin-left: 2%;
+    padding-bottom: 12%;
+}
+
+.serviceBox {
+    background-color: rgba(202, 202, 202, 0.5);
+}
+
+/*rassembler prix des services, code promo, total etc*/

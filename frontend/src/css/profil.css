@@ -1,0 +1,85 @@
+.modal-body .mx-3 {
+    box-sizing: border-box;
+}
+
+#exampleFormControlFile1 {
+    background-color: #DCDCDC;
+    border-radius: 50%;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: overline;
+    width: 25%;
+}
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #252424;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration-color: darkgray;
+    user-select: none;
+    background-color: #00BDF2;
+    border: 1px transparent;
+    padding: 0.375rem -14.25rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+}
+
+.md-form .mb-5 {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+.col-md-6 .mx-auto {
+    width: 1000px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+tr td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+tr {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+}
+
+.imgameProfil {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-left: 49px;
+    margin-bottom: -297px;
+}
+
+.form-control-file {
+    width: 100%;
+    height: auto;
+}
+
+@media screen and (max-width: 600px) {
+    .col-25, .col-75, .btn, tr, td, #exampleFormControlFile1, .img-rounded, .modal-body .mx-3 {
+        width: 100%;
+        margin-top: 0;
+    }
+}

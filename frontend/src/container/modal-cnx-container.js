@@ -66,7 +66,7 @@ class ModalCnxContainer extends Component {
                         // history.push('/admin')
                         this.props.history.push('/admin')
                     }
-                    this.props.onHide()
+                    this.props.onHandleClose()
 
                     // console.log('Object', JSON.parse(localStorage.getItem('usertoken')))
 
@@ -107,7 +107,7 @@ class ModalCnxContainer extends Component {
                     // history.push('/admin')
                     this.props.history.push('/admin')
                 }
-                this.props.onHide()
+                this.props.onHandleClose()
 
                 console.log('test', this.state.users.utilisateur.nom)
                 this.setState({ userName: this.state.users.utilisateur.nom })
@@ -118,7 +118,7 @@ class ModalCnxContainer extends Component {
 
     render () {
         return (
-            <Modal show={this.props.show} onHide={this.props.onHide}>
+            <Modal show={this.props.show} onHide={this.props.onHandleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Page Connexion</Modal.Title>
                 </Modal.Header>

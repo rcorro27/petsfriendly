@@ -3,11 +3,12 @@ import ServiceDemandeComponent from '../component/services-demande-component'
 import FeedBackCommentaire from '../component/feedback-commentaire-component'
 import FactureDemandeComponent from '../component/facture-demande-component'
 import { withRouter, Link } from 'react-router-dom'
+import '../css/demande.css'
 import axios from 'axios'
 // import PetSitterInput from 'component/PetSitterInput'
 
 class ProfilDemandePettSitter extends Component {
-    constructor(props) {
+    constructor (props) {
         super(props)
 
         this.state = {
@@ -35,7 +36,7 @@ class ProfilDemandePettSitter extends Component {
         this.setState({ proprietaire: false })
     }
 
-    handleClick() {
+    handleClick () {
         this.props.history.push('/payment')
         /*  return axios
             .post('https://pets-friendly.herokuapp.com/contrats/creation', {
@@ -71,7 +72,7 @@ class ProfilDemandePettSitter extends Component {
 
     }
 
-    render() {
+    render () {
         function niveauPetSitter (niveau) {
             let niveauSitter = ''
             if (niveau > 0 && niveau < 50) {
@@ -91,7 +92,7 @@ class ProfilDemandePettSitter extends Component {
         const serviceTotal = JSON.parse(localStorage.getItem('servicestotal'))
         const user = JSON.parse(localStorage.getItem('usertoken'))
 
-        function PrixAvantTaxes(prix) {
+        function PrixAvantTaxes (prix) {
             let prixAvantTaxes = 0
             prix.map((infoPrix, index) => {
                 console.log(prix)
@@ -101,15 +102,15 @@ class ProfilDemandePettSitter extends Component {
             })
             return prixAvantTaxes
         }
-        function TPS(prix) {
+        function TPS (prix) {
             const tps = PrixAvantTaxes(prix) * 5 / 100
             return tps
         }
-        function TVQ(prix) {
+        function TVQ (prix) {
             const tvq = PrixAvantTaxes(prix) * 9.975 / 100
             return tvq
         }
-        function PrixAvecTaxes(prix) {
+        function PrixAvecTaxes (prix) {
             const prixTotal = Math.ceil(PrixAvantTaxes(prix) + TVQ(prix) + TPS(prix))
             return prixTotal
         }
@@ -148,37 +149,36 @@ class ProfilDemandePettSitter extends Component {
 
         return (
 
-            <div>
+            <div className='demandewrapper'>
 
                 <div>
                     <h1 className='h1 w-25 p-3 mx-auto'>Demande Service </h1>
                 </div>
                 <div className='row m-5 bg-white border border-danger rounded shadow'>
-                    <img src={sitter.url_photo} alt={sitter.nom} className='img-fluid rounded-circle w-25 p-3' />
-                    <div className='m-5'>
-                        <h2 className='h2'>{sitter.nom}</h2>
-                        <h3 className='h6'>{sitter.secteur_action}</h3>
-                        <h6 className='h6'>{niveauPetSitter(sitter.rating)}</h6>
+                    <img src='../src/img/caroussel/image1.jpeg' alt='Carlos' className='img-fluid rounded-circle w-25 p-3' />
+                    <div className='m-5 infoSitterWrapper'>
+                        <h2 className='h2'>Carlos</h2>
+                        <h3 className='h6'>Secteur d'action</h3>
+                        <h6 className='h6'>Rating</h6>
+                        <input type='button' value='Contacter' className='btn btn-success m-2 boutonPetsitter' />
+                        <input type='button' value='Aimer' className='btn btn-danger m-2 boutonPetsitter' />
                     </div>
-                    <div className='m-5'>
-                        <input type='button' value='Contacter' className='btn btn-success m-2' />
-                        <input type='button' value='Aimer' className='btn btn-danger m-2' />
-                    </div>
+
                 </div>
                 <div className='clearfix '>
-                    <div className='m-5 w-25 p3 float-left bg-white border border-danger rounded shadow '>
+                    <div className='m-5 w-25 p3 float-left bg-white border border-danger rounded shadow serviceBox'>
                         <h3 className='h3 w-25 p-3 mx-auto'><strong>Services</strong> </h3>
                         <ul className='list-group'>
-                            <ServiceDemandeComponent classNameLi='list-group-item' servicesTotal={this.state.servicesTotal} servicesSitter={this.state.service} classIcone='fas fa-dollar-sign' />
+                            <ServiceDemandeComponent classNameLi='list-group-item serviceBox' servicesTotal={this.state.servicesTotal} servicesSitter={this.state.service} classIcone='fas fa-dollar-sign' />
                         </ul>
                     </div>
-                    <div className=' m-5 w-50 p-3 float-right border border-danger rounded shadow'>
+                    <div className=' m-5 w-50 p-3 float-right border border-danger rounded shadow commentBox'>
                         <h1 className='w-25 p-3 mx-auto'><strong>Commentaires</strong></h1>
-                        {feedback.map((info, index) => <FeedBackCommentaire nomProprietaire={info.nameProprietaire} dateCommentaire={info.dateCommentaire} commentaire={info.commentaire} key={index} divClass=' m-2 border bg-white border-danger rounded' />)}
+                        {feedback.map((info, index) => <FeedBackCommentaire nomProprietaire={info.nameProprietaire} dateCommentaire={info.dateCommentaire} commentaire={info.commentaire} key={index} divClass=' m-2 feedbackComment' />)}
                     </div>
                 </div>
 
-                <div className=' w-100 p-5 float-right border border-danger rounded bg-white  shadow'>
+                <div className='border border-danger rounded shadow prixEtServiceWrapper'>
 
                     <h2 className=' h2 w-25 p-3 mx-auto'>Prix des services</h2>
                     <div>

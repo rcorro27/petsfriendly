@@ -48,7 +48,7 @@ class NavbarLinks extends Component {
         this.onHandleChangePass = this.onHandleChangePass.bind(this)
         this.handleShow = this.handleShow.bind(this)
         this.handleShowInsc = this.handleShowInsc.bind(this)
-        this.handleClose = this.handleClose.bind(this)
+        this.onHandleClose = this.onHandleClose.bind(this)
         this.handleCloseInsc = this.handleCloseInsc.bind(this)
         this.getValues = this.getValues.bind(this)
         this.getValuesRadio = this.getValuesRadio.bind(this)
@@ -92,8 +92,6 @@ class NavbarLinks extends Component {
 
                 console.log('test', this.state.users.utilisateur.nom)
                 this.setState({ userName: this.state.users.utilisateur.nom })
-                this.handleCloseInsc()
-                // commentaire
             }
         })
         // this.register(user)
@@ -161,7 +159,7 @@ class NavbarLinks extends Component {
         })
     }
 
-    handleClose () {
+    onHandleClose () {
         this.setState({
             show: false
         })
@@ -188,7 +186,7 @@ class NavbarLinks extends Component {
                 this.setState({
                     users: res
                 })
-                this.handleClose()
+                this.onHandleClose()
 
                 console.log('test', this.state.users.utilisateur.nom)
                 this.setState({ userName: this.state.users.utilisateur.nom })
@@ -213,7 +211,7 @@ class NavbarLinks extends Component {
         localStorage.removeItem('usertoken')
         console.log('disconnected')
         console.log(localStorage.getItem('usertoken'))
-        window.location.reload(false)
+        this.props.history.push('/')
     }
 
     onHandleChangeAndEnter (e) {
@@ -235,7 +233,7 @@ class NavbarLinks extends Component {
                         // history.push('/admin')
                         this.props.history.push('/admin')
                     }
-                    this.handleClose()
+                    this.onHandleClose()
 
                     // console.log('Object', JSON.parse(localStorage.getItem('usertoken')))
 
@@ -304,7 +302,7 @@ class NavbarLinks extends Component {
         return (
             <div className='collapse navbar-collapse' id='navbarResponsive'>
                 {localStorage.usertoken ? userLink : loginRegLink}
-                <ModalCnxContainer show={this.state.show} onHide={this.handleClose} />
+                <ModalCnxContainer show={this.state.show} onHandleClose={this.onHandleClose} />
                 <Modal show={this.state.showInscription} onHide={this.handleCloseInsc}>
                     <Modal.Header closeButton>
                         <Modal.Title>Page Inscription</Modal.Title>

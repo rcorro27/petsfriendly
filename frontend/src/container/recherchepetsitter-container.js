@@ -12,7 +12,7 @@ import '../css/recherche.css'
 // import ProfilDemandePettSitter from './profil-demande-pettsitter'
 
 class RecherchePetsitter extends Component {
-    constructor(props) {
+    constructor (props) {
         super(props)
         // question a poser a nassim voir les criteres comme il sont dans le request ????
         this.state = {
@@ -53,7 +53,7 @@ class RecherchePetsitter extends Component {
         this.onHandleShow = this.onHandleShow.bind(this)
     }
 
-    onHandleClose() {
+    onHandleClose () {
         this.setState({
             show: false
         })
@@ -65,7 +65,7 @@ class RecherchePetsitter extends Component {
         })
     }
 
-    componentDidMount() {
+    componentDidMount () {
         return axios
             .get('https://pets-friendly.herokuapp.com/services/recuperation/tout')
             // .then(response => console.log(response.data))
@@ -81,52 +81,52 @@ class RecherchePetsitter extends Component {
             })
     }
 
-    handleChangeSelect(event) {
+    handleChangeSelect (event) {
         this.setState({ typeAnimal: event.target.value })
     }
 
-    handleChange(event) {
+    handleChange (event) {
         switch (event.target.id) {
-            case 'garderChezPetsitter':
+        case 'garderChezPetsitter':
             this.state.servicesRechercher[0] = 1
-                break
-            case 'garderChezVous':
+            break
+        case 'garderChezVous':
             this.state.servicesRechercher[0] = 2
-                break
-            case 'dateDebut':
-                this.setState({ dateDebut: event.target.value })
-                break
-            case 'dateFin':
-                this.setState({ dateFin: event.target.value })
-                break
-            case 'promenade':
+            break
+        case 'dateDebut':
+            this.setState({ dateDebut: event.target.value })
+            break
+        case 'dateFin':
+            this.setState({ dateFin: event.target.value })
+            break
+        case 'promenade':
             if (this.state.servicesRechercher[1] === 3) {
                 this.state.servicesRechercher.splice(1, 1)
             } else { this.state.servicesRechercher[1] = 3 }
 
             // this.setState({ promenade: 3 })
-                break
-            case 'numeroRue':
+            break
+        case 'numeroRue':
             console.log(event.target.value)
-                this.setState({ numero_rue: event.target.value })
-                break
-            case 'nomRue':
-                this.setState({ nom_rue: event.target.value })
-                break
-            case 'secteurAction':
-                this.setState({ code_postal: event.target.value })
-                break
-            case 'province':
-                this.setState({ province: event.target.value })
-                break
-            case 'ville':
-                this.setState({ ville: event.target.value })
-                break
-            case 'pays':
-                this.setState({ pays: event.target.value })
-                break
-            case 'infolettre':
-                this.setState({ infolettre: event.target.value })
+            this.setState({ numero_rue: event.target.value })
+            break
+        case 'nomRue':
+            this.setState({ nom_rue: event.target.value })
+            break
+        case 'secteurAction':
+            this.setState({ code_postal: event.target.value })
+            break
+        case 'province':
+            this.setState({ province: event.target.value })
+            break
+        case 'ville':
+            this.setState({ ville: event.target.value })
+            break
+        case 'pays':
+            this.setState({ pays: event.target.value })
+            break
+        case 'infolettre':
+            this.setState({ infolettre: event.target.value })
         }
     }
 
@@ -136,7 +136,42 @@ class RecherchePetsitter extends Component {
         })
     }
 
-    handleSubmit(event) {
+    handleSubmit (event) {
+        if (!JSON.parse(localStorage.getItem('usertoken'))) {
+        console.log('toto')
+            alert('Veuillez Vous CONECTER/INSCRIRE')
+        } else {
+            return axios
+                .post('https://pets-friendly.herokuapp.com/recherche', {
+
+                    services: this.state.servicesRechercher,
+                    adresse: {
+                        numero_rue: this.state.nom_rue,
+                        nom_rue: this.state.nom_rue,
+                        code_postal: this.state.code_postal,
+                        ville: this.state.ville,
+                        province: this.state.province,
+                        pays: this.state.pays
+                    }
+
+                })
+            //  .then(response => console.log('reponse avant la assignatiion', response.data))
+                .then(response => {
+                    this.setState({ resultat: response.data })
+                    /* if (response.data.length === 0) {
+
+                this.setState({ resultatRecherche: false })
+            } else {
+                this.setState({ resultat: response.data })
+            } */
+                    /*  const arrayResultat = []
+            response.data.map((info, index) => arrayResultat.push(info))
+            console.log(arrayResultat) */
+                })
+                .catch(err => {
+                    console.log('erreur recherche:', err)
+                })
+        }
         /* fetch('resultat-recherche.json', { method: 'GET' })
             .then(response => response.json())
             .then(response => {
@@ -147,46 +182,17 @@ class RecherchePetsitter extends Component {
                 this.setState({ resultat: arrayTest })
             })
             */
-
-        return axios
-            .post('https://pets-friendly.herokuapp.com/recherche', {
-
-                services: this.state.servicesRechercher,
-                adresse: {
-                    numero_rue: this.state.nom_rue,
-                    nom_rue: this.state.nom_rue,
-                    code_postal: this.state.code_postal,
-                    ville: this.state.ville,
-                    province: this.state.province,
-                    pays: this.state.pays
-                }
-
-            })
-            //  .then(response => console.log('reponse avant la assignatiion', response.data))
-            .then(response => {
-                if (response.data.length === 0) {
-                    this.setState({ resultatRecherche: false })
-                } else {
-                    this.setState({ resultat: response.data })
-                }
-                /*  const arrayResultat = []
-                response.data.map((info, index) => arrayResultat.push(info))
-                console.log(arrayResultat) */
-            })
-            .catch(err => {
-                console.log('erreur recherche:', err)
-            })
     }
 
-    handleAddOnClick() {
+    handleAddOnClick () {
         this.setState({ resultatRecherche: true })
     }
 
-    handleSaveOnClick() {
+    handleSaveOnClick () {
         this.setState({ resultatRecherche: false })
     }
 
-    handleAfficherSitterOnClick(event) {
+    handleAfficherSitterOnClick (event) {
         console.log(this.state.resultat[event.target.name])
         console.log(this.state.dateDebut)
         console.log(this.state.dateFin)
@@ -200,11 +206,11 @@ class RecherchePetsitter extends Component {
         // console.log('local Storage:', JSON.parse(localStorage.getItem('sitter')))
     }
 
-    handleEnvoyerDemandeOnClick(event) {
+    handleEnvoyerDemandeOnClick (event) {
         localStorage.setItem('sitter', JSON.stringify(this.state.resultat[event.target.name]))
     }
 
-    render() {
+    render () {
         const TYPEANIMAL = [
             {
                 label: 'Chien',
@@ -230,7 +236,7 @@ class RecherchePetsitter extends Component {
                 prix_service: 15
             }] */
 
-        function niveauPetSitter(niveau) {
+        function niveauPetSitter (niveau) {
             let niveauSitter = ''
             if (niveau > 0 && niveau < 50) {
                 niveauSitter = 'Debutant'
@@ -246,6 +252,7 @@ class RecherchePetsitter extends Component {
             return niveauSitter
         }
         console.log('state :', this.state)
+        console.log('codepostal', this.state.code_postal.length)
         return (
             <div>
 
@@ -274,14 +281,21 @@ class RecherchePetsitter extends Component {
                 </div>
                 {this.state.resultatRecherche ? '' : <h1 className='text-danger'>Aucun sitter a ete retrouver autour de votre zone dans votres criteres Veuillez nous contacter</h1>}
                 <div className='row'>
-                    {this.state.resultat ? this.state.resultat.map((resultat, index) => <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} rating={niveauPetSitter(resultat.rating)} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger w-100 p-3 mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' servicesTotal={this.state.servicesTotal} servicesSitter={this.state.servicesRechercher} id={index} />) : ''}
+                    {this.state.resultat ? this.state.resultat.map((resultat, index) => {
+                        if (resultat.url_photo === null && resultat.sexe === 'masculin') {
+                            resultat.url_photo = 'image_profile_default_homme.jpg'
+                        } else if (resultat.url_photo === null && resultat.sexe === 'feminin') {
+                            resultat.url_photo = 'image_profile_default_femme.jpg'
+                        }
+                        return <VignetteComponent urlPhoto={resultat.url_photo} nom={resultat.nom} rating={niveauPetSitter(resultat.rating)} className='col-lg-4 mt-3 ' key={index} onClickProfil={this.handleAfficherSitterOnClick} onClickEnvoyer={this.handleEnvoyerDemandeOnClick} classInput='fas fa-heart btn btn-outline-danger w-100 p-3 mx-auto' classInput2='fas fa-paper-plane btn btn-outline-success mx-auto' textBoutonProfil='Acceder au Profil' textBoutonEnvoyer='Envoyer une demande' servicesTotal={this.state.servicesTotal} servicesSitter={this.state.servicesRechercher} id={index} link='/demande' />
+                    }) : ''}
 
                 </div>
 
                 <div id='divPlubicite2'>
                     <h1 className='w-50 p-3 mx-auto h1'>Des services sur mesure pour un animal d'exeption </h1>
                     <div className='row divAnnonce'>
-                        <div className='col-lg-4 mx-auto border border-danger rounded serviceProposes' >
+                        <div className='col-lg-4 mx-auto border border-danger rounded serviceProposes'>
                             <ListItemComponent text='Faites garder votre animal à votre domicile ou à celui du Pet Sitter' className='fas fa-check' />
                             <ListItemComponent text='Partez à votre rendez-vous sans vous soucier de la promenade de votre chien' className='fas fa-check' />
                             <ListItemComponent text='Besoin de flexibilite? Choisissez les horaires et periodes qui vous conviennent' className='fas fa-check' />
@@ -299,7 +313,7 @@ class RecherchePetsitter extends Component {
                     <h6 className='h6'>Restez informe</h6>
                     <form>
                         <InputComponent classCss='form-group' classInput='form-control' textLabel='Entrez votre email' type='email' id='infolettre' name='infolettre' onChange={this.handleChange} />
-                        <InputComponent classInput='btn btn-outline-danger' type='submit' id='infolettreButton' name='Envoyer ' value='Envoyer' />
+                        <InputComponent classInput='btn btn-outline-danger' disabled={this.state.code_postal.length < 1} type='submit' id='infolettreButton' name='Envoyer ' value='Envoyer' />
                     </form>
                 </div>
             </div>
