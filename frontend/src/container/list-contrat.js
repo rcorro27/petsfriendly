@@ -51,6 +51,27 @@ class ListContrat extends Component {
         }
     }
 
+    accepterContrat (contrat) {
+        axios
+            .post('https://pets-friendly.herokuapp.com/contrats/acceptation', {
+                utilisateur: {
+                    id_proprietaire: contrat.id_proprietaire,
+                    id_petsitter: contrat.id_petsitter
+
+                },
+                contrat: {
+                    id_contrat: contrat.id_contrat,
+                    date_debut: contrat.date_debut,
+                    date_fin: contrat.date_fin
+
+                }
+
+            })
+            .then(response => {
+                console.log('Contrat Acceptee', response)
+            })
+    }
+
     render () {
         console.log('response', this.state.id)
 
@@ -106,7 +127,7 @@ class ListContrat extends Component {
 
                                     <td>{contrat.date_fin}</td>
 
-                                    <td>{contrat.est_accepte ? <Button>Accepter</Button> : <Button>Annuler</Button>}</td>
+                                    <td>{!contrat.est_accepte ? <Button onClick={e => this.accepterContrat(contrat)}>Accepter</Button> : <Button>Annuler</Button>}</td>
 
                                     <td>{contrat.est_termine ? 'Terminee ' : 'Pas Encore Terminee'}</td>
 

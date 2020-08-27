@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import com.example.petsitterisi.BottomNavigationBar;
 import com.example.petsitterisi.managers.UtilisateurManager;
+import com.github.nkzawa.socketio.client.IO;
+import com.github.nkzawa.socketio.client.Socket;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,6 +25,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Iterator;
 
@@ -34,11 +37,12 @@ public class ApiUtilisateurFetcher extends AsyncTask<String, Nullable, String> {
     String mot_de_passe;
 
 
-    public ApiUtilisateurFetcher(Context  context, TextView error, String email, String mot_de_passe) {
+    public ApiUtilisateurFetcher(Context  context, TextView error, String email, String mot_de_passe) throws URISyntaxException {
         this.context = context;
         this.email = email;
         this.mot_de_passe = mot_de_passe;
         this.error = error;
+
     }
 
     @Override
@@ -57,8 +61,8 @@ public class ApiUtilisateurFetcher extends AsyncTask<String, Nullable, String> {
 
             JSONObject connexionJson = new JSONObject();
 
-                connexionJson.put("email", email);
-                connexionJson.put("mot_de_passe",  mot_de_passe);
+            connexionJson.put("email", email);
+            connexionJson.put("mot_de_passe",  mot_de_passe);
 
             DataOutputStream wr = new DataOutputStream(urlConnection.getOutputStream());
             wr.writeBytes(connexionJson.toString());
@@ -71,7 +75,7 @@ public class ApiUtilisateurFetcher extends AsyncTask<String, Nullable, String> {
 
                 BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 
-              String line = "";
+                String line = "";
                 while ((line = in.readLine()) != null)
                     result += line;
 
@@ -94,7 +98,6 @@ public class ApiUtilisateurFetcher extends AsyncTask<String, Nullable, String> {
         super.onPostExecute(s);
         try {
 
-
             JSONObject jsonObjectDuServeur = new JSONObject(s);
 
             //Recuperateion des nom des enfants JsonObject
@@ -111,7 +114,6 @@ public class ApiUtilisateurFetcher extends AsyncTask<String, Nullable, String> {
 
                     String id_role = utilisateurJson.getString("id_role");
                     UtilisateurManager.addIdUtilisateurRole(context, Integer.parseInt(id_role));
-
 
                     //Recuperation de tous les service depuis la base de donnee
                     ApiServicesFetcher apiServicesFetcher  = new ApiServicesFetcher(context);
@@ -130,6 +132,8 @@ public class ApiUtilisateurFetcher extends AsyncTask<String, Nullable, String> {
                     UtilisateurManager.addAdresseInfos(context, "code_postal", code_postal);
                     String ville = utilisateurJson.getString("ville");
                     UtilisateurManager.addAdresseInfos(context, "ville", ville);
+                    String province = utilisateurJson.getString("province");
+                    UtilisateurManager.addAdresseInfos(context, "province", province);
                     String pays = utilisateurJson.getString("pays");
                     UtilisateurManager.addAdresseInfos(context, "pays", pays);
 

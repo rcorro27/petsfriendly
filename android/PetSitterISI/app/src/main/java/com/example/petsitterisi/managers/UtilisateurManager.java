@@ -169,6 +169,24 @@ return Integer.parseInt(id_retour);
         return heure_Msg;
     }
 
+    public static final String getDataFromSharePreference(Context ctx, String key){
+
+        SharedPreferences sharedpreferences;
+        String value = "";
+        try {
+            sharedpreferences = ctx.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+            value = sharedpreferences.getString(key, null);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        if(value == null){
+            value = "";
+        }
+
+        return value;
+    }
+
 
     public static void addIdUtilisateur(Context ctx, int id) {
         SharedPreferences sharedpreferences;
@@ -236,6 +254,14 @@ return Integer.parseInt(id_retour);
     }
 
     public static void addHeureMessageEnvoyer(Context ctx, String nom, String heure) {
+        SharedPreferences sharedpreferences;
+        sharedpreferences = ctx.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString(nom,heure);
+        editor.apply();
+    }
+
+    public static void addDataToSharedPreference(Context ctx, String nom, String heure) {
         SharedPreferences sharedpreferences;
         sharedpreferences = ctx.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();

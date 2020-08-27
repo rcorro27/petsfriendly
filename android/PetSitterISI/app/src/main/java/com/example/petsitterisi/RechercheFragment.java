@@ -22,9 +22,15 @@ import androidx.fragment.app.Fragment;
 
 import com.example.petsitterisi.managers.UtilisateurManager;
 import com.example.petsitterisi.services.ApiRechercheFetcher;
+import com.github.nkzawa.socketio.client.IO;
+import com.github.nkzawa.socketio.client.Socket;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.util.Calendar;
 
 public class RechercheFragment extends Fragment {
@@ -55,6 +61,8 @@ public class RechercheFragment extends Fragment {
     boolean chienState = true;
     boolean chatState = false;
     SharedPreferences sharedpreferences;
+    public static Socket mSocket;
+    boolean isConnected = false;
 
     @Nullable
     @Override
@@ -62,6 +70,22 @@ public class RechercheFragment extends Fragment {
 
         final View monFragmentRecherche = inflater.inflate(R.layout.fragment_recherche, container, false);
         ctx = monFragmentRecherche.getContext();
+
+        try {
+            mSocket = IO.socket("https://pets-friendly.herokuapp.com");
+
+            mSocket.connect();
+            int monIdUtilisateur = UtilisateurManager.getIdUtilisateur(ctx);
+            JSONObject idJsonObject = new JSONObject();
+            idJsonObject.put("id", monIdUtilisateur);
+            this.isConnected = mSocket.connected();
+            mSocket.emit("join", idJsonObject);
+
+
+        } catch (URISyntaxException | JSONException e) {
+            e.printStackTrace();
+        }
+
         sharedpreferences = ctx.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         eText = (EditText) monFragmentRecherche.findViewById(R.id.editText1);
         garde_chez_petsitte = monFragmentRecherche.findViewById(R.id.garde_chez_petsitter);
@@ -99,6 +123,8 @@ public class RechercheFragment extends Fragment {
                                 anneeDebut = year;
                                 eText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                                 String debutContrat =  year +"-"+(monthOfYear + 1)+"-"+dayOfMonth;
+
+                                UtilisateurManager.addDataToSharedPreference(ctx, "debut_contrat", debutContrat);
                                 
                             }
                         }, year, month, day);
@@ -127,6 +153,7 @@ public class RechercheFragment extends Fragment {
                                 eText_2.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                                 String finContrat =  year +"-"+(monthOfYear + 1)+"-"+dayOfMonth;
 
+                                UtilisateurManager.addDataToSharedPreference(ctx, "fin_contrat", finContrat);
                                 
                             }
                         }, year, month, day);
@@ -206,7 +233,7 @@ public class RechercheFragment extends Fragment {
 
                 }else{
                     continutionEtat1 = false;
-                          Toast.makeText(ctx, "Veuillez selectionnez omoins 1 service", Toast.LENGTH_LONG).show();
+                          Toast.makeText(ctx, "Veuillez selectionner omoins 1 service", Toast.LENGTH_LONG).show();
                 }
 
                 if(chienState != chatState){
@@ -223,15 +250,20 @@ public class RechercheFragment extends Fragment {
 
                 }else{
                     continutionEtat2 = false;
-                    Toast.makeText(ctx, "Veuillez selectionnez omoins 1 animal", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ctx, "Veuillez selectionner omoins 1 animal", Toast.LENGTH_LONG).show();
                 }
 
                 if(continutionEtat1 == true && continutionEtat2 == true){
 
+                    if(!eText.getText().toString().trim().equals("") && !eText_2.getText().toString().trim().equals(""))
+                    {
 
-                   Intent intent = new Intent(ctx, BottomNavigationBar.class);
-                   intent.putExtra("list_pet_sitter", "true");
-                   startActivity(intent);
+                        Intent intent = new Intent(ctx, BottomNavigationBar.class);
+                        intent.putExtra("list_pet_sitter", "true");
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(ctx, "Veuillez selectionnezr date de debut puis fin du contrat", Toast.LENGTH_LONG).show();
+                    }
 
 
                 }

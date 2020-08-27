@@ -32,11 +32,17 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.petsitterisi.entitees.Utilisateur;
 import com.example.petsitterisi.managers.UtilisateurManager;
 import com.example.petsitterisi.services.ApiListChatDiscussionFetcher;
 import com.example.petsitterisi.services.ApiListChatFetcher;
 import com.example.petsitterisi.services.ApiListReservationFetcher;
+import com.example.petsitterisi.services.ApiMessageListFetcher;
+import com.example.petsitterisi.services.ChatService;
 import com.google.android.material.textfield.TextInputEditText;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -48,12 +54,10 @@ import java.util.Objects;
 public class MessageList extends Fragment {
     Context ctx;
     LinearLayout chat_message_container;
-<<<<<<< HEAD
+
     EditText edittext_chatbox;
     Button button_chatbox_send;
 //    LinearLayout icone_retour;
-=======
->>>>>>> cdfdf3c85d89195157e579aa571ec3d45c769ba6
 
      Button icone_retour;
     Button btn_envoyer_discussion;
@@ -70,10 +74,17 @@ public class MessageList extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        final View chatMessages =  inflater.inflate(R.layout.activity_message_list, container, false);
+        View chatMessages = null;
+        try {
+            chatMessages = inflater.inflate(R.layout.activity_message_list, container, false);
+
+
        // final View view_photos_envoyer =  inflater.inflate(R.layout.photo_envoyer, container, false);
 
         ctx = chatMessages.getContext();
+
+        final View cardMessageEnvoyer = View.inflate(ctx , R.layout.activity_item_message_envoyer,null);
+        final ChatService chatService = new ChatService(ctx, chatMessages);
 
         TextView nomInterlocuteur = chatMessages.findViewById(R.id.nom_utilsateur_message_recus);
         final String non_chat_header = UtilisateurManager.getNomChat(ctx);
@@ -90,247 +101,72 @@ public class MessageList extends Fragment {
             }
         });
 
-
-        ImageView UrlPhotoUtilisateurRecus = chatMessages.findViewById(R.id.image_message_profile_header);
-
-        if(non_chat_header.equals("Michel"))
-        {
-            UrlPhotoUtilisateurRecus.setImageResource(R.drawable.michel);
-        }
-        else
-        {
-            UrlPhotoUtilisateurRecus.setImageResource(R.drawable.kamel);
-        }
-
-
         chat_message_container = chatMessages.findViewById(R.id.container_message_list);
+
+        final int chat_id_petsitter = Integer.parseInt(UtilisateurManager.getDataFromSharePreference(ctx, "chat_id_petsitter"));
+        final int chat_id_proprietaire = Integer.parseInt(UtilisateurManager.getDataFromSharePreference(ctx, "chat_id_proprietaire"));
+
+       ApiMessageListFetcher apiMessageListFetcher = new ApiMessageListFetcher(ctx, chat_message_container, chatService, chat_id_proprietaire, chat_id_petsitter);
+       apiMessageListFetcher.execute("https://pets-friendly.herokuapp.com/chats/recuperation");
+
+
+
+
         btn_envoyer_discussion  = (Button) chatMessages.findViewById(R.id.button_chatbox_send);
         text_message_discussion = chatMessages.findViewById(R.id.edittext_chatbox);
 
         ajouter_image = chatMessages.findViewById(R.id.icone_ajoute_photo_conversation);
 //        image_recuperer = (ImageView) new ImageView(ctx);
 
-//        final MediaPlayer son_photo_envoyer = MediaPlayer.create(ctx, R.raw.son_message_envoye);
-//        ajouter_image.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Intent camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                final View view_photos_envoyer = View.inflate(ctx, R.layout.photo_envoyer, null);
-//                image_recuperer = view_photos_envoyer.findViewById(R.id.img_recup);
-//                son_photo_envoyer.start();
-//                chat_message_container.addView(view_photos_envoyer);
-//
-//                startActivityForResult(camera_intent, pic_id);
-//
-//
-//
-//            }
-//        });
-//
 
-
-        final String[] tourMessageEnvoyer = {"true"};
-
-        // sharePreferenced pour message contacter sitter
-        if(tourMessageEnvoyer[0].equals("true"))
-        {
-            final View cardMessageEnvoyerParam = View.inflate(ctx, R.layout.activity_item_message_envoyer, null);
-
-            final TextView messageItemEnvoyer = (TextView) cardMessageEnvoyerParam.findViewById(R.id.text_message_body_envoyer);
-            TextView heureMessageEnvoyer = cardMessageEnvoyerParam.findViewById(R.id.text_message_time_envoyer);
-            String messageEnvoyerDepuisContacterInsideProfilSitter = UtilisateurManager.getMessageContacterInsideDiscussion(ctx);
-            String heureMsgEnvoyerContacter = UtilisateurManager.getHeureMessageEnvoyer(ctx);
-            messageItemEnvoyer.setText(messageEnvoyerDepuisContacterInsideProfilSitter);
-
-            // date with real date system now
-            heureMessageEnvoyer.setText(heureMsgEnvoyerContacter);
-
-
-
-            if (!messageEnvoyerDepuisContacterInsideProfilSitter.equals("")) {
-
-                chat_message_container.addView(cardMessageEnvoyerParam);
-                tourMessageEnvoyer[0] = "false";
-            }
-        }
 
         final MediaPlayer son_message_envoyer = MediaPlayer.create(ctx, R.raw.son_message_envoye);
         final MediaPlayer son_message_recu = MediaPlayer.create(ctx, R.raw.son_message_recu);
-
-
-
-
 
         btn_envoyer_discussion.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
 
+                String nouveauMmessage = text_message_discussion.getText().toString();
 
-                if(!tourMessageEnvoyer[0].equals("false")) // simulation message envoyer pour presentation
-                {
-                    // photo
-                    final MediaPlayer son_photo_envoyer = MediaPlayer.create(ctx, R.raw.son_message_envoye);
-                    ajouter_image.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
+                if(!nouveauMmessage.equals("")) {
 
-                            Intent camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                            final View view_photos_envoyer = View.inflate(ctx, R.layout.photo_envoyer, null);
-                            image_recuperer = view_photos_envoyer.findViewById(R.id.img_recup);
-                            son_photo_envoyer.start();
-                            chat_message_container.addView(view_photos_envoyer);
+                    final View cardMessageEnvoyerParam = View.inflate(ctx, R.layout.activity_item_message_envoyer, null);
 
-                            startActivityForResult(camera_intent, pic_id);
-
-                        }
-                    });
+                    final TextView messageItemEnvoyer = (TextView) cardMessageEnvoyerParam.findViewById(R.id.text_message_body_envoyer);
+                    TextView heureMessageEnvoyer = cardMessageEnvoyerParam.findViewById(R.id.text_message_time_envoyer);
+                    String messageEnvoyerDepuisContacterInsideProfilSitter = UtilisateurManager.getMessageContacterInsideDiscussion(ctx);
+                    String heureMsgEnvoyerContacter = UtilisateurManager.getHeureMessageEnvoyer(ctx);
 
 
-                    final View cardMessageEnvoyer = View.inflate(ctx , R.layout.activity_item_message_envoyer,null);
-                    final TextView messageEnvoyer = cardMessageEnvoyer.findViewById(R.id.text_message_body_envoyer);
-                    //String date = "2020-08-11T00:05:00.000Z";
-                   // SimpleDateFormat dateMsgEnvoyer = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
-                    String heureNowMsgEnvoyer = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
-                    TextView heureMessageEnvoyer = cardMessageEnvoyer.findViewById(R.id.text_message_time_envoyer);
-                    textMsgEnvoyer = text_message_discussion.getText();
+                    int id_utilisateur = UtilisateurManager.getIdUtilisateur(ctx);
+                    int id_role = UtilisateurManager.getIdUtilisateurRole(ctx);
 
+                    int id_to = 0;
 
-                    // avec sharedPreferences
-                    UtilisateurManager.addMessageInsideDiscussion(ctx, "message_discussion", textMsgEnvoyer);
-                    String messageEnvoyerDepuisInsideDiscussion = UtilisateurManager.getMessageInsideDiscussion(ctx);
-                    messageEnvoyer.setText(messageEnvoyerDepuisInsideDiscussion);
-
-
-
-
-
-                    ////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-                    // date hardcoder
-//                    date = DateConvertisseur(date);
-//                    heureMessageEnvoyer.setText(date);
-
-                    // date with real date system now
-                    heureMessageEnvoyer.setText(heureNowMsgEnvoyer);
-
-                    // sharedPreference pour l'heure
-                    UtilisateurManager.addHeureMessageEnvoyer(ctx, "heure_Msg", heureNowMsgEnvoyer);
-
-                    //en local
-                   // messageEnvoyer.setText(textMsgEnvoyer);
-
-
-
-        edittext_chatbox = chatMessages.findViewById(R.id.edittext_chatbox);
-
-        button_chatbox_send = chatMessages.findViewById(R.id.button_chatbox_send);
-
-
-
-
-
-
-                    if(!text_message_discussion.getText().toString().equals("")){
-                        tourMessageEnvoyer[0] = "false";
-                        chat_message_container.addView(cardMessageEnvoyer);
-
-
-                        son_message_envoyer.start();
-
-
-
-
+                    if (id_role == 2) {
+                        id_to = chat_id_petsitter;
+                    } else if (id_role == 3) {
+                        id_to = chat_id_proprietaire;
                     }
 
-                    textMsgEnvoyer.clear();
+                    try {
 
+                        JSONObject chatJsonObject = new JSONObject();
+                        chatJsonObject.put("idFrom", id_utilisateur);
+                        chatJsonObject.put("idTo", id_to);
+                        chatJsonObject.put("id_proprietaire", chat_id_proprietaire);
+                        chatJsonObject.put("id_petsitter", chat_id_petsitter);
+
+                        chatJsonObject.put("message_entre", chat_id_proprietaire + "_" + chat_id_petsitter);
+                        chatJsonObject.put("message", nouveauMmessage);
+                        chatService.sendMyMessage(chatJsonObject);
+                        text_message_discussion.setText("");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
-                else {// simulation message recus pour presentation
-
-
-
-                    // photo
-                    final MediaPlayer son_photo_envoyer = MediaPlayer.create(ctx, R.raw.son_message_envoye);
-                    ajouter_image.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-                            Intent camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                            final View view_photos_envoyer = View.inflate(ctx, R.layout.photo_envoyer, null);
-                            image_recuperer = view_photos_envoyer.findViewById(R.id.img_recup);
-
-                            chat_message_container.addView(view_photos_envoyer);
-
-                            startActivityForResult(camera_intent, pic_id);
-
-
-
-                        }
-                    });
-
-
-
-                    final View cardMessageRecus = View.inflate(ctx , R.layout.activity_item_message_recus,null);
-                    final TextView messageRecus = cardMessageRecus.findViewById(R.id.text_message_body_recu);
-                    //String date = "2020-08-11T00:05:00.000Z";
-                    String heureNowMsgReus = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
-                    TextView heureMessageRecu = cardMessageRecus.findViewById(R.id.text_message_time_recus);
-                    TextView nomUtilisateurRecus = cardMessageRecus.findViewById(R.id.text_message_name_recus);
-                    ImageView UrlPhotoUtilisateurRecus = cardMessageRecus.findViewById(R.id.image_message_profile);
-
-                    textMsgRecus = text_message_discussion.getText();
-
-                    if(non_chat_header.equals("Michel"))
-                    {
-                        UrlPhotoUtilisateurRecus.setImageResource(R.drawable.michel);
-                    }
-                   else
-                    {
-                        UrlPhotoUtilisateurRecus.setImageResource(R.drawable.kamel);
-                    }
-
-
-                    // avec sharedPreferences
-                    UtilisateurManager.addMessageRecusInsideDiscussion(ctx, "message_recus_discussion", textMsgRecus);
-                    String messageRecusDepuisInsideDiscussion = UtilisateurManager.getMessageRecusInsideDiscussion(ctx);
-                    messageRecus.setText(messageRecusDepuisInsideDiscussion);
-
-                    nomUtilisateurRecus.setText(non_chat_header);
-
-                    //en local
-                    //messageRecus.setText(textMsgEnvoyer);
-
-//                    date = DateConvertisseur(date);
-//                    heureMessageRecu.setText(date);
-                    //messageLu.setImageResource(R.drawable.icone_message_lu);
-
-
-                    // date with real date system now
-                    heureMessageRecu.setText(heureNowMsgReus);
-
-                    // sharedPreference pour l'heure
-                    UtilisateurManager.addHeureMessageRecus(ctx, "heure_Msg", heureNowMsgReus);
-
-
-                    if(!text_message_discussion.getText().toString().equals("")){
-                        tourMessageEnvoyer[0] = "true";
-                        chat_message_container.addView(cardMessageRecus);
-
-                        son_message_recu.start();
-                    }
-
-
-                    textMsgRecus.clear();
-                }
-
-
 
             }
 
@@ -340,22 +176,10 @@ public class MessageList extends Fragment {
         });
 
 
-        int utilisateurId = UtilisateurManager.getIdUtilisateur(ctx);
-        try {
-<<<<<<< HEAD
-            ApiListChatDiscussionFetcher apiListChatFetcher = new ApiListChatDiscussionFetcher(ctx, chat_message_container, edittext_chatbox, button_chatbox_send);
-            apiListChatFetcher.execute("");
-=======
-            ApiListChatDiscussionFetcher apiListChatFetcher = new ApiListChatDiscussionFetcher(ctx, chatMessages);
-            apiListChatFetcher.execute("https://pets-friendly.herokuapp.com/" + utilisateurId);
->>>>>>> cdfdf3c85d89195157e579aa571ec3d45c769ba6
-        }catch (Exception e)
-        {
+        }catch (Exception e){
             e.printStackTrace();
         }
-
         return chatMessages;
-
     }
 //
 //    private void addImageBetweentext(Bitmap drawable, EditText editText1) {
