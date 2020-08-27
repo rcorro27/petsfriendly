@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import axios from 'axios'
 import { Button } from 'react-bootstrap'
+import '../css/profil.css'
 
 class UpdateProfile extends Component {
     constructor () {
