@@ -81,34 +81,7 @@
 
     </RelativeLayout>
 
-    <ScrollView
-        android:id="@+id/message_container_scrollview"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@+id/header"
-        android:background="#151515"
-        android:fillViewport="true">
 
-
-
-            <LinearLayout
-                android:id="@+id/container_message_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:fillViewport="true"
-                android:orientation="vertical">
-
-
-            </LinearLayout>
-
-
-
-
-
-
-
-    </ScrollView>
 
 
     <RelativeLayout
@@ -146,16 +119,18 @@
 
             <EditText
                 android:id="@+id/edittext_chatbox"
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:hint="Enter message"
-                android:maxLines="6" />
+                android:layout_width="350dp"
+                android:layout_height="33dp"
+                android:layout_gravity="center|center_horizontal"
+                android:layout_margin="4dp"
+                android:layout_weight="8"
+                android:background="@drawable/rounded_rectangle_edit_text_greyy"
+                android:hint="Message"
+                android:maxLines="6"
+                android:paddingLeft="10dp"
+                android:textColor="@color/white"
+                android:textColorHint="#A6A6A6"
+                android:textSize="19dp" />
 
             <LinearLayout
                 android:layout_width="35dp"
@@ -183,6 +158,40 @@
     </RelativeLayout>
 
 
+
+    <ScrollView
+        android:id="@+id/message_container_scrollview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/footer"
+        android:layout_below="@+id/header"
+        android:background="#151515"
+        android:fillViewport="true">
+
+
+
+        <LinearLayout
+            android:id="@+id/container_message_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:fillViewport="true"
+            android:orientation="vertical">
+
+
+
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
+
+    </ScrollView>
 
 
 

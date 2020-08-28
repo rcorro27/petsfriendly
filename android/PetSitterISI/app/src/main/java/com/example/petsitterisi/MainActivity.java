@@ -66,12 +66,12 @@ public class MainActivity extends Activity {
             public void onPrepared(MediaPlayer mp) {
                 mp.setVolume(0f, 0f);
                 mp.setLooping(true);
-                son_accueille[0].setLooping(true);
+               // son_accueille[0].setLooping(true);
 
             }
         });
         videoView.start();
-        son_accueille[0].start();
+       // son_accueille[0].start();
 
 
         //ouvrir l'activite connexion
@@ -84,10 +84,9 @@ public class MainActivity extends Activity {
 
                 if (son_accueille[0].isPlaying()) {
                     son_accueille[0].stop();
-//                        son_accueille[0].release();
-//                        son_accueille[0] = MediaPlayer.create(ctx, R.raw.son_message_envoye);
+
                 }
-                son_accueille[0].start();
+              //  son_accueille[0].start();
 
                 startActivity(intent);
 
