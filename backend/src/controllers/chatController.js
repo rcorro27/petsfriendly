@@ -5,10 +5,11 @@ const mongo = require('../servers/MongoDb')
 //la fonction appelee par la route recupration de message
 function messageRecuperation(req, res) {
     // donnees de message a trouver
-    const aTrouver = {"message_entre": req.body.id_proprietaire+"_"+req.body.id_petsitter}
+    const aTrouver = { $match: {"message_entre" : req.body.id_proprietaire+"_"+req.body.id_petsitter } }
+    const group = {}
 
     // recuperer les message des utilisateur
-    mongo.recupererMessages(aTrouver)
+    mongo.recupererMessages(aTrouver, group)
     .then(resultatMessages => {
         
         res.setHeader('Content-Type', 'application/json');
@@ -31,19 +32,19 @@ module.exports = {
 //la fonction appelee par la route recupration de message avec l'id
 function messageRecuperationParIdUtilisateur(req, res) {
     // donnees de message a trouver
-    
-    let query = {}
-  //  let group = {}
-    if (req.params.role === 2) {
-        query = {id_proprietaire : req.params.id}
-       // group = { $group: { _id: "$id_petsitter" } }
-    }else if (req.params.role === 3) {
-        query = {id_petsitter : req.params.id}
-      //  group = { $group: { _id: "$id_proprietaire" } }
+    let aTrouver = {}
+    let group = {}
+
+    if (parseInt(req.params.role) === 2) {
+        aTrouver = { $match: { "id_proprietaire" : parseInt(req.params.id)} }
+        group = { $group: { _id : "$id_petsitter" } }
+    }else if (parseInt(req.params.role) === 3) {
+        aTrouver = { $match: { "id_petsitter" : parseInt(req.params.id)} }
+        group = { $group: { _id : "$id_proprietaire" } }
     }
-    
+
     // recuperer les message des utilisateur
-    mongo.recupererMessages(query)
+    mongo.recupererMessages(aTrouver, group)
     .then(resultatMessages => {
         
         res.setHeader('Content-Type', 'application/json');
