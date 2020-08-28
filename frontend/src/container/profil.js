@@ -8,7 +8,7 @@ import axios from 'axios'
 import { Button } from 'react-bootstrap'
 
 class Profile extends Component {
-    constructor() {
+    constructor () {
         super()
         this.state = {
             user: [],
@@ -28,7 +28,7 @@ class Profile extends Component {
         this.fileUpload = this.fileUpload.bind(this)
     }
 
-    componentDidMount() {
+    componentDidMount () {
         // const token = localStorage.usertoken
         // const decoded = jwtdecode(token)
         if (localStorage.getItem('usertoken')) {
@@ -49,14 +49,14 @@ class Profile extends Component {
         }
     }
 
-    fileSelected(e) {
+    fileSelected (e) {
         this.setState({
             selectedFile: e.target.files[0]
         })
         console.log(e.target.files[0])
     }
 
-    fileUpload(e) {
+    fileUpload (e) {
         const image = this.state.selectedFile
         e.preventDefault()
         const data = new FormData()
@@ -88,12 +88,12 @@ class Profile extends Component {
         // commentaire test
     }
 
-    render() {
+    render () {
         console.log('image', this.state.urlImg)
         return (
             <div className='container'>
 
-                <img src={this.state.urlImg} className='image-profil' alt='Cinque Terre' />
+                <img src={this.state.urlImg ? this.state.urlImg : 'src/img/avatar.jpg'} className='image-profil' alt='Cinque Terre' />
                 <div className='jumbotron mt-5 bg-light'>
                     <div className='col-sm-8 mx-auto'>
                         {this.state.est_valide ? <h3 className='text-center text-success '> Votre profil est activé, vous pouvez accéder aux services</h3> : <h3 className='text-center text-danger '>Votre profil n'est pas encore valide , vous n'avez pas l'acces a nos services</h3>}

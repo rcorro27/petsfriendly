@@ -92,6 +92,12 @@ class ModalCnxContainer extends Component {
                     } else {
                         this.props.onHandleClose()
                         localStorage.setItem('usertoken', JSON.stringify(response.data))
+                        if (this.state.email === 'rufin@nassim.com') {
+                            //  <Redirect to='/admin' />
+                            // history.push('/admin')
+                            this.props.history.push('/admin')
+                        }
+                        this.onHandleClose()
                     }
                     // console.log(response.data)
                     // console.log(localStorage.getItem('usertoken'))
@@ -130,6 +136,7 @@ class ModalCnxContainer extends Component {
                 } else {
                     this.props.onHandleClose()
                     localStorage.setItem('usertoken', JSON.stringify(response.data))
+                    window.location.reload(false)
                 }
                 // console.log(response.data)
                 // console.log(localStorage.getItem('usertoken'))
