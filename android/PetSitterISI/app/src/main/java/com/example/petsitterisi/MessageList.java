@@ -97,6 +97,7 @@ public class MessageList extends Fragment {
         nomInterlocuteur.setText(non_chat_header);
 
 
+
         icone_retour = chatMessages.findViewById(R.id.icone_retour);
         icone_retour.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,6 +117,9 @@ public class MessageList extends Fragment {
 
             final MediaPlayer son_message_envoyer = MediaPlayer.create(ctx, R.raw.son_message_envoye);
             final MediaPlayer son_message_recu = MediaPlayer.create(ctx, R.raw.son_message_recu);
+
+
+
 
         final int chat_id_petsitter = Integer.parseInt(UtilisateurManager.getDataFromSharePreference(ctx, "chat_id_petsitter"));
         final int chat_id_proprietaire = Integer.parseInt(UtilisateurManager.getDataFromSharePreference(ctx, "chat_id_proprietaire"));
@@ -141,7 +145,16 @@ public class MessageList extends Fragment {
                             public void run() {
                                 View cardMessageRecus = View.inflate(ctx , R.layout.activity_item_message_recus,null);
                                 TextView messageBulbeTextView = cardMessageRecus.findViewById(R.id.text_message_body_recu);
+                                String heureNowMsgRecus = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
+                                TextView heureMessageRecus = cardMessageRecus.findViewById(R.id.text_message_time_recus);
+
                                 messageBulbeTextView.setText(finalMessage1);
+                                // date with real date system now
+                                heureMessageRecus.setText(heureNowMsgRecus);
+
+                                // sharedPreference pour l'heure
+                                UtilisateurManager.addHeureMessageEnvoyer(ctx, "heure_Msg", heureNowMsgRecus);
+
                                 chat_message_container.addView(cardMessageRecus);
                                 son_message_recu.start();
                                 //Toast.makeText(ctx, finalMessage, Toast.LENGTH_LONG).show();
@@ -169,6 +182,8 @@ public class MessageList extends Fragment {
 
                 String nouveauMmessage = text_message_discussion.getText().toString();
 
+
+
                 // photo
                 final MediaPlayer son_photo_envoyer = MediaPlayer.create(ctx, R.raw.son_message_envoye);
                 ajouter_image.setOnClickListener(new View.OnClickListener() {
@@ -193,9 +208,16 @@ public class MessageList extends Fragment {
                     final View cardMessageEnvoyerParam = View.inflate(ctx, R.layout.activity_item_message_envoyer, null);
 
                     final TextView messageItemEnvoyer = (TextView) cardMessageEnvoyerParam.findViewById(R.id.text_message_body_envoyer);
-                    TextView heureMessageEnvoyer = cardMessageEnvoyerParam.findViewById(R.id.text_message_time_envoyer);
+
                     String messageEnvoyerDepuisContacterInsideProfilSitter = UtilisateurManager.getMessageContacterInsideDiscussion(ctx);
                     String heureMsgEnvoyerContacter = UtilisateurManager.getHeureMessageEnvoyer(ctx);
+
+
+
+
+
+
+
 
 
                     int id_utilisateur = UtilisateurManager.getIdUtilisateur(ctx);
@@ -219,8 +241,16 @@ public class MessageList extends Fragment {
 
                         chatJsonObject.put("message_entre", chat_id_proprietaire + "_" + chat_id_petsitter);
                         chatJsonObject.put("message", nouveauMmessage);
+
+
+
                         chatService.sendMyMessage(chatJsonObject);
+
+//                        // date with real date system now
+//                        heureMessageEnvoyer.setText(heureNowMsgEnvoyer);
+
                         text_message_discussion.setText("");
+
                         son_message_envoyer.start();
                     } catch (JSONException e) {
                         e.printStackTrace();

@@ -20,6 +20,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URISyntaxException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Handler;
 
 public class ChatService {
@@ -54,6 +57,14 @@ public class ChatService {
 
         View cardMessageEnvoyer = View.inflate(ctx , R.layout.activity_item_message_envoyer,null);
         TextView messageBulbeTextView = cardMessageEnvoyer.findViewById(R.id.text_message_body_envoyer);
+        String heureNowMsgEnvoyer = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
+        TextView heureMessageEnvoyer = cardMessageEnvoyer.findViewById(R.id.text_message_time_envoyer);
+
+        // date with real date system now
+        heureMessageEnvoyer.setText(heureNowMsgEnvoyer);
+
+        // sharedPreference pour l'heure
+        UtilisateurManager.addHeureMessageEnvoyer(ctx, "heure_Msg", heureNowMsgEnvoyer);
         messageBulbeTextView.setText(messageJsonObject.getString("message"));
         chat_message_container.addView(cardMessageEnvoyer);
         message_container_scrollview.fullScroll(View.FOCUS_DOWN);
