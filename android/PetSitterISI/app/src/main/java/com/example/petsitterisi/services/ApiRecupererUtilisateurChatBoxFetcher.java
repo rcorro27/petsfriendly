@@ -3,6 +3,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -103,8 +104,29 @@ public class ApiRecupererUtilisateurChatBoxFetcher extends AsyncTask<String, Nul
                 if(key.equals("utilisateur")) {
                     card_chat_select = cardChatParam.findViewById(R.id.car_chat_selectionner);
                     TextView prenom_chat = cardChatParam.findViewById(R.id.prenom_chat);
+                    ImageView utilisateur_photo_profile = cardChatParam.findViewById(R.id.image_message_profile_liste_discussionr);
                     final String nom = utilisateurJson.getString("nom");
                     prenom_chat.setText(utilisateurJson.getString("nom"));
+
+                    String url_photo = utilisateurJson.getString("url_photo");
+                    String utilisateur_sexe = utilisateurJson.getString("sexe");
+
+                    if(!url_photo.equals("null")){
+                        url_photo = "https://pets-friendly.herokuapp.com/images/images_profiles/"+ url_photo;
+                    }else{
+
+                        if(utilisateur_sexe.equals("masculin")){
+                            url_photo = "https://pets-friendly.herokuapp.com/images/images_profiles/image_profile_default_homme.jpg";
+
+                        }else if(utilisateur_sexe.equals("feminin")){
+                            url_photo = "https://pets-friendly.herokuapp.com/images/images_profiles/image_profile_default_femme.jpg";
+                        }
+
+                    }
+
+
+                    ImageUrlFetcher imageUrlFetcher = new ImageUrlFetcher(context, utilisateur_photo_profile, utilisateur_sexe);
+                    imageUrlFetcher.execute(url_photo);
 
                     card_chat_select.setOnClickListener(new View.OnClickListener() {
                         @Override

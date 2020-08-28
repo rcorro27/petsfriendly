@@ -132,39 +132,39 @@ public class ApiMessageListFetcher extends AsyncTask<String, Nullable, String> {
 
             }
 
-//            RechercheFragment.mSocket.on("nouveau_message", new Emitter.Listener() {
-//                @Override
-//                public void call(final Object... args) {
-//
-//                   JSONObject data = (JSONObject) args[0];
-//
-//                    String message = null;
-//                    try {
-//
-//
-//                        message = data.getString("message");
-//
-//                        final String finalMessage = message;
-//                        final String finalMessage1 = message;
-//                        handler.post(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                View cardMessageRecus = View.inflate(context , R.layout.activity_item_message_recus,null);
-//                                TextView messageBulbeTextView = cardMessageRecus.findViewById(R.id.text_message_body_recu);
-//                                messageBulbeTextView.setText(finalMessage1);
-//                                chat_message_container.addView(cardMessageRecus);
-//
-//                            }
-//                        });
-//
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//
-//
-//                }
-//
-//            });
+            RechercheFragment.mSocket.on("nouveau_message", new Emitter.Listener() {
+                @Override
+                public void call(final Object... args) {
+
+                   JSONObject data = (JSONObject) args[0];
+
+                    String message = null;
+                    try {
+
+
+                        message = data.getString("message");
+
+                        final String finalMessage = message;
+                        final String finalMessage1 = message;
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                View cardMessageRecus = View.inflate(context , R.layout.activity_item_message_recus,null);
+                                TextView messageBulbeTextView = cardMessageRecus.findViewById(R.id.text_message_body_recu);
+                                messageBulbeTextView.setText(finalMessage1);
+                                chat_message_container.addView(cardMessageRecus);
+
+                            }
+                        });
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+
+            });
 
 
 

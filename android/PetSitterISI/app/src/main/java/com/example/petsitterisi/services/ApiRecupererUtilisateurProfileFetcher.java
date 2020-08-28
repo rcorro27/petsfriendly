@@ -12,7 +12,6 @@ import com.example.petsitterisi.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,21 +21,21 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Iterator;
 
-public class ApiRecupererUtilisateurReserverFetcher extends AsyncTask<String, Nullable, String> {
+public class ApiRecupererUtilisateurProfileFetcher extends AsyncTask<String, Nullable, String> {
 
     private Context  context;
 
     LinearLayout favorisContainer;
-    TextView nomPetSitter;
-    TextView petSitterAddress;
-    ImageView utilisateur_photo_profile;
+    TextView prenom_pet_sitter;
+    TextView ville_pet_sitter;
+    ImageView profile_photo_couverture;
 
-    public ApiRecupererUtilisateurReserverFetcher(Context  context, TextView nomPetSitter, TextView petSitterAddress, ImageView utilisateur_photo_profile) {
+    public ApiRecupererUtilisateurProfileFetcher(Context  context, TextView prenom_pet_sitter, TextView ville_pet_sitter, ImageView profile_photo_couverture) {
         this.context = context;
         this.favorisContainer = favorisContainer;
-        this.nomPetSitter = nomPetSitter;
-        this.petSitterAddress = petSitterAddress;
-        this.utilisateur_photo_profile = utilisateur_photo_profile;
+        this.prenom_pet_sitter = prenom_pet_sitter;
+        this.ville_pet_sitter = ville_pet_sitter;
+        this.profile_photo_couverture = profile_photo_couverture;
     }
 
     @Override
@@ -98,7 +97,7 @@ public class ApiRecupererUtilisateurReserverFetcher extends AsyncTask<String, Nu
 
 
                 if(key.equals("utilisateur")){
-                    nomPetSitter.setText(utilisateurJson.getString("nom"));
+                    prenom_pet_sitter.setText(utilisateurJson.getString("nom"));
 
                     String url_photo = utilisateurJson.getString("url_photo");
                     String utilisateur_sexe = utilisateurJson.getString("sexe");
@@ -116,13 +115,13 @@ public class ApiRecupererUtilisateurReserverFetcher extends AsyncTask<String, Nu
 
                     }
 
-                    ImageUrlFetcher imageUrlFetcher = new ImageUrlFetcher(context, utilisateur_photo_profile, utilisateur_sexe);
+                    ImageUrlFetcher imageUrlFetcher = new ImageUrlFetcher(context, profile_photo_couverture, utilisateur_sexe);
                     imageUrlFetcher.execute(url_photo);
 
 
                 }else if(key.equals("adresse")){
 
-                    petSitterAddress.setText(utilisateurJson.getString("ville")+", "+utilisateurJson.getString("province")+", "+utilisateurJson.getString("code_postal"));
+                    ville_pet_sitter.setText(utilisateurJson.getString("ville"));
 
                 }
 

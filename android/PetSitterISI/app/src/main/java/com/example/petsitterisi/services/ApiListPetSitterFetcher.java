@@ -13,6 +13,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -32,6 +34,7 @@ import com.example.petsitterisi.R;
 import com.example.petsitterisi.entitees.Utilisateur;
 import com.example.petsitterisi.managers.UtilisateurManager;
 import com.google.gson.JsonObject;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -162,10 +165,30 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
                 JSONObject jsObject = (JSONObject) jsonArray.get(i);
 
                         View cardPetSitterParam = View.inflate(context , R.layout.card_pet_sitter,null);
+                        ImageView utilisateur_photo_profile = cardPetSitterParam.findViewById(R.id.utilisateur_photo_profile);
                         TextView petSitterName = cardPetSitterParam.findViewById(R.id.name);
                         final String petSitterId = jsObject.getString("id");
                         String rating = jsObject.getString("rating");
                         String url_photo = jsObject.getString("url_photo");
+                        String utilisateur_sexe = jsObject.getString("sexe");
+
+                        if(!url_photo.equals("null")){
+                            url_photo = "https://pets-friendly.herokuapp.com/images/images_profiles/"+ url_photo;
+                        }else{
+
+                            if(utilisateur_sexe.equals("masculin")){
+                                url_photo = "https://pets-friendly.herokuapp.com/images/images_profiles/image_profile_default_homme.jpg";
+
+                            }else if(utilisateur_sexe.equals("feminin")){
+                                url_photo = "https://pets-friendly.herokuapp.com/images/images_profiles/image_profile_default_femme.jpg";
+                            }
+
+                        }
+
+
+                        ImageUrlFetcher imageUrlFetcher = new ImageUrlFetcher(context, utilisateur_photo_profile, utilisateur_sexe);
+                        imageUrlFetcher.execute(url_photo);
+
 
                         //LoadImageFromWebOperations(String url)
 
@@ -224,7 +247,7 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
 
                                 Intent intent = new Intent(context, BottomNavigationBar.class);
                                 intent.putExtra("Profil", "true");
-                                intent.putExtra("petSitterId", petSitterId);
+                                UtilisateurManager.addDataToSharedPreference(context, "petsitter_profile_selectionner", petSitterId);
                                 context.startActivity(intent);
 
                             }
@@ -263,6 +286,12 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
                                 e.printStackTrace();
                             }
 
+                        }
+
+                int id_role = UtilisateurManager.getIdUtilisateurRole(context);
+
+                        if(id_role == 3){
+                            reservervation_liste_pet_sitter.setEnabled(false);
                         }
 
                 reservervation_liste_pet_sitter.setOnClickListener(new View.OnClickListener() {

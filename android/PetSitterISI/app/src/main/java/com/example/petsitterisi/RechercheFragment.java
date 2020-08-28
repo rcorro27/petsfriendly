@@ -89,9 +89,6 @@ public class RechercheFragment extends Fragment {
             mSocket.emit("join", idJsonObject);
 
 
-
-
-
         } catch (URISyntaxException | JSONException e) {
             e.printStackTrace();
         }

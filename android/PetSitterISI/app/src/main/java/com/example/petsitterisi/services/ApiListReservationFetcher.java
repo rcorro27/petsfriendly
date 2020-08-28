@@ -12,6 +12,7 @@ import android.os.Build;
 import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -125,8 +126,9 @@ public class ApiListReservationFetcher extends AsyncTask<String, Nullable, Strin
                 View cardReservationParam = View.inflate(context , R.layout.card_reservation_proprietaire,null);
                 TextView nomPetSitter = cardReservationParam.findViewById(R.id.name);
                 TextView petSitterAddress = cardReservationParam.findViewById(R.id.petSitterAddress);
+                ImageView utilisateur_photo_profile = cardReservationParam.findViewById(R.id.reservation_photo_profile);
 
-                ApiRecupererUtilisateurReserverFetcher apiRecupererUtilisateurReserverFetcher = new ApiRecupererUtilisateurReserverFetcher(context, nomPetSitter, petSitterAddress);
+                ApiRecupererUtilisateurReserverFetcher apiRecupererUtilisateurReserverFetcher = new ApiRecupererUtilisateurReserverFetcher(context, nomPetSitter, petSitterAddress, utilisateur_photo_profile);
                 apiRecupererUtilisateurReserverFetcher.execute("https://pets-friendly.herokuapp.com/utilisateurs/recuperation/"+idPetSitter);
 
 

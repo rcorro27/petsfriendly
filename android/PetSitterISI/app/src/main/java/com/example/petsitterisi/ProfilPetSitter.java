@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -26,6 +27,7 @@ import android.widget.Toast;
 
 import com.example.petsitterisi.managers.UtilisateurManager;
 import com.example.petsitterisi.services.ApiAjouterContratFetcher;
+import com.example.petsitterisi.services.ApiRecupererUtilisateurProfileFetcher;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.JsonObject;
 
@@ -50,6 +52,9 @@ public class ProfilPetSitter extends Fragment {
     Dialog dialog_contacter_sitter;
     Dialog dialog_reserver_sitter;
     LinearLayout ll;
+    TextView prenom_pet_sitter;
+    TextView ville_pet_sitter;
+    ImageView profile_photo_couverture;
 
 
 
@@ -61,8 +66,24 @@ public class ProfilPetSitter extends Fragment {
         ctx = leProfilPetSitter.getContext();
         button_contacterSitter = leProfilPetSitter.findViewById(R.id.button_contacter_profil_sitter);
         button_reservation_sitter = leProfilPetSitter.findViewById(R.id.reservation_profil_sitter);
+        prenom_pet_sitter = leProfilPetSitter.findViewById(R.id.prenom_pet_sitter);
+        ville_pet_sitter = leProfilPetSitter.findViewById(R.id.ville_pet_sitter);
+        profile_photo_couverture = leProfilPetSitter.findViewById(R.id.profile_photo_couverture);
+
+
         dialog_contacter_sitter = new Dialog(ctx);
         dialog_reserver_sitter = new Dialog(ctx);
+
+        int id_role = UtilisateurManager.getIdUtilisateurRole(ctx);
+
+        String petsitter_profile_selectionner = UtilisateurManager.getDataFromSharePreference(ctx, "petsitter_profile_selectionner");
+        ApiRecupererUtilisateurProfileFetcher apiRecupererUtilisateurProfileFetcher = new ApiRecupererUtilisateurProfileFetcher(ctx, prenom_pet_sitter, ville_pet_sitter, profile_photo_couverture);
+        apiRecupererUtilisateurProfileFetcher.execute("https://pets-friendly.herokuapp.com/utilisateurs/recuperation/"+petsitter_profile_selectionner);
+
+        if(id_role == 3){
+            button_contacterSitter.setEnabled(false);
+            button_reservation_sitter.setEnabled(false);
+        }
 
         button_contacterSitter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,8 +163,6 @@ public class ProfilPetSitter extends Fragment {
 
                 if (!message_envoyer[0].getText().toString().equals("")){
 
-
-
                     // sharedPreference pour l'heure
                     UtilisateurManager.addHeureMessageEnvoyer(ctx, "heure_Msg", heureNowMsgEnvoyer);
                     UtilisateurManager.addMessageContacterInsideDiscussion(ctx, "message_contacter", textMsgEnvoyer[0]);
@@ -209,7 +228,6 @@ public class ProfilPetSitter extends Fragment {
 
                 }
                 else{
-
                     TextView villePetSitter = leProfilPetSitter.findViewById(R.id.ville_pet_sitter);
                     villePetSitter.setText(unUtilisateurJson.getString("ville"));
 
