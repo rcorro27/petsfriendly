@@ -60,11 +60,16 @@ public class ChatService {
         String heureNowMsgEnvoyer = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
         TextView heureMessageEnvoyer = cardMessageEnvoyer.findViewById(R.id.text_message_time_envoyer);
 
+        String sharedPreferencesHeureMsgRecus = UtilisateurManager.getHeureMessageRecus(ctx);
+
         // date with real date system now
-        heureMessageEnvoyer.setText(heureNowMsgEnvoyer);
+        heureMessageEnvoyer.setText(sharedPreferencesHeureMsgRecus);
 
         // sharedPreference pour l'heure
         UtilisateurManager.addHeureMessageEnvoyer(ctx, "heure_Msg", heureNowMsgEnvoyer);
+
+
+
         messageBulbeTextView.setText(messageJsonObject.getString("message"));
         chat_message_container.addView(cardMessageEnvoyer);
         message_container_scrollview.fullScroll(View.FOCUS_DOWN);

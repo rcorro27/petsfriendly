@@ -149,11 +149,14 @@ public class MessageList extends Fragment {
                                 TextView heureMessageRecus = cardMessageRecus.findViewById(R.id.text_message_time_recus);
 
                                 messageBulbeTextView.setText(finalMessage1);
+
+                                UtilisateurManager.addHeureMessageRecus(ctx, "heure_Msg", heureNowMsgRecus);
+
                                 // date with real date system now
                                 heureMessageRecus.setText(heureNowMsgRecus);
 
                                 // sharedPreference pour l'heure
-                                UtilisateurManager.addHeureMessageEnvoyer(ctx, "heure_Msg", heureNowMsgRecus);
+
 
                                 chat_message_container.addView(cardMessageRecus);
                                 son_message_recu.start();
@@ -214,12 +217,6 @@ public class MessageList extends Fragment {
 
 
 
-
-
-
-
-
-
                     int id_utilisateur = UtilisateurManager.getIdUtilisateur(ctx);
                     int id_role = UtilisateurManager.getIdUtilisateurRole(ctx);
 
@@ -242,12 +239,7 @@ public class MessageList extends Fragment {
                         chatJsonObject.put("message_entre", chat_id_proprietaire + "_" + chat_id_petsitter);
                         chatJsonObject.put("message", nouveauMmessage);
 
-
-
                         chatService.sendMyMessage(chatJsonObject);
-
-//                        // date with real date system now
-//                        heureMessageEnvoyer.setText(heureNowMsgEnvoyer);
 
                         text_message_discussion.setText("");
 

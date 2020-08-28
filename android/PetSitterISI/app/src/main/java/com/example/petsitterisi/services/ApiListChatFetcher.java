@@ -122,7 +122,15 @@ public class ApiListChatFetcher extends AsyncTask<String, Nullable, String> {
                 JSONObject chatOject = chatJSONArray.getJSONObject(i);
                 String discussion_avec_id = chatOject.getString("_id");
 
-                    View cardChatParam = View.inflate(context , R.layout.card_chat,null);
+                View cardChatParam = View.inflate(context , R.layout.card_chat,null);
+                card_chat_select = cardChatParam.findViewById(R.id.car_chat_selectionner);
+
+                TextView heureMessageRecu = cardChatParam.findViewById(R.id.date_liste_discussion);
+
+
+                String sharedPreferencesHeureMsgRecus = UtilisateurManager.getHeureMessageRecus(context);
+                heureMessageRecu.setText(sharedPreferencesHeureMsgRecus);
+
                     ApiRecupererUtilisateurChatBoxFetcher apiRecupererUtilisateurChatBoxFetcher = new ApiRecupererUtilisateurChatBoxFetcher(context, cardChatParam, ll, Integer.parseInt(discussion_avec_id));
                     apiRecupererUtilisateurChatBoxFetcher.execute("https://pets-friendly.herokuapp.com/utilisateurs/recuperation/"+discussion_avec_id);
 
