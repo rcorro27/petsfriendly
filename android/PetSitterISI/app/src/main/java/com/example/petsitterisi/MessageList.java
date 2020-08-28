@@ -120,7 +120,7 @@ public class MessageList extends Fragment {
         final int chat_id_petsitter = Integer.parseInt(UtilisateurManager.getDataFromSharePreference(ctx, "chat_id_petsitter"));
         final int chat_id_proprietaire = Integer.parseInt(UtilisateurManager.getDataFromSharePreference(ctx, "chat_id_proprietaire"));
 
-       ApiMessageListFetcher apiMessageListFetcher = new ApiMessageListFetcher(ctx, chat_message_container, chatService, chat_id_proprietaire, chat_id_petsitter);
+       ApiMessageListFetcher apiMessageListFetcher = new ApiMessageListFetcher(ctx, chat_message_container, chatService, chat_id_proprietaire, chat_id_petsitter, non_chat_header);
        apiMessageListFetcher.execute("https://pets-friendly.herokuapp.com/chats/recuperation");
 
             RechercheFragment.mSocket.on("nouveau_message", new Emitter.Listener() {

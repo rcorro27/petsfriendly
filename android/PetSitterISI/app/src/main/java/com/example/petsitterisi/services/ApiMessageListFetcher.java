@@ -43,15 +43,17 @@ public class ApiMessageListFetcher extends AsyncTask<String, Nullable, String> {
     LinearLayout chat_message_container;
     ChatService chatService;
     Handler handler;
+    String non_chat_header;
 
 
-    public ApiMessageListFetcher(Context  context, LinearLayout chat_message_container, ChatService chatService, int id_proprietaire, int id_petsitter) {
+    public ApiMessageListFetcher(Context  context, LinearLayout chat_message_container, ChatService chatService, int id_proprietaire, int id_petsitter, String non_chat_header) {
         this.context = context;
         this.id_proprietaire = id_proprietaire;
         this.id_petsitter = id_petsitter;
         this.chat_message_container = chat_message_container;
         this.chatService = chatService;
         handler = new Handler();
+        this.non_chat_header = non_chat_header;
     }
 
     @Override
@@ -134,44 +136,6 @@ public class ApiMessageListFetcher extends AsyncTask<String, Nullable, String> {
                 }
 
             }
-
-<<<<<<< HEAD
-            RechercheFragment.mSocket.on("nouveau_message", new Emitter.Listener() {
-                @Override
-                public void call(final Object... args) {
-
-                   JSONObject data = (JSONObject) args[0];
-
-                    String message = null;
-                    try {
-
-
-                        message = data.getString("message");
-
-                        final String finalMessage = message;
-                        final String finalMessage1 = message;
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                View cardMessageRecus = View.inflate(context , R.layout.activity_item_message_recus,null);
-                                TextView messageBulbeTextView = cardMessageRecus.findViewById(R.id.text_message_body_recu);
-                                messageBulbeTextView.setText(finalMessage1);
-                                chat_message_container.addView(cardMessageRecus);
-
-                            }
-                        });
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-
-                }
-
-            });
-=======
->>>>>>> 6dfbccefe785569826b622d64335c5ffe0c974c9
-
 
 
             String chatDebutDestination = UtilisateurManager.getDataFromSharePreference(context, "bouton_contacter");
