@@ -2,6 +2,7 @@ package com.example.petsitterisi.services;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.example.petsitterisi.BottomNavigationBar;
+import com.example.petsitterisi.R;
 import com.example.petsitterisi.managers.UtilisateurManager;
 import com.google.gson.JsonObject;
 
@@ -93,10 +95,12 @@ public class ApiContratFetcher extends AsyncTask<String, Nullable, String> {
              JSONObject jsonObject = new JSONObject(s);
 
              if(jsonObject.length() == 0){
-
+                 final MediaPlayer son_paiement_effectuer = MediaPlayer.create(context, R.raw.son_paiement);
                  Toast.makeText(context, "Reservation faite avec Success", Toast.LENGTH_SHORT).show();
                  Intent intent = new Intent(context, BottomNavigationBar.class);
                  intent.putExtra("Demande", "true");
+                 // son paiement
+                 son_paiement_effectuer.start();
                  context.startActivity(intent);
 
              }else{

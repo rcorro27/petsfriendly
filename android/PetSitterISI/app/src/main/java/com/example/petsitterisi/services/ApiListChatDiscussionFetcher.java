@@ -316,8 +316,8 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
                     TextView messageRecu = cardMessageRecuParam.findViewById(R.id.text_message_body_recu);
                     String non_chat_header = UtilisateurManager.getNomChat(context);
                     TextView heureMessageRecu = cardMessageRecuParam.findViewById(R.id.text_message_time_recus);
-                    TextView nomUtilisateurRecus = cardMessageRecuParam.findViewById(R.id.text_message_name_recus);
-                    ImageView UrlPhotoUtilisateurRecus = cardMessageRecuParam.findViewById(R.id.image_message_profile);
+                    //TextView nomUtilisateurRecus = cardMessageRecuParam.findViewById(R.id.text_message_name_recus);
+                    //ImageView UrlPhotoUtilisateurRecus = cardMessageRecuParam.findViewById(R.id.image_message_profile);
                     ImageView messageLu = cardMessageRecuParam.findViewById(R.id.image_message_lu);
 
 
@@ -326,13 +326,13 @@ public class ApiListChatDiscussionFetcher extends AsyncTask<String, Nullable, St
 
                     heureMessage = DateConvertisseur(heureMessage);
                     heureMessageRecu.setText(heureMessage);
-                    UrlPhotoUtilisateurRecus.setImageResource(R.drawable.rectangle_66);
+                    //UrlPhotoUtilisateurRecus.setImageResource(R.drawable.rectangle_66);
 
                     //messageLu.setImageResource(R.drawable.icone_message_lu);
 
                     messageRecu.setText(messageConversation);
 
-                    nomUtilisateurRecus.setText(non_chat_header);
+                   // nomUtilisateurRecus.setText(non_chat_header);
 
                     //ll.addView(cardMessageEnvoyerParam);
                    // chat_message_container.addView(cardMessageRecuParam);
