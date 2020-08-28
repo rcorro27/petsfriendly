@@ -53,13 +53,14 @@ class PaymentFormContainer extends Component {
             })
             .then(response => {
                 if (Object.keys(response.data).length === 0) {
-                    this.state.message = 'Demande pas envoyee '
+                    this.state.message = 'Demande envoye '
                     this.showModal()
                     // alert('Demande Envoyee')
                     this.props.history.push('/')
                 } else {
                     this.state.message = 'Demande pas envoye veuillez communiquer avec nous'
                     this.showModal()
+                    // this.state.message = ''
                 }
             })
             .catch(err => {
