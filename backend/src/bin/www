@@ -33,14 +33,14 @@ io.on('connection', function(socket){
     console.log("quelqu'un est deconnecte -------")
   })
 
+  // joindre la room
   socket.on("join", function(data) {
-    console.log(data.id)
     
     socket.join(data.id)
   })
 
+  // reception message
   socket.on("nouveau_message", function(data){
-    console.log("message : ", data)
     
     mongo.insererMessage(data)
     .then(resultatMessages => {
@@ -52,6 +52,15 @@ io.on('connection', function(socket){
     
   })
 
+  // entrain d'ecrire
+  socket.on("entrain_ecriture", function(data){
+    io.to(data.idTo).emit("entrain_ecriture", data) // emetteur entrain d'ecrire un message
+  })
+
+  // fin ecriture
+  socket.on("fin_ecriture", function(data){
+    io.to(data.idTo).emit("fin_ecriture", data) // emetteur entrain d'ecrire un message
+  })
 })
 
 //-----------------------------------------------------------------------------------------------------------------------------
