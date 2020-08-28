@@ -2,6 +2,7 @@ package com.example.petsitterisi.services;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.view.View;
@@ -105,6 +106,7 @@ public class ApiMessageListFetcher extends AsyncTask<String, Nullable, String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
 
+
         try {
             JSONArray chatJsonArrayObject = new JSONArray(s);
 
@@ -124,6 +126,7 @@ public class ApiMessageListFetcher extends AsyncTask<String, Nullable, String> {
                     TextView messageBulbeTextView = cardMessageEnvoyer.findViewById(R.id.text_message_body_envoyer);
                     messageBulbeTextView.setText(message);
                     chat_message_container.addView(cardMessageEnvoyer);
+
                 }else{
                     TextView messageBulbeTextView = cardMessageRecus.findViewById(R.id.text_message_body_recu);
                     messageBulbeTextView.setText(message);
@@ -132,6 +135,7 @@ public class ApiMessageListFetcher extends AsyncTask<String, Nullable, String> {
 
             }
 
+<<<<<<< HEAD
             RechercheFragment.mSocket.on("nouveau_message", new Emitter.Listener() {
                 @Override
                 public void call(final Object... args) {
@@ -165,6 +169,8 @@ public class ApiMessageListFetcher extends AsyncTask<String, Nullable, String> {
                 }
 
             });
+=======
+>>>>>>> 6dfbccefe785569826b622d64335c5ffe0c974c9
 
 
 

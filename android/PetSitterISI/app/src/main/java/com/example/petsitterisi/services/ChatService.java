@@ -58,7 +58,6 @@ public class ChatService {
         chat_message_container.addView(cardMessageEnvoyer);
         message_container_scrollview.fullScroll(View.FOCUS_DOWN);
 
-
     }
 
 

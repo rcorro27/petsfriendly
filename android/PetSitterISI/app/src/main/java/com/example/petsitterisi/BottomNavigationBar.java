@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,12 +17,20 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.petsitterisi.managers.UtilisateurManager;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.CircleOptions;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-public class BottomNavigationBar extends FragmentActivity {
+public class BottomNavigationBar extends FragmentActivity implements OnMapReadyCallback {
         BottomNavigationView bottomNav;
 
         Intent intent;
         Context ctx;
+         private GoogleMap mMap;
+
 
     //cacher temporairement la navigation bar android par defaut
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -136,6 +145,13 @@ public class BottomNavigationBar extends FragmentActivity {
         }
 
 
+        //        // Get the SupportMapFragment and request notification
+//        // when the map is ready to be used.
+//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+//        mapFragment.getMapAsync(this);
+
+
+
     }
 
 
@@ -179,8 +195,23 @@ public class BottomNavigationBar extends FragmentActivity {
                 }
 
             };
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+        // Add a marker in Sydney, Australia,
+        // and move the map's camera to the same location.
+        LatLng sydney = new LatLng(-33.852, 151.211);
+        googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+
+        CircleOptions circleOptions = new CircleOptions();
+        circleOptions.center(new LatLng(21, 57));
+        circleOptions.radius(700);
+        circleOptions.fillColor(Color.TRANSPARENT);
+        circleOptions.strokeWidth(6);
+        mMap.addCircle(circleOptions);
 
 
-
-
+    }
 }

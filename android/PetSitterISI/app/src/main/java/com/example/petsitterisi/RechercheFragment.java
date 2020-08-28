@@ -79,7 +79,7 @@ public class RechercheFragment extends Fragment {
 
 
         try {
-            mSocket = IO.socket("http://192.168.0.140:3000");
+            mSocket = IO.socket("https://pets-friendly.herokuapp.com/");
 
             mSocket.connect();
             int monIdUtilisateur = UtilisateurManager.getIdUtilisateur(ctx);

@@ -107,7 +107,15 @@ public class MessageList extends Fragment {
             }
         });
 
-        chat_message_container = chatMessages.findViewById(R.id.container_message_list);
+            chat_message_container = chatMessages.findViewById(R.id.container_message_list);
+            btn_envoyer_discussion  = chatMessages.findViewById(R.id.button_chatbox_send);
+            text_message_discussion = chatMessages.findViewById(R.id.edittext_chatbox);
+
+            ajouter_image = chatMessages.findViewById(R.id.icone_ajoute_photo_conversation);
+//        image_recuperer = (ImageView) new ImageView(ctx);
+
+            final MediaPlayer son_message_envoyer = MediaPlayer.create(ctx, R.raw.son_message_envoye);
+            final MediaPlayer son_message_recu = MediaPlayer.create(ctx, R.raw.son_message_recu);
 
         final int chat_id_petsitter = Integer.parseInt(UtilisateurManager.getDataFromSharePreference(ctx, "chat_id_petsitter"));
         final int chat_id_proprietaire = Integer.parseInt(UtilisateurManager.getDataFromSharePreference(ctx, "chat_id_proprietaire"));
@@ -135,7 +143,8 @@ public class MessageList extends Fragment {
                                 TextView messageBulbeTextView = cardMessageRecus.findViewById(R.id.text_message_body_recu);
                                 messageBulbeTextView.setText(finalMessage1);
                                 chat_message_container.addView(cardMessageRecus);
-                                Toast.makeText(ctx, finalMessage, Toast.LENGTH_LONG).show();
+                                son_message_recu.start();
+                                //Toast.makeText(ctx, finalMessage, Toast.LENGTH_LONG).show();
                             }
                         }, 1000);
 
@@ -153,23 +162,31 @@ public class MessageList extends Fragment {
 
 
 
-        btn_envoyer_discussion  = (Button) chatMessages.findViewById(R.id.button_chatbox_send);
-        text_message_discussion = chatMessages.findViewById(R.id.edittext_chatbox);
-
-        ajouter_image = chatMessages.findViewById(R.id.icone_ajoute_photo_conversation);
-//        image_recuperer = (ImageView) new ImageView(ctx);
-
-
-
-        final MediaPlayer son_message_envoyer = MediaPlayer.create(ctx, R.raw.son_message_envoye);
-        final MediaPlayer son_message_recu = MediaPlayer.create(ctx, R.raw.son_message_recu);
-
         btn_envoyer_discussion.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
 
                 String nouveauMmessage = text_message_discussion.getText().toString();
+
+                // photo
+                final MediaPlayer son_photo_envoyer = MediaPlayer.create(ctx, R.raw.son_message_envoye);
+                ajouter_image.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        final View view_photos_envoyer = View.inflate(ctx, R.layout.photo_envoyer, null);
+                        image_recuperer = view_photos_envoyer.findViewById(R.id.img_recup);
+                        //son_photo_envoyer.start();
+                        chat_message_container.addView(view_photos_envoyer);
+
+                        startActivityForResult(camera_intent, pic_id);
+
+                    }
+                });
+
+
 
                 if(!nouveauMmessage.equals("")) {
 
@@ -204,6 +221,7 @@ public class MessageList extends Fragment {
                         chatJsonObject.put("message", nouveauMmessage);
                         chatService.sendMyMessage(chatJsonObject);
                         text_message_discussion.setText("");
+                        son_message_envoyer.start();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

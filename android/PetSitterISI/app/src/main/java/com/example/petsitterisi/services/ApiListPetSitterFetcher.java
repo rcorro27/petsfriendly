@@ -268,11 +268,29 @@ public class ApiListPetSitterFetcher extends AsyncTask<String, Nullable, String>
                             try {
                                 if (descriptionService.equals("Promenade")) {
                                     serviceImage.setImageResource(R.drawable.image_16);
+
+                                    serviceImage.getLayoutParams().height = 80;
+                                    serviceImage.getLayoutParams().width = 80;
+                                    serviceImage.setScaleType(ImageView.ScaleType.FIT_XY);
+
                                 } else if (descriptionService.equals("Garder chez vous")) {
                                     serviceImage.setImageResource(R.drawable.image_icon_2);
+
+                                    serviceImage.getLayoutParams().height = 80;
+                                    serviceImage.getLayoutParams().width = 80;
+                                    serviceImage.setScaleType(ImageView.ScaleType.FIT_XY);
+
+
                                 } else if (descriptionService.equals("Garder chez le Pet Sitter")) {
                                     serviceImage.setImageResource(R.drawable.image_icon_1);
+
+                                    serviceImage.getLayoutParams().height = 80;
+                                    serviceImage.getLayoutParams().width = 80;
+                                    serviceImage.setScaleType(ImageView.ScaleType.FIT_XY);
+
+
                                 }
+
 
                                 TextView servicePrix = serviceView.findViewById(R.id.service_prix);
                                 servicePrix.setText(prixService + "$");

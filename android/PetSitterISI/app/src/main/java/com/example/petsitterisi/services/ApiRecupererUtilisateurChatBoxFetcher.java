@@ -132,8 +132,21 @@ public class ApiRecupererUtilisateurChatBoxFetcher extends AsyncTask<String, Nul
                         @Override
                         public void onClick(View v) {
                             int id_utilisateur = UtilisateurManager.getIdUtilisateur(context);
-                            UtilisateurManager.addDataToSharedPreference(context, "chat_id_petsitter", String.valueOf(id_utilisateur));
-                            UtilisateurManager.addDataToSharedPreference(context, "chat_id_proprietaire", String.valueOf(discussion_avec_id));
+
+                            int id_role = UtilisateurManager.getIdUtilisateurRole(context);
+
+                            if(id_role == 2 ){
+
+                                UtilisateurManager.addDataToSharedPreference(context, "chat_id_petsitter", String.valueOf(discussion_avec_id));
+                                UtilisateurManager.addDataToSharedPreference(context, "chat_id_proprietaire", String.valueOf(id_utilisateur));
+
+
+                            }
+                            else if(id_role == 3) {
+                                UtilisateurManager.addDataToSharedPreference(context, "chat_id_petsitter", String.valueOf(id_utilisateur));
+                                UtilisateurManager.addDataToSharedPreference(context, "chat_id_proprietaire", String.valueOf(discussion_avec_id));
+                            }
+
 
                             Intent intent = new Intent(context, BottomNavigationBar.class);
                             intent.putExtra("ChatDiscussion", "true");
