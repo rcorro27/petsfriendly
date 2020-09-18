@@ -1,5 +1,4 @@
 import React from 'react'
-/** import DivBoutons from '../component/div-boutons' */
 
 const Vignette = ({ classCss, titre, event }) => {
     return (

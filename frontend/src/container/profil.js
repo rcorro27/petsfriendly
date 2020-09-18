@@ -29,8 +29,6 @@ class Profile extends Component {
     }
 
     componentDidMount () {
-        // const token = localStorage.usertoken
-        // const decoded = jwtdecode(token)
         if (localStorage.getItem('usertoken')) {
             this.setState({
                 user: JSON.parse(localStorage.getItem('usertoken')).utilisateur,
@@ -85,7 +83,6 @@ class Profile extends Component {
             .catch(err => {
                 console.log(err)
             })
-        // commentaire test
     }
 
     render () {
@@ -157,7 +154,6 @@ class Profile extends Component {
                                 <td>Numéro appartement</td>
                                 <td>{this.state.address.numero_appt}</td>
                             </tr>
-                            {/* je veux pusher cette page aussi */}
 
                         </tbody>
                     </table>
@@ -171,7 +167,6 @@ class Profile extends Component {
                             <ListItemComponent text='Besoin de flexibilité? Choisissez les horaires et périodes qui vous conviennent' className='fas fa-check' />
                         </div>
                         <div className='col-lg-4 mx-auto border border-danger rounded serviceProposes'>
-                            {/* METTRE UN ICONE DANS LAVANT DE LES LI POUR LA PUBLICITER */}
                             <ListItemComponent text='Tous les nouveaux gardiens passent une vérification des antécédents de base' className='fas fa-check' />
                             <ListItemComponent text='Tous les gardiens fournissent un profil détaillé et des informations personnelles ' className='fas fa-check' />
                             <ListItemComponent text='Tous les Pet Sitter sont agréés par notre équipe de spécialistes chez Pets Friendly' className='fas fa-check' />

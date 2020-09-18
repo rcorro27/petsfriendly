@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import InputComponent from '../component/input-component'
+import { Link } from 'react-router-dom'
 
 class InscriptionAdressContainer extends Component {
     constructor (props) {
@@ -30,6 +31,8 @@ class InscriptionAdressContainer extends Component {
     }
 
     render () {
+        const { handleback, handlenext } = this.props
+        // const
         return (
             <>
 
@@ -40,13 +43,13 @@ class InscriptionAdressContainer extends Component {
 
                 <ul className='pagination'>
                     <li className='page-item'>
-                        <a href='#' onClick={this.props.back}>Previous
-                        </a>
+                        <Link to='#' onClick={handleback}>Previous
+                        </Link>
 
                     </li>
                     <li className='page-item'>
-                        <a href='#' onClick={this.props.next}>Next
-                        </a>
+                        <Link to='#' onClick={handlenext}>Next
+                        </Link>
                     </li>
                 </ul>
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import '../navbar.css'
-import NavbarLinks from '../component/navbar-links'
+import NavbarLinks from '../container/navbar-links'
 import NavbarText from '../component/navbar-text'
 
 function Navbar () {

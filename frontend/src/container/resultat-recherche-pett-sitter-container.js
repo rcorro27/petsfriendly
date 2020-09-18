@@ -54,7 +54,6 @@ class ResultatRecherchePetsitter extends Component {
             }
 
         ]
-        // console.log(this.props.test)
         return (
 
             <div>

@@ -17,7 +17,6 @@ class PaymentFormContainer extends Component {
             paimentFait: '',
             showModal: false,
             message: ''
-            /* voir pour les paiments et la demande */
 
         }
         this.handleClick = this.handleClick.bind(this)
@@ -55,12 +54,10 @@ class PaymentFormContainer extends Component {
                 if (Object.keys(response.data).length === 0) {
                     this.state.message = 'Demande envoye '
                     this.showModal()
-                    // alert('Demande Envoyee')
                     this.props.history.push('/')
                 } else {
                     this.state.message = 'Demande pas envoye veuillez communiquer avec nous'
                     this.showModal()
-                    // this.state.message = ''
                 }
             })
             .catch(err => {

@@ -8,21 +8,15 @@ import VignetteComponent from 'component/vignette-component'
 import ModalMessage from 'component/modal'
 
 import { withRouter } from 'react-router-dom'
-// importer fichier css
+
 import '../css/recherche.css'
-// import '../css/modal.css'
-import { Alert } from 'react-bootstrap'
-// import ProfilDemandePettSitter from './profil-demande-pettsitter'
 
 class RecherchePetsitter extends Component {
     constructor (props) {
         super(props)
-        // question a poser a nassim voir les criteres comme il sont dans le request ????
         this.state = {
             servicesRechercher: [],
-            // garderChezPetsitter: null,
-            // garderChezVous: null,
-            // promenade: null,
+
             numero_rue: '',
             nom_rue: '',
             code_postal: '',
@@ -44,14 +38,12 @@ class RecherchePetsitter extends Component {
             blurry: false,
             idblur: ''
 
-            // idUser: false
         }
 
         this.handleAddOnClick = this.handleAddOnClick.bind(this)
         this.handleSaveOnClick = this.handleSaveOnClick.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleChangeSelect = this.handleChangeSelect.bind(this)
-        // this.handleClick = this.handleClick.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleAfficherSitterOnClick = this.handleAfficherSitterOnClick.bind(this)
         this.handleEnvoyerDemandeOnClick = this.handleEnvoyerDemandeOnClick.bind(this)
@@ -67,23 +59,9 @@ class RecherchePetsitter extends Component {
         this.setState({ showmodal: false })
     };
 
-    /*
-    onHandleClose () {
-        this.setState({
-            show: false
-        })
-    }
-
-    onHandleShow () {
-        this.setState({
-            show: true
-        })
-    }
-*/
     componentDidMount () {
         return axios
             .get('https://pets-friendly.herokuapp.com/services/recuperation/tout')
-            // .then(response => console.log(response.data))
             .then(response => {
                 const service = []
                 response.data.map((info, index) => service.push(info))
@@ -119,7 +97,6 @@ class RecherchePetsitter extends Component {
                 this.state.servicesRechercher.splice(1, 1)
             } else { this.state.servicesRechercher[1] = 3 }
 
-            // this.setState({ promenade: 3 })
             break
         case 'numeroRue':
             console.log(event.target.value)
@@ -160,33 +137,12 @@ class RecherchePetsitter extends Component {
                 }
 
             })
-            //  .then(response => console.log('reponse avant la assignatiion', response.data))
             .then(response => {
                 this.setState({ resultat: response.data })
-                /* if (response.data.length === 0) {
-
-                this.setState({ resultatRecherche: false })
-            } else {
-                this.setState({ resultat: response.data })
-            } */
-                /*  const arrayResultat = []
-            response.data.map((info, index) => arrayResultat.push(info))
-            console.log(arrayResultat) */
             })
             .catch(err => {
                 console.log('erreur recherche:', err)
             })
-
-        /* fetch('resultat-recherche.json', { method: 'GET' })
-            .then(response => response.json())
-            .then(response => {
-                const arrayTest = []
-                console.log(response.resultatRecherche)
-                response.resultatRecherche.map((info, index) => arrayTest.push(info))
-                console.log(arrayTest)
-                this.setState({ resultat: arrayTest })
-            })
-            */
     }
 
     handleAddOnClick () {
@@ -201,14 +157,10 @@ class RecherchePetsitter extends Component {
         if (localStorage.getItem('usertoken') && JSON.parse(localStorage.getItem('usertoken')).utilisateur.id_role === 3) {
             this.state.message = 'Vous deves etre un proprietaire pour utiliser notres services de recherche '
             this.showModal()
-            // alert('Vous deves etre un proprietaire pour utiliser notres services de recherche ')
-            // this.props.history.push('/')
         } else if (!localStorage.getItem('usertoken')) {
             this.state.message = 'Veuillez vous connecter ou inscrire pour continuer'
             console.log('dans le if non user')
             this.showModal()
-
-            //            alert('veuillez vous conecter ou INSCRIRE Pour continuer a profiter de notres sernvices svp')
         } else if (localStorage.getItem('usertoken') && JSON.parse(localStorage.getItem('usertoken')).utilisateur.id_role === 2) {
             console.log(this.state.resultat[event.target.name])
             console.log(this.state.dateDebut)
@@ -220,9 +172,6 @@ class RecherchePetsitter extends Component {
 
             this.props.history.push('/demande')
         }
-        // localStorage.removeItem('sitter')
-
-        // console.log('local Storage:', JSON.parse(localStorage.getItem('sitter')))
     }
 
     handleEnvoyerDemandeOnClick (event) {
@@ -238,22 +187,6 @@ class RecherchePetsitter extends Component {
                 label: 'Chat',
                 value: 'Chat'
             }]
-
-        /* const servicesTotal = [
-            {
-                id: 1,
-                description: 'Promenade',
-                prix_service: 20
-            }, {
-                id: 2,
-                description: 'Garder a la maison',
-                prix_service: 45
-            }, {
-                id: 3,
-                // ??????????????????????????????????? est ce que je peux corriger ca
-                description: 'Garder chez vous ',
-                prix_service: 15
-            }] */
 
         function niveauPetSitter (niveau) {
             let niveauSitter = ''
@@ -300,8 +233,6 @@ class RecherchePetsitter extends Component {
                         <InputComponent classInput='btn btn-outline-success' type='submit' id='rechercher' name='Rechercher ' value='rechercher' onClick={this.handleSubmit} />
                     </div>
 
-                    {/* <button onClick={e => { this.showModal() }}> show Modal</button> */}
-
                     {this.state.resultatRecherche ? '' : <h1 className='text-danger'>Aucun sitter n'a été retrouvé selon vos critères. Veuillez changer vos critères de sélection ou nous contacter</h1>}
                     <div className='row'>
                         {this.state.resultat ? this.state.resultat.map((resultat, index) => {
@@ -324,7 +255,7 @@ class RecherchePetsitter extends Component {
                                 <ListItemComponent text='Besoin de flexibilité? Choisissez les horaires et périodes qui vous conviennent' className='fas fa-check' />
                             </div>
                             <div className='col-lg-4 mx-auto border border-danger rounded serviceProposes'>
-                                {/* METTRE UN ICONE DANS LAVANT DE LES LI POUR LA PUBLICITER */}
+
                                 <ListItemComponent text='Tous les nouveaux gardiens passent une vérification des antécédents de base' className='fas fa-check' />
                                 <ListItemComponent text='Tous les gardiens fournissent un profil détaillé et des informations personnelles ' className='fas fa-check' />
                                 <ListItemComponent text='Tous les Pet Sitter sont agréés par notre équipe de spécialistes chez Pets Friendly' className='fas fa-check' />

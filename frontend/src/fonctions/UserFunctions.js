@@ -26,7 +26,7 @@ export const login = user => {
         })
         .catch(err => {
             message(err)
-            console.log(err)
+            console.log(message(err))
         })
 }
 export const register = newUser => {

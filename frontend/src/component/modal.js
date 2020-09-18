@@ -5,13 +5,7 @@ export default class ModalMessage extends React.Component {
         if (!this.props.show) {
             return null
         }
-        /* <div className='Modal'>
-                <div>{this.props.children}</div>
-                <div>
-                <button onClick={this.props.onHandleonClose}>Close</button>
-            </div>
-            </div>
-*/
+
         return (
 
             <div>

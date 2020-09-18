@@ -34,15 +34,13 @@ class UpdateProfile extends Component {
             selectedFile: '',
             errors: {}
         }
-        this.onTodoChange = this.onTodoChange.bind(this)
-        this.submitModifier = this.submitModifier.bind(this)
-        this.fileSelected = this.fileSelected.bind(this)
-        this.fileUpload = this.fileUpload.bind(this)
+        this.handleTodoChange = this.handleTodoChange.bind(this)
+        this.handleSubmitModifier = this.handleSubmitModifier.bind(this)
+        this.handleFileSelected = this.handleFileSelected.bind(this)
+        this.handleFileUpload = this.handleFileUpload.bind(this)
     }
 
     componentDidMount () {
-        // const token = localStorage.usertoken
-        // const decoded = jwtdecode(token)
         if (localStorage.getItem('usertoken')) {
             this.setState({
                 user: JSON.parse(localStorage.getItem('usertoken')).utilisateur,
@@ -72,14 +70,14 @@ class UpdateProfile extends Component {
         }
     }
 
-    fileSelected (e) {
+    handleFileSelected (e) {
         this.setState({
             selectedFile: e.target.files[0]
         })
         console.log(e.target.files[0])
     }
 
-    submitModifier () {
+    handleSubmitModifier () {
         axios
             .put('https://pets-friendly.herokuapp.com/utilisateurs/configuration', {
                 utilisateur: {
@@ -90,7 +88,6 @@ class UpdateProfile extends Component {
                     age: this.state.age,
                     email: this.state.email,
                     mot_de_passe: this.state.mot_de_passe,
-                    // mot_de_passe: this.state.mot_de_passe,
                     sexe: this.state.sexe,
                     telephone: this.state.telephone
                 },
@@ -111,11 +108,11 @@ class UpdateProfile extends Component {
             })
     }
 
-    onTodoChange (e) {
+    handleTodoChange (e) {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    fileUpload (e) {
+    handleFileUpload (e) {
         const image = this.state.selectedFile
         e.preventDefault()
         const data = new FormData()
@@ -155,8 +152,8 @@ class UpdateProfile extends Component {
                 <form method='post' encType='multipart/form-data'>
                     <div className='form-group'>
                         <label htmlFor='exampleFormControlFile1' id='label1'>Mettre une photo de profil</label>
-                        <input name='image' type='file' className='form-control-file btnPayment' style={{ backgroundColor: 'pink' }} id='exampleFormControlFile1' onChange={this.fileSelected} />
-                        <Button className='btnPayment' onClick={this.fileUpload}>Upload</Button>
+                        <input name='image' type='file' className='form-control-file btnPayment' style={{ backgroundColor: 'pink' }} id='exampleFormControlFile1' onChange={this.handleFileSelected} />
+                        <Button className='btnPayment' onClick={this.handleFileUpload}>Upload</Button>
                     </div>
                 </form>
                 <div className='row'>
@@ -165,31 +162,31 @@ class UpdateProfile extends Component {
                             <div className='col-50'>
                                 <div className='md-form mb-5'>
                                     <label data-error='wrong' data-success='right' htmlFor='defaultForm-email'>Ton Nom</label>
-                                    <input type='text' className='form-control validate' name='nom' value={this.state.nom} onChange={this.onTodoChange} />
+                                    <input type='text' className='form-control validate' name='nom' value={this.state.nom} onChange={this.handleTodoChange} />
 
                                 </div>
 
                                 <div className='md-form mb-5'>
                                     <label data-error='wrong' data-success='right' htmlFor='defaultForm-email'>Ton Prenom</label>
-                                    <input type='text' className='form-control validate' name='prenom' value={this.state.prenom} onChange={this.onTodoChange} />
+                                    <input type='text' className='form-control validate' name='prenom' value={this.state.prenom} onChange={this.handleTodoChange} />
 
                                 </div>
 
                                 <div className='md-form mb-5'>
                                     <label data-error='wrong' data-success='right' htmlFor='defaultForm-email'>Ton sexe</label>
-                                    <input type='text' className='form-control validate' name='sexe' value={this.state.sexe} onChange={this.onTodoChange} />
+                                    <input type='text' className='form-control validate' name='sexe' value={this.state.sexe} onChange={this.handleTodoChange} />
 
                                 </div>
 
                                 <div className='md-form mb-5'>
                                     <label data-error='wrong' data-success='right' htmlFor='defaultForm-email'>Ton numero de telephone </label>
-                                    <input type='tel' className='form-control validate' name='telephone' value={this.state.telephone} onChange={this.onTodoChange} />
+                                    <input type='tel' className='form-control validate' name='telephone' value={this.state.telephone} onChange={this.handleTodoChange} />
 
                                 </div>
 
                                 <div className='md-form mb-5'>
                                     <label data-error='wrong' data-success='right' htmlFor='defaultForm-email'>Ton Email</label>
-                                    <input type='email' className='form-control validate' name='email' value={this.state.email} onChange={this.onTodoChange} />
+                                    <input type='email' className='form-control validate' name='email' value={this.state.email} onChange={this.handleTodoChange} />
 
                                 </div>
 
@@ -197,26 +194,26 @@ class UpdateProfile extends Component {
                             <div className='col-50'>
                                 <div className='md-form mb-5'>
                                     <label data-error='wrong' data-success='right' htmlFor='defaultForm-email'>Numero de rue</label>
-                                    <input type='number' className='form-control validate' name='numero_rue' value={this.state.numero_rue} onChange={this.onTodoChange} />
+                                    <input type='number' className='form-control validate' name='numero_rue' value={this.state.numero_rue} onChange={this.handleTodoChange} />
 
                                 </div>
 
                                 <div className='md-form mb-5'>
                                     <label data-error='wrong' data-success='right' htmlFor='defaultForm-email'>Nom de rue</label>
-                                    <input type='text' className='form-control validate' name='nom_rue' value={this.state.nom_rue} onChange={this.onTodoChange} />
+                                    <input type='text' className='form-control validate' name='nom_rue' value={this.state.nom_rue} onChange={this.handleTodoChange} />
 
                                 </div>
                                 <div className='row'>
                                     <div className='col-50'>
                                         <label data-error='wrong' data-success='right' htmlFor='defaultForm-email'>Code Postal</label>
-                                        <input type='text' className='form-control validate' name='code_postal' value={this.state.code_postal} onChange={this.onTodoChange} />
+                                        <input type='text' className='form-control validate' name='code_postal' value={this.state.code_postal} onChange={this.handleTodoChange} />
 
                                     </div>
 
                                     <div className='col-50'>
                                         <label data-error='wrong' data-success='right' htmlFor='defaultForm-email'>Ville</label>
 
-                                        <input type='text' className='form-control validate' name='ville' value={this.state.ville} onChange={this.onTodoChange} />
+                                        <input type='text' className='form-control validate' name='ville' value={this.state.ville} onChange={this.handleTodoChange} />
 
                                     </div>
                                 </div>
@@ -224,23 +221,23 @@ class UpdateProfile extends Component {
                                     <div className='col-50'>
                                         <label data-error='wrong' data-success='right' htmlFor='defaultForm-email'>Province</label>
 
-                                        <input type='text' className='form-control validate' name='province' value={this.state.province} onChange={this.onTodoChange} />
+                                        <input type='text' className='form-control validate' name='province' value={this.state.province} onChange={this.handleTodoChange} />
 
                                     </div>
 
                                     <div className='col-50'>
                                         <label data-error='wrong' data-success='right' htmlFor='defaultForm-email'>Pays</label>
-                                        <input type='text' className='form-control validate' name='pays' value={this.state.pays} onChange={this.onTodoChange} />
+                                        <input type='text' className='form-control validate' name='pays' value={this.state.pays} onChange={this.handleTodoChange} />
                                     </div>
                                 </div>
 
                                 <div className='md-form mb-5'>
                                     <label data-error='wrong' data-success='right' htmlFor='defaultForm-email'>Numero appartement</label>
-                                    <input type='number' className='form-control validate' name='numero_appt' value={this.state.numero_appt} onChange={this.onTodoChange} />
+                                    <input type='number' className='form-control validate' name='numero_appt' value={this.state.numero_appt} onChange={this.handleTodoChange} />
                                 </div>
 
-                                <Button className='btnPayment ' onClick={this.fileUpload}>Annuler </Button>
-                                <Button className='btnPayment ' onClick={this.submitModifier}>Update </Button>
+                                <Button className='btnPayment ' onClick={this.handleFileUpload}>Annuler </Button>
+                                <Button className='btnPayment ' onClick={this.handleSubmitModifier}>Update </Button>
                             </div>
                         </div>
                     </div>

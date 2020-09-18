@@ -3,7 +3,7 @@ import '../../../src/footer.css'
 
 import ListNetworks from '../../container/list-network-container'
 
-import FooterLinks from '../footer-links'
+import FooterLinks from '../../component/footer-links'
 
 class Footer extends Component {
     render () {

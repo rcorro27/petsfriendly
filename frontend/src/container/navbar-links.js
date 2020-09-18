@@ -4,11 +4,10 @@ import { Button, Modal } from 'react-bootstrap'
 import { login, register } from '../fonctions/UserFunctions'
 
 import React, { Component } from 'react'
-import InscriptionContainer from '../container/inscription-container'
-import InscriptionAdressContainer from '../container/adress-inscription-container'
-import QuestionValidation from '../container/qst-validation'
-import ModalCnxContainer from '../container/modal-cnx-container'
-// import InscriptionContainer from '../container/inscription-container'
+import InscriptionContainer from './inscription-container'
+import InscriptionAdressContainer from './adress-inscription-container'
+import QuestionValidation from './qst-validation'
+import ModalCnxContainer from './modal-cnx-container'
 import { Link, withRouter } from 'react-router-dom'
 
 class NavbarLinks extends Component {
@@ -51,7 +50,7 @@ class NavbarLinks extends Component {
         this.handleClose = this.handleClose.bind(this)
         this.handleCloseInsc = this.handleCloseInsc.bind(this)
         this.getValues = this.getValues.bind(this)
-        this.getValuesRadio = this.getValuesRadio.bind(this)
+        this.handleGetValuesRadio = this.handleGetValuesRadio.bind(this)
         this.onHandleChangeAndEnter = this.onHandleChangeAndEnter.bind(this)
         this.showStep = this.showStep.bind(this)
         this.nextStep = this.nextStep.bind(this)
@@ -61,7 +60,6 @@ class NavbarLinks extends Component {
     onSubmitRegister (e) {
         this.handleCloseInsc()
         console.log('new User', this.state)
-        // if (e.key === 'Enter') {
         e.preventDefault()
 
         const newUser = {
@@ -88,18 +86,12 @@ class NavbarLinks extends Component {
                 this.setState({
                     users: res
                 })
-<<<<<<< HEAD
-=======
                 this.handleCloseInsc()
->>>>>>> inscription_yb
 
                 console.log('test', this.state.users.utilisateur.nom)
                 this.setState({ userName: this.state.users.utilisateur.nom })
-                this.handleCloseInsc()
-                // commentaire
             }
         })
-        // this.register(user)
     }
 
     nextStep (e) {
@@ -119,14 +111,12 @@ class NavbarLinks extends Component {
     }
 
     showStep () {
-        // const { step } = this.state
-
         if (this.state.step === 1) {
             return (
                 <InscriptionContainer
-                    onChangeRadio={this.getValuesRadio}
+                    onChangeRadio={this.handleGetValuesRadio}
                     change={this.getValues}
-                    click={this.nextStep}
+                    handlenext={this.nextStep}
                 />
             )
         }
@@ -134,8 +124,8 @@ class NavbarLinks extends Component {
             return (
                 <InscriptionAdressContainer
                     change={this.getValues}
-                    next={this.nextStep}
-                    back={this.prevStep}
+                    handlenext={this.nextStep}
+                    handleback={this.prevStep}
                 />
             )
         }
@@ -145,7 +135,7 @@ class NavbarLinks extends Component {
                 <QuestionValidation
                     change={this.getValues}
 
-                    back={this.prevStep}
+                    handleback={this.prevStep}
                 />
 
             )
@@ -178,7 +168,6 @@ class NavbarLinks extends Component {
 
     onSubmit (e) {
         console.log('email', this.state.utilisateur)
-        // if (e.key === 'Enter') {
         e.preventDefault()
 
         const user = {
@@ -191,24 +180,20 @@ class NavbarLinks extends Component {
                 this.setState({
                     users: res
                 })
-                this.onHandleClose()
+                this.handleClose()
 
                 console.log('test', this.state.users.utilisateur.nom)
                 this.setState({ userName: this.state.users.utilisateur.nom })
             }
         })
-        // this.register(user)
     }
-    // }
 
     onHandleChangeName (e) {
         this.setState({ email: e.target.value })
-        // this.setState({ utilisateur: { email: e.target.value } })
     }
 
     onHandleChangePass (e) {
         this.setState({ mot_de_passe: e.target.value })
-        // this.setState({ utilisateur: { mot_de_passe: e.target.value } })
     }
 
     logOut (e) {
@@ -216,7 +201,7 @@ class NavbarLinks extends Component {
         localStorage.removeItem('usertoken')
         console.log('disconnected')
         console.log(localStorage.getItem('usertoken'))
-        window.location.reload(false)
+        this.props.history.push('/')
     }
 
     onHandleChangeAndEnter (e) {
@@ -234,13 +219,9 @@ class NavbarLinks extends Component {
                         users: res
                     })
                     if (res.utilisateur.id_role === 3) {
-                        //  <Redirect to='/admin' />
-                        // history.push('/admin')
                         this.props.history.push('/admin')
                     }
-                    this.onHandleClose()
-
-                    // console.log('Object', JSON.parse(localStorage.getItem('usertoken')))
+                    this.handleClose()
 
                     this.setState({ userName: this.state.users.utilisateur.nom })
                 }
@@ -249,20 +230,17 @@ class NavbarLinks extends Component {
     }
 
     getValues (e) {
-        //  console.log('sexe', e.target.value)
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    getValuesRadio (e) {
+    handleGetValuesRadio (e) {
         if (e.target.name === 'sexe') {
             console.log('sexe', e.target.value)
             this.setState({ sexe: e.target.value })
-            // console.log('sexe', this.state.sexe)
         } else if (e.target.name === 'id_role') { this.setState({ id_role: e.target.value }) }
     }
 
     render () {
-        // console.log(this.state.utilisateur.sexe)
         const loginRegLink = (
             <div className='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
                 <ul className='navbar-nav ml-auto'>
@@ -307,7 +285,7 @@ class NavbarLinks extends Component {
         return (
             <div className='collapse navbar-collapse' id='navbarResponsive'>
                 {localStorage.usertoken ? userLink : loginRegLink}
-                <ModalCnxContainer show={this.state.show} onHide={this.handleClose} />
+                <ModalCnxContainer show={this.state.show} onHandleClose={this.handleClose} />
                 <Modal show={this.state.showInscription} onHide={this.handleCloseInsc}>
                     <Modal.Header closeButton>
                         <Modal.Title>Page Inscription</Modal.Title>

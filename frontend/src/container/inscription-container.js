@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import InputComponent from '../component/input-component'
+import { Link } from 'react-router-dom'
 
 class InscriptionContainer extends Component {
     constructor (props) {
@@ -26,6 +27,7 @@ class InscriptionContainer extends Component {
     }
 
     render () {
+        const { handlenext } = this.props
         return (
             <>
 
@@ -46,8 +48,8 @@ class InscriptionContainer extends Component {
                 <ul className='pager'>
 
                     <li className='next'>
-                        <a href='#' onClick={this.props.click}>Next
-                        </a>
+                        <Link to='#' onClick={handlenext}>Next
+                        </Link>
                     </li>
                 </ul>
             </>

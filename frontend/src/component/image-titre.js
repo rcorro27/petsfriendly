@@ -1,5 +1,4 @@
 import React from 'react'
-// import ImgComposant from '../component/img-composant'
 
 const ImageTitre = ({ classDiv, src, classCss, titre }) => (
 

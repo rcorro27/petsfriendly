@@ -4,7 +4,7 @@ import InputComponent from 'component/input-component'
 import Boutton from 'component/bouton-component'
 
 class FormInscription extends Component {
-    render() {
+    render () {
         return (
             <div>
                 <h1>Inscrivez-vous à Pets Friendly</h1>

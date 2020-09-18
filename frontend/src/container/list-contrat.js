@@ -7,7 +7,7 @@ import axios from 'axios'
 import { Button } from 'react-bootstrap'
 
 class ListContrat extends Component {
-    constructor() {
+    constructor () {
         super()
 
         this.state = {
@@ -19,11 +19,7 @@ class ListContrat extends Component {
         }
     }
 
-    componentDidMount() {
-        // const token = localStorage.usertoken
-
-        // const decoded = jwtdecode(token)
-
+    componentDidMount () {
         this.setState({
 
             id: JSON.parse(localStorage.getItem('usertoken')).utilisateur.id
@@ -51,7 +47,7 @@ class ListContrat extends Component {
         }
     }
 
-    accepterContrat(contrat) {
+    accepterContrat (contrat) {
         axios
             .post('https://pets-friendly.herokuapp.com/contrats/acceptation', {
                 utilisateur: {
@@ -72,7 +68,7 @@ class ListContrat extends Component {
             })
     }
 
-    render() {
+    render () {
         console.log('response', this.state.id)
 
         console.log('contrat', this.state.contrats)

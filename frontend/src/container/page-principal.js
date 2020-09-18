@@ -6,7 +6,7 @@ import RecherchePetsitter from 'container/recherchepetsitter-container'
 import Profile from 'container/profil.js'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Navbar from '../container/navbar-container'
-import Footer from '../component/Footer/Footer'
+import Footer from '../container/Footer/Footer'
 import UpdateProfile from './update-profil'
 import ListContrat from '../container/list-contrat'
 import ProfilDemandePettSitter from '../container/profil-demande-pettsitter'
@@ -24,11 +24,6 @@ class PagePrincipal extends Component {
             localStorage.removeItem('usertoken')
         })
     };
-
-    componentDidMount () {
-        // Activate the event listener
-        // this.setupBeforeUnloadListener()
-    }
 
     render () {
         return (

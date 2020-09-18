@@ -6,8 +6,6 @@ import CarouselContainer from '../container/carousel-container'
 import Title from '../component/titre-composant'
 import SpanComponent from '../component/span-composant'
 
-// import Navbar from '../component/Navbar'
-
 class PageAcceuil extends Component {
     render () {
         return (

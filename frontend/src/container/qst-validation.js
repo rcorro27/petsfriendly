@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 import InputComponent from '../component/input-component'
 
@@ -26,6 +27,7 @@ class QuestionValidation extends Component {
     }
 
     render () {
+        const { handleback } = this.props
         return (
             <>
 
@@ -66,8 +68,8 @@ class QuestionValidation extends Component {
                 <ul className='pager'>
 
                     <li className='page-item'>
-                        <a href='#' onClick={this.props.back}>Previous
-                        </a>
+                        <Link to='#' onClick={handleback}>Previous
+                        </Link>
 
                     </li>
                 </ul>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 
-import Footer from '../component/Footer/Footer'
 import CarouselContainer from '../container/carousel-container'
 import Title from '../component/titre-composant'
 import SpanComponent from '../component/span-composant'

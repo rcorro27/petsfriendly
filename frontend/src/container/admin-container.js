@@ -6,7 +6,7 @@ import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 import { withRouter } from 'react-router-dom'
 
 class AdminContainer extends Component {
-    constructor(props) {
+    constructor (props) {
         super(props)
 
         this.state = {
@@ -16,7 +16,7 @@ class AdminContainer extends Component {
         this.handleChangeSinglePost = this.handleChangeSinglePost.bind(this)
     }
 
-    componentWillMount() {
+    componentWillMount () {
         if (localStorage.getItem('usertoken') && JSON.parse(localStorage.getItem('usertoken')).utilisateur.id_role === 1) {
             axios.get('https://pets-friendly.herokuapp.com/utilisateurs/recuperation/petsitters/tout')
                 .then(response => {
@@ -30,13 +30,12 @@ class AdminContainer extends Component {
         }
     }
 
-    checked() {
+    checked () {
         this.setState({ isUserAdmin: !this.state.isUserAdmin })
         console.log('isUserAdmin1', this.state.isUserAdmin)
     }
 
-    handleChangeSinglePost(id) {
-        // console.log('value>>>', value)
+    handleChangeSinglePost (id) {
         console.log('id>>>', id)
         return axios
             .put(`https://pets-friendly.herokuapp.com/utilisateurs/validation/petsitter/${id}`)
@@ -48,9 +47,7 @@ class AdminContainer extends Component {
             })
     }
 
-    render() {
-        // console.log('localStorage', JSON.parse(localStorage.getItem('usertoken')).utilisateur.id_role)
-        //  console.log('isUserAdmin', this.state.isUserAdmin)
+    render () {
         return (
             <div className='container'>
                 <h1>Administration </h1>
